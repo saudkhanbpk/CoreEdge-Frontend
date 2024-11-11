@@ -63,10 +63,10 @@ export class MainComponent {
       icon: 'admin_panel_settings',
       submenus: [
         { title: 'Vendors', link: '/business-admin/vendors' },
-        { title: 'Contracts', link: '' },
+        { title: 'Contracts', link: '/business-admin/contracts' },
         { title: 'Roles', link: '/business-admin/roles' },
         { title: 'Employees', link: '/business-admin/employees' },
-        { title: 'Reports', link: '' }
+        { title: 'Reports', link: '/business-admin/reports' }
       ]
     }
   ];

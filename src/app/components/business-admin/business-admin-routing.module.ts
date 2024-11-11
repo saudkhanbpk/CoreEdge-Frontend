@@ -8,7 +8,12 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
       { path: 'catalog', loadChildren: () => import('./catalog/catalog.module').then(m => m.CatalogModule) },
-      { path: 'approvals', loadChildren: () => import('./approvals/approvals.module').then(m => m.ApprovalsModule) }
+      { path: 'approvals', loadChildren: () => import('./approvals/approvals.module').then(m => m.ApprovalsModule) },
+      { path: 'employees', loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule) },
+      { path: 'vendors', loadChildren: () => import('./vendors/vendors.module').then(m => m.VendorsModule) },
+      { path: 'roles', loadChildren: () => import('./roles/roles.module').then(m => m.RolesModule) },
+      { path: 'contracts', loadChildren: () => import('./contracts/contracts.module').then(m => m.ContractsModule) },
+      { path: 'reports', loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule) },
     ]
   }
 ];

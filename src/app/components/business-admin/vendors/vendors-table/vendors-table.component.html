@@ -1,0 +1,138 @@
+<div class="table-div">
+    <div class="headdiv ">
+        <div class="heading">
+            <h1>Vendors </h1>
+        </div>
+        <div class="secondary-row">
+            <div class="input-group">
+                <input type="text" class="form-control input-group-form-control" placeholder="Search Vendor"
+                    aria-label="Quick Search">
+                <button class="btn search-order-btn" type="button" id="button-addon2">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
+            <div>
+                <button class="btn add-btn" routerLink="/business-admin/vendors/add-vendors">Add New Vendor <img
+                        src="../../../../../../assets/icons/Plus.png" alt=""></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-container p-0 mt-2">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" class="one">
+                            <div class="table-data">ID</div>
+                        </th>
+                        <th scope="col">
+                            <div class="table-data">Logo</div>
+                        </th>
+                        <th scope="col">
+                            <div class="table-data">Vendor Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="table-data">Contact Person</div>
+                        </th>
+                        <th scope="col">
+                            <div class="table-data">Email</div>
+                        </th>
+                        <th scope="col">
+                            <div class="table-data">Phone</div>
+                        </th>
+                        <th scope="col">
+                            <div class="table-data">Address</div>
+                        </th>
+                        <th scope="col">
+                            <div class="table-data">Date Joined</div>
+                        </th>
+                        <th scope="col">
+                            <div class="table-data">Website</div>
+                        </th>
+                        <th scope="col" class="two">
+                            <div class="table-data">Actions</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let vendor of paginatedData; let i = index">
+                        <tr>
+                            <td>
+                                <div class="table-data">{{ vendor.id }}</div>
+                            </td>
+                            <td>
+                                <div class="table-data">
+                                    <img *ngIf="vendor.logoUrl; else defaultLogo" [src]="vendor.logoUrl"
+                                        alt="{{vendor.name}} Logo" class="vendor-logo">
+                                    <ng-template #defaultLogo>
+                                        <img src="../../../../../../assets/icons/default-logo.png" alt="Default Logo"
+                                            class="vendor-logo">
+                                    </ng-template>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-data">{{ vendor.name }}</div>
+                            </td>
+                            <td>
+                                <div class="table-data">{{ vendor.contactPerson }}</div>
+                            </td>
+                            <td>
+                                <div class="table-data">{{ vendor.email }}</div>
+                            </td>
+                            <td>
+                                <div class="table-data">{{ vendor.phone }}</div>
+                            </td>
+                            <td>
+                                <div class="table-data">{{ vendor.address }}</div>
+                            </td>
+                            <td>
+                                <div class="table-data">{{ vendor.dateJoined | date: 'mediumDate' }}</div>
+                            </td>
+                            <td>
+                                <div class="table-data">
+                                    <a href="{{ vendor.website }}" target="_blank">{{ vendor.website }}</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-data d-flex gap-1 w-100 justify-content-center align-items-center">
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" id="" />
+                                        </div>
+                                    <button class="btn"><img src="../../../../../assets/icons/Union.png"
+                                            alt=""></button>
+                                    <button class="btn"><img src="../../../../../assets/icons/Trash can.png"
+                                            alt=""></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <nav aria-label="Page navigation example" class="m-2">
+        <ul class="pagination justify-content-start">
+            <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
+                <a class="paginator-button" (click)="previousPage()" style="cursor: pointer;">
+                    <mat-icon>chevron_left</mat-icon>
+                </a>
+            </li>
+
+            <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
+                <li class="page-item" [ngClass]="{'active-page': currentPage === index + 1}">
+                    <a class="paginator-button" (click)="goToPage(index + 1)" style="cursor: pointer;">
+                        {{ index + 1 }}
+                    </a>
+                </li>
+            </ng-container>
+
+            <li class="page-item" [class.disabled]="!isNextPageAvailable()">
+                <a class="paginator-button" (click)="nextPage()" style="cursor: pointer;">
+                    <mat-icon>chevron_right</mat-icon>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
