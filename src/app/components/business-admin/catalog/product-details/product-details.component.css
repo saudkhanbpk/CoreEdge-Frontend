@@ -1,0 +1,28 @@
+.data{
+    font-size: 20px;
+}
+.price{
+    background-color: #b2ce6d;
+    color: white;
+    border-radius: 12px;
+    padding: 5px 15px;
+    font-weight: 600;
+}
+.send-request{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: white;
+    background-color: #b2ce6d;
+    border-radius: 8px;
+    padding: 10px;
+    width: 220px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+}
+.btn{
+    box-shadow: none;
+}

@@ -1,0 +1,196 @@
+.section-div {
+    background-color: white;
+    border-radius: 14px;
+  }
+  
+  .section-div h2 {
+    height: 55px;
+    background: #e6ead7 ;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    border-radius: 14px 14px 0px 0px;
+    padding: 0px 0px 0px 10px;
+  }
+  
+  .input-div {
+    padding: 0px 10px 10px 10px;
+  }
+  
+  .input-div label {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+  }
+  
+  .input-div .star {
+    color: #C3386A;
+  }
+  
+  .input-div .form-control {
+    height: 40px;
+    border-radius: 7px;
+    padding: 15px;
+    border: 1.5px solid #E0E0E0;
+    color: #000;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+    margin-top: 5px;
+    box-shadow: none;
+  }
+  
+  .input-div .form-select {
+    height: 40px;
+    border-radius: 7px;
+    border: 1.5px solid #E0E0E0;
+    color: #000;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+    margin-top: 5px;
+    box-shadow: none;
+  
+  }
+  
+  .upload-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .upload-icon {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #f4f4ff;
+    margin-right: 10px;
+  }
+  
+  .upload-placeholder {
+    color: #b2ce6d;
+    font-size: 40px;
+  }
+  
+  .image-preview {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .upload-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .upload-label {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+  
+  }
+  
+  .upload-label .highlight {
+    color: #007EFF;
+  }
+  
+  input[type="file"] {
+    display: none;
+  }
+  
+  p {
+    font-size: 12px;
+    color: #6c757d;
+    margin-bottom: 0px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .btn {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+  }
+  
+  .add-btn {
+    width: 200px;
+    height: 40px;
+    padding: 12px 16px 12px 16px;
+    border-radius: 7px;
+    background: #b2ce6d;
+    color: white;
+  
+  }
+  
+  .cancel-btn {
+    width: 200px;
+    height: 40px;
+    padding: 12px 16px 12px 16px;
+    border-radius: 7px;
+    background-color: #ffffff;
+    color: #b2ce6d;
+    border: 1px solid #b2ce6d;
+  }
+  .paid-btn {
+    width: 200px;
+    height: 40px;
+    padding: 12px 16px 12px 16px;
+    border-radius: 7px;
+    background: green;
+    color: white;
+  
+  }
+  
+  .dispute-btn {
+    width: 200px;
+    height: 40px;
+    padding: 12px 16px 12px 16px;
+    border-radius: 7px;
+    background-color: #FFF5EE;
+    color: red;
+    border: 1px solid red;
+  }
+  .input-div-no-pad {
+    padding: 0px 0px 10px 0px !important;
+  }
+  
+
+  
+  
+  
+  @media screen and (max-width:600px) {
+    .button-group {
+      justify-content: center;
+    }
+  
+    .cancel-btn,
+    .add-btn {
+      width: 170px;
+    }
+  
+    .form-div {
+      padding: 10px;
+    }
+  
+    .heading h1 {
+      font-size: 18px;
+    }
+  }

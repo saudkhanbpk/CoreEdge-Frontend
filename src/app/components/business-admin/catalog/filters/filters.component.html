@@ -1,0 +1,60 @@
+<div class="card  border-0 maindiv">
+    <h5 class="mb-4">Refine Your Search</h5>
+    <div style="padding-left: 20px;" class="mb-2">
+        <div class="form-check" >
+            <input class="form-check-input" type="checkbox" id="instock" (change)="toggleInStock($event)">
+            <label class="form-check-label" for="instock">
+                In Stock
+            </label>
+        </div>
+    </div>
+    <div class="filter-section">
+        <h6>Manufacturers</h6>
+        <div style="padding-left: 20px;">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search Manufacturers" [(ngModel)]="manufacturerSearch">
+          </div>
+          <div class="brand-list">
+            <div *ngFor="let manufacturer of filteredManufacturers()" class="form-check">
+              <input 
+                class="form-check-input" 
+                type="checkbox" 
+                id="{{manufacturer}}" 
+                (change)="toggleManufacturerSelection($event, manufacturer)">
+              <label class="form-check-label" for="{{manufacturer}}">
+                {{ manufacturer }}
+              </label>
+            </div>
+            <button class="btn p-0" (click)="showAllManufacturers()">
+              <span *ngIf="showMoreManufacturers">
+                <mat-icon>expand_less</mat-icon>
+              </span>
+              <span *ngIf="!showMoreManufacturers">
+                <mat-icon>expand_more</mat-icon>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+    <div class="filter-section mt-4">
+        <h6>Categories</h6>
+        <div style="padding-left: 20px;">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search Categories" [(ngModel)]="categorySearch">
+            </div>
+            <div class="brand-list">
+                <div *ngFor="let category of filteredCategories()" class="form-check">
+                    <input class="form-check-input" type="checkbox" id="{{category}}" (change)="toggleCategoriesSelection($event, category)">
+                    <label class="form-check-label" for="{{category}}">
+                        {{ category }}
+                    </label>
+                </div>
+                <button class="btn  p-0" (click)="showAllCategories()">
+                    <mat-icon>{{ showMoreCategories ? 'expand_less' : 'expand_more' }}</mat-icon>
+                </button>
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="authdiv">
+    <div class="card ">
+        <h1 class="auth-head text-center mb-2">Create an Account</h1>
+        <p class="text-center start-para">New to Polaris Core? To get started create your account</p>
+        <div class="d-flex flex-column gap-3">
+            
+            <button class="btn auth-btn gap-2"><img src="../../../assets/icons/Google.png" alt=""> <span>Log in to
+                    Google</span> </button>
+            <button class="btn auth-btn gap-2"><img src="../../../assets/icons/Facebook.png" alt=""><span>Log in to
+                    Facebook</span> </button>
+        </div> 
+        <span class="auth-para text-center my-3">or using your email</span>
+        <div class="input-group d-flex flex-column mb-2">
+            <label for="text">Full Name</label>
+            <div class="input-with-icon">
+                <input type="text" id="fullname" placeholder="Your full name"
+                    class="form-control my-form-control">
+            </div>
+        </div>
+        <div class="input-group d-flex flex-column mb-2">
+            <label for="text">Are you a customer?</label>
+            <div class="btn-group gap-3" role="group" aria-label="Basic radio toggle button group">
+                <div class="d-flex gap-1">
+                    <input type="radio" class="" name="options1" id="yes" autocomplete="off" checked>
+                    <label class="" for="yes">Yes</label>
+                </div>
+                <div class="d-flex gap-1">
+                    <input type="radio" class="" name="options1" id="no" autocomplete="off">
+                    <label class="" for="no">No</label>
+                </div>
+              </div>
+        </div>
+        <div class="input-group d-flex flex-column mb-2">
+            <label for="text">Want to Open a Business with Polaris Core?</label>
+            <div class="btn-group gap-3" role="group" aria-label="Basic radio toggle button group">
+                <div class="d-flex gap-1">
+                    <input type="radio" class="" name="options2" id="yesbusiness" autocomplete="off" checked>
+                    <label class="" for="yesbusiness">Yes</label>
+                </div>
+                <div class="d-flex gap-1">
+                    <input type="radio" class="" name="options2" id="nobusiness" autocomplete="off">
+                    <label class="" for="nobusiness">No</label>
+                </div>
+              </div>
+        </div>
+        <div class="input-group d-flex flex-column mb-2">
+            <label for="businessname">Business Name</label>
+            <div class="input-with-icon">
+                <input type="text" id="businessname" placeholder="Your Business Name"
+                    class="form-control my-form-control">
+            </div>
+        </div>
+        <div class="input-group d-flex flex-column mb-2">
+            <label for="email">Email</label>
+            <div class="input-with-icon">
+                <input type="email" id="email" placeholder="Your email address"
+                    class="form-control my-form-control">
+            </div>
+        </div>
+        <div class="input-group d-flex flex-column">
+            <label for="password">Password</label>
+            <div class="input-with-icon" style="position: relative;">
+                <input [type]="hide ? 'password' : 'text'" id="password" placeholder="Your password"
+                    class="form-control my-form-control">
+                <mat-icon (click)="hide = !hide" class="card-icons" style="position: absolute; right: 15px; top: 8px; cursor: pointer;">
+                    {{ hide ? 'visibility_off' : 'visibility' }}
+                </mat-icon>
+            </div>
+        </div>
+        <div class="input-group d-flex flex-column mt-2">
+            <label for="address">Address</label>
+            <div class="input-with-icon">
+                <input type="text" id="card-number" placeholder="Your Address"
+                    class="form-control my-form-control">
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-auth my-3">Sign up</button>
+        </div>
+        <div class="d-flex justify-content-center gap-1">
+            <p class="new">Already a Polaris Core Member?</p><a href="" class="signup-link" routerLink="/auth/login">Log in Now</a>
+        </div>
+    </div>

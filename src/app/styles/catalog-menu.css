@@ -1,0 +1,223 @@
+.section-div {
+    background-color: white;
+    border-radius: 14px;
+}
+
+.section-div h2 {
+    height: 55px;
+    background: #e6ead7;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    border-radius: 14px 14px 0px 0px;
+    padding: 0px 0px 0px 10px;
+}
+
+.input-group {
+    background-color: #F5F6FA;
+    border-radius: 8px;
+    height: 40px;
+    max-width: 250px;
+    width: 100%;
+    border: 0.6px solid lightgray;
+}
+
+.input-group-form-control {
+    border-radius: 10px;
+    background-color: #F5F6FA;
+    border: none;
+    box-shadow: none;
+    height: 38px;
+}
+
+.add-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: white;
+    background-color: #b2ce6d;
+    border-radius: 8px;
+    padding: 10px;
+    width: 250px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+input[type="text"] {
+    font-size: 14px;
+    border-radius: 10px;
+    color: #999;
+    padding-left: 15px;
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
+}
+
+.parent-buttons-group {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    max-width: 100%;
+    width: fit-content;
+    padding: 10px;
+    padding-bottom: 10px !important;
+    border-radius: 14px 14px 0px 0px;
+    background-color: #e6ead7;
+    border-top: 1px;
+    border-left: 1px;
+    border-right: 1px;
+    border-bottom: 0px;
+    border-style: solid;
+    border-color: #E4E4E4;
+    overflow-x: scroll;
+}
+
+.parent-buttons-group::-webkit-scrollbar,
+.category-buttons-group::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+
+.parent-btn {
+    white-space: nowrap;
+    padding: 0px 10px 0px 10px;
+    border-radius: 9px;
+    min-width: 150px;
+    height: 30px;
+    background: #e6ead7;
+    border: 1px solid #b2ce6d;
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+    box-shadow: none;
+}
+
+.parent-btn:hover,
+.parent-btn:active {
+    color: white;
+    background-color: #b2ce6d;
+    font-weight: 400;
+}
+
+.menu-secondary-group {
+    border-radius: 14px 14px 14px 14px;
+    background-color: white;
+    padding: 13px;
+
+}
+
+.category-btn {
+    width: fit-content;
+    height: 30px;
+    white-space: nowrap;
+    padding: 0px 10px 0px 10px;
+    border-radius: 14px;
+    border: 1px solid #E4E4E4;
+    color: black;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+    box-shadow: none;
+}
+
+.category-btn:hover,
+.category-btn:active {
+    background-color: #e6ead7;
+    color: #b2ce6d;
+    border: 1px solid #b2ce6d;
+    font-weight: 500px;
+}
+
+.category-buttons-group {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px !important;
+
+    overflow-x: scroll;
+}
+
+.food-item-card {
+    width: 226px;
+    height: 158px;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.food-item-card img {
+    height: 158px;
+    height: 226px;
+    object-fit: cover;
+}
+
+@media screen and (max-width:600px) {
+
+    .food-item-card,
+    .food-item-card img {
+        width: 100%;
+        height: 250px;
+    }
+
+    .menu-div {
+        padding: 10px;
+    }
+}
+
+.icon-group button {
+    background-color: white;
+    width: 24px;
+    height: 24px;
+    padding: 3px 3px 2px 3px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.btn .action-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.name-div {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.name-div .card-title {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: white;
+}
+
+.name-div .card-text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    color: white;
+}
+
+.menu-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+@media screen and (max-width:500px) {
+    .menu-items {
+        justify-content: center;
+    }
+}

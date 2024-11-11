@@ -1,0 +1,30 @@
+p{
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+.mydata{
+    max-height: 500px;
+     overflow-y: scroll;
+}
+.mydata::-webkit-scrollbar{
+    width: 0px;
+}
+.submit-request{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: white;
+    background-color: #b2ce6d;
+    border-radius: 8px;
+    padding: 10px;
+    width: 220px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+}
+h5{
+    font-size: 20px;
+    font-weight: 600;
+}

@@ -1,0 +1,84 @@
+.authdiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.card{
+    max-width: 575px;
+    height: auto;
+    border-width: 1px, 1px, 1px, 1px;
+border-style: solid;
+border-color: #F0F0EF;
+border-radius: 15px;
+box-shadow: 0px -2px 62px 0px #7A7A7A17;
+padding: 20px;
+}
+.auth-head{
+font-size: 28px;
+font-weight: 600;
+line-height: 38px;
+}
+.auth-btn{
+    max-width: 493px;
+    width: 100%;
+height: 44px;
+padding: 9px 167.5px 9px 167.5px;
+border-radius: 55px;
+border: 1px solid  #DEDEDE;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.auth-btn span{
+    white-space: nowrap;
+}
+.auth-para{
+font-size: 16px;
+font-weight: 400;
+line-height: 20px;
+color:  #858585;
+
+}
+.form-control, .form-select{
+    border-radius: 55px;
+}
+.forgot-btn{
+font-size: 15px;
+font-weight: 500;
+line-height: 24px;
+color:  #b2ce6d;
+}
+.btn-auth{
+    max-width: 493px;
+    width: 100%;
+height: 50px;
+padding: 8px 28px 8px 28px;
+border-radius: 55px;
+background: #b2ce6d;
+border: 1px solid  #b2ce6d;
+font-size: 18px;
+font-weight: 600;
+line-height: 20px;
+color:  #FFFFFF;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.new{
+font-size: 17px;
+font-weight: 400;
+line-height: 21px;
+}
+.signup-link{
+font-size: 17px;
+font-weight: 500;
+line-height: 21px;
+color: #b2ce6d;
+}
+
+@media screen and (max-width:600px){
+    .authdiv{
+        height: auto;
+    }
+}
