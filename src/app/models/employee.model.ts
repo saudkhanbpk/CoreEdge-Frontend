@@ -1,10 +1,12 @@
-// src/app/models/employee.model.ts
+import { Role } from "./role.model";
 
 export interface Employee {
     id: number;
-    fullName: string;
-    position: string;
-    department: string;
-    // Other employee-specific fields
+    employeename: string;
+    roles: Role;
+    email: string;
+    password: string;
+    address: string;
+    status: boolean;
   }
   

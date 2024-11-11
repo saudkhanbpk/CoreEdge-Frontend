@@ -39,10 +39,16 @@
                             <div class="table-data">Email</div>
                         </th>
                         <th scope="col">
+                            <div class="table-data">Password</div>
+                        </th>
+                        <th scope="col">
                             <div class="table-data">Phone</div>
                         </th>
                         <th scope="col">
                             <div class="table-data">Address</div>
+                        </th>
+                        <th scope="col">
+                            <div class="table-data">Status</div>
                         </th>
                         <th scope="col">
                             <div class="table-data">Date Joined</div>
@@ -81,10 +87,16 @@
                                 <div class="table-data">{{ vendor.email }}</div>
                             </td>
                             <td>
+                                <div class="table-data">{{ vendor.password }}</div>
+                            </td>
+                            <td>
                                 <div class="table-data">{{ vendor.phone }}</div>
                             </td>
                             <td>
                                 <div class="table-data">{{ vendor.address }}</div>
+                            </td>
+                            <td>
+                                <div class="table-data">{{ vendor.status }}</div>
                             </td>
                             <td>
                                 <div class="table-data">{{ vendor.dateJoined | date: 'mediumDate' }}</div>
@@ -96,10 +108,7 @@
                             </td>
                             <td>
                                 <div class="table-data d-flex gap-1 w-100 justify-content-center align-items-center">
-                                        <div class="form-check form-switch mb-2">
-                                            <input class="form-check-input" type="checkbox" id="" />
-                                        </div>
-                                    <button class="btn"><img src="../../../../../assets/icons/Union.png"
+                                    <button class="btn" routerLink="/business-admin/vendors/add-vendors"><img src="../../../../../assets/icons/Union.png"
                                             alt=""></button>
                                     <button class="btn"><img src="../../../../../assets/icons/Trash can.png"
                                             alt=""></button>
