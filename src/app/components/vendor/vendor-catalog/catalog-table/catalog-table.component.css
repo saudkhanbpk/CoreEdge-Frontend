@@ -1,0 +1,68 @@
+@import url(../../../../styles/catalog-menu.css);
+.menu-secondary-group{
+    background-color: transparent;
+}
+
+.card{
+    border-radius: 16px;
+    padding: 8px;
+    border: 1px solid transparent;
+    width: 237px; height: 263px;
+}
+.card .card-img-top{
+    border-radius: 8px;
+    width: 221px; height:158px; object-fit: cover;
+}
+.card h2{
+font-size: 16px;
+font-weight: 500;
+line-height: 24px;
+margin-bottom: 0px;
+display: flex;
+justify-content: center;
+white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+
+}
+.card p{
+font-size: 14px;
+font-weight: 400;
+line-height: 21px;
+color: #595959;
+
+white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+
+}
+
+@media screen and (max-width:510px){
+    .sites{
+        justify-content: center !important;
+    }
+    .card{
+        width: 100% !important;
+        height: 350px !important;
+    }
+    .card-img-top{
+        width: 100% !important;
+        height: 240px !important;
+    }
+}
+
+.red{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red;
+}
+.green{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: green;
+}
+
