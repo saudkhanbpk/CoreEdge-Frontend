@@ -1,1 +1,113 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+    height: 100%;
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+    width: 0px;
+}
+
+body {
+    margin: 0;
+    font-family: 'poppins', sans-serif;
+}
+
+.mat-mdc-menu-content {
+    margin: 0;
+    padding: 8px 8px !important;
+    width: 13rem;
+    list-style-type: none;
+}
+
+span {
+    font-family: 'poppins', sans-serif !important;
+}
+
+.mat-elevation-z8,
+.mat-mdc-elevation-specific.mat-elevation-z8 {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-family: 'poppins', sans-serif !important;
+}
+
+.color {
+    color: #FF5C00;
+}
+
+.table {
+    --bs-table-hover-bg: transparent !important;
+}
+
+.headdiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 14px;
+    height: 56px;
+    border: 1px solid #E4E4E4;
+}
+
+.headdiv h1 {
+    margin-bottom: 0px;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.secondary-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+@media screen and (max-width:1200px) {
+    .headdiv {
+        height: auto;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .headdiv {
+        flex-direction: column;
+        gap: 15px;
+        align-items: start;
+    }
+}
+
+@media screen and (max-width:1200px) and (min-width:601px) {
+    .headdiv {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .secondary-row {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .heading {
+        width: 100%;
+        justify-content: center;
+        display: flex;
+    }
+}
+.mat-drawer-inner-container {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mat-drawer-content {
+    transition: margin-left 0.3s ease;
+}
+.mat-drawer-inner-container::-webkit-scrollbar{
+    width: 0px;
+    height: 0px;
+}
+.mat-drawer::-webkit-scrollbar {
+    width: 0px;
+}

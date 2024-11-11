@@ -1,0 +1,25 @@
+.filter-section h6 {
+    font-weight: bold;
+  }
+  
+  .input-group .input-group-text {
+    background-color: white;
+    border: none;
+  }
+  .form-check-label{
+    text-transform: uppercase;
+  }
+ .card{
+    background-color: transparent;
+    height: 100%;
+    padding: 20px 10px ;
+ }
+ h6{
+    font-size: 18px;
+    color: #4a7551;
+ }
+@media screen and (max-width:600px){
+  .maindiv{
+    height: auto;
+  }
+}
