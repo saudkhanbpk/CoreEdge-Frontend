@@ -1,0 +1,41 @@
+<div class="menu-div">
+    <div class="headdiv ">
+        <div class="heading">
+            <h1>Catalog </h1>
+        </div>
+        <div class="secondary-row">
+            <div class="input-group">
+                <input type="text" class="form-control input-group-form-control" [(ngModel)]="searchTerm"
+                    placeholder="Search Item" aria-label="Quick Search">
+                <button class="btn search-order-btn" type="button" id="button-addon2" (click)="searchTerm = ''">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
+            <div>
+                <button class="btn add-btn" routerLink="/vendor/vendor-catalog/add-catalog">Add New Item <img
+                        src="../../../../../../assets/icons/Plus.png" alt=""></button>
+            </div>
+        </div>
+    </div>
+    <div class="sites d-flex flex-wrap justify-content-between gap-3 mt-3">
+        <div class="card" *ngFor="let item of filteredData">
+            <div class="position-relative">
+                <img src="{{item.ImageLarge}}" alt="" class="card-img-top">
+            </div>
+            <div class="icon-group position-absolute top-2 end-0 p-2 d-flex gap-2">
+                <button class="btn action-btn" [routerLink]="['/vendor/vendor-catalog/add-catalog', item.MaterialId]">
+                    <img src="../../../../../../assets/icons/Union.png" alt="edit-btn" class="action-icon">
+                </button>
+                <button class="btn action-btn me-2" (click)="deleteItem(item.MaterialId)">
+                    <img src="../../../../../../assets/icons/Trash can.png" alt="delete-btn" class="action-icon">
+                </button>
+            </div>
+            <div class="card-body">
+                <h2>{{item.MaterialId}}</h2>
+                <h2>{{item.CustomerPrice | currency}}</h2>
+                <p>{{item.ShortDescription}}</p>
+            </div>
+        </div>
+
+    </div>
+</div>
