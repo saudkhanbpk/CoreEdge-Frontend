@@ -6,6 +6,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  hide: boolean = true;
-
+ fullName: string = '';
+ email: string = '';
+ password: string = '';
+ address: string = '';
+ businessName: string = '';
+ isCustomer: boolean = true; 
+ wantsBusiness: boolean = false; 
+ hide: boolean = true;
+ 
+ signUp() {
+   console.log('Sign Up Data:', {
+     fullName: this.fullName,
+     email: this.email,
+     password: this.password,
+     address: this.address,
+     businessName: this.businessName,  
+     isCustomer: this.isCustomer,
+     wantsBusiness: this.wantsBusiness
+   });
+ }
 }

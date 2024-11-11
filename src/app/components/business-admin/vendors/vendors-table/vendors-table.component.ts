@@ -20,10 +20,11 @@ export class VendorsTableComponent {
       logoUrl: '../../../../../assets/icons/WhatsApp Image 2024-09-09 at 14.31.00_f9483b72.jpg',
       contactPerson: 'John Doe',
       email: 'john@abc.com',
+      password: 'password.123',
       phone: '123-456-7890',
       address: '123 Main St, City, Country',
       status: 'Active',
-    
+
       dateJoined: new Date('2023-01-15'),
       website: 'https://www.abc.com'
     },
@@ -33,6 +34,7 @@ export class VendorsTableComponent {
       logoUrl: '../../../../../assets/icons/WhatsApp Image 2024-09-09 at 14.31.00_f9483b72.jpg',
       contactPerson: 'Jane Smith',
       email: 'jane@xyztraders.com',
+      password: 'password.123',
       phone: '987-654-3210',
       address: '456 Market Ave, City, Country',
       status: 'Inactive',
@@ -45,10 +47,11 @@ export class VendorsTableComponent {
       logoUrl: '../../../../../assets/icons/WhatsApp Image 2024-09-09 at 14.31.00_f9483b72.jpg',
       contactPerson: 'John Doe',
       email: 'john@abc.com',
+      password: 'password.123',
       phone: '123-456-7890',
       address: '123 Main St, City, Country',
       status: 'Active',
-    
+
       dateJoined: new Date('2023-01-15'),
       website: 'https://www.abc.com'
     },
@@ -58,6 +61,7 @@ export class VendorsTableComponent {
       logoUrl: '../../../../../assets/icons/WhatsApp Image 2024-09-09 at 14.31.00_f9483b72.jpg',
       contactPerson: 'Jane Smith',
       email: 'jane@xyztraders.com',
+      password: 'password.123',
       phone: '987-654-3210',
       address: '456 Market Ave, City, Country',
       status: 'Inactive',
@@ -70,10 +74,11 @@ export class VendorsTableComponent {
       logoUrl: '../../../../../assets/icons/WhatsApp Image 2024-09-09 at 14.31.00_f9483b72.jpg',
       contactPerson: 'John Doe',
       email: 'john@abc.com',
+      password: 'password.123',
       phone: '123-456-7890',
       address: '123 Main St, City, Country',
       status: 'Active',
-    
+
       dateJoined: new Date('2023-01-15'),
       website: 'https://www.abc.com'
     },
@@ -83,6 +88,7 @@ export class VendorsTableComponent {
       logoUrl: '../../../../../assets/icons/WhatsApp Image 2024-09-09 at 14.31.00_f9483b72.jpg',
       contactPerson: 'Jane Smith',
       email: 'jane@xyztraders.com',
+      password: 'password.123',
       phone: '987-654-3210',
       address: '456 Market Ave, City, Country',
       status: 'Inactive',
@@ -95,10 +101,11 @@ export class VendorsTableComponent {
       logoUrl: '../../../../../assets/icons/WhatsApp Image 2024-09-09 at 14.31.00_f9483b72.jpg',
       contactPerson: 'John Doe',
       email: 'john@abc.com',
+      password: 'password.123',
       phone: '123-456-7890',
       address: '123 Main St, City, Country',
       status: 'Active',
-    
+
       dateJoined: new Date('2023-01-15'),
       website: 'https://www.abc.com'
     },
@@ -108,6 +115,7 @@ export class VendorsTableComponent {
       logoUrl: '../../../../../assets/icons/WhatsApp Image 2024-09-09 at 14.31.00_f9483b72.jpg',
       contactPerson: 'Jane Smith',
       email: 'jane@xyztraders.com',
+      password: 'password.123',
       phone: '987-654-3210',
       address: '456 Market Ave, City, Country',
       status: 'Inactive',

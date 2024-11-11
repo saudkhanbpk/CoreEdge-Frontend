@@ -1,9 +1,9 @@
 <div class="bg-light p-3 main">
-    <app-header (toggleDrawerEvent)="toggleDrawer()"></app-header>
+    <app-vendor-header (toggleDrawerEvent)="toggleDrawer()"></app-vendor-header>
     <mat-drawer-container class="example-container mt-3">
         <mat-drawer #drawer [ngClass]="{'drawer-hovered': hovered}" class="bg-white rounded-3"
             (mouseenter)="hovered = true" (mouseleave)="hovered = false">
-            <nav class="sidebar  pb-3">
+            <nav class="sidebar">
                 <ul class="nav flex-column">
                     <li class="nav-item px-2" *ngFor="let menu of menus">
                         <button class="btn align-items-center d-flex justify-content-between"
@@ -17,14 +17,14 @@
                                 <mat-icon>{{ isMenuOpen(menu.id) ? 'expand_less' : 'expand_more' }}</mat-icon>
                             </div>
                         </button>
-                        <ul class="nav flex-column ml-3"
+                        <!-- <ul class="nav flex-column ml-3"
                             *ngIf="isMenuOpen(menu.id) && menu.submenus.length > 0 && hovered">
                             <li class="nav-item" *ngFor="let submenu of menu.submenus">
                                 <a class="nav-link" [routerLink]="submenu.link" routerLinkActive="active">
                                     {{ submenu.title }}
                                 </a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </li>
                 </ul>
             </nav>
