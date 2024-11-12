@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { RolesService } from 'src/app/services/roles.service';
 
 @Component({
   selector: 'app-roles-table',
@@ -9,9 +11,14 @@ export class RolesTableComponent {
   currentPage = 1;
   itemsPerPage = 10; 
   expandedIndex: number | null = null;
-  constructor(){}
+  constructor(private rolesService :RolesService, private authService : AuthService){}
   ngOnInit(): void {
    console.log("this is data", this.data)
+   const user= this.authService.getUserData()
+   this.rolesService.findAll(user.id).subscribe((item:any)=> {
+    console.log("item : ",item)
+   })
+   console.log("user : ", user)
   }
 
   data = [
