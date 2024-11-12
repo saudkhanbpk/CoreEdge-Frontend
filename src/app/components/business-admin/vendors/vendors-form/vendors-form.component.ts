@@ -18,10 +18,11 @@ export class VendorsFormComponent {
       name: ['', [Validators.required, Validators.maxLength(100)]],
       contactPerson: ['', [Validators.required, Validators.maxLength(100)]],
       email: ['', [Validators.required, Validators.email]],
+      password:['', Validators.required],
       phone: ['', [Validators.required, Validators.pattern(/^[0-9\-+\s()]*$/)]],
       address: ['', [Validators.required, Validators.maxLength(255)]],
       category: ['', [Validators.required, Validators.maxLength(100)]],
-      status: ['Active', [Validators.required]], // Default value set to 'Active'
+      status: ['Active', [Validators.required]], 
       dateJoined: [this.getCurrentDate(), [Validators.required]],
       website: ['', [Validators.required, Validators.pattern(/^(https?:\/\/)?([\w\d-]+\.){1,}[\w]{2,}(\/.*)?$/)]],
       uploadedImageUrl:['']
