@@ -1,0 +1,39 @@
+<div class="bg-light p-3 main">
+    <app-sales-header (toggleDrawerEvent)="toggleDrawer()"></app-sales-header>
+    <mat-drawer-container class="example-container mt-3">
+        <mat-drawer #drawer [ngClass]="{'drawer-hovered': hovered}" class="bg-white rounded-3"
+            (mouseenter)="hovered = true" (mouseleave)="hovered = false">
+            <nav class="sidebar  pb-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item px-2" *ngFor="let menu of menus">
+                        <button class="btn align-items-center d-flex justify-content-between"
+                            (click)="menu.submenus.length > 0 && openMenu(menu.id)"
+                            [routerLink]="menu.submenus.length === 0 ? menu.link : null" routerLinkActive="active">
+                            <div class="d-flex align-items-center gap-2">
+                                <mat-icon>{{ menu.icon }}</mat-icon>
+                                <span *ngIf="hovered" class="title">{{ menu.title }}</span>
+                            </div>
+                            <div *ngIf="menu.submenus.length > 0 && hovered" class="d-flex align-items-center">
+                                <mat-icon>{{ isMenuOpen(menu.id) ? 'expand_less' : 'expand_more' }}</mat-icon>
+                            </div>
+                        </button>
+                        <ul class="nav flex-column ml-3"
+                            *ngIf="isMenuOpen(menu.id) && menu.submenus.length > 0 && hovered">
+                            <li class="nav-item" *ngFor="let submenu of menu.submenus">
+                                <a class="nav-link" [routerLink]="submenu.link" routerLinkActive="active">
+                                    {{ submenu.title }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </mat-drawer>
+        <mat-drawer-content [ngStyle]="{ 'margin-left': isSmallScreen ? '0px' : (hovered ? '300px' : '80px'), 'padding-left': drawer.opened ? '16px' : '0px' }">
+            <div class="maindiv">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-drawer-content>
+        
+    </mat-drawer-container>
+</div>
