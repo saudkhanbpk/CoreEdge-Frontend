@@ -13,8 +13,8 @@ export class RolesService {
   constructor(private http: HttpClient) { }
 
   // Method to retrieve all roles
-  findAll(): Observable<Role[]> {
-    return this.http.get<Role[]>(this.apiUrl);
+  findAll(userId: number): Observable<Role[]> {
+    return this.http.get<Role[]>(`${this.apiUrl}/${userId}`);
   }
 
   // Method to retrieve a role by ID
