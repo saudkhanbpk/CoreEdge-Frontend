@@ -1,43 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { RolesService } from 'src/app/services/roles.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-roles-table',
   templateUrl: './roles-table.component.html',
-  styleUrls: ['./roles-table.component.css']
+  styleUrls: ['./roles-table.component.css'],
 })
-export class RolesTableComponent {
+export class RolesTableComponent implements OnInit {
   currentPage = 1;
-  itemsPerPage = 10; 
+  itemsPerPage = 10;
   expandedIndex: number | null = null;
-  constructor(private rolesService :RolesService, private authService : AuthService){}
+  data: any[] = []; 
+  totalItems: number = 0; 
+  constructor(
+    private rolesService: RolesService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
   ngOnInit(): void {
-   console.log("this is data", this.data)
-   const user= this.authService.getUserData()
-   this.rolesService.findAll(user.id).subscribe((item:any)=> {
-    console.log("item : ",item)
-   })
-   console.log("user : ", user)
+    const user = this.authService.getUserData();
+    this.loadRoles(user.id);
   }
 
-  data = [
-    {
-      name: 'Requester',
-      status:'Active',
-    },
-    {
-      name: 'Agent',
-      status:'Inactive',
-    },
-  ];
+  loadRoles(userId: number) {
+    this.rolesService.findAll(userId).subscribe((response: any) => {
+      this.data = response; 
+      this.totalItems = response.length; 
+    });
+  }
 
   toggleDetails(index: number) {
     this.expandedIndex = this.expandedIndex === index ? null : index;
   }
- 
+
   get totalPages() {
-    return Math.ceil(this.data.length / this.itemsPerPage);
+    return Math.ceil(this.totalItems / this.itemsPerPage);
   }
 
   get paginatedData() {
@@ -47,17 +48,20 @@ export class RolesTableComponent {
 
   goToPage(page: number) {
     this.currentPage = page;
+    this.reloadRoles();
   }
 
   nextPage() {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
+      this.reloadRoles();
     }
   }
 
   previousPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
+      this.reloadRoles();
     }
   }
 
@@ -65,7 +69,33 @@ export class RolesTableComponent {
     return this.currentPage < this.totalPages;
   }
 
+  roleEdit(role: any) {
+    console.log('Role data:', role);
+    this.router.navigate(['/business-admin/roles/edit-roles'], { state: { roleData: role } });
+  }
+  
+
+  roleDelete(item: any) {
+    Swal.fire({
+      icon: 'success',
+      title: 'Role Added',
+      text: `The role "${item.name}" has been added successfully!`,
+      confirmButtonText: 'OK',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.rolesService.delete(item.id).subscribe((response: any) => {
+          this.ngOnInit();
+        });
+      }
+    });
+  }
+
   isPreviousPageAvailable() {
     return this.currentPage > 1;
+  }
+
+  reloadRoles() {
+    const user = this.authService.getUserData();
+    this.loadRoles(user.id);
   }
 }
