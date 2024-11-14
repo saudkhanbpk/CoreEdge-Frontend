@@ -45,6 +45,7 @@ export class MainComponent {
     this.openMenuId = this.openMenuId === menuId ? '' : menuId;
   }
   menus = [
+    //procurement menu
     { id: 'dashboard', title: 'Dashboard', icon: 'dashboard', link: '/business-admin/dashboard', submenus: [] },
     { id: 'catalog', title: 'Catalog', icon: 'menu_book', link: '/business-admin/catalog', submenus: [] },
     { id: 'request', title: 'Requests', icon: 'request_quote', link: '/business-admin/hardware-requests', submenus: [] },
@@ -69,6 +70,8 @@ export class MainComponent {
         { title: 'Reports', link: '/business-admin/reports' }
       ]
     },
+
+    //sales menu
     { id: 'marketing', title: 'Marketing', icon: 'public', link: '/sales/marketing', submenus: [] },
     { id: 'leads', title: 'Leads', icon: 'emoji_people', link: '/sales/leads', submenus: [] },
     { id: 'contacts', title: 'Contacts', icon: 'contacts', link: '/sales/contacts', submenus: [] },
