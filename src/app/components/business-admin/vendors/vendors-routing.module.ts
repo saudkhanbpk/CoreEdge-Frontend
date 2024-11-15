@@ -6,7 +6,8 @@ import { VendorsFormComponent } from './vendors-form/vendors-form.component';
 const routes: Routes = [
   {path:'', redirectTo:'vendors-table', pathMatch:'full'},
   {path:'vendors-table', component:VendorsTableComponent},
-  {path:'add-vendors', component:VendorsFormComponent}
+  {path:'add-vendors', component:VendorsFormComponent},
+  {path:'edit-vendors', component:VendorsFormComponent}
 ];
 
 @NgModule({
