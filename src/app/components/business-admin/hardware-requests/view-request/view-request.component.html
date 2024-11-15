@@ -1,0 +1,133 @@
+<div class="container">
+    <h2 mat-dialog-title>Hey, I need these products😊!</h2>
+    <mat-dialog-content class="mat-typography">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <h4>Employee Name:</h4>
+                    <span>James Anderson</span>
+                </div>
+                <div class="mb-3">
+                    <h4>Employee Email:</h4>
+                    <span>James&#64;gmail.com</span>
+                </div>
+                <div class="mb-3">
+                    <h4>Employee Contact:</h4>
+                    <span>001-393-393-3923</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <h4>Vendor Name:</h4>
+                    <span>Brendon McCullum</span>
+                </div>
+                <div class="mb-3">
+                    <h4>Vendor Email:</h4>
+                    <span>Brendon&#64;gmail.com</span>
+                </div>
+                <div class="mb-3">
+                    <h4>Vendor Contact:</h4>
+                    <span>001-393-393-3923</span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h4>Description:</h4>
+                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem eius libero voluptatibus nobis earum
+                    voluptates et, corrupti, quisquam maxime saepe quam fuga impedit iste nostrum. Soluta accusamus
+                    cumque voluptates impedit!</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-div p-0">
+                <div class="table-container p-0  mt-2">
+                    <div class="table-responsive">
+                        <table class="table table-hover ">
+                            <thead class="thead-dark ">
+                                <tr>
+                                    <th scope="col" class="one">
+                                        <div class="table-data">
+                                            No
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="table-data">
+                                            Material ID
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="table-data">
+                                            Short Description
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="table-data">
+                                            Quantity
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="two">
+                                        <div class="table-data">
+                                            Price
+                                        </div>
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container>
+                                    <tr *ngFor="let item of request; let i = index">
+                                        <td>
+                                            <div class="table-data">
+                                                {{ item.no }}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="table-data">
+                                                {{ item.materialid }}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="table-data">
+                                                {{ item.shortDescription }}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="table-data">
+                                                {{ item.quantity }}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="table-data">
+                                                {{ item.price | currency}}
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                </ng-container>
+                            </tbody>
+                        </table>
+                        <div class="d-flex justify-content-end gap-2">
+                            <h4>Total Amount:</h4>
+                            <span class="amount">$1071.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="d-flex justify-content-end gap-2">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial></button> -->
+        <button class="btn border check gap-2" (click)="checkAvailability()">
+            <mat-icon *ngIf="!isLoading">check_circle</mat-icon>
+            <span *ngIf="!isLoading">Check Availability</span>
+            <mat-spinner *ngIf="isLoading" diameter="20" mode="indeterminate"></mat-spinner>
+        </button>
+        <button class="btn check border gap-2" (click)="checkunAvailability()">
+            <mat-icon *ngIf="!isunavailable">check_circle</mat-icon>
+            <span *ngIf="!isunavailable">Check Availability</span>
+            <mat-spinner *ngIf="isunavailable" diameter="20" mode="indeterminate"></mat-spinner>
+        </button>
+    </mat-dialog-actions>
+
+</div>

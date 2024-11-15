@@ -1,0 +1,19 @@
+@import url(../../../../styles/form.css);
+.my-textarea{
+    height: auto !important;
+}
+.add-field{
+    background-color: #b2ce6d;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sub-field{
+    background-color: white;
+    color: #b2ce6d;
+    border: 1px solid #b2ce6d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

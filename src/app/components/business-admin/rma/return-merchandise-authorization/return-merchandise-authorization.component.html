@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="headdiv  mb-4">
+        <h1>RMA - Return Merchandise Authorization System</h1>
+    </div>
+  
+    <div class="card ">
+      <div class="card-header">
+        <h2 class="mb-0 text-center">Return Orders Overview</h2>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div *ngFor="let order of rmaOrders" class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="rma-card card ">
+              <div class="card-body">
+                <h5 class="card-title">RMA #: {{ order.rmaNo }}</h5>
+                <p><strong>Requested By:</strong> {{ order.employeename }}</p>
+                <p><strong>Email:</strong> {{ order.employeeemail }}</p>
+                <p><strong>Product Requested:</strong> {{ order.productRequested }}</p>
+                <p><strong>Requested Date:</strong> {{ order.requesteddate }}</p>
+                <p><strong>Return Date:</strong> {{ order.returndate }}</p>
+                <p><strong>Total Amount:</strong> ${{ order.totalamount }}</p>
+                <p><strong>Vendor:</strong> {{ order.vendor }}</p>
+  
+                <h6 class="mt-3">Product Details:</h6>
+                <ul class="list-group mb-3">
+                  <li *ngFor="let detail of order.productdetails" class="list-group-item">
+                    {{ detail.itemname }} - ${{ detail.price }} (Qty: {{ detail.quantityReturned }})
+                    <br />
+                    <small><strong>Reason:</strong> {{ detail.reason }}</small>
+                  </li>
+                </ul>
+  
+                <button
+                  class="btn btn-outline-dark mt-2"
+                  (click)="toggleApprovalStatus(order)"
+                >
+                  {{ order.approvalStatus ? 'Revoke from Approval' : 'Send for Approval' }}
+                </button>
+  
+                <div *ngIf="order.approvalStatus" class="alert alert-success mt-2">
+                  Sent for approval and waiting for processing!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
