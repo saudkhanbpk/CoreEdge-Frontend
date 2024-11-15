@@ -6,7 +6,8 @@ import { RolesFormComponent } from './roles-form/roles-form.component';
 const routes: Routes = [
   {path:'', redirectTo:'roles-table', pathMatch:'full'},
   {path:'roles-table', component:RolesTableComponent},
-  {path:'add-roles', component:RolesFormComponent}
+  {path:'add-roles', component:RolesFormComponent},
+  {path:'edit-roles', component:RolesFormComponent}
 ];
 
 @NgModule({
