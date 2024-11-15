@@ -111,3 +111,7 @@ span {
 .mat-drawer::-webkit-scrollbar {
     width: 0px;
 }
+canvas {
+    max-width: 100%;
+    height: auto !important;
+  }
