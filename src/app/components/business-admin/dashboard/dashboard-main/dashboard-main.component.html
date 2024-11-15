@@ -1,1 +1,26 @@
-<p>dashboard-main works!</p>
+<div class="container-fluid">
+    <h1>Dashboard</h1>
+    <div class="row mt-3">
+        <div class="col-md-12 col-lg-9">
+            <div class="row">
+                <div>
+                    <app-statscards></app-statscards>
+                </div>
+                <div class="my-4">
+                    <app-supplier-detail-table></app-supplier-detail-table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-6 mb-2 ">
+                    <app-order-status-chart></app-order-status-chart>
+                </div>
+                <div class="col-md-12 col-lg-6 mb-2">
+                    <app-vendor-performance-table></app-vendor-performance-table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-3 display-md-none">
+            <app-activities></app-activities>
+        </div>
+    </div>
+</div>
