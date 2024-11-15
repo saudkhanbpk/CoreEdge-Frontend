@@ -96,7 +96,7 @@ export class VendorsFormComponent {
     const fileToUpload = this.selectedFile || undefined; // Convert null to undefined
 
     if (this.isEdit) {
-      // Update existing vendor
+      // Update existing vendor      
       this.vendorService.updateVendor(this.vendorForm.getRawValue().id, this.vendorForm.value, fileToUpload)
         .subscribe(
           (vendor: any) => {
