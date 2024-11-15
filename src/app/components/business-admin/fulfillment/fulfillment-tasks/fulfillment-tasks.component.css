@@ -1,0 +1,137 @@
+.maindiv {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px;
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.column {
+  width: 25%;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  background-color: #f9f9f9;
+}
+
+.order-div {
+  height: 41rem;
+  padding: 0px 10px;
+  overflow-y: scroll;
+}
+
+.order-div::-webkit-scrollbar {
+  width: 0px;
+}
+
+.column::-webkit-scrollbar {
+  width: 0px;
+}
+
+@media screen and (max-width:1400px) and (min-width:1024px) {
+  .order-div {
+    height: 25rem;
+  }
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  border-radius: 16px 16px 0px 0px;
+  height: 55px;
+  padding: 10px;
+  background-color: #e6ead7;
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  color: black;
+  align-items: center;
+}
+
+@media screen and (max-width:600px) {
+  .column {
+    width: 95%
+  }
+
+  .maindiv {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.card {
+  border-radius: 14px;
+}
+
+.card-header {
+  background-color: #ffffff;
+  height: 50px;
+  border-radius: 14px 14px 0px 0px;
+}
+
+.order-no {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.10000000149011612px;
+}
+
+.table-no {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.10000000149011612px;
+  color: #b2ce6d;
+  display: flex;
+  align-items: center;
+}
+
+.card-footer {
+  background-color: #fff;
+  border-radius: 0px 0px 14px 14px;
+  border-top: 0px;
+  padding: 8px;
+}
+
+.order-item {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18.2px;
+  display: flex;
+  flex-direction: column;
+  gap:5px;
+  margin-bottom: 5px;
+}
+
+.btn-warning {
+  background-color: #b2ce6d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  width: 100%;
+  height: 30px;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.10000000149011612px;
+  box-shadow: none;
+}
+
+
+.modifier {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 16.8px;
+  margin-bottom: 2px;
+}
+
+ul {
+  padding-left: 10px;
+  list-style: none;
+}
+
+.card-body {
+  padding: 10px 1rem 0px 1rem;
+}

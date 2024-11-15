@@ -1,0 +1,296 @@
+<div class="headdiv mb-4">
+  <h1>Task Fulfillment Management System</h1>
+</div>
+<div class="maindiv gap-3">
+  <div class="column" cdkDropList id="newList" [cdkDropListData]="new" (cdkDropListDropped)="drop($event)"
+    [cdkDropListConnectedTo]="['assignedList', 'inProgressList', 'onholdList', 'closedList']">
+    <h2>New</h2>
+    <div class="order-div">
+      <div *ngFor="let order of new; let i = index" cdkDrag>
+        <div class="card my-3">
+          <div class="card-header d-flex justify-content-between align-items-center" (click)="toggleCollapsenew(i)"
+            style="cursor: pointer;">
+            <div class="d-flex py-1 gap-2">
+              <div class="d-flex align-items-center ">
+                <img src="../../../../../assets/icons/order.png" alt="">
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="order-no">
+                  #{{ order.purchaseorderno }}
+                </div>
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <div class="table-no">
+                <!-- Table#{{ order.tableNumber }} -->
+              </div>
+              <mat-icon>{{ order.isCollapsed ? 'expand_more' : 'expand_less' }}</mat-icon>
+            </div>
+          </div>
+          <div [ngClass]="order.isCollapsed ? 'collapse' : 'collapse show'">
+            <div class="card-body">
+              <div>
+                <div class="d-flex flex-column">
+                   <div class="order-item"> <b>Employee Name:</b>  {{ order.employeename }}</div>
+                  <div class="order-item"> <b>Employee Email:</b> {{ order.employeeemail }}</div>
+                  <div class="order-item"> <b>Vendor:</b> {{ order.vendor }}</div>
+                  <div class="order-item"> <b>Vendor Address:</b> {{ order.address }}</div>
+                  <div class="order-item"> <b>Requested Date:</b> {{ order.requesteddate }}</div>
+                  <div class="order-item"> <b>Received Date:</b> {{ order.receiveddate }}</div>
+                  <div class="order-item"> <b>Total Amount:</b> {{ order.totalamount | currency }}</div>
+                </div>
+                <div class="mt-2">
+                  <div class="order-item mb-2" *ngIf="order.productdetails"><b>Products Ordered:</b></div>
+                  <ul>
+                    <li *ngFor="let product of order.productdetails">
+                      <div class="d-flex justify-content-between">
+                        <div class="modifier">{{ product.itemname }}&nbsp; (Qty:&nbsp;{{product.quantityOrdered}})</div>
+                        <div class="modifier"> {{ product.price | currency }}</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <!-- <button class="btn btn-warning btn-block">Start Preparing</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column" cdkDropList id="assignedList" [cdkDropListData]="assignedTasks"
+    (cdkDropListDropped)="drop($event)"
+    [cdkDropListConnectedTo]="['newList', 'inProgressList', 'onholdList', 'closedList']">
+    <h2>Assigned</h2>
+    <div class="order-div">
+      <div *ngFor="let order of assignedTasks; let i = index" cdkDrag>
+        <div class="card my-3">
+          <div class="card-header d-flex justify-content-between align-items-center" (click)="toggleCollapseassigned(i)"
+            style="cursor: pointer;">
+            <div class="d-flex py-1 gap-2">
+              <div class="d-flex align-items-center ">
+                <img src="../../../../../assets/icons/order.png" alt="">
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="order-no">
+                  #{{ order.purchaseorderno }}
+                </div>
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <div class="table-no">
+                <!-- Table#{{ order.tableNumber }} -->
+              </div>
+              <mat-icon>{{ order.isCollapsed ? 'expand_more' : 'expand_less' }}</mat-icon>
+            </div>
+          </div>
+          <div [ngClass]="order.isCollapsed ? 'collapse' : 'collapse show'">
+            <div class="card-body">
+              <div>
+                <div class="d-flex flex-column">
+                  <div class="order-item"> <b>Employee Name:</b>  {{ order.employeename }}</div>
+                  <div class="order-item"> <b>Employee Email:</b> {{ order.employeeemail }}</div>
+                  <div class="order-item"> <b>Vendor:</b> {{ order.vendor }}</div>
+                  <div class="order-item"> <b>Vendor Address:</b> {{ order.address }}</div>
+                  <div class="order-item"> <b>Requested Date:</b> {{ order.requesteddate }}</div>
+                  <div class="order-item"> <b>Received Date:</b> {{ order.receiveddate }}</div>
+                  <div class="order-item"> <b>Total Amount:</b> {{ order.totalamount | currency }}</div>
+                </div>
+                <div class="mt-2">
+                  <div class="order-item mb-2" *ngIf="order.productdetails"><b>Products Ordered:</b></div>
+                  <ul>
+                    <li *ngFor="let product of order.productdetails">
+                      <div class="d-flex justify-content-between">
+                        <div class="modifier">{{ product.itemname }}&nbsp; (Qty:&nbsp;{{product.quantityOrdered}})</div>
+                        <div class="modifier"> {{ product.price | currency }}</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <!-- <button class="btn btn-warning btn-block">Mark as Ready</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column" cdkDropList id="inProgressList" [cdkDropListData]="inProgress" (cdkDropListDropped)="drop($event)"
+    [cdkDropListConnectedTo]="['newList', 'assignedList', 'onholdList' , 'closedList']">
+    <h2>In Progress</h2>
+    <div class="order-div">
+      <div *ngFor="let order of inProgress; let i = index" cdkDrag>
+        <div class="card my-3">
+          <div class="card-header d-flex justify-content-between align-items-center"
+            (click)="toggleCollapseinprogress(i)" style="cursor: pointer;">
+            <div class="d-flex py-1 gap-2">
+              <div class="d-flex align-items-center ">
+                <img src="../../../../../assets/icons/order.png" alt="">
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="order-no">
+                  #{{ order.purchaseorderno }}
+                </div>
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <div class="table-no">
+                <!-- Table#{{ order.tableNumber }} -->
+              </div>
+              <mat-icon>{{ order.isCollapsed ? 'expand_more' : 'expand_less' }}</mat-icon>
+            </div>
+          </div>
+          <div [ngClass]="order.isCollapsed ? 'collapse' : 'collapse show'">
+            <div class="card-body">
+              <div>
+                <div class="d-flex flex-column">
+                   <div class="order-item"> <b>Employee Name:</b>  {{ order.employeename }}</div>
+                  <div class="order-item"> <b>Employee Email:</b> {{ order.employeeemail }}</div>
+                  <div class="order-item"> <b>Vendor:</b> {{ order.vendor }}</div>
+                  <div class="order-item"> <b>Vendor Address:</b> {{ order.address }}</div>
+                  <div class="order-item"> <b>Requested Date:</b> {{ order.requesteddate }}</div>
+                  <div class="order-item"> <b>Received Date:</b> {{ order.receiveddate }}</div>
+                  <div class="order-item"> <b>Total Amount:</b> {{ order.totalamount | currency }}</div>
+                </div>
+                <div class="mt-2">
+                  <div class="order-item mb-2" *ngIf="order.productdetails"><b>Products Ordered:</b></div>
+                  <ul>
+                    <li *ngFor="let product of order.productdetails">
+                      <div class="d-flex justify-content-between">
+                        <div class="modifier">{{ product.itemname }}&nbsp; (Qty:&nbsp;{{product.quantityOrdered}})</div>
+                        <div class="modifier"> {{ product.price | currency }}</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <!-- <button class="btn btn-warning btn-block">Mark as Done</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column" cdkDropList id="onholdList" [cdkDropListData]="onhold" (cdkDropListDropped)="drop($event)"
+    [cdkDropListConnectedTo]="['newList', 'assignedList' , 'inProgressList', 'closedList']">
+    <h2>On Hold</h2>
+    <div class="order-div">
+      <div *ngFor="let order of onhold; let i = index" cdkDrag>
+        <div class="card my-3">
+          <div class="card-header d-flex justify-content-between align-items-center" (click)="toggleCollapseonhold(i)"
+            style="cursor: pointer;">
+            <div class="d-flex py-1 gap-2">
+              <div class="d-flex align-items-center ">
+                <img src="../../../../../assets/icons/order.png" alt="">
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="order-no">
+                  #{{ order.purchaseorderno }}
+                </div>
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <div class="table-no">
+                <!-- Table#{{ order.tableNumber }} -->
+              </div>
+              <mat-icon>{{ order.isCollapsed ? 'expand_more' : 'expand_less' }}</mat-icon>
+            </div>
+          </div>
+          <div [ngClass]="order.isCollapsed ? 'collapse' : 'collapse show'">
+            <div class="card-body">
+              <div>
+                <div class="d-flex flex-column">
+                   <div class="order-item"> <b>Employee Name:</b>  {{ order.employeename }}</div>
+                  <div class="order-item"> <b>Employee Email:</b> {{ order.employeeemail }}</div>
+                  <div class="order-item"> <b>Vendor:</b> {{ order.vendor }}</div>
+                  <div class="order-item"> <b>Vendor Address:</b> {{ order.address }}</div>
+                  <div class="order-item"> <b>Requested Date:</b> {{ order.requesteddate }}</div>
+                  <div class="order-item"> <b>Received Date:</b> {{ order.receiveddate }}</div>
+                  <div class="order-item"> <b>Total Amount:</b> {{ order.totalamount | currency }}</div>
+                </div>
+                <div class="mt-2">
+                  <div class="order-item mb-2" *ngIf="order.productdetails"><b>Products Ordered:</b></div>
+                  <ul>
+                    <li *ngFor="let product of order.productdetails">
+                      <div class="d-flex justify-content-between">
+                        <div class="modifier">{{ product.itemname }}&nbsp; (Qty:&nbsp;{{product.quantityOrdered}})</div>
+                        <div class="modifier"> {{ product.price | currency }}</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <!-- <button class="btn btn-warning btn-block">Mark as Done</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column" cdkDropList id="closedList" [cdkDropListData]="closed" (cdkDropListDropped)="drop($event)"
+    [cdkDropListConnectedTo]="['newList', 'assignedList', 'inProgressList', 'onholdList']">
+    <h2>Closed</h2>
+    <div class="order-div">
+      <div *ngFor="let order of closed; let i = index" cdkDrag>
+        <div class="card my-3">
+          <div class="card-header d-flex justify-content-between align-items-center" (click)="toggleCollapseclosed(i)"
+            style="cursor: pointer;">
+            <div class="d-flex py-1 gap-2">
+              <div class="d-flex align-items-center ">
+                <img src="../../../../../assets/icons/order.png" alt="">
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="order-no">
+                  #{{ order.purchaseorderno }}
+                </div>
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <!-- <div class="table-no">
+                        Table#{{ order. }}
+                    </div> -->
+              <mat-icon>{{ order.isCollapsed ? 'expand_more' : 'expand_less' }}</mat-icon>
+            </div>
+          </div>
+          <div [ngClass]="order.isCollapsed ? 'collapse' : 'collapse show'">
+            <div class="card-body">
+              <div>
+                <div class="d-flex flex-column">
+                   <div class="order-item"> <b>Employee Name:</b>  {{ order.employeename }}</div>
+                  <div class="order-item"> <b>Employee Email:</b> {{ order.employeeemail }}</div>
+                  <div class="order-item"> <b>Vendor:</b> {{ order.vendor }}</div>
+                  <div class="order-item"> <b>Vendor Address:</b> {{ order.address }}</div>
+                  <div class="order-item"> <b>Requested Date:</b> {{ order.requesteddate }}</div>
+                  <div class="order-item"> <b>Received Date:</b> {{ order.receiveddate }}</div>
+                  <div class="order-item"> <b>Total Amount:</b> {{ order.totalamount | currency }}</div>
+                </div>
+                <div class="mt-2">
+                  <div class="order-item mb-2" *ngIf="order.productdetails"><b>Products Ordered:</b></div>
+                  <ul>
+                    <li *ngFor="let product of order.productdetails">
+                      <div class="d-flex justify-content-between">
+                        <div class="modifier">{{ product.itemname }}&nbsp; (Qty:&nbsp;{{product.quantityOrdered}})</div>
+                        <div class="modifier"> {{ product.price | currency }}</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <!-- <button class="btn btn-warning btn-block">Mark as Done</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

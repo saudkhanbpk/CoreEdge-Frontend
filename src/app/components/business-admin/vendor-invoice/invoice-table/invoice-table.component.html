@@ -1,0 +1,116 @@
+<div class="table-div">
+    <div class="headdiv">
+      <div class="heading">
+        <h1>Vendor's Invoices </h1>
+      </div>
+    
+  
+    </div>
+  
+  
+  
+    <div class="table-container p-0  mt-2">
+      <div class="table-responsive">
+        <table class="table table-hover ">
+          <thead class="thead-dark ">
+            <tr>
+              <th scope="col" class="one">
+                <div class="table-data">
+                  No
+                </div>
+              </th>
+              <th scope="col">
+                <div class="table-data">
+                  Vendor's Name
+                </div>
+              </th>
+              <th scope="col">
+                <div class="table-data">
+                 Vendor's Email
+                </div>
+              </th>
+              <th scope="col">
+                <div class="table-data">
+                  Total Order Amount
+                </div>
+              </th>
+              <th scope="col">
+                <div class="table-data">
+                  Status
+                </div>
+              </th>
+              <th scope="col" class="two"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let vendor of paginatedData; let i = index">
+              <tr>
+                <td>
+                  <div class="table-data">
+                    {{i+1}}
+                  </div>
+                </td>
+                <td>
+                  <div class="table-data">
+                    {{ vendor.name }}
+                  </div>
+                </td>
+                <td>
+                    <div class="table-data">
+                      {{ vendor.email }}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-data">
+                      {{ vendor.amount | currency }}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-data">
+                        <div class="status p-2" [ngClass]="{
+                            'completed': vendor.status === 'Paid',
+                            'rejected': vendor.status === 'Dispute',
+                            'inprogress': vendor.status === 'Pending'
+                          }">
+                           {{ vendor.status }}
+                          </div>
+                    </div>
+                  </td>
+                <td>
+                  <div class="table-data d-flex gap-1 w-100 justify-content-center">
+                    <button class="btn" routerLink="/business-admin/vendor-invoice/invoice-details" ><mat-icon>visibility</mat-icon></button>
+                    <button class="btn"><img src="../../../../../assets/icons/Trash can.png" alt=""></button>
+                  </div>
+                </td>
+              </tr>
+  
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <nav aria-label="Page navigation example" class="m-2">
+      <ul class="pagination justify-content-start">
+        <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
+          <a class="paginator-button" (click)="previousPage()">
+            <mat-icon>chevron_left</mat-icon>
+          </a>
+        </li>
+  
+        <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
+          <li class="page-item" [ngClass]="{'active-page': currentPage === index + 1}">
+            <a class="paginator-button" (click)="goToPage(index + 1)">
+              {{ index + 1 }}
+            </a>
+          </li>
+        </ng-container>
+  
+        <li class="page-item" [class.disabled]="!isNextPageAvailable()">
+          <a class="paginator-button" (click)="nextPage()">
+            <mat-icon>chevron_right</mat-icon>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  
+  </div>
