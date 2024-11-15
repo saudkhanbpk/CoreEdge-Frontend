@@ -1,0 +1,35 @@
+.card {
+    border: 1px solid #ced4da;
+  }
+  
+
+  h2 {
+    /* margin-bottom: 20px; */
+    font-size: 22px;
+  }
+  .head-order{
+    font-size: 24px;
+  }
+  .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+  }
+  
+  .badge {
+    font-size: 0.9rem;
+  }
+  
+  form .form-label {
+    font-weight: 500;
+  }
+  
+  .card-header {
+    background-color: #e6ead7;
+    color: black !important;
+  }
+  .btn-primary{
+    background-color: #b2ce6d;
+    color: white;
+    border: none;
+  }

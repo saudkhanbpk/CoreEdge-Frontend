@@ -1,0 +1,94 @@
+<div class="form-div" >
+    <div class="headdiv">
+        <div class="heading d-flex align-items-center">
+            <button class="btn p-1 d-flex align-items-center justify-content-center shadow-none" routerLink="/business-admin/vendor-invoice">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+            <h1>Invoice Details</h1>
+            
+        </div>
+    </div>
+
+  
+
+  <div class="mt-3 section-div">
+        <h2>Vendor Details</h2>
+        <div class="row px-3" *ngFor="let invoice of data ">
+            <div class="col-md-6 mb-3" >
+                <div class="d-flex gap-2">
+                    <span>Name: </span>
+                    <span>{{invoice.name}}</span>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3" >
+                <div class="d-flex gap-2">
+                    <span>Email: </span>
+                    <span>{{invoice.email}}</span>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3" >
+                <div class="d-flex gap-2">
+                    <span>Address: </span>
+                    <span>{{invoice.address}}</span>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3" >
+                <div class="d-flex gap-2">
+                    <span>Total Amount: </span>
+                    <span>{{invoice.totalinvoiceamount | currency}}</span>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3" >
+                <div class="d-flex gap-2">
+                    <span>Requested Date: </span>
+                    <span>{{invoice.requesteddate}}</span>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3" >
+                <div class="d-flex gap-2">
+                    <span>Received Date: </span>
+                    <span>{{invoice.receiveddate}}</span>
+                </div>
+            </div>
+            
+            <div class="col-md-12">
+                <div class="row">
+                    <h3>Hardware Details</h3>
+                    <div class="col-md-6 mb-3" *ngFor="let hardware of invoice.hardware; let i=index;">
+                        <div class="mb-2 hardwarename">
+                          {{i+1}}.  {{hardware.name}}
+                        </div>
+                        <div class="mb-2">
+                            Quantity : {{hardware.quantity}}
+                        </div>
+                        <div class="mb-2">
+                          Each Item Price : {{hardware.price | currency}}
+                        </div>
+                        <div class="mb-2">
+                            Total Amount : {{hardware.totalprice| currency}}
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mt-3 section-div" *ngIf="showDisputeSection">
+        <h2>Dispute Details</h2>
+        <textarea name="" id="" rows="5" class="form-control" placeholder="Write Dispute Reason"></textarea>
+    </div>
+
+    <div class="button-group d-flex gap-2">
+        <button class="btn paid-btn d-flex align-items-center gap-2" (click)="markAsPaid()" [disabled]="isPaid">
+          <span *ngIf="!isLoading && !isPaid" >Paid</span>
+          <mat-spinner *ngIf="isLoading" diameter="20" mode="indeterminate"></mat-spinner>
+          <mat-icon *ngIf="isPaid">check_circle</mat-icon>
+        </button>
+      
+        <button class="btn dispute-btn" (click)="toggleDispute()" [disabled]="isPaid">
+            {{ showDisputeSection ? 'Submit Dispute' : 'Dispute' }}
+          </button>
+      </div>
+      
+</div>
