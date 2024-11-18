@@ -15,6 +15,7 @@ export class AddedProductsComponent {
   employeeEmail= 'John@gmail.com'
   vendorName = 'TechVendor Inc.'; 
   vendorEmail = 'vendor@techvendor.com';
+  description = '';
   constructor(@Inject(MAT_DIALOG_DATA) public addedProducts: any[]) {
     this.addedProducts =addedProducts || [];
   }
@@ -33,11 +34,12 @@ export class AddedProductsComponent {
         doc.text(`Vendor: ${this.vendorName}`, 10, 40);
     doc.text(`Vendor Email: ${this.vendorEmail}`, 10, 50);
     doc.text(`Date: ${new Date().toLocaleDateString()}`, 10, 60);
+    doc.text(`Description: ${this.description}`, 10, 70);
 
-    let y = 70;
+    let y = 80;
     this.addedProducts.forEach((item, index) => {
       doc.text(`Product ${index + 1}`, 10, y);
-      doc.text(`Description: ${item.product.ShortDescription}`, 20, y + 10);
+      doc.text(`Short Description: ${item.product.ShortDescription}`, 20, y + 10);
       doc.text(`Price: $${item.product.CustomerPrice}`, 20, y + 20);
       doc.text(`Material ID: ${item.product.MaterialId}`, 20, y + 30);
       doc.text(`Quantity: ${item.quantity}`, 20, y + 40);
@@ -61,9 +63,10 @@ export class AddedProductsComponent {
       vendorEmail: this.vendorEmail,
       date: new Date().toLocaleDateString(),
       barcode: barcodeDataURL,
-      items: this.addedProducts
+      items: this.addedProducts,
+      description:this.description
     };
-
+    console.log("generated request" , this.generatedRequest)
     this.sendForApproval();
   }
 

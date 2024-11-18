@@ -168,9 +168,9 @@ export class ProductsComponent {
   
   openProductModal(): void {
     const dialogRef = this.dialog.open(AddedProductsComponent, {
-      position: { bottom: '80px', right: '10px' },
-      panelClass: 'custom-dialog-container',
-      maxWidth:'500px',
+      // position: { bottom: '80px', right: '10px' },
+      // panelClass: 'custom-dialog-container',
+      maxWidth:'800px',
       data: this.addedProducts ,// Pass the addedProducts array to the dialog
     });
     

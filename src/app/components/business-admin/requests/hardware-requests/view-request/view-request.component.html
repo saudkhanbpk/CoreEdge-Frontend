@@ -116,8 +116,7 @@
         </div>
     </mat-dialog-content>
     <mat-dialog-actions class="d-flex justify-content-end gap-2">
-        <button mat-button mat-dialog-close>Cancel</button>
-        <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial></button> -->
+        <!-- <button mat-button mat-dialog-close>Cancel</button>
         <button class="btn border check gap-2" (click)="checkAvailability()">
             <mat-icon *ngIf="!isLoading">check_circle</mat-icon>
             <span *ngIf="!isLoading">Check Availability</span>
@@ -127,6 +126,14 @@
             <mat-icon *ngIf="!isunavailable">check_circle</mat-icon>
             <span *ngIf="!isunavailable">Check Availability</span>
             <mat-spinner *ngIf="isunavailable" diameter="20" mode="indeterminate"></mat-spinner>
+        </button> -->
+        <button class="btn check border gap-2" mat-dialog-close>
+            <mat-icon >cancel</mat-icon>
+            <span >Reject Request</span>
+        </button>
+        <button class="btn check border gap-2" >
+            <mat-icon >check_circle</mat-icon>
+            <span >Approve Request</span>
         </button>
     </mat-dialog-actions>
 
