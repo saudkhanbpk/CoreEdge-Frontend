@@ -1,0 +1,10 @@
+@import url(../../../../../styles/table.css);
+.active{
+    background-color: #e6ead7;
+    border: 1px solid #b2ce6d;
+    color: black;
+}
+
+@media  screen and (max-width:600px) {
+  
+}

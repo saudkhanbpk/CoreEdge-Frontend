@@ -1,35 +1,40 @@
 <div class="container-fluid py-4">
-    <h4 class="fw-bold">Added Products</h4>
-    <div class="mydata">
-        <div class="row" >
-         
-          <div *ngIf="addedProducts.length === 0" class="col-md-12">
-            <p>No products added yet.</p>
-          </div>
-          <div *ngFor="let item of addedProducts" class="col-md-12 mb-3" >
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="d-flex">
-                <img [src]="item.product.ImageLarge" alt="{{item.product.MaterialId}}" width="100" height="100" class="mr-3">
-                <div>
-                  <h5>{{item.product.ShortDescription}}</h5>
-                  <p><strong>Price:</strong> {{item.product.CustomerPrice | currency}}</p>
-                  <p><strong>Material ID:</strong> {{item.product.MaterialId}}</p>
-                  <p><strong>Quantity:</strong> {{item.quantity}}</p>
-                </div>
-              </div>
-              <div>
-                <button class="btn btn-danger d-flex justify-content-end align-items-center" (click)="removeProduct(item)"><mat-icon>close</mat-icon></button>
-              </div>
+  <h4 class="fw-bold">Added Products</h4>
+  <div class="mydata">
+    <div class="row">
+
+      <div *ngIf="addedProducts.length === 0" class="col-md-12">
+        <p>No products added yet.</p>
+      </div>
+      <div *ngFor="let item of addedProducts" class="col-md-12 mb-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex">
+            <img [src]="item.product.ImageLarge" alt="{{item.product.MaterialId}}" width="100" height="100"
+              class="mr-3">
+            <div>
+              <h5>{{item.product.ShortDescription}}</h5>
+              <p><strong>Price:</strong> {{item.product.CustomerPrice | currency}}</p>
+              <p><strong>Material ID:</strong> {{item.product.MaterialId}}</p>
+              <p><strong>Quantity:</strong> {{item.quantity}}</p>
             </div>
           </div>
+          <div>
+            <button class="btn btn-danger d-flex justify-content-end align-items-center"
+              (click)="removeProduct(item)"><mat-icon>close</mat-icon></button>
+          </div>
         </div>
-    </div>
-    <div class="d-flex justify-content-center" *ngIf="loading">
-      <mat-spinner></mat-spinner>
-    </div>
-  
-    <div class="d-flex justify-content-end mt-3">
-      <button class="btn submit-request" (click)="submitRequest()">Submit Request</button>
+      </div>
+      <div class=" col-md-12" *ngIf="addedProducts.length > 0">
+        <label for="description" class="mb-2">Description:</label>
+        <textarea name="description" id="description" class="form-control" rows="5" [(ngModel)]="description"></textarea>
+      </div>
     </div>
   </div>
-  
+  <div class="d-flex justify-content-center" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div class="d-flex justify-content-end mt-3" *ngIf="addedProducts.length>0">
+    <button class="btn submit-request" (click)="submitRequest()">Submit Request</button>
+  </div>
+</div>
