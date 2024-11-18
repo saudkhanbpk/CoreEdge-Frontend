@@ -38,7 +38,7 @@
             <th scope="col">
               <div class="table-data">Address</div>
             </th>
-            <th scope="col" class="two">
+            <th scope="col">
               <div class="table-data">Status</div>
             </th>
             <th scope="col" class="two"></th>
@@ -83,7 +83,8 @@
                     class="status p-2"
                     [ngClass]="{
                       completed: item.status === 'Approved',
-                      rejected: item.status === 'Rejected'
+                      rejected: item.status === 'Rejected',
+                      inactive: item.status === 'Pending'
                     }"
                   >
                     {{ item.status }}
