@@ -48,7 +48,7 @@ export class MainComponent {
     //procurement menu
     { id: 'dashboard', title: 'Dashboard', icon: 'dashboard', link: '/business-admin/dashboard', submenus: [] },
     { id: 'catalog', title: 'Catalog', icon: 'menu_book', link: '/business-admin/catalog', submenus: [] },
-    { id: 'request', title: 'Requests', icon: 'request_quote', link: '/business-admin/hardware-requests', submenus: [] },
+    { id: 'request', title: 'Requests', icon: 'request_quote', link: '/business-admin/requests', submenus: [] },
     { id: 'inventory', title: 'Inventory', icon: 'category', link: '/business-admin/inventory', submenus: [] },
     { id: 'purchaserequest', title: 'Purchase Request', icon: 'request_quote', link: '/business-admin/purchase-request', submenus: [] },
     { id: 'approvals', title: 'Approvals', icon: 'thumb_up', link: '/business-admin/approvals', submenus: [] },
