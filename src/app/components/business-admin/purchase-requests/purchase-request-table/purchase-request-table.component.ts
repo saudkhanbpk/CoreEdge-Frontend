@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewRequestComponent } from '../../requests/hardware-requests/view-request/view-request.component';
 
 @Component({
   selector: 'app-purchase-request-table',
@@ -8,6 +10,9 @@ import { Component } from '@angular/core';
 export class PurchaseRequestTableComponent {
   currentPage = 1;
   itemsPerPage = 10; 
+  readonly dialog = inject(MatDialog);
+
+  
   data = [
     {
       no: '001',
@@ -16,6 +21,16 @@ export class PurchaseRequestTableComponent {
       hardwarerequested:'Dell Monitor',
       date:'October 3rd, 2024',
       address:'Las Vegas',
+      status : 'Approved'
+    },
+    {
+      no: '002',
+      employeename: 'Khan',
+      employeeemail:'employeeemail@gmail.com',
+      hardwarerequested:'Dell Monitor',
+      date:'October 3rd, 2024',
+      address:'Las Vegas',
+      status : 'Rejected'
     },
   ];
  
@@ -33,6 +48,13 @@ export class PurchaseRequestTableComponent {
     this.currentPage = page;
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(ViewRequestComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
   nextPage() {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
