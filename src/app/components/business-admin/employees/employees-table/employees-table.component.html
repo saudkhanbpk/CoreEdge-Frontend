@@ -5,7 +5,7 @@
     </div>
     <div class="secondary-row">
       <div>
-        <button class="btn add-btn" routerLink="/business-admin/employees/employees-form">Add Employee <img
+        <button class="btn add-btn" routerLink="/business-admin/employees/add-employees">Add Employee <img
             src="../../../../../../assets/icons/Plus.png" alt=""></button>
       </div>
     </div>
@@ -66,7 +66,7 @@
               </td>
               <td>
                 <div class="table-data">
-                  {{ employee.role }}
+                  {{ employee?.role?.name }}
                 </div>
               </td>
               <td>
@@ -93,9 +93,9 @@
                   </td> -->
               <td>
                 <div class="table-data d-flex gap-1 w-100 justify-content-center">
-                  <button class="btn" routerLink="/business-admin/employees/employees-form"><img
+                  <button class="btn" (click)="employeeEdit(employee)"><img
                       src="../../../../../assets/icons/Union.png" alt=""></button>
-                  <button class="btn"><img src="../../../../../assets/icons/Trash can.png" alt=""></button>
+                  <button class="btn" (click)="employeeDelete(employee)"><img src="../../../../../assets/icons/Trash can.png" alt=""></button>
                 </div>
               </td>
             </tr>

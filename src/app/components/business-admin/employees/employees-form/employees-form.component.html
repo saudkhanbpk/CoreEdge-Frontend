@@ -1,4 +1,4 @@
-<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+   <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
     <div class="form-div">
       <div class="headdiv">
         <div class="heading d-flex align-items-center">
@@ -10,65 +10,127 @@
       </div>
   
       <div class="mt-3 section-div">
-        <div>
-          <h2>Employee Details</h2>
-        </div>
+        <h2>Employee Details</h2>
         <div class="row p-2">
+          <!-- Employee Name -->
           <div class="col-md-6">
             <div class="input-div input-div-no-pad">
-              <label for="employeename">Employee Name<span class="star">*</span></label>
-              <input type="text" id="employeename" formControlName="employeename" class="form-control" placeholder="Enter Employee Name" />
+              <label for="name">Employee Name<span class="star">*</span></label>
+              <input
+                type="text"
+                id="name"
+                formControlName="name"
+                class="form-control"
+                placeholder="Enter Employee Name"
+              />
+              <small *ngIf="employeeForm.get('name')?.invalid && employeeForm.get('name')?.touched" class="text-danger">
+                Employee Name is required.
+              </small>
             </div>
           </div>
   
+          <!-- Employee Role -->
           <div class="col-md-6">
             <div class="input-div input-div-no-pad">
               <label for="role">Employee Role<span class="star">*</span></label>
               <select formControlName="role" class="form-select" id="role">
-                <option value="selectrole">Select Role</option>
-                <option value="requester">Requester</option>
-                <option value="agent">Agent</option>
+                <option value="">Select Role</option>
+                <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
               </select>
+              <small *ngIf="employeeForm.get('role')?.invalid && employeeForm.get('role')?.touched" class="text-danger">
+                Please select a role.
+              </small>
             </div>
           </div>
   
+          <!-- Email -->
           <div class="col-md-6">
             <div class="input-div input-div-no-pad">
               <label for="email">Email<span class="star">*</span></label>
-              <input type="email" id="email" formControlName="email" class="form-control" placeholder="Enter Employee Email" />
+              <input
+                type="email"
+                id="email"
+                formControlName="email"
+                class="form-control"
+                placeholder="Enter Employee Email"
+              />
+              <small *ngIf="employeeForm.get('email')?.invalid && employeeForm.get('email')?.touched" class="text-danger">
+                Please enter a valid email.
+              </small>
             </div>
           </div>
   
+          <!-- Password -->
           <div class="col-md-6">
             <div class="input-div input-div-no-pad">
               <label for="password">Enter Password<span class="star">*</span></label>
-              <input type="password" id="password" formControlName="password" class="form-control" placeholder="Enter Employee Password" />
+              <input
+                type="password"
+                id="password"
+                formControlName="password"
+                class="form-control"
+                placeholder="Enter Employee Password"
+              />
+              <small *ngIf="employeeForm.get('password')?.invalid && employeeForm.get('password')?.touched" class="text-danger">
+                Password is required.
+              </small>
             </div>
           </div>
   
+          <!-- Address -->
           <div class="col-md-12">
             <div class="input-div input-div-no-pad">
               <label for="address">Address<span class="star">*</span></label>
-              <input type="text" id="address" formControlName="address" class="form-control" placeholder="Enter Address" />
+              <input
+                type="text"
+                id="address"
+                formControlName="address"
+                class="form-control"
+                placeholder="Enter Address"
+              />
+              <small *ngIf="employeeForm.get('address')?.invalid && employeeForm.get('address')?.touched" class="text-danger">
+                Address is required.
+              </small>
             </div>
           </div>
         </div>
       </div>
   
       <div class="mt-3 section-div">
-        <div>
-          <h2>Permissions</h2>
+        <h2>Profile Picture</h2>
+        <div class="input-div input-div-no-pad">
+          <label for="profilePicture">Upload Profile Picture</label>
+          <input
+            type="file"
+            id="profilePicture"
+            (change)="onFileSelect($event)"
+            class="form-control"
+            accept="image/*"
+          />
+          <div class="mt-3">
+            <img
+              *ngIf="imagePreview"
+              [src]="imagePreview"
+              alt="Image Preview"
+              class="img-thumbnail"
+              width="150"
+            />
+          </div>
         </div>
+      </div>
+  
+      <div class="mt-3 section-div">
+        <h2>Permissions</h2>
         <div class="p-2">
           <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="active" formControlName="active" />
-            <label class="form-check-label" for="active">Active</label>
+            <input class="form-check-input" type="checkbox" id="isActive" formControlName="isActive" />
+            <label class="form-check-label" for="isActive">Active</label>
           </div>
         </div>
       </div>
   
       <div class="button-group">
-        <button class="btn add-btn" type="submit">Add Employee</button>
+        <button class="btn add-btn" type="submit" [disabled]="employeeForm.invalid">Add Employee</button>
         <button type="button" class="btn cancel-btn" routerLink="/business-admin/employees">Cancel</button>
       </div>
     </div>
