@@ -28,7 +28,6 @@ export class EmployeesTableComponent {
   loadRoles(userId: number) {
     this.employesService.findById(userId).subscribe((response: any) => {
       this.data = response; 
-      // this.totalItems = response.length; 
     });
   }
 

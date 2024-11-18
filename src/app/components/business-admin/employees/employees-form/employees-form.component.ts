@@ -17,15 +17,15 @@ export class EmployeesFormComponent implements OnInit {
   isEdit: boolean = false;
   user: any;
   selectedFile: File | null = null;
-  imagePreview: string | ArrayBuffer | null = ''; // To store the preview URL
+  imagePreview: string | ArrayBuffer | null = ''; 
   employeeData: any;
-  roles: any[] = []; // Array to store the roles
+  roles: any[] = []; 
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private employeesService: EmployesService,
-    private rolesService: RolesService, // Inject the RolesService
+    private rolesService: RolesService,
     private router: Router
   ) {
     const navigation = this.router.getCurrentNavigation();
@@ -43,7 +43,7 @@ export class EmployeesFormComponent implements OnInit {
     this.employeeForm = this.fb.group({
       id: [{ value: '', disabled: true }],
       name: ['', [Validators.required, Validators.maxLength(100)]],
-      role: ['', Validators.required], // Use a form control with no initial value
+      role: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       address: ['', [Validators.required, Validators.maxLength(255)]],
@@ -62,12 +62,12 @@ export class EmployeesFormComponent implements OnInit {
 
   ngOnInit(): void {
     const user = this.authService.getUserData();
-    this.loadRoles(user.id); // Load roles when the component is initialized
+    this.loadRoles(user.id);
   }
 
   loadRoles(userId: number): void {
     this.rolesService.findAll(userId).subscribe((response: any) => {
-      this.roles = response; // Store the roles data in the roles array
+      this.roles = response;
     });
   }
 
@@ -78,7 +78,7 @@ export class EmployeesFormComponent implements OnInit {
       this.selectedFile = file;
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.imagePreview = e.target.result; // Set preview
+        this.imagePreview = e.target.result;
       };
       reader.readAsDataURL(file);
     }
@@ -96,7 +96,7 @@ export class EmployeesFormComponent implements OnInit {
   // Handle form submission
   onSubmit(): void {
     if (this.employeeForm.invalid) {
-      return; // Prevent submission if form is invalid
+      return;
     }
 
     this.employeeForm.value.user = this.user.id;
