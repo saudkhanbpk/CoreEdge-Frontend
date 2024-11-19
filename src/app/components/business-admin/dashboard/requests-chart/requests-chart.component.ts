@@ -54,7 +54,7 @@ export class RequestsChartComponent {
             }
           },
           legend: {
-            display: false // Disabling default legend
+            display: false
           }
         },
         cutout: '70%' // Creates the donut shape
