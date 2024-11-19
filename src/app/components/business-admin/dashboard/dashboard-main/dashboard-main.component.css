@@ -1,10 +1,5 @@
-h1{
-font-size: 25px;
-line-height: 43.65px;
-letter-spacing: -0.11428570002317429px;
-}
-@media screen and (max-width:1024px){
-    .display-md-none{
-    display: none !important;
-    }
+h1 {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 22px;
 }

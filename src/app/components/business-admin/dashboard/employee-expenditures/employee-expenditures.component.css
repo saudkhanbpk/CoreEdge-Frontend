@@ -1,0 +1,74 @@
+.chart-container {
+    position: relative;
+    height: 400px;
+    width: 98%;
+  }
+  .date-range-input {
+    position: relative;
+    max-width: 250px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+  }
+  
+  input[type="text"] {
+    font-size: 14px;
+    border-radius: 10px;
+    color: #999;
+    padding-left: 15px;
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
+  }
+  
+  input::placeholder {
+    color: #bbb;
+  }
+  
+  .event-icon {
+    color: #bbb;
+  
+  }
+  
+  .input-group-text {
+    background: none;
+    border: none;
+  }
+  .input-group {
+    background-color: #ffffff;
+    border-radius: 8px;
+    height: 40px;
+    max-width: 250px;
+    width: 100%;
+    border: 0.6px solid lightgray;
+  }
+  
+  .input-group-form-control {
+    border-radius: 10px;
+    background-color: #F5F6FA;
+    border: none;
+    box-shadow: none;
+    height: 38px;
+  }
+  .mycard {
+    position: absolute;
+    z-index: 9999;
+    background-color: white;
+    border: 1px solid lightgray;
+  }
+  .apply-btn {
+    background-color: #FF5C00;
+    color: white;
+  }
+  
+  .cancel-btn-filter {
+    border: 1px solid #FF5C00;
+    color: #FF5C00;
+    background-color: #FFF5EE;
+  }
+  .chart-head{
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  }
