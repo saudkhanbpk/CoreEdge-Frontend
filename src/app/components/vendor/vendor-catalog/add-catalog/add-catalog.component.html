@@ -14,61 +14,61 @@
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Material ID</label>
-                    <input type="text" class="form-control" formControlName="MaterialId" placeholder="Enter Material ID">
+                    <input type="text" class="form-control" formControlName="materialId" placeholder="Enter Material ID">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Part Number</label>
-                    <input type="text" class="form-control" formControlName="InsightPartNumber" placeholder="Enter Part Number">
+                    <input type="text" class="form-control" formControlName="partNumber" placeholder="Enter Part Number">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Price</label>
-                    <input type="number" class="form-control" formControlName="CustomerPrice" placeholder="Enter Price">
+                    <input type="number" class="form-control" formControlName="price" placeholder="Enter Price">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Quantity Available</label>
-                    <input type="number" class="form-control" formControlName="QuantityAvailable" placeholder="Enter Quantity Available">
+                    <input type="number" class="form-control" formControlName="quantityAvailable" placeholder="Enter Quantity Available">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Manufacturer Part Number</label>
-                    <input type="text" class="form-control" formControlName="ManufacturerPartNumber" placeholder="Enter Manufacturer Part Number">
+                    <input type="text" class="form-control" formControlName="manufacturerPartNumber" placeholder="Enter Manufacturer Part Number">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Manufacturer Name</label>
-                    <input type="text" class="form-control" formControlName="ManufacturerName" placeholder="Enter Manufacturer Name">
+                    <input type="text" class="form-control" formControlName="manufacturerName" placeholder="Enter Manufacturer Name">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Category</label>
-                    <input type="text" class="form-control" formControlName="Category" placeholder="Enter Category">
+                    <input type="text" class="form-control" formControlName="category" placeholder="Enter Category">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">UNSPSC</label>
-                    <input type="number" class="form-control" formControlName="UNSPSC" placeholder="Enter UNSPSC">
+                    <input type="number" class="form-control" formControlName="unspc" placeholder="Enter UNSPSC">
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="input-div input-div-no-pad">
                     <label for="">Short Description</label>
-                    <input type="text" class="form-control" formControlName="ShortDescription" placeholder="Enter Short Description">
+                    <input type="text" class="form-control" formControlName="shortDescription" placeholder="Enter Short Description">
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="input-div input-div-no-pad">
                     <label for="">Long Description</label>
-                    <textarea rows="5" class="form-control my-textarea" formControlName="LongDescription" placeholder="Enter Long Description"></textarea>
+                    <textarea rows="5" class="form-control my-textarea" formControlName="longDescription" placeholder="Enter Long Description"></textarea>
                 </div>
             </div>
         </div>
@@ -93,12 +93,12 @@
         </div>
         <div class="input-div">
             <label>Or Enter Image URL</label>
-            <input type="text" class="form-control" formControlName="ImageLarge" placeholder="Add Image URL">
+            <input type="text" class="form-control" formControlName="imageUrl" placeholder="Add Image URL">
         </div>
     </div>
 
     <div class="button-group">
-        <button class="btn add-btn" (click)="saveInventoryItem()">{{ isEdit ? 'Save Changes' : 'Add Inventory Item' }}</button>
+        <button class="btn add-btn" (click)="saveInventoryItem()">{{ isEdit ? 'Save Changes' : 'Add Catalog Item' }}</button>
         <button class="btn cancel-btn" routerLink="/business-admin/inventory">Cancel</button>
     </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CatalogService } from 'src/app/services/catalog.service';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -17,20 +18,21 @@ export class AddCatalogComponent {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private dataService: DataService
+    private dataService: DataService,
+    private catalogService:CatalogService
   ) {
     this.inventoryItemForm = this.fb.group({
-      MaterialId: ['', Validators.required],
-      InsightPartNumber: ['', Validators.required],
-      CustomerPrice: ['', Validators.required],
-      QuantityAvailable: ['', Validators.required],
-      ManufacturerPartNumber: ['', Validators.required],
-      ManufacturerName: ['', Validators.required],
-      Category: ['', Validators.required],
-      UNSPSC: [null, Validators.required],
-      ShortDescription: ['', Validators.required],
-      LongDescription: ['', Validators.required],
-      ImageLarge: ['']
+      materialId: ['', Validators.required],
+      partNumber: ['', Validators.required],
+      price: ['', Validators.required],
+      quantityAvailable: ['', Validators.required],
+      manufacturerPartNumber: ['', Validators.required],
+      manufacturerName: ['', Validators.required],
+      category: ['', Validators.required],
+      unspc: [null, Validators.required],
+      shortDescription: ['', Validators.required],
+      longDescription: ['', Validators.required],
+      imageUrl: ['']
     });
   }
 
@@ -49,15 +51,11 @@ export class AddCatalogComponent {
 
   saveInventoryItem(): void {
     const itemData = this.inventoryItemForm.value;
-    if (this.isEdit && this.materialId) {
-      this.dataService.updateInventoryItem(this.materialId, itemData).subscribe(() => {
-        this.router.navigate(['/business-admin/inventory']);
-      });
-    } else {
-      this.dataService.addInventoryItem(itemData).subscribe(() => {
-        this.router.navigate(['/business-admin/inventory']);
-      });
-    }
+    console.log('itemData: ', itemData);
+      this.catalogService.create(itemData,this.uploadedImageUrl).subscribe((res:any) => {
+        console.log('res: ', res);
+        // this.router.navigate(['/business-admin/inventory']);
+      }); 
   }
 
   onFileSelected(event: any) {
