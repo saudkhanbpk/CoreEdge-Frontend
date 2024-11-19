@@ -90,11 +90,11 @@ table tr {
   .active {
     width: 100%;
     color: white;
-    background: #b2ce6d;
+    background: linear-gradient(218.57deg, #0F4D50 -6.67%, #4A7551 137.69%);
   }
   
   .mat-icon {
-    color: #b2ce6d;
+    color: #0F4D50;
   }
   
   .active .mat-icon {

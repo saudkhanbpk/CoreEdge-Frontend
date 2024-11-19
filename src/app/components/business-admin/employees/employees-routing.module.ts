@@ -6,7 +6,8 @@ import { EmployeesFormComponent } from './employees-form/employees-form.componen
 const routes: Routes = [
   {path:'', redirectTo:'employees-table', pathMatch:'full'},
   {path:'employees-table', component:EmployeesTableComponent},
-  {path:'employees-form', component:EmployeesFormComponent}
+  {path:'add-employees', component:EmployeesFormComponent},
+  {path:'edit-employees', component:EmployeesFormComponent}
 ];
 
 @NgModule({

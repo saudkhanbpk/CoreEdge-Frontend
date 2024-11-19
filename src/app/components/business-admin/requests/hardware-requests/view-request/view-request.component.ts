@@ -41,70 +41,69 @@ export class ViewRequestComponent {
       price:'272',
     },
   ];
-  checkAvailability() {
-    this.isLoading = true; 
+  // checkAvailability() {
+  //   this.isLoading = true; 
   
-    setTimeout(() => {
-      this.isLoading = false; 
+  //   setTimeout(() => {
+  //     this.isLoading = false; 
   
-      Swal.fire({
-        title: 'Hardware Available!',
-        text: 'Do you want to approve or reject the request?',
-        icon: 'info',
-        showCancelButton: true,
-        confirmButtonText: 'Approve Request',
-        cancelButtonText: 'Reject Request',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire('Approved!', 'The request has been approved.', 'success');
-        } else if (result.isDismissed) {
-          Swal.fire({
-            title: 'Reason for Rejection',
-            input: 'textarea',
-            inputPlaceholder: 'Enter the reason for rejection...',
-            showCancelButton: true,
-            confirmButtonText: 'Submit',
-            cancelButtonText: 'Cancel',
-            preConfirm: (reason) => {
-              if (!reason) {
-                Swal.showValidationMessage('Please enter a reason for rejection');
-              }
-            }
-          }).then((reasonResult) => {
-            if (reasonResult.isConfirmed) {
-              Swal.fire('Rejected!', `You have rejected the request for the following reason: ${reasonResult.value}`, 'error');
-            }
-          });
-        }
-      });
-    }, 2000);
-  }
-  checkunAvailability() {
-    this.isunavailable = true; 
+  //     Swal.fire({
+  //       title: 'Hardware Available!',
+  //       text: 'Do you want to approve or reject the request?',
+  //       icon: 'info',
+  //       showCancelButton: true,
+  //       confirmButtonText: 'Approve Request',
+  //       cancelButtonText: 'Reject Request',
+  //     }).then((result) => {
+  //       if (result.isConfirmed) {
+  //         Swal.fire('Approved!', 'The request has been approved.', 'success');
+  //       } else if (result.isDismissed) {
+  //         Swal.fire({
+  //           title: 'Reason for Rejection',
+  //           input: 'textarea',
+  //           inputPlaceholder: 'Enter the reason for rejection...',
+  //           showCancelButton: true,
+  //           confirmButtonText: 'Submit',
+  //           cancelButtonText: 'Cancel',
+  //           preConfirm: (reason) => {
+  //             if (!reason) {
+  //               Swal.showValidationMessage('Please enter a reason for rejection');
+  //             }
+  //           }
+  //         }).then((reasonResult) => {
+  //           if (reasonResult.isConfirmed) {
+  //             Swal.fire('Rejected!', `You have rejected the request for the following reason: ${reasonResult.value}`, 'error');
+  //           }
+  //         });
+  //       }
+  //     });
+  //   }, 2000);
+  // }
+  // checkunAvailability() {
+  //   this.isunavailable = true; 
   
-    setTimeout(() => {
-      this.isunavailable = false;
-      Swal.fire({
-        title: 'Hardware Unavailable!',
-        text: 'Do you want to send a request to a vendor for the hardware?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes',
-        cancelButtonText: 'No',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Immediately show confirmation that the request has been sent
-          Swal.fire({
-            title: 'Request Sent!',
-            text: 'Your request has been sent to the vendor.',
-            icon: 'success',
-            confirmButtonText: 'OK'
-          });
+  //   setTimeout(() => {
+  //     this.isunavailable = false;
+  //     Swal.fire({
+  //       title: 'Hardware Unavailable!',
+  //       text: 'Do you want to send a request to a vendor for the hardware?',
+  //       icon: 'warning',
+  //       showCancelButton: true,
+  //       confirmButtonText: 'Yes',
+  //       cancelButtonText: 'No',
+  //     }).then((result) => {
+  //       if (result.isConfirmed) {
+  //         Swal.fire({
+  //           title: 'Request Sent!',
+  //           text: 'Your request has been sent to the vendor.',
+  //           icon: 'success',
+  //           confirmButtonText: 'OK'
+  //         });
           
-        }
-      });
-    }, 2000);
-  }
+  //       }
+  //     });
+  //   }, 2000);
+  // }
   
 
   selectVendor() {
