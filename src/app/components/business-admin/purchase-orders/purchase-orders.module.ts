@@ -6,12 +6,14 @@ import { PurchaseOrderTableComponent } from './purchase-order-table/purchase-ord
 import { PurchaseOrderFormComponent } from './purchase-order-form/purchase-order-form.component';
 import { MaterialModule } from 'src/app/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ViewPurchaseOrderComponent } from './view-purchase-order/view-purchase-order.component';
 
 
 @NgModule({
   declarations: [
     PurchaseOrderTableComponent,
-    PurchaseOrderFormComponent
+    PurchaseOrderFormComponent,
+    ViewPurchaseOrderComponent
   ],
   imports: [
     CommonModule,
