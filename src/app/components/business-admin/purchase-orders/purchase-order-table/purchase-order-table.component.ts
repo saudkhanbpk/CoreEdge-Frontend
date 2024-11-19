@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewPurchaseOrderComponent } from '../view-purchase-order/view-purchase-order.component';
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-purchase-order-table',
@@ -9,6 +12,7 @@ export class PurchaseOrderTableComponent {
   currentPage = 1;
   itemsPerPage = 5;
   expandedIndex: number | null = null;
+  readonly dialog = inject(MatDialog)
   constructor() { }
   ngOnInit(): void {
   
@@ -73,5 +77,12 @@ export class PurchaseOrderTableComponent {
 
   isPreviousPageAvailable() {
     return this.currentPage > 1;
+  }
+
+
+  openDialog(){
+    this.dialog.open(ViewPurchaseOrderComponent, {
+      width:'60%'
+    })
   }
 }
