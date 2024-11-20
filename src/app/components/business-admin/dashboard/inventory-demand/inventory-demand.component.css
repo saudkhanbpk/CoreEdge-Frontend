@@ -25,7 +25,9 @@
   input::placeholder {
     color: #bbb;
   }
-  
+  .card-body{
+    padding: 8px;
+  }
   .event-icon {
     color: #bbb;
   
