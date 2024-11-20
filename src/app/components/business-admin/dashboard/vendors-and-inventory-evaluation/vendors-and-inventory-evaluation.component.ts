@@ -18,10 +18,10 @@ export class VendorsAndInventoryEvaluationComponent {
   
   vendors = [
     { name: 'Star Electronics', items: 205, color: '#D0E2EC' },
-    { name: 'Ace Technologies', items:180, color: '#E6EAD7' },
+    { name: 'Ace Technologies', items:180, color: '#D1E4DD40' },
     { name: 'Lester Computers', items: 163, color: '#EDEEFC' },
     { name: 'IBM Manufacturers', items: 155, color: '#D0E2EC' },
-    { name: 'Hewlett Packard', items: 142, color: '#E6EAD7' },
+    { name: 'Hewlett Packard', items: 142, color: '#D1E4DD40' },
     { name: 'Dell Computers', items: 121, color: '#EDEEFC' },
   ];
    

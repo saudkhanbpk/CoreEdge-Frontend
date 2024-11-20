@@ -108,7 +108,7 @@
       }
       
       .legend-item.approved {
-        background: linear-gradient(to right, #566D1D, #B2CE6D);
+        background: linear-gradient(to right, #566D1D, #0F4D50);
       }
       
       .legend-item.rejected {

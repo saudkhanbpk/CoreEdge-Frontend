@@ -31,7 +31,7 @@ export class RequestsChartComponent {
           {
             label: 'Total Requests',
             data: [120, 13, 40],
-            backgroundColor: ['#B2CE6D', '#CE6D6D', '#5A7F9D'], // Green, Red, Blue
+            backgroundColor: ['#0F4D50', '#CE6D6D', '#5A7F9D'], // Green, Red, Blue
             borderWidth: 2,
             hoverOffset: 4
           }

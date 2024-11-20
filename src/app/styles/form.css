@@ -5,7 +5,7 @@
   
   .section-div h2 {
     height: 55px;
-    background: #e6ead7 ;
+    background: #D1E4DD40 ;
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;
@@ -76,7 +76,7 @@
   }
   
   .upload-placeholder {
-    color: #b2ce6d;
+    color: #0F4D50;
     font-size: 40px;
   }
   
@@ -135,7 +135,7 @@
     height: 40px;
     padding: 12px 16px 12px 16px;
     border-radius: 7px;
-    background: #b2ce6d;
+    background: #0F4D50;
     color: white;
   
   }
@@ -146,8 +146,8 @@
     padding: 12px 16px 12px 16px;
     border-radius: 7px;
     background-color: #ffffff;
-    color: #b2ce6d;
-    border: 1px solid #b2ce6d;
+    color: #0F4D50;
+    border: 1px solid #0F4D50;
   }
   .paid-btn {
     width: 200px;

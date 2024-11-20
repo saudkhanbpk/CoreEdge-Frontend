@@ -3,7 +3,7 @@
     height: auto !important;
 }
 .add-field{
-    background-color: #b2ce6d;
+    background-color: #0F4D50;
     color: white;
     display: flex;
     justify-content: center;
@@ -11,8 +11,8 @@
 }
 .sub-field{
     background-color: white;
-    color: #b2ce6d;
-    border: 1px solid #b2ce6d;
+    color: #0F4D50;
+    border: 1px solid #0F4D50;
     display: flex;
     justify-content: center;
     align-items: center;
