@@ -98,13 +98,13 @@
       
       .legend-item .count {
         padding: 5px 10px;
-        border-radius: 20px 0 0 20px;
+        border-radius: 4px 0 0 4px;
         background-color: rgba(0, 0, 0, 0.15);
       }
       
       .legend-item .label {
         padding: 5px ;
-        border-radius: 0 20px 20px 0;
+        border-radius: 0 4px 4px 0;
       }
       
       .legend-item.approved {
