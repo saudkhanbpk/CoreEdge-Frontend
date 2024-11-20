@@ -60,14 +60,14 @@
     border: 1px solid lightgray;
   }
   .apply-btn {
-    background-color: #FF5C00;
+    background-color: #4682B4;
     color: white;
   }
   
   .cancel-btn-filter {
-    border: 1px solid #FF5C00;
-    color: #FF5C00;
-    background-color: #FFF5EE;
+    border: 1px solid #4682B4;
+    color: #4682B4;
+    background-color: #D1E4DD40;
   }
   .chart-head{
   font-size: 16px;
