@@ -1,6 +1,114 @@
-@import url(../../../../styles/table.css);
+.parent-buttons-group {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  max-width: 100%;
+  width: fit-content;
+  padding: 10px;
+  padding-bottom: 10px !important;
+  border-radius: 14px 14px 0px 0px;
+  background-color: #e6ead7;
+  border-top: 1px;
+  border-left: 1px;
+  border-right: 1px;
+  border-bottom: 0px;
+  border-style: solid;
+  border-color: #e4e4e4;
+  overflow-x: scroll;
+}
 
+.parent-buttons-group::-webkit-scrollbar,
+.category-buttons-group::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
 
-.visibility{
-    color: #b2ce6d;
+.parent-btn {
+  white-space: nowrap;
+  padding: 0px 10px 0px 10px;
+  border-radius: 9px;
+  min-width: 150px;
+  height: 30px;
+  background: #e6ead7;
+  border: 1px solid #b2ce6d;
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  box-shadow: none;
+}
+
+.parent-btn:hover,
+.parent-btn:active {
+  color: white;
+  background-color: #b2ce6d;
+  font-weight: 400;
+}
+.menu-secondary-group {
+  border-radius: 0px 14px 14px 14px;
+  background-color: white;
+  padding: 13px;
+}
+.active {
+  background-color: #b2ce6d;
+  color: white;
+}
+
+.date-range-input {
+  position: relative;
+  max-width: 250px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+input[type="text"] {
+  font-size: 14px;
+  border-radius: 10px;
+  color: #999;
+  padding-left: 15px;
+  box-shadow: none;
+  border: none;
+  background-color: transparent;
+}
+
+input::placeholder {
+  color: #bbb;
+}
+
+.event-icon {
+  color: #bbb;
+}
+
+.input-group {
+  background-color: #ffffff;
+  border-radius: 8px;
+  height: 40px;
+  max-width: 250px;
+  width: 100%;
+  border: 0.6px solid lightgray;
+}
+
+.mycard {
+  position: absolute;
+  z-index: 9999;
+  background-color: white;
+  border: 1px solid lightgray;
+}
+.apply-btn {
+  background-color: #ff5c00;
+  color: white;
+}
+
+.cancel-btn-filter {
+  border: 1px solid #ff5c00;
+  color: #ff5c00;
+  background-color: #fff5ee;
+}
+@media screen and (max-width: 600px) {
+  .parent-btn {
+    min-width: 170px;
+  }
 }
