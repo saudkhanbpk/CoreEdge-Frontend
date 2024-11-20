@@ -19,7 +19,7 @@ export class VendorPerformanceTableComponent {
   showPicker: boolean = false;
   ngAfterViewInit(): void {
     const ctx = document.getElementById('vendorSpendingChart') as HTMLCanvasElement;
-
+  
     new Chart(ctx, {
       type: 'bar',
       data: {
@@ -27,34 +27,42 @@ export class VendorPerformanceTableComponent {
         datasets: [
           {
             label: 'Spending',
-            data: [300, 50, 150, 250, 100],
+            data: [300, 50, 150, 250],
             backgroundColor: '#4682B4',
             borderRadius: 5,
-            barPercentage: 0.6, // Adjust bar thickness
+            barPercentage: 0.6,
+          },
+          {
+            label: 'Vendor',
+            data: [],
+            backgroundColor: '#CE6D6D',
           }
         ]
       },
       options: {
         responsive: true,
+        layout: {
+          padding: {
+            top: 30 // Creates a gap between the legend and the chart
+          }
+        },
         plugins: {
           legend: {
             position: 'top',
             align: 'center',
-          
             labels: {
-              usePointStyle: true, // Circular legend markers
-              pointStyleWidth: 10,
+              usePointStyle: true,
+              pointStyle: 'circle',
               color: '#333',
               font: {
                 size: 12,
+                family: 'Poppins'
               }
             }
           },
           tooltip: {
             callbacks: {
-              label: function (context) {
-                return `$${context.raw}`;
-              }
+              label: (context) => `$${context.raw}` // Tooltip formatting with $
             }
           }
         },
@@ -63,42 +71,43 @@ export class VendorPerformanceTableComponent {
             beginAtZero: true,
             ticks: {
               stepSize: 100,
-              color: '#7F7F7F', // Grey color for Y-axis labels
+              callback: (value) => `$${value}`, // Adding $ to Y-axis labels
+              color: '#7F7F7F',
               font: {
                 size: 12,
-                family:'poppins'
+                family: 'Poppins'
               }
             },
             grid: {
-              color: '#E0E0E0', // Light grey gridlines
+              color: '#E0E0E0' // Light grey gridlines
             },
             border: {
-              display: false // Removes the border line along the Y-axis
+              display: false
             }
           },
           x: {
             ticks: {
-              color: ['#CE6D6D', '#CE6D6D', '#CE6D6D', '#CE6D6D'], // Red for Genghis K, grey for others
+              color: ['#CE6D6D', '#CE6D6D', '#CE6D6D', '#CE6D6D'], // X-axis label color
               font: {
                 size: 12,
-                family:'poppins'
-              }
+                family: 'Poppins'
+              },
+              padding: 10 // Adds a gap between the X-axis labels and the chart
             },
             grid: {
-              drawOnChartArea: false, // Removes gridlines on the chart area
-              drawTicks: false // Removes small tick marks below labels
+              drawOnChartArea: false, // Removes gridlines on the X-axis
+              drawTicks: false
             },
             border: {
-              display: false // Removes the border line along the X-axis
+              display: false
             }
           }
         }
-        
-        
       }
     });
   }
-
+  
+  
   showDatePicker() {
     this.showPicker = true;
   }

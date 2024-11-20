@@ -30,8 +30,8 @@ export class RequestsChartComponent {
         datasets: [
           {
             label: 'Total Requests',
-            data: [123, 123, 123],
-            backgroundColor: ['#88c057', '#f56968', '#5e99c9'], // Green, Red, Blue
+            data: [120, 13, 40],
+            backgroundColor: ['#B2CE6D', '#CE6D6D', '#5A7F9D'], // Green, Red, Blue
             borderWidth: 2,
             hoverOffset: 4
           }
@@ -72,7 +72,7 @@ export class RequestsChartComponent {
             ctx.textBaseline = 'middle';
             ctx.fillStyle = '#000';
 
-            const text = '4764';
+            const text = '173';
             const textX = Math.round((width - ctx.measureText(text).width) / 2);
             const textY = height / 2 - 10;
 
