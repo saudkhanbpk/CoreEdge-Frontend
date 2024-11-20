@@ -1,25 +1,42 @@
+
 .stat-card{
     background-color: #EDEEFC;
     border-radius: 16px;
     padding: 24px;
+    cursor: pointer;
 }
 .stat-card-2{
     background-color: #E6F1FD;
     border-radius: 16px;
     padding: 24px;
+    cursor: pointer;
+
 }
 .number{
-    font-size: 28px;
+    font-size: 40px;
     font-weight: 600;
-    letter-spacing: 1px;
+    line-height: 46.88px;
 }
 .stat-head{
-font-size: 14px;
-font-weight: 400;
-line-height: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
 }
-.stat-per{
+.stat-per-up{
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #0F4D50;    
+}
+.stat-per-down{
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #FF5C00;    
+}
+.time{
 font-size: 12px;
-font-weight: 400;
-line-height: 16px;
+font-weight: 500;
+line-height: 18px;
+color: #828487;
 }

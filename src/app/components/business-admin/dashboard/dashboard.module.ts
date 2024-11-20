@@ -9,6 +9,12 @@ import { SupplierDetailTableComponent } from './supplier-detail-table/supplier-d
 import { OrderStatusChartComponent } from './order-status-chart/order-status-chart.component';
 import { VendorPerformanceTableComponent } from './vendor-performance-table/vendor-performance-table.component';
 import { MaterialModule } from 'src/app/material';
+import { FormsModule } from '@angular/forms';
+import { RequestsChartComponent } from './requests-chart/requests-chart.component';
+import { InventoryDemandComponent } from './inventory-demand/inventory-demand.component';
+import { VendorsAndInventoryEvaluationComponent } from './vendors-and-inventory-evaluation/vendors-and-inventory-evaluation.component';
+import { PendingRequestsDashboardComponent } from './pending-requests-dashboard/pending-requests-dashboard.component';
+import { EmployeeExpendituresComponent } from './employee-expenditures/employee-expenditures.component';
 
 
 @NgModule({
@@ -18,12 +24,18 @@ import { MaterialModule } from 'src/app/material';
     StatscardsComponent,
     SupplierDetailTableComponent,
     OrderStatusChartComponent,
-    VendorPerformanceTableComponent
+    VendorPerformanceTableComponent,
+    RequestsChartComponent,
+    InventoryDemandComponent,
+    VendorsAndInventoryEvaluationComponent,
+    PendingRequestsDashboardComponent,
+    EmployeeExpendituresComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ]
 })
 export class DashboardModule { }

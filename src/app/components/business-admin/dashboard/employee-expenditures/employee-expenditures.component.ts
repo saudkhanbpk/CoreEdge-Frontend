@@ -1,14 +1,14 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 @Component({
-  selector: 'app-vendor-performance-table',
-  templateUrl: './vendor-performance-table.component.html',
-  styleUrls: ['./vendor-performance-table.component.css']
+  selector: 'app-employee-expenditures',
+  templateUrl: './employee-expenditures.component.html',
+  styleUrls: ['./employee-expenditures.component.css']
 })
-export class VendorPerformanceTableComponent {
+export class EmployeeExpendituresComponent {
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
@@ -18,12 +18,12 @@ export class VendorPerformanceTableComponent {
   dateRange: string = '';
   showPicker: boolean = false;
   ngAfterViewInit(): void {
-    const ctx = document.getElementById('vendorSpendingChart') as HTMLCanvasElement;
+    const ctx = document.getElementById('employeeSpendingChart') as HTMLCanvasElement;
 
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Star Electronics', 'Ace Tech.', 'Lester Com.', 'IBM Manuf.', 'Hewlett P.'],
+        labels: ['Genghis K', 'David N.', 'Hocane', 'Guetta Black', 'Dexter St.'],
         datasets: [
           {
             label: 'Spending',

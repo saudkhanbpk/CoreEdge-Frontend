@@ -203,9 +203,9 @@ tr:hover {
 }
 
 .inactive {
-    background-color: #FFF5EE;
-    color: #b2ce6d;
-    border: 1px solid #b2ce6d;
+    background-color: #ffe1a06b;
+    color: #F0B433;
+    border: 1px solid #F0B433;
     height: 22px;
     width: 100px;
     border-radius: 7px;

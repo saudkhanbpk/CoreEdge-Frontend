@@ -32,6 +32,15 @@ export class PurchaseRequestTableComponent {
       address:'Las Vegas',
       status : 'Rejected'
     },
+    {
+      no: '003',
+      employeename: 'Khan',
+      employeeemail:'employeeemail@gmail.com',
+      hardwarerequested:'Dell Monitor',
+      date:'October 3rd, 2024',
+      address:'Las Vegas',
+      status : 'Pending'
+    },
   ];
  
  
