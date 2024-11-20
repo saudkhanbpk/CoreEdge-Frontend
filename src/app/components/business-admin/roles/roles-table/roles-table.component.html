@@ -1,94 +1,105 @@
 <div class="table-div">
-    <div class="headdiv">
-      <div class="heading">
-        <h1>Roles </h1>
-      </div>
-      <div class="secondary-row">
-        <div>
-            <button class="btn add-btn" routerLink="/business-admin/roles/add-roles">Add Role <img
-                    src="../../../../../../assets/icons/Plus.png" alt=""></button>
-        </div>
-    </div>  
+  <div class="headdiv">
+    <div class="heading">
+      <h1>Roles</h1>
     </div>
-  
-  
-  
-    <div class="table-container p-0  mt-2">
-      <div class="table-responsive">
-        <table class="table table-hover ">
-          <thead class="thead-dark ">
+    <div class="secondary-row">
+      <div>
+        <button
+          class="btn add-btn"
+          routerLink="/business-admin/roles/add-roles"
+        >
+          Add Role <img src="../../../../../../assets/icons/Plus.png" alt="" />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container p-0 mt-2">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" class="one">
+              <div class="table-data">No</div>
+            </th>
+            <th scope="col">
+              <div class="table-data">Role</div>
+            </th>
+            <th scope="col">
+              <div class="table-data">Status</div>
+            </th>
+            <th scope="col" class="two"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let role of paginatedData; let i = index">
             <tr>
-              <th scope="col" class="one">
+              <td>
                 <div class="table-data">
-                  No
+                  {{ i + 1 }}
                 </div>
-              </th>
-              <th scope="col">
+              </td>
+              <td>
                 <div class="table-data">
-                  Role
+                  {{ role.name }}
                 </div>
-              </th>
-              <th scope="col">
+              </td>
+              <td>
                 <div class="table-data">
-                  Status
+                  {{ role.status }}
                 </div>
-              </th>
-              <th scope="col" class="two"></th>
+              </td>
+              <td>
+                <div
+                  class="table-data d-flex gap-1 w-100 justify-content-center"
+                >
+                  <button
+                    class="btn"
+                    routerLink="/business-admin/roles/add-roles"
+                  >
+                    <img src="../../../../../assets/icons/Union.png" alt="" />
+                  </button>
+                  <button class="btn">
+                    <img
+                      src="../../../../../assets/icons/Trash can.png"
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            <ng-container *ngFor="let role of paginatedData; let i = index">
-              <tr>
-                <td>
-                  <div class="table-data">
-                    {{i+1}}
-                  </div>
-                </td>
-                <td>
-                  <div class="table-data">
-                    {{ role.name }}
-                  </div>
-                </td>
-                <td>
-                    <div class="table-data">
-                      {{ role.status }}
-                    </div>
-                  </td>
-                <td>
-                  <div class="table-data d-flex gap-1 w-100 justify-content-center">
-                    <button class="btn" routerLink="/business-admin/roles/add-roles"><img src="../../../../../assets/icons/Union.png" alt=""></button>
-                    <button class="btn"><img src="../../../../../assets/icons/Trash can.png" alt=""></button>
-                  </div>
-                </td>
-              </tr>
-  
-            </ng-container>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <nav aria-label="Page navigation example" class="m-2">
-      <ul class="pagination justify-content-start">
-        <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
-          <a class="paginator-button" (click)="previousPage()">
-            <mat-icon>chevron_left</mat-icon>
-          </a>
-        </li>
-  
-        <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
-          <li class="page-item" [ngClass]="{'active-page': currentPage === index + 1}">
-            <a class="paginator-button" (click)="goToPage(index + 1)">
-              {{ index + 1 }}
+          </ng-container>
+        </tbody>
+      </table>
+      <nav aria-label="Page navigation example" class="m-2">
+        <ul class="pagination justify-content-start">
+          <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
+            <a class="paginator-button" (click)="previousPage()">
+              <mat-icon>chevron_left</mat-icon>
             </a>
           </li>
-        </ng-container>
-  
-        <li class="page-item" [class.disabled]="!isNextPageAvailable()">
-          <a class="paginator-button" (click)="nextPage()">
-            <mat-icon>chevron_right</mat-icon>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  
+    
+          <ng-container
+            *ngFor="let page of [].constructor(totalPages); let index = index"
+          >
+            <li
+              class="page-item"
+              [ngClass]="{ 'active-page': currentPage === index + 1 }"
+            >
+              <a class="paginator-button" (click)="goToPage(index + 1)">
+                {{ index + 1 }}
+              </a>
+            </li>
+          </ng-container>
+    
+          <li class="page-item" [class.disabled]="!isNextPageAvailable()">
+            <a class="paginator-button" (click)="nextPage()">
+              <mat-icon>chevron_right</mat-icon>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
+</div>

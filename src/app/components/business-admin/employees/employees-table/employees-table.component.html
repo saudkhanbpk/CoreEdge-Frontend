@@ -1,52 +1,43 @@
 <div class="table-div">
   <div class="headdiv">
     <div class="heading">
-      <h1>Employees </h1>
+      <h1>Employees</h1>
     </div>
     <div class="secondary-row">
       <div>
-        <button class="btn add-btn" routerLink="/business-admin/employees/employees-form">Add Employee <img
-            src="../../../../../../assets/icons/Plus.png" alt=""></button>
+        <button
+          class="btn add-btn"
+          routerLink="/business-admin/employees/employees-form"
+        >
+          Add Employee
+          <img src="../../../../../../assets/icons/Plus.png" alt="" />
+        </button>
       </div>
     </div>
   </div>
 
-
-
-  <div class="table-container p-0  mt-2">
+  <div class="table-container p-0 mt-2">
     <div class="table-responsive">
-      <table class="table table-hover ">
-        <thead class="thead-dark ">
+      <table class="table table-hover">
+        <thead class="thead-dark">
           <tr>
             <th scope="col" class="one">
-              <div class="table-data">
-                No
-              </div>
+              <div class="table-data">No</div>
             </th>
             <th scope="col">
-              <div class="table-data">
-                Employee Name
-              </div>
+              <div class="table-data">Employee Name</div>
             </th>
             <th scope="col">
-              <div class="table-data">
-                Employee Role
-              </div>
+              <div class="table-data">Employee Role</div>
             </th>
             <th scope="col">
-              <div class="table-data">
-                Email
-              </div>
+              <div class="table-data">Email</div>
             </th>
             <th scope="col">
-              <div class="table-data">
-                password
-              </div>
+              <div class="table-data">password</div>
             </th>
             <th scope="col">
-              <div class="table-data">
-                Address
-              </div>
+              <div class="table-data">Address</div>
             </th>
             <th scope="col" class="two"></th>
           </tr>
@@ -56,7 +47,7 @@
             <tr>
               <td>
                 <div class="table-data">
-                  {{i+1}}
+                  {{ i + 1 }}
                 </div>
               </td>
               <td>
@@ -81,7 +72,7 @@
               </td>
               <td>
                 <div class="table-data">
-                  {{employee.address}}
+                  {{ employee.address }}
                 </div>
               </td>
               <!-- <td>
@@ -92,41 +83,55 @@
                     </div>
                   </td> -->
               <td>
-                <div class="table-data d-flex gap-1 w-100 justify-content-center">
-                  <button class="btn" routerLink="/business-admin/employees/employees-form"><img
-                      src="../../../../../assets/icons/Union.png" alt=""></button>
-                  <button class="btn"><img src="../../../../../assets/icons/Trash can.png" alt=""></button>
+                <div
+                  class="table-data d-flex gap-1 w-100 justify-content-center"
+                >
+                  <button
+                    class="btn"
+                    routerLink="/business-admin/employees/employees-form"
+                  >
+                    <img src="../../../../../assets/icons/Union.png" alt="" />
+                  </button>
+                  <button class="btn">
+                    <img
+                      src="../../../../../assets/icons/Trash can.png"
+                      alt=""
+                    />
+                  </button>
                 </div>
               </td>
             </tr>
-
           </ng-container>
         </tbody>
       </table>
+      <nav aria-label="Page navigation example" class="m-2">
+        <ul class="pagination justify-content-start">
+          <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
+            <a class="paginator-button" (click)="previousPage()">
+              <mat-icon>chevron_left</mat-icon>
+            </a>
+          </li>
+    
+          <ng-container
+            *ngFor="let page of [].constructor(totalPages); let index = index"
+          >
+            <li
+              class="page-item"
+              [ngClass]="{ 'active-page': currentPage === index + 1 }"
+            >
+              <a class="paginator-button" (click)="goToPage(index + 1)">
+                {{ index + 1 }}
+              </a>
+            </li>
+          </ng-container>
+    
+          <li class="page-item" [class.disabled]="!isNextPageAvailable()">
+            <a class="paginator-button" (click)="nextPage()">
+              <mat-icon>chevron_right</mat-icon>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
-  <nav aria-label="Page navigation example" class="m-2">
-    <ul class="pagination justify-content-start">
-      <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
-        <a class="paginator-button" (click)="previousPage()">
-          <mat-icon>chevron_left</mat-icon>
-        </a>
-      </li>
-
-      <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
-        <li class="page-item" [ngClass]="{'active-page': currentPage === index + 1}">
-          <a class="paginator-button" (click)="goToPage(index + 1)">
-            {{ index + 1 }}
-          </a>
-        </li>
-      </ng-container>
-
-      <li class="page-item" [class.disabled]="!isNextPageAvailable()">
-        <a class="paginator-button" (click)="nextPage()">
-          <mat-icon>chevron_right</mat-icon>
-        </a>
-      </li>
-    </ul>
-  </nav>
-
 </div>

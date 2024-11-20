@@ -51,7 +51,7 @@
 .table-container {
     background-color: white;
     border-radius: 16px;
-    padding: 10px;
+    padding-bottom: 10px;
 }
 
 thead tr th {
