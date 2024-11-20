@@ -4,7 +4,7 @@
         <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="chart-head">
-                    Vendors
+                    Spend by Category
                 </div>
                 <div>
                     <div>
@@ -36,14 +36,14 @@
         </div>
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h6 class="mb-0">Top 6 Vendors</h6>
+                <h6 class="mb-0">Top 6 Categories</h6>
                 <!-- <select class="form-select form-select-sm" style="width: auto;">
             <option selected>Top 5 Selected</option>
             <option>All Vendors</option>
           </select> -->
             </div>
             <div class="row g-3">
-                <div class="col-6" *ngFor="let vendor of vendors">
+                <div class="col-4" *ngFor="let vendor of vendors">
                     <div class="p-2 vendor-card rounded-3" [style.backgroundColor]="vendor.color">
                         <h6 class="vendor-name mb-1">{{ vendor.name }}</h6>
                         <h4 class="vendor-items mb-1">{{ vendor.items }}</h4>
@@ -57,12 +57,14 @@
     <!-- Inventory Evaluation Section -->
     <div class="card rounded-4">
         <div class="card-header">
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center py-2">
                 <div class="chart-head">
-                   Inventory Evaluation
+                   <!-- Inventory Evaluation -->
+                    Contracts Expiring Soon
                 </div>
                 <div>
-                    <div>
+                    <a routerLink="/" class="view">View</a>
+                    <!-- <div>
                         <div class="input-group date-range-input">
                             <input type="text" id="dateRange" class="form-control" [(ngModel)]="dateRange"
                                 placeholder="Start date  →  End date" (focus)="showDatePicker()" readonly />
@@ -85,12 +87,12 @@
                                 <button class="btn cancel-btn-filter" (click)="cancelDateRange()">Cancel</button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
-        <div class="card-body text-center">
-            <div class="d-flex justify-content-center align-items-center gap-2">
+        <div class="card-body text-center progress-div">
+            <!-- <div class="d-flex justify-content-center align-items-center gap-2">
                 <h2 class="inv-total mb-1">$4750</h2>
                 <p class="text-muted total mb-0">Total Inventory worth</p>
             </div>
@@ -112,7 +114,49 @@
                 <div class="progress-bar bg-primary" role="progressbar" style="width: 10%;"></div>
                 <div class="progress-bar bg-danger mx-1" role="progressbar" style="width: 40%;"></div>
                 <div class="progress-bar bg-success" role="progressbar" style="width: 50%;"></div>
-            </div>
+            </div> -->
+            <div class="task-list">
+                <div class="task-item">
+                  <div class="task-name">Ace Technologies</div>
+                  <div class="progress-container">
+                    <div class="progress">
+                      <div class="progress-bar bg-success" style="width: 80%;"></div>
+                    </div>
+                    <div class="time-left text-danger">2 Months Left</div>
+                  </div>
+                </div>
+              
+                <div class="task-item">
+                  <div class="task-name">Star Computers</div>
+                  <div class="progress-container">
+                    <div class="progress">
+                      <div class="progress-bar bg-warning" style="width: 60%;"></div>
+                    </div>
+                    <div class="time-left text-danger">1 Month Left</div>
+                  </div>
+                </div>
+              
+                <div class="task-item">
+                  <div class="task-name">Retro Maniacs</div>
+                  <div class="progress-container">
+                    <div class="progress">
+                      <div class="progress-bar bg-danger" style="width: 30%;"></div>
+                    </div>
+                    <div class="time-left text-danger">15 Days Left</div>
+                  </div>
+                </div>
+              
+                <div class="task-item">
+                  <div class="task-name">Asphalt Solutions</div>
+                  <div class="progress-container">
+                    <div class="progress">
+                      <div class="progress-bar bg-danger" style="width: 20%;"></div>
+                    </div>
+                    <div class="time-left text-danger">7 Days Left</div>
+                  </div>
+                </div>
+              </div>
+              
         </div>
     </div>
 </div>

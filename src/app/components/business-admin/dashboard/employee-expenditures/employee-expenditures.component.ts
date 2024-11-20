@@ -17,89 +17,82 @@ export class EmployeeExpendituresComponent {
   endDate: string | null = null;
   dateRange: string = '';
   showPicker: boolean = false;
-  ngAfterViewInit(): void {
-    const ctx = document.getElementById('employeeSpendingChart') as HTMLCanvasElement;
-  
+ 
+    ngOnInit(): void {
+    this.createBarChart();
+  }
+
+  createBarChart(): void {
+    const ctx = document.getElementById('spendBarChart') as HTMLCanvasElement;
+
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Genghis K', 'David N.', 'Hocane', 'Guetta Black', 'Dexter St.'],
+        labels: [
+          'Procurement',
+          'IT',
+          'Finance',
+          'Operations',
+          'Customer Support',
+          'R&D',
+          'Logistics & Supply Chain',
+          'Maintenance & Repairs'
+        ],
         datasets: [
           {
-            label: 'Spending',
-            data: [300, 50, 150, 250, 100],
-            backgroundColor: '#5A7F9D',
+            label: 'Spend Percentage',
+            data: [20, 15, 10, 25, 5, 10, 10, 5], // Example data (percentages)
+            backgroundColor: '#4682B4', // Custom bar color
+            borderColor: '#4682B4', // Same color for borders
             borderRadius: 5,
-            barPercentage: 0.6
-          },
-          {
-            label: 'Employee',
-            data: [],
-            backgroundColor: '#CE6D6D',
+            barPercentage: 0.6,
           }
         ]
       },
       options: {
         responsive: true,
-        layout: {
-          padding: {
-            top: 50, // Adds more space above the chart for the labels
-          }
-        },
         plugins: {
           legend: {
-            position: 'top',
-            align: 'center',
-            labels: {
-              usePointStyle: true,
-              pointStyle: 'circle',
-              color: '#5A7F9D',
-              font: {
-                size: 12,
-                family: 'Poppins'
-              }
-            }
+            display: true,
+            position: 'top'
           },
           tooltip: {
             callbacks: {
-              label: (context) => `$${context.raw}`
+              label: function (context) {
+                const label = context.label || '';
+                const value = context.raw || 0;
+                return `${label}: ${value}%`;
+              }
             }
           }
         },
         scales: {
-          y: {
+          x: {
             beginAtZero: true,
-            ticks: {
-              stepSize: 100,
-              callback: (value) => `$${value}`, // Adding $ to Y-axis labels
-              color: '#7F7F7F',
-              font: {
-                size: 12,
-                family: 'Poppins'
-              }
-            },
             grid: {
-              color: '#E0E0E0' // Light grey gridlines
+              drawOnChartArea: false, // Disable gridlines on the chart area
+              drawTicks: true // Keep tick marks visible
             },
-            border: {
-              display: false
+            ticks: {
+              font: {
+                family: 'Poppins', // Set font family to Poppins
+                size: 12
+              }
             }
           },
-          x: {
-            ticks: {
-              color: ['#CE6D6D', '#CE6D6D', '#CE6D6D', '#CE6D6D'], // X-axis label color
-              font: {
-                size: 12,
-                family: 'Poppins'
-              },
-              padding: 10 // Adds a gap between the X-axis labels and the chart
-            },
+          y: {
+            beginAtZero: true,
             grid: {
-              drawOnChartArea: false, // Removes gridlines on the X-axis
-              drawTicks: false
+              color: '#e0e0e0', // Light gray gridlines
+              lineWidth: 1, // Set gridline thickness to 1
+              drawOnChartArea: true, // Keep grid lines drawn on the chart area
+              drawTicks: true // Keep tick marks visible
             },
-            border: {
-              display: false
+            ticks: {
+              font: {
+                family: 'Poppins', // Set font family to Poppins
+                size: 12
+              }
             }
           }
         }

@@ -110,3 +110,59 @@ line-height: 18px;
     .bg-success{
         background-color: #0F4D50 !important;
     }
+    .view{
+font-size: 14px;
+font-weight: 400;
+line-height: 20px;
+letter-spacing: 0.10000000149011612px;
+color: #5A7F9D;
+    }
+    
+    .task-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .task-name {
+      flex: 1;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #333;
+      display: flex;
+      justify-content: start;
+    }
+    
+    .progress-container {
+      flex: 2;
+      display: flex;
+      align-items: center;
+    }
+    
+    .progress {
+      flex: 1;
+      margin-right: 10px;
+      background-color: #e9ecef; /* Light gray background */
+      border-radius: 10px;
+      height: 6px;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      border-radius: 10px;
+    }
+    
+    .time-left {
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+    .progress-div{
+      height: 9.9rem;
+      overflow-y: scroll;
+    }
+    .progress-div::-webkit-scrollbar{
+      height: 0px;
+      width: 0px;
+    }

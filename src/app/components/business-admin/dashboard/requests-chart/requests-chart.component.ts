@@ -16,76 +16,76 @@ export class RequestsChartComponent {
   endDate: string | null = null;
   dateRange: string = '';
   showPicker: boolean = false;
-  ngAfterViewInit(): void {
-    this.createChart();
-  }
+  // ngAfterViewInit(): void {
+  //   this.createChart();
+  // }
 
-  createChart() {
-    const ctx = document.getElementById('donutChart') as HTMLCanvasElement;
+  // createChart() {
+  //   const ctx = document.getElementById('donutChart') as HTMLCanvasElement;
 
-    new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: ['Approved', 'Rejected', 'Pending'],
-        datasets: [
-          {
-            label: 'Total Requests',
-            data: [120, 13, 40],
-            backgroundColor: ['#0F4D50', '#CE6D6D', '#5A7F9D'], // Green, Red, Blue
-            borderWidth: 2,
-            hoverOffset: 4
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          tooltip: {
-            enabled: true,
-            callbacks: {
-              label: (tooltipItem:any) => {
-                const percentage = (
-                  (tooltipItem.raw as number) /
-                  369
-                ).toFixed(2);
-                return `${tooltipItem.label}: ${percentage}%`;
-              }
-            }
-          },
-          legend: {
-            display: false
-          }
-        },
-        cutout: '70%' // Creates the donut shape
-      },
-      plugins: [
-        {
-          id: 'centerTextPlugin',
-          beforeDraw: function (chart) {
-            const width = chart.width!;
-            const height = chart.height!;
-            const ctx = chart.ctx!;
-            ctx.restore();
-            const fontSize = (height / 120).toFixed(2);
-            ctx.font = `${fontSize}em Poppins`;
-            ctx.textBaseline = 'middle';
-            ctx.fillStyle = '#000';
+  //   new Chart(ctx, {
+  //     type: 'doughnut',
+  //     data: {
+  //       labels: ['Approved', 'Rejected', 'Pending'],
+  //       datasets: [
+  //         {
+  //           label: 'Total Requests',
+  //           data: [120, 13, 40],
+  //           backgroundColor: ['#0F4D50', '#CE6D6D', '#5A7F9D'], 
+  //           borderWidth: 2,
+  //           hoverOffset: 4
+  //         }
+  //       ]
+  //     },
+  //     options: {
+  //       responsive: true,
+  //       maintainAspectRatio: false,
+  //       plugins: {
+  //         tooltip: {
+  //           enabled: true,
+  //           callbacks: {
+  //             label: (tooltipItem:any) => {
+  //               const percentage = (
+  //                 (tooltipItem.raw as number) /
+  //                 369
+  //               ).toFixed(2);
+  //               return `${tooltipItem.label}: ${percentage}%`;
+  //             }
+  //           }
+  //         },
+  //         legend: {
+  //           display: false
+  //         }
+  //       },
+  //       cutout: '70%' 
+  //     },
+  //     plugins: [
+  //       {
+  //         id: 'centerTextPlugin',
+  //         beforeDraw: function (chart) {
+  //           const width = chart.width!;
+  //           const height = chart.height!;
+  //           const ctx = chart.ctx!;
+  //           ctx.restore();
+  //           const fontSize = (height / 120).toFixed(2);
+  //           ctx.font = `${fontSize}em Poppins`;
+  //           ctx.textBaseline = 'middle';
+  //           ctx.fillStyle = '#000';
 
-            const text = '173';
-            const textX = Math.round((width - ctx.measureText(text).width) / 2);
-            const textY = height / 2 - 10;
+  //           const text = '173';
+  //           const textX = Math.round((width - ctx.measureText(text).width) / 2);
+  //           const textY = height / 2 - 10;
 
-            ctx.fillText(text, textX, textY);
+  //           ctx.fillText(text, textX, textY);
 
-            ctx.font = '16px Poppins';
-            ctx.fillText('Total Requests', textX, textY + 30);
-            ctx.save();
-          }
-        }
-      ]
-    });
-  }
+  //           ctx.font = '16px Poppins';
+  //           ctx.fillText('Total Requests', textX, textY + 30);
+  //           ctx.save();
+  //         }
+  //       }
+  //     ]
+  //   });
+  // }
   showDatePicker() {
     this.showPicker = true;
   }

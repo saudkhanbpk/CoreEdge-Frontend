@@ -33,7 +33,7 @@ export class VendorPerformanceTableComponent {
             barPercentage: 0.6,
           },
           {
-            label: 'Vendor',
+            label: 'Supplier',
             data: [],
             backgroundColor: '#CE6D6D',
           }

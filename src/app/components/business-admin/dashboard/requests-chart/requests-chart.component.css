@@ -1,4 +1,4 @@
-.date-range-input {
+/* .date-range-input {
     position: relative;
     max-width: 250px;
     width: 100%;
@@ -65,7 +65,6 @@
   .chart-container {
     position: relative;
     height: 400px;
-    /* width: 270px; */
     margin: 0 auto;
   }
   
@@ -120,9 +119,7 @@
       }
 
 @media screen and (max-width:1370px) {
-    /* .legend{
-        flex-direction: column;
-    } */
+
     #donutChart{
       width: 367px !important;
       height: 270px !important;
@@ -132,4 +129,122 @@
     .card-body{
         height: 41rem;
     }
+} */
+
+.date-range-input {
+  position: relative;
+  max-width: 250px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+input[type="text"] {
+  font-size: 14px;
+  border-radius: 10px;
+  color: #999;
+  padding-left: 15px;
+  box-shadow: none;
+  border: none;
+  background-color: transparent;
+}
+
+input::placeholder {
+  color: #bbb;
+}
+
+.event-icon {
+  color: #bbb;
+
+}
+
+.input-group-text {
+  background: none;
+  border: none;
+}
+
+.input-group {
+  background-color: #ffffff;
+  border-radius: 8px;
+  height: 40px;
+  max-width: 250px;
+  width: 100%;
+  border: 0.6px solid lightgray;
+}
+
+.input-group-form-control {
+  border-radius: 10px;
+  background-color: #F5F6FA;
+  border: none;
+  box-shadow: none;
+  height: 38px;
+}
+
+.mycard {
+  position: absolute;
+  z-index: 9999;
+  background-color: white;
+  border: 1px solid lightgray;
+}
+
+.apply-btn {
+  background-color: #FF5C00;
+  color: white;
+}
+
+.cancel-btn-filter {
+  border: 1px solid #FF5C00;
+  color: #FF5C00;
+  background-color: #FFF5EE;
+}
+
+.chart-head {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+.image{
+  width: 61.35px;
+height: 72px;
+border-radius: 8px;
+object-fit: cover;
+}
+.name{
+font-size: 18px;
+font-weight: 500;
+line-height: 24px;
+}
+.required{
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+color: #637381;
+}
+.time{
+font-size: 12px;
+font-weight: 500;
+line-height: 24px;
+color: #728292;
+}
+a{
+font-size: 14px;
+font-weight: 400;
+line-height: 20px;
+letter-spacing: 0.10000000149011612px;
+text-align: center;
+text-decoration-line: underline;
+text-decoration-style: solid;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+color: #5A7F9D;
+
+}
+.main-requests{
+  height: 21.7rem;
+  overflow-y: scroll;
+}
+.main-requests::-webkit-scrollbar{
+  height: 0px;
+  width: 0px;
 }

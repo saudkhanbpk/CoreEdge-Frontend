@@ -28,11 +28,11 @@ export class InventoryDemandComponent {
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Mouse & K', 'Hardware', 'SAS Softw', 'Laer Cabl', 'Synthetic s'],
+        labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov' , 'Dec'],
         datasets: [
           {
             label: 'Requests',
-            data: [60, 20, 150, 100, 230], // Example data
+            data: [1160, 1220, 2150, 2100, 4230, 3234, 2543, 1434,4234,4544,7223,2656], // Example data
             backgroundColor: '#5684AE', // Blue color for bars
             borderRadius: 5, // Rounded corners
           }
