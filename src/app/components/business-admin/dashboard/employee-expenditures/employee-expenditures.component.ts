@@ -78,7 +78,7 @@ export class EmployeeExpendituresComponent {
           },
           x: {
             ticks: {
-              color: ['#FF6347', '#FF6347', '#FF6347', '#FF6347', '#FF6347'], // Red for Genghis K, grey for others
+              color: ['#CE6D6D', '#CE6D6D', '#CE6D6D', '#CE6D6D', '#CE6D6D'], // Red for Genghis K, grey for others
               font: {
                 size: 12,
                 family:'poppins'

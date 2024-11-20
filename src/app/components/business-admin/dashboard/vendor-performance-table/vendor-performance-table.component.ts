@@ -23,7 +23,7 @@ export class VendorPerformanceTableComponent {
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Star Electronics', 'Ace Tech.', 'Lester Com.', 'IBM Manuf.', 'Hewlett P.'],
+        labels: ['Star Electronics', 'Ace Tech.', 'Lester Com.', 'IBM Manuf.'],
         datasets: [
           {
             label: 'Spending',
@@ -78,7 +78,7 @@ export class VendorPerformanceTableComponent {
           },
           x: {
             ticks: {
-              color: ['#FF6347', '#FF6347', '#FF6347', '#FF6347', '#FF6347'], // Red for Genghis K, grey for others
+              color: ['#CE6D6D', '#CE6D6D', '#CE6D6D', '#CE6D6D'], // Red for Genghis K, grey for others
               font: {
                 size: 12,
                 family:'poppins'

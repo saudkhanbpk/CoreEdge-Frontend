@@ -25,7 +25,9 @@
   input::placeholder {
     color: #bbb;
   }
-  
+  .card-body{
+    padding: 8px;
+  }
   .event-icon {
     color: #bbb;
   
@@ -149,8 +151,12 @@ line-height: 22px;
     color: #CE6D6D;
   }
 
-  @media screen and (max-width:1024px) and (min-width:600px){
+  @media screen and (max-width:1700px) and (min-width:600px){
     .low-quantity-product{
        flex-direction: column;
+       margin: 0px;
+    }
+    .mini-card{
+      padding: 8px;
     }
   }

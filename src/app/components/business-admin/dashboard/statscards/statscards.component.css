@@ -2,15 +2,18 @@
 .stat-card{
     background-color: #EDEEFC;
     border-radius: 16px;
-    padding: 24px;
+    padding: 8px;
     cursor: pointer;
 }
 .stat-card-2{
     background-color: #E6F1FD;
     border-radius: 16px;
-    padding: 24px;
+    padding: 8px;
     cursor: pointer;
 
+}
+.col-lg-3{
+    padding: 0px 4px;
 }
 .number{
     font-size: 40px;

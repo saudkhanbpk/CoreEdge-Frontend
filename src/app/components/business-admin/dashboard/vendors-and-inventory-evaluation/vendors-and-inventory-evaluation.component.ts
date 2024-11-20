@@ -17,12 +17,12 @@ export class VendorsAndInventoryEvaluationComponent {
   showPicker: boolean = false;
   
   vendors = [
-    { name: 'Star Electronics', items: 123, color: '#D0E2EC' },
-    { name: 'Ace Technologies', items: 122, color: '#E6EAD7' },
-    { name: 'Lester Computers', items: 121, color: '#EDEEFC' },
-    { name: 'IBM Manufacturers', items: 120, color: '#D0E2EC' },
-    { name: 'Hewlett Packard', items: 119, color: '#E6EAD7' },
-    { name: 'Lester Computers', items: 121, color: '#EDEEFC' },
+    { name: 'Star Electronics', items: 205, color: '#D0E2EC' },
+    { name: 'Ace Technologies', items:180, color: '#E6EAD7' },
+    { name: 'Lester Computers', items: 163, color: '#EDEEFC' },
+    { name: 'IBM Manufacturers', items: 155, color: '#D0E2EC' },
+    { name: 'Hewlett Packard', items: 142, color: '#E6EAD7' },
+    { name: 'Dell Computers', items: 121, color: '#EDEEFC' },
   ];
    
   showDatePicker() {
