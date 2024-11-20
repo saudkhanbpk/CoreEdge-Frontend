@@ -70,7 +70,7 @@ export class InventoryDemandComponent {
               display: false // Remove the left border line
             },
             ticks: {
-              color: '#db1355', // Pinkish color for x-axis labels
+              color: '#CE6D6D', // Pinkish color for x-axis labels
               font: {
                 family: 'Poppins', // Apply Poppins font
                 size: 12

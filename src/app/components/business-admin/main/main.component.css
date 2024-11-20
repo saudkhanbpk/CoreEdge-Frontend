@@ -1,16 +1,11 @@
 .mat-drawer {
-    width: 80px; 
+    width: 270px; 
     transition: width 0.3s ease;
     border-right: 0px;
     overflow-y: scroll;
 }
 
-.mat-drawer.drawer-hovered {
-    width: 300px; 
-    transition: width 0.3s ease;
-    /* position: relative; */
 
-}
 .example-container {
     width: auto;
     height: 85.5vh;
@@ -26,13 +21,20 @@
 .mat-drawer-content::-webkit-scrollbar {
     width: 0px;
 }
-
+.mat-drawer-content{
+    margin-left: 300px;
+}
 .main::-webkit-scrollbar {
     width: 0px;
 }
 .title{
     white-space: nowrap;
     font-family: 'poppins', sans-serif;
+}
+@media screen and (max-width:1200px){
+    .mat-drawer-content{
+        margin-left: 0px;
+    }
 }
 @media screen and (max-width:600px) {
     .example-container {

@@ -87,10 +87,10 @@
         display: flex;
         align-items: center;
         gap: 5px;
-        border-radius: 10px;
+        border-radius: 4px;
         color: white;
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 400;
       }
       
       .legend-item .count {
@@ -100,23 +100,23 @@
       }
       
       .legend-item .label {
-        padding: 5px 15px;
+        padding: 5px ;
         border-radius: 0 20px 20px 0;
       }
       
       .legend-item.approved {
-        background: linear-gradient(to right, #4d8038, #9bcc67);
+        background: linear-gradient(to right, #566D1D, #B2CE6D);
       }
       
       .legend-item.rejected {
-        background: linear-gradient(to right, #9e3824, #f68a8a);
+        background: linear-gradient(to right, #9C3800, #CE6D6D);
       }
       
       .legend-item.pending {
-        background: linear-gradient(to right, #2f4c70, #688faf);
+        background: linear-gradient(to right, #1E4565, #5A7F9D);
       }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width:1370px) {
     .legend{
         flex-direction: column;
     }
