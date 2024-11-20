@@ -3,3 +3,6 @@ h1 {
     font-weight: 500;
     line-height: 22px;
 }
+.col-lg-4{
+    padding: 0px 4px;
+}
