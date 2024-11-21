@@ -1,15 +1,41 @@
-<div class="chart-container">
-    <h4>Vendor Performance:</h4>
-    <div class="canva-div">
-        <canvas #chartCanvas></canvas>
-        <div class="custom-legend">
-          <ul>
-            <li><span class="legend-icon black"></span> United States <span class="legend-value">52.1%</span></li>
-            <li><span class="legend-icon blue"></span> Canada <span class="legend-value">22.8%</span></li>
-            <li><span class="legend-icon green"></span> Mexico <span class="legend-value">13.9%</span></li>
-            <li><span class="legend-icon light-blue"></span> Other <span class="legend-value">11.2%</span></li>
-          </ul>
-        </div>
+
+<div class="card rounded-4">
+  <div class="card-header">
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="chart-head">
+        Vendors Expenditures
+      </div>
+      <div>
+        <div>
+          <div class="input-group date-range-input">
+              <input type="text" id="dateRange" class="form-control" [(ngModel)]="dateRange"
+                  placeholder="Start date  →  End date" (focus)="showDatePicker()" readonly />
+              <mat-icon class="event-icon">event</mat-icon>
+          </div>
+          <div *ngIf="showPicker" class="mycard p-3 mt-2">
+              <div class="row">
+                  <div class="col">
+                      <label for="startDate">Start Date</label>
+                      <input type="date" id="startDate" class="form-control" [(ngModel)]="startDate" />
+                  </div>
+                  <div class="col">
+                      <label for="endDate">End Date</label>
+                      <input type="date" id="endDate" class="form-control" [(ngModel)]="endDate" />
+                  </div>
+              </div>
+  
+              <div class="mt-3 d-flex justify-content-center gap-3">
+                  <button class="btn apply-btn" (click)="applyDateRange()">Apply</button>
+                  <button class="btn cancel-btn-filter" (click)="cancelDateRange()">Cancel</button>
+              </div>
+          </div>
+      </div>
+      </div>
     </div>
   </div>
-  
+  <div class="card-body">
+    <div class="chart-container d-flex justify-content-center align-items-center">
+      <canvas id="vendorSpendingChart"></canvas>
+    </div>
+  </div>
+</div>

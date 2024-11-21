@@ -10,10 +10,10 @@
           <mat-icon>search</mat-icon>
         </button>
       </div>
-      <div>
+      <!-- <div>
         <button class="btn add-btn" routerLink="/business-admin/purchase-orders/purchase-order-form">Add Purchase Order<img
             src="../../../../../../assets/icons/Plus.png" alt=""></button>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="table-container mt-2">
@@ -41,11 +41,11 @@
                  Hardware Requested
                 </div>
               </th>
-              <th scope="col">
+              <!-- <th scope="col">
                 <div class="table-data">
                Requested Date
                 </div>
-              </th>
+              </th> -->
               <th scope="col">
                 <div class="table-data">
                Received Date
@@ -88,11 +88,11 @@
                         {{ item.hardwarerequested }}
                       </div>
                     </td>
-                    <td>
+                    <!-- <td>
                       <div class="table-data">
                         {{ item.requesteddate }}
                       </div>
-                    </td>
+                    </td> -->
                     <td>
                       <div class="table-data">
                         {{ item.receivedddate }}
@@ -112,13 +112,16 @@
                         <div class="table-data d-flex gap-1 w-100 justify-content-end">
                             <button class="btn"  routerLink="/business-admin/purchase-orders/purchase-order-form"><img src="../../../../../assets/icons/Union.png" alt=""></button>
                             <button class="btn"><img src="../../../../../assets/icons/Trash can.png" alt=""></button>
-                            <button class="btn" (click)="toggleDetails(i)">
-                              <mat-icon>{{ expandedIndex === i ? 'expand_less' : 'expand_more' }}</mat-icon>
+                            <button class="btn visibility" (click)="openDialog()">
+                              <mat-icon>visibility</mat-icon>
                             </button>
+                            <!-- <button class="btn" (click)="toggleDetails(i)">
+                              <mat-icon>{{ expandedIndex === i ? 'expand_less' : 'expand_more' }}</mat-icon>
+                            </button> -->
                         </div>
                       </td>
             </tr>
-            <tr *ngIf="expandedIndex === i">
+            <!-- <tr *ngIf="expandedIndex === i">
               <td colspan="12" class="expanded-data">
                 <div class="container-fluid">
                   <div class="row">
@@ -134,7 +137,7 @@
                   </div>
                 </div>
               </td>
-            </tr>
+            </tr> -->
           </ng-container>
         </tbody>
       </table>

@@ -1,71 +1,74 @@
 .chart-container {
-    width: 100%;
-    padding: 20px;
-    background-color: white;
-    border-radius: 12px;
-    height: 380px;
-  }
-  .canva-div{
-    justify-content: space-around;
-    display: flex;
-    align-items: center;
-  }
-  canvas {
-    max-width: 300px;
-  }
-  
-  .custom-legend {
-    display: flex;
-    flex-direction: column;
-  }
-  
-   h4 {
-font-size: 16px;
-font-weight: 600;
-line-height: 20px;
+  position: relative;
+  height: 400px;
+  width: 98%;
+}
+.date-range-input {
+  position: relative;
+  max-width: 250px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+}
 
-  }
-  
-  .custom-legend ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .custom-legend li {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    color: #666;
-    gap: 10px;
-    margin-bottom: 5px;
-  }
-  
-  .legend-icon {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin-right: 8px;
-  }
-  
-  .black { background-color: #000000; }
-  .blue { background-color: #A5C7FF; }
-  .green { background-color: #AEE6D8; }
-  .light-blue { background-color: #C4D9F9; }
-  
-  .legend-value {
-    margin-left: auto;
-    font-weight: 500;
-  }
-  
-  @media screen and (max-width:600px){
-    .canva-div{
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .chart-container{
-        height: auto;
-    }
-  }
+input[type="text"] {
+  font-size: 14px;
+  border-radius: 10px;
+  color: #999;
+  padding-left: 15px;
+  box-shadow: none;
+  border: none;
+  background-color: transparent;
+}
+
+input::placeholder {
+  color: #bbb;
+}
+
+.event-icon {
+  color: #bbb;
+
+}
+
+.input-group-text {
+  background: none;
+  border: none;
+}
+.input-group {
+  background-color: #ffffff;
+  border-radius: 8px;
+  height: 40px;
+  max-width: 250px;
+  width: 100%;
+  border: 0.6px solid lightgray;
+}
+
+.input-group-form-control {
+  border-radius: 10px;
+  background-color: #F5F6FA;
+  border: none;
+  box-shadow: none;
+  height: 38px;
+}
+.mycard {
+  position: absolute;
+  z-index: 9999;
+  background-color: white;
+  border: 1px solid lightgray;
+}
+.apply-btn {
+  background-color: #FF5C00;
+  color: white;
+}
+
+.cancel-btn-filter {
+  border: 1px solid #FF5C00;
+  color: #FF5C00;
+  background-color: #FFF5EE;
+}
+.chart-head{
+font-size: 16px;
+font-weight: 500;
+line-height: 24px;
+}

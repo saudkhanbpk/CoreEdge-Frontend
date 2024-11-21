@@ -1,0 +1,160 @@
+/* .chart-container {
+    position: relative;
+    height: 400px;
+    width: 100%;
+  } */
+  .date-range-input {
+    position: relative;
+    max-width: 250px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+  }
+  
+  input[type="text"] {
+    font-size: 14px;
+    border-radius: 10px;
+    color: #999;
+    padding-left: 15px;
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
+  }
+  
+  input::placeholder {
+    color: #bbb;
+  }
+  
+  .event-icon {
+    color: #bbb;
+  
+  }
+  
+  .input-group-text {
+    background: none;
+    border: none;
+  }
+  .input-group {
+    background-color: #ffffff;
+    border-radius: 8px;
+    height: 40px;
+    max-width: 250px;
+    width: 100%;
+    border: 0.6px solid lightgray;
+  }
+  
+  .input-group-form-control {
+    border-radius: 10px;
+    background-color: #F5F6FA;
+    border: none;
+    box-shadow: none;
+    height: 38px;
+  }
+  .mycard {
+    position: absolute;
+    z-index: 9999;
+    background-color: white;
+    border: 1px solid lightgray;
+  }
+  .apply-btn {
+    background-color: #FF5C00;
+    color: white;
+  }
+  
+  .cancel-btn-filter {
+    border: 1px solid #FF5C00;
+    color: #FF5C00;
+    background-color: #FFF5EE;
+  }
+  .chart-head{
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  }
+  .chart-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .low-quantity-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    margin-top: 16px;
+  }
+  .low-quantity h4{
+font-size: 14px;
+font-weight: 400;
+line-height: 22px;
+  }
+  .mini-card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .item-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .item-name {
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .item-price {
+    font-size: 14px;
+    color: #5684AE;
+    margin: 0;
+  }
+  
+  .progress-bar {
+    background: #e5e5e5;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bg-primary{
+    background-color: #38C3C3 !important;
+  }
+  .progress {
+    height: 8px;
+    border-radius: 4px;
+    margin-bottom: 7px;
+  }
+  
+  .quantity-left {
+    font-size: 12px;
+    color: #ff0000;
+    font-weight: bold;
+    margin: 0;
+    text-align: right;
+  }
+  .mini-card p{
+    white-space: nowrap;
+font-size: 14px;
+font-weight: 400;
+line-height: 22px;
+  }
+  .left-number{
+    color: #CE6D6D;
+  }
+
+  @media screen and (max-width:1700px) and (min-width:600px){
+    .low-quantity-product{
+       flex-direction: column;
+       margin: 0px;
+    }
+    .mini-card{
+      padding: 8px;
+    }
+  }

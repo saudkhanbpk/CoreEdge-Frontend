@@ -1,16 +1,11 @@
 .mat-drawer {
-    width: 80px; 
+    width: 270px; 
     transition: width 0.3s ease;
     border-right: 0px;
     overflow-y: scroll;
 }
 
-.mat-drawer.drawer-hovered {
-    width: 300px; 
-    transition: width 0.3s ease;
-    /* position: relative; */
 
-}
 .example-container {
     width: auto;
     height: 85.5vh;
@@ -26,13 +21,20 @@
 .mat-drawer-content::-webkit-scrollbar {
     width: 0px;
 }
-
+.mat-drawer-content{
+    margin-left: 300px;
+}
 .main::-webkit-scrollbar {
     width: 0px;
 }
 .title{
     white-space: nowrap;
     font-family: 'poppins', sans-serif;
+}
+@media screen and (max-width:1200px){
+    .mat-drawer-content{
+        margin-left: 0px;
+    }
 }
 @media screen and (max-width:600px) {
     .example-container {
@@ -90,11 +92,11 @@ table tr {
   .active {
     width: 100%;
     color: white;
-    background: linear-gradient(218.57deg, #0F4D50 -6.67%, #4A7551 137.69%);
+    background: #B2CE6D;
   }
   
   .mat-icon {
-    color: #0F4D50;
+    color: #B2CE6D;
   }
   
   .active .mat-icon {

@@ -1,0 +1,128 @@
+.date-range-input {
+    position: relative;
+    max-width: 250px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+  }
+  
+  input[type="text"] {
+    font-size: 14px;
+    border-radius: 10px;
+    color: #999;
+    padding-left: 15px;
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
+  }
+  
+  input::placeholder {
+    color: #bbb;
+  }
+  
+  .event-icon {
+    color: #bbb;
+  
+  }
+  
+  .input-group-text {
+    background: none;
+    border: none;
+  }
+  .input-group {
+    background-color: #ffffff;
+    border-radius: 8px;
+    height: 40px;
+    max-width: 250px;
+    width: 100%;
+    border: 0.6px solid lightgray;
+  }
+  
+  .input-group-form-control {
+    border-radius: 10px;
+    background-color: #F5F6FA;
+    border: none;
+    box-shadow: none;
+    height: 38px;
+  }
+  .mycard {
+    position: absolute;
+    z-index: 9999;
+    background-color: white;
+    border: 1px solid lightgray;
+  }
+  .apply-btn {
+    background-color: #FF5C00;
+    color: white;
+  }
+  
+  .cancel-btn-filter {
+    border: 1px solid #FF5C00;
+    color: #FF5C00;
+    background-color: #FFF5EE;
+  }
+  .chart-container {
+    position: relative;
+    height: 400px;
+    width: 270px;
+    margin: 0 auto;
+  }
+  .wrap-item{
+    width: 110px;
+  }
+  .chart-head{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    }
+    .legend {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+      
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        border-radius: 4px;
+        color: white;
+        font-size: 14px;
+        font-weight: 400;
+      }
+      
+      .legend-item .count {
+        padding: 5px 10px;
+        border-radius: 20px 0 0 20px;
+        background-color: rgba(0, 0, 0, 0.15);
+      }
+      
+      .legend-item .label {
+        padding: 5px ;
+        border-radius: 0 20px 20px 0;
+      }
+      
+      .legend-item.approved {
+        background: linear-gradient(to right, #566D1D, #B2CE6D);
+      }
+      
+      .legend-item.rejected {
+        background: linear-gradient(to right, #9C3800, #CE6D6D);
+      }
+      
+      .legend-item.pending {
+        background: linear-gradient(to right, #1E4565, #5A7F9D);
+      }
+
+@media screen and (max-width:1370px) {
+    .legend{
+        flex-direction: column;
+    }
+}
+@media screen and (max-width:950px) {
+    .card-body{
+        height: 41rem;
+    }
+}

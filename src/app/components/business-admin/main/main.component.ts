@@ -9,7 +9,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 })
 export class MainComponent {
   isSmallScreen = false;
-  hovered = false;
+  // hovered = false;
 
   @ViewChild(MatDrawer) drawer: MatDrawer | any;
 

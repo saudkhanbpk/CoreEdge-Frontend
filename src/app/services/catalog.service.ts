@@ -21,23 +21,37 @@ export class CatalogService {
   findById(id: number): Observable<Catalog> {
     return this.http.get<Catalog>(`${this.apiUrl}/${id}`);
   }
-
-  // Method to create a new Catalog item
-  create(Catalog: Partial<Catalog>, file: File): Observable<Catalog> {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('CatalogItem', JSON.stringify(Catalog));
-
-    return this.http.post<Catalog>(this.apiUrl, formData);
+ 
+  findByUserId(userId: number): Observable<Catalog> {
+    return this.http.get<Catalog>(`${this.apiUrl}/user/${userId}`);
   }
 
-  // Method to update an existing Catalog item
-  update(id: number, Catalog: Partial<Catalog>, file: File): Observable<void> {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('CatalogItem', JSON.stringify(Catalog));
+  // Method to create a new Catalog item
+  // create(Catalog: Partial<Catalog>, file: File): Observable<Catalog> {
+  //   const formData = new FormData();
+  //   formData.append('file', file);
+  //   formData.append('CatalogItem', JSON.stringify(Catalog));
 
-    return this.http.put<void>(`${this.apiUrl}/${id}`, formData);
+  //   return this.http.post<Catalog>(this.apiUrl, formData);
+  // }
+
+  create(Catalog:any): Observable<Catalog> {
+    // const formData = new FormData();
+    
+    // // Append the file and catalog data
+    // if (file) {
+    //   formData.append('file', file);
+    // }
+    // formData.append('CatalogItem', JSON.stringify(Catalog));
+  
+    return this.http.post<Catalog>(this.apiUrl, Catalog);
+  }
+  
+
+  // Method to update an existing Catalog item
+  updateCatalogItem(id: number, Catalog: Partial<any>): Observable<void> {
+
+    return this.http.put<void>(`${this.apiUrl}/${id}`, Catalog);
   }
 
   // Method to delete an Catalog item by ID

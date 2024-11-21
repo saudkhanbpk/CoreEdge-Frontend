@@ -1,8 +1,8 @@
 <div class="bg-light p-3 main">
     <app-header (toggleDrawerEvent)="toggleDrawer()"></app-header>
     <mat-drawer-container class="example-container mt-3">
-        <mat-drawer #drawer [ngClass]="{'drawer-hovered': hovered}" class="bg-white rounded-3"
-            (mouseenter)="hovered = true" (mouseleave)="hovered = false">
+        <mat-drawer #drawer  class="bg-white rounded-3"
+           >
             <nav class="sidebar pb-3">
                 <ul class="nav flex-column">
                     <ng-container *ngFor="let menu of menus; let i = index">
@@ -23,14 +23,14 @@
                                 [routerLink]="menu.submenus.length === 0 ? menu.link : null" routerLinkActive="active">
                                 <div class="d-flex align-items-center gap-2">
                                     <mat-icon>{{ menu.icon }}</mat-icon>
-                                    <span *ngIf="hovered" class="title">{{ menu.title }}</span>
+                                    <span  class="title">{{ menu.title }}</span>
                                 </div>
-                                <div *ngIf="menu.submenus.length > 0 && hovered" class="d-flex align-items-center">
+                                <div *ngIf="menu.submenus.length > 0 " class="d-flex align-items-center">
                                     <mat-icon>{{ isMenuOpen(menu.id) ? 'expand_less' : 'expand_more' }}</mat-icon>
                                 </div>
                             </button>
                             <ul class="nav flex-column ml-3"
-                                *ngIf="isMenuOpen(menu.id) && menu.submenus.length > 0 && hovered">
+                                *ngIf="isMenuOpen(menu.id) && menu.submenus.length > 0 ">
                                 <li class="nav-item" *ngFor="let submenu of menu.submenus">
                                     <a class="nav-link" [routerLink]="submenu.link" routerLinkActive="active">
                                         {{ submenu.title }}
@@ -43,7 +43,7 @@
             </nav>
             
         </mat-drawer>
-        <mat-drawer-content [ngStyle]="{ 'margin-left': isSmallScreen ? '0px' : (hovered ? '300px' : '80px'), 'padding-left': drawer.opened ? '16px' : '0px' }">
+        <mat-drawer-content [ngStyle]="{'padding-left': drawer.opened ? '16px' : '0px' }" >
             <div class="maindiv">
                 <router-outlet></router-outlet>
             </div>
