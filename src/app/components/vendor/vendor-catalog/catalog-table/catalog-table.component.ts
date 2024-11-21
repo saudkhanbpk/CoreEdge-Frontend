@@ -43,10 +43,9 @@ export class CatalogTableComponent {
   }
 
   editCatalogItem(item: any): void {
-    console.log(item);
-    
-    this.router.navigate(['/vendor/vendor-catalog/add-catalog'], { state: { catalogData: item } });
+      this.router.navigate(['/vendor/vendor-catalog/add-catalog', item.id]);
   }
+  
   
 
   deleteItem(id: any): void {    

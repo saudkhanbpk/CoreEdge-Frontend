@@ -17,7 +17,7 @@ export class AddCatalogComponent implements OnInit {
 
   user: any;
   id: any;
-  inventoryItemForm: FormGroup;
+  inventoryItemForm!: FormGroup;
   isEdit: boolean = false;
   materialId: string | null = null;
  
@@ -26,101 +26,80 @@ export class AddCatalogComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private dataService: DataService,
     private catalogService: CatalogService,
     private authService: AuthService
-  ) {
-    // Get the current navigation data
-    const navigation = this.router.getCurrentNavigation();
-    console.log("navigation: ", navigation);
-  
-    const catalogData = navigation?.extras?.state?.['catalogData'];
-    console.log("catalogData: ", catalogData);
-    if(catalogData){
-      this.isEdit = true;
-      this.uploadedImageUrl = catalogData?.imageUrl || null;
-      this.id=catalogData.id;
-    }
-  
-
-    // Get user data
-    this.user = this.authService.getUserData();
-  
-    // Initialize the reactive form
-    this.inventoryItemForm = this.fb.group({
-      materialId: [catalogData?.materialId || '', Validators.required], // Prefill if data exists
-      partNumber: [catalogData?.partNumber || '', Validators.required],
-      price: [catalogData?.price || '', [Validators.required, Validators.min(0)]],
-      quantityAvailable: [catalogData?.quantityAvailable || '', [Validators.required, Validators.min(0)]],
-      manufacturerPartNumber: [catalogData?.manufacturerPartNumber || '', Validators.required],
-      manufacturerName: [catalogData?.manufacturerName || '', Validators.required],
-      category: [catalogData?.category || '', Validators.required],
-      unspc: [catalogData?.unspc || null, Validators.required],
-      shortDescription: [catalogData?.shortDescription || '', [Validators.required, Validators.maxLength(150)]],
-      longDescription: [catalogData?.longDescription || '', Validators.required],
-      imageUrl: [catalogData?.imageUrl || ''], // Prefill the image URL if provided
-      vendor: [catalogData?.vendor || this.user?.id || null, Validators.required], // Use existing vendor or user ID
-      user: [catalogData?.user || this.user?.userId?.id || null, Validators.required], // Use existing or current user ID
-    });
-  }
-  
+  ) {}
 
   ngOnInit(): void {
- 
-
-    this.materialId = this.route.snapshot.paramMap.get('id');
-    if (this.materialId) {
+    // Get the id from route parameters
+    this.id = this.route.snapshot.paramMap.get('id');
+    
+    if (this.id) {
       this.isEdit = true;
-      // Fetch existing inventory data and populate the form
-      this.dataService.getInventoryItem(this.materialId).subscribe((item) => {
+      // Fetch the catalog item using the id
+      this.catalogService.findById(this.id).subscribe((item) => {
         if (item) {
+          // Populate the form with the fetched item data
           this.inventoryItemForm.patchValue(item);
-          this.uploadedImageUrl = item.imageUrl; // Populate imageUrl if available
+          this.uploadedImageUrl = item.imageUrl || ''; // Set the image URL if available
+        } else {
+          // Handle error if item is not found
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Catalog item not found!',
+            confirmButtonText: 'OK',
+          }).then(() => {
+            this.router.navigate(['/vendor/vendor-catalog/catalog-table']);
+          });
         }
       });
     }
-  }
 
-  // Handle file selection for image upload
-  // onFileSelected(event: any): void {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     this.uploadedImageUrl = file; 
-  //   }
-  // }
+    // Get user data from auth service
+    this.user = this.authService.getUserData();
+
+    // Initialize the form with default values
+    this.inventoryItemForm = this.fb.group({
+      materialId: ['', Validators.required],
+      partNumber: ['', Validators.required],
+      price: ['', [Validators.required, Validators.min(0)]],
+      quantityAvailable: ['', [Validators.required, Validators.min(0)]],
+      manufacturerPartNumber: ['', Validators.required],
+      manufacturerName: ['', Validators.required],
+      category: ['', Validators.required],
+      unspc: [null, Validators.required],
+      shortDescription: ['', [Validators.required, Validators.maxLength(150)]],
+      longDescription: ['', Validators.required],
+      imageUrl: [''], 
+      vendor: [this.user?.id || null, Validators.required], 
+      user: [this.user?.userId?.id || null, Validators.required], 
+    });
+  }
 
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      this.selectedFile = file; // Keep the file for database upload
-  
-      // Generate preview URL
-      const reader = new FileReader();
+      this.selectedFile = file; 
+        const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.uploadedImageUrl = e.target.result; // Set preview URL
+        this.uploadedImageUrl = e.target.result; 
       };
-      reader.readAsDataURL(file); // Read the file as a Data URL
+      reader.readAsDataURL(file); 
     } else {
-      this.uploadedImageUrl = null; // Clear preview if no file is selected
+      this.uploadedImageUrl = null; 
     }
   }
   
-  // Save or update inventory item
   saveInventoryItem(): void {
-    // Create FormData object for file upload
     const formData = new FormData();
-  
-    // Get item data from form values
     const itemData = this.inventoryItemForm.value;
   
-    // Append itemData as JSON string
     formData.append('CatalogItem', JSON.stringify(itemData));
   
-    // Validate if a file is selected
     if (this.selectedFile) {
-      formData.append('file', this.selectedFile); // Append selected file
+      formData.append('file', this.selectedFile); 
     } else if (!this.isEdit) {
-      // If no file selected and not in edit mode, show error
       Swal.fire({
         icon: 'error',
         title: 'Error',
@@ -130,9 +109,7 @@ export class AddCatalogComponent implements OnInit {
       return;
     }
   
-    // Check if we are editing or creating a new catalog item
     if (this.isEdit) {
-      // Edit existing catalog item
       this.catalogService.updateCatalogItem(this.id, formData).subscribe(
         (res: any) => {
           Swal.fire({
@@ -155,7 +132,6 @@ export class AddCatalogComponent implements OnInit {
         }
       );
     } else {
-      // Create new catalog item
       this.catalogService.create(formData).subscribe(
         (res: any) => {
           Swal.fire({
