@@ -92,11 +92,11 @@ table tr {
   .active {
     width: 100%;
     color: white;
-    background: #B2CE6D;
+    background: #5A7F9D;
   }
   
   .mat-icon {
-    color: #B2CE6D;
+    color: #5A7F9D;
   }
   
   .active .mat-icon {

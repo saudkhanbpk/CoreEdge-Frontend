@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CatalogService } from 'src/app/services/catalog.service';
 import { DataService } from 'src/app/services/data.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-catalog-table',
@@ -19,9 +20,7 @@ export class CatalogTableComponent {
   ) {}
 
   ngOnInit(): void {
-
     this.user = this.authService.getUserData();
-
     // this.loadData();
     this.loadsData();
   }
@@ -43,11 +42,45 @@ export class CatalogTableComponent {
     });
   }
 
-  deleteItem(materialId: string): void {
-    if (confirm('Are you sure you want to delete this item?')) {
-      this.dataService.deleteInventoryItem(materialId).subscribe(() => {
-        this.loadData();
-      });
-    }
+  editCatalogItem(item: any): void {
+    console.log(item);
+    
+    this.router.navigate(['/vendor/vendor-catalog/add-catalog'], { state: { catalogData: item } });
   }
+  
+
+  deleteItem(id: any): void {    
+    Swal.fire({
+      icon: 'warning',
+      title: 'Are you sure?',
+      text: `Are you sure you want to delete the catalog item "${id.materialId}"? This action cannot be undone.`,
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.catalogService.delete(id.id).subscribe(
+          (response: any) => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Deleted',
+              text: `The catalog item "${id.materialId}" has been deleted successfully!`,
+              confirmButtonText: 'OK',
+            });
+            this.loadsData();
+          },
+          (error) => {
+            console.error('Error deleting item:', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Something went wrong while deleting the catalog item.',
+              confirmButtonText: 'OK',
+            });
+          }
+        );
+      }
+    });
+  }
+  
 }

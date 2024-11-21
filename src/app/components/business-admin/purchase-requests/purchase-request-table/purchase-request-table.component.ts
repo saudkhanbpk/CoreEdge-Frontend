@@ -21,7 +21,7 @@ export class PurchaseRequestTableComponent {
       hardwarerequested:'Dell Monitor',
       date:'October 3rd, 2024',
       address:'Las Vegas',
-      status : 'Approved'
+      status : 'Pending'
     },
     {
       no: '002',

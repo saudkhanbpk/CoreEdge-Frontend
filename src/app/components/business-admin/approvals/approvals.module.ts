@@ -5,17 +5,19 @@ import { ApprovalsRoutingModule } from './approvals-routing.module';
 import { ApprovalsTableComponent } from './approvals-table/approvals-table.component';
 import { ApprovalsDetailsComponent } from './approvals-details/approvals-details.component';
 import { MaterialModule } from 'src/app/material';
-
+import { ApprovedHardwareRequestsComponent } from './approved-hardware-requests/approved-hardware-requests.component';
+import { ApprovedPurchaseRequestsComponent } from './approved-purchase-requests/approved-purchase-requests.component';
+import { ApprovedRmaRequestsComponent } from './approved-rma-requests/approved-rma-requests.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     ApprovalsTableComponent,
-    ApprovalsDetailsComponent
+    ApprovalsDetailsComponent,
+    ApprovedHardwareRequestsComponent,
+    ApprovedPurchaseRequestsComponent,
+    ApprovedRmaRequestsComponent,
   ],
-  imports: [
-    CommonModule,
-    ApprovalsRoutingModule,
-    MaterialModule
-  ]
+  imports: [CommonModule, ApprovalsRoutingModule, MaterialModule, FormsModule],
 })
-export class ApprovalsModule { }
+export class ApprovalsModule {}

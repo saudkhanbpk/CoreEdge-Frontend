@@ -24,7 +24,7 @@ thead tr th {
     font-weight: 600;
     line-height: 22px;
     white-space: nowrap;
-    background-color: #e6ead7 ;
+    background-color: #D1E4DD40 ;
 }
 
 .one {
@@ -51,7 +51,7 @@ td {
     height: 3rem;
 }
  .btn-success{
-  background-color: #b2ce6d;
+  background-color: #0F4D50;
   color: white;
   border: none;
 }

@@ -102,34 +102,34 @@
           </ng-container>
         </tbody>
       </table>
+      <nav aria-label="Page navigation example" class="m-2">
+        <ul class="pagination justify-content-start">
+          <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
+            <a class="paginator-button" (click)="previousPage()">
+              <mat-icon>chevron_left</mat-icon>
+            </a>
+          </li>
+    
+          <ng-container
+            *ngFor="let page of [].constructor(totalPages); let index = index"
+          >
+            <li
+              class="page-item"
+              [ngClass]="{ 'active-page': currentPage === index + 1 }"
+            >
+              <a class="paginator-button" (click)="goToPage(index + 1)">
+                {{ index + 1 }}
+              </a>
+            </li>
+          </ng-container>
+    
+          <li class="page-item" [class.disabled]="!isNextPageAvailable()">
+            <a class="paginator-button" (click)="nextPage()">
+              <mat-icon>chevron_right</mat-icon>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
-  <nav aria-label="Page navigation example" class="m-2">
-    <ul class="pagination justify-content-start">
-      <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
-        <a class="paginator-button" (click)="previousPage()">
-          <mat-icon>chevron_left</mat-icon>
-        </a>
-      </li>
-
-      <ng-container
-        *ngFor="let page of [].constructor(totalPages); let index = index"
-      >
-        <li
-          class="page-item"
-          [ngClass]="{ 'active-page': currentPage === index + 1 }"
-        >
-          <a class="paginator-button" (click)="goToPage(index + 1)">
-            {{ index + 1 }}
-          </a>
-        </li>
-      </ng-container>
-
-      <li class="page-item" [class.disabled]="!isNextPageAvailable()">
-        <a class="paginator-button" (click)="nextPage()">
-          <mat-icon>chevron_right</mat-icon>
-        </a>
-      </li>
-    </ul>
-  </nav>
 </div>
