@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
-
 @Component({
-  selector: 'app-employee-expenditures',
-  templateUrl: './employee-expenditures.component.html',
-  styleUrls: ['./employee-expenditures.component.css']
+  selector: 'app-spend-by-department',
+  templateUrl: './spend-by-department.component.html',
+  styleUrls: ['./spend-by-department.component.css']
 })
-export class EmployeeExpendituresComponent {
+export class SpendByDepartmentComponent {
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
@@ -24,7 +23,7 @@ export class EmployeeExpendituresComponent {
 
   createBarChart(): void {
     const ctx = document.getElementById('spendBarChart') as HTMLCanvasElement;
-
+  
     new Chart(ctx, {
       type: 'bar',
       data: {
@@ -41,9 +40,9 @@ export class EmployeeExpendituresComponent {
         datasets: [
           {
             label: 'Spend Percentage',
-            data: [20, 15, 10, 25, 5, 10, 10, 5], // Example data (percentages)
-            backgroundColor: '#4682B4', // Custom bar color
-            borderColor: '#4682B4', // Same color for borders
+            data: [20, 15, 10, 25, 5, 10, 10, 5], 
+            backgroundColor: '#4682B4', 
+            borderColor: '#4682B4', 
             borderRadius: 5,
             barPercentage: 0.6,
           }
@@ -70,29 +69,31 @@ export class EmployeeExpendituresComponent {
           x: {
             beginAtZero: true,
             grid: {
-              drawOnChartArea: false, // Disable gridlines on the chart area
-              drawTicks: true // Keep tick marks visible
+              drawOnChartArea: false, 
+              drawTicks: true
             },
             ticks: {
               font: {
-                family: 'Poppins', // Set font family to Poppins
+                family: 'Poppins', 
                 size: 12
-              }
+              },
+              color: '#CE6D6D'  // Set the color of the x-axis labels (department names)
             }
           },
           y: {
             beginAtZero: true,
             grid: {
-              color: '#e0e0e0', // Light gray gridlines
-              lineWidth: 1, // Set gridline thickness to 1
-              drawOnChartArea: true, // Keep grid lines drawn on the chart area
-              drawTicks: true // Keep tick marks visible
+              color: '#e0e0e0', 
+              lineWidth: 1, 
+              drawOnChartArea: true, 
+              drawTicks: true 
             },
             ticks: {
               font: {
-                family: 'Poppins', // Set font family to Poppins
+                family: 'Poppins', 
                 size: 12
-              }
+              },
+              color: '#5A7F9D'  // Set the color of the y-axis numbers
             }
           }
         }

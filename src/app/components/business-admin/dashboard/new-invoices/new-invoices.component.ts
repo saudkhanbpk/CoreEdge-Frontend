@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-vendors-and-inventory-evaluation',
-  templateUrl: './vendors-and-inventory-evaluation.component.html',
-  styleUrls: ['./vendors-and-inventory-evaluation.component.css']
+  selector: 'app-new-invoices',
+  templateUrl: './new-invoices.component.html',
+  styleUrls: ['./new-invoices.component.css']
 })
-export class VendorsAndInventoryEvaluationComponent {
+export class NewInvoicesComponent {
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
@@ -16,15 +16,6 @@ export class VendorsAndInventoryEvaluationComponent {
   dateRange: string = '';
   showPicker: boolean = false;
   
-  vendors = [
-    { name: 'Star Electronics', items: 205, color: '#D0E2EC' },
-    { name: 'Ace Technologies', items:180, color: '#D1E4DD40' },
-    { name: 'Lester Computers', items: 163, color: '#EDEEFC' },
-    { name: 'IBM Manufacturers', items: 155, color: '#D0E2EC' },
-    { name: 'Hewlett Packard', items: 142, color: '#D1E4DD40' },
-    { name: 'Dell Computers', items: 121, color: '#EDEEFC' },
-  ];
-   
   showDatePicker() {
     this.showPicker = true;
   }
