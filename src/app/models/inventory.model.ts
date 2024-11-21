@@ -10,7 +10,7 @@ export interface Inventory {
     manufacturerPartNumber:string;
     manufacturerName:string;
     unspc:string;
-    ImageUrl:string;
+    imageUrl:string;
     quantityAvailable:number;
     category:string;  
     user:User

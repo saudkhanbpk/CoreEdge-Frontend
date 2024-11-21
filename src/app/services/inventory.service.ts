@@ -23,21 +23,13 @@ export class InventoryService {
   }
 
   // Method to create a new inventory item
-  create(inventory: Partial<Inventory>, file: File): Observable<Inventory> {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('inventoryItem', JSON.stringify(inventory));
-
-    return this.http.post<Inventory>(this.apiUrl, formData);
+  create(inventory: any): Observable<Inventory> {
+    return this.http.post<Inventory>(this.apiUrl, inventory);
   }
 
   // Method to update an existing inventory item
-  update(id: number, inventory: Partial<Inventory>, file: File): Observable<void> {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('inventoryItem', JSON.stringify(inventory));
-
-    return this.http.put<void>(`${this.apiUrl}/${id}`, formData);
+  update(id: number, inventory: any): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}`, inventory);
   }
 
   // Method to delete an inventory item by ID
