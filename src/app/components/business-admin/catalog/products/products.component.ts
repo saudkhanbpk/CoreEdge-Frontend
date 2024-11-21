@@ -11,6 +11,8 @@ import { SearchService } from 'src/app/services/search.service';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
 import { AddedProductsComponent } from '../added-products/added-products.component';
 import Swal from 'sweetalert2';
+import { CatalogService } from 'src/app/services/catalog.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-products',
@@ -23,6 +25,7 @@ export class ProductsComponent {
   pageSize: number = 24;
   currentPage: number = 0;
   totalProducts: number = 0;
+  user:any;
   showInStockOnly: boolean = false;
   selectedManufacturers: string[] = [];
   selectedCategories: string[] = [];
@@ -42,10 +45,16 @@ export class ProductsComponent {
     private filterService: FilterService,
     private searchService: SearchService,
     private cartservice: CartService,
-    public dialog: MatDialog
-  ) { }
+    public dialog: MatDialog,
+    private catalogService: CatalogService,
+    private authService: AuthService
+  ) {
+    this.user = this.authService.getUserData();
+    
+   }
 
   ngOnInit(): void {
+    this.loadsData();
     this.loadData();
     this.inStockSubscription = this.filterService.inStock$.subscribe((inStock) => {
       this.showInStockOnly = inStock;
@@ -89,9 +98,16 @@ export class ProductsComponent {
   loadData(): void {
     this.dataService.getData().subscribe((response) => {
       this.data = response;
-      this.totalProducts = response.length;
+      this.totalProducts = response.length;      
       this.quantities = this.filteredData.map(() => 1);
 
+    });
+  }
+
+  loadsData(): void {
+    this.catalogService.findByUserId(this.user.id).subscribe((response:any) => {
+      this.data = response;
+      this.totalProducts = response.length;
     });
   }
 
@@ -102,12 +118,13 @@ export class ProductsComponent {
 
   get filteredData() {
     let filtered = this.data;
-    if (this.searchTerm) {
+    if (this.searchTerm) {      
       filtered = filtered.filter(item =>
-        item.MaterialId.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        item.ShortDescription.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        item.Category.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        item.CustomerPrice.toString().includes(this.searchTerm)
+        item.materialId.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        item.shortDescription.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        item.longDescription.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        item.category.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        item.price.toString().includes(this.searchTerm)
       );
     }
     if (this.showInStockOnly) {

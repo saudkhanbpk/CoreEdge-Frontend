@@ -9,12 +9,12 @@
       <div *ngFor="let item of addedProducts" class="col-md-12 mb-3">
         <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex">
-            <img [src]="item.product.ImageLarge" alt="{{item.product.MaterialId}}" width="100" height="100"
+            <img [src]="item.product.imageUrl" alt="{{item.product.materialId}}" width="100" height="100"
               class="mr-3">
             <div>
-              <h5>{{item.product.ShortDescription}}</h5>
-              <p><strong>Price:</strong> {{item.product.CustomerPrice | currency}}</p>
-              <p><strong>Material ID:</strong> {{item.product.MaterialId}}</p>
+              <h5>{{item.product.shortDescription}}</h5>
+              <p><strong>Price:</strong> {{item.product.price | currency}}</p>
+              <p><strong>Material ID:</strong> {{item.product.materialId}}</p>
               <p><strong>Quantity:</strong> {{item.quantity}}</p>
             </div>
           </div>

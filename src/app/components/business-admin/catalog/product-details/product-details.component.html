@@ -2,25 +2,25 @@
     <div class="row" *ngIf="data">
         <div class="col-md-12">
             <div class="d-flex justify-content-center">
-                <img src="{{data.ImageLarge}}" alt="{{data.MaterialId}}">
+                <img src="{{data.imageUrl}}" alt="{{data.materialId}}">
             </div>
         </div>
         <div class="col-md-12">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h4>{{data.ShortDescription}}</h4>
+                        <h4>{{data.shortDescription}}</h4>
                     </div>
                     <div class="col-md-6 mb-2">
                         <div class="data"><strong>Manufacturer Name:</strong> &nbsp;
-                            <span>{{data.ManufacturerName}}</span></div>
+                            <span>{{data.manufacturerName}}</span></div>
                     </div>
                     <div class="col-md-6 mb-2">
-                        <div class="data"><strong>Price:</strong> &nbsp; <span class="price">{{data.CustomerPrice |
+                        <div class="data"><strong>Price:</strong> &nbsp; <span class="price">{{data.price |
                                 currency}}</span></div>
                     </div>
                     <div class="col-md-6 mb-2">
-                        <div class="data"><strong>Material ID:</strong> &nbsp; <span>{{data.MaterialId}}</span></div>
+                        <div class="data"><strong>Material ID:</strong> &nbsp; <span>{{data.materialId}}</span></div>
                     </div>
                     <div class="col-md-6 mb-2">
                         <div class="data"><strong>Insight Part Number:</strong> &nbsp;
@@ -31,10 +31,10 @@
                             <span>{{data.ManufacturerPartNumber}}</span></div>
                     </div>
                     <div class="col-md-6 mb-2">
-                        <div class="data"><strong>UNSPSC:</strong> &nbsp; <span>{{data.UNSPSC}}</span></div>
+                        <div class="data"><strong>unspc:</strong> &nbsp; <span>{{data.unspc}}</span></div>
                     </div>
                     <div class="col-md-6 mb-2">
-                        <div class="data"><strong>Category:</strong> &nbsp; <span>{{data.Category}}</span></div>
+                        <div class="data"><strong>category:</strong> &nbsp; <span>{{data.category}}</span></div>
                     </div>
                     <div class="col-md-6 mb-2">
                         <div class="data"><strong>Quantity Available:</strong> &nbsp; <input type="number"

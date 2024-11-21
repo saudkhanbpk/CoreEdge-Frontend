@@ -27,12 +27,12 @@
         <div class="sites d-flex flex-wrap justify-content-between gap-3 ">
             <div class="card" *ngFor="let item of filteredData" (click)="openDialog(item)">
                 <div class="position-relative">
-                    <img src="{{item.ImageLarge}}" alt="" class="card-img-top">
+                    <img src="{{item.imageUrl}}" alt="" class="card-img-top">
                 </div>
                 <div class="card-body">
-                    <h2>{{item.MaterialId}}</h2>
-                    <h2>{{item.CustomerPrice | currency}}</h2>
-                    <p>{{item.ShortDescription}}</p>
+                    <h2>{{item.materialId}}</h2>
+                    <h2>{{item.price | currency}}</h2>
+                    <p>{{item.shortDescription}}</p>
                 </div>
             </div>
         </div>
@@ -41,33 +41,33 @@
         <div class="row mb-4" *ngFor="let item of filteredData;  let i = index">
             <div class="col-md-3">
                 <div class="d-flex justify-content-between align-items-center h-100 rounded-3">
-                    <img src="{{item.ImageLarge}}" alt="{{item.MaterialId}}" width="100%" class="rounded-3">
+                    <img src="{{item.imageUrl}}" alt="{{item.materialId}}" width="100%" class="rounded-3">
                 </div>
             </div>
             <div class="col-md-6">
-                <h4>{{item.ShortDescription}}</h4>
+                <h4>{{item.shortDescription}}</h4>
                 <div class="d-flex gap-3 mb-3">
-                    <span class="mgf-unspc">MFG# {{item.ManufacturerPartNumber}}</span>
-                    <span class="mgf-unspc">UNSPSC# {{item.UNSPSC}}</span>
+                    <span class="mgf-unspc">MFG# {{item.manufacturerPartNumber}}</span>
+                    <span class="mgf-unspc">unspc# {{item.unspc}}</span>
                 </div>
                 <div class="d-flex gap-2 mb-1"><strong>Material ID:</strong>
-                    <div>{{item.MaterialId}}</div>
+                    <div>{{item.materialId}}</div>
                 </div>
-                <div class="d-flex gap-2 mb-1"><strong>Category:</strong>
-                    <div>{{item.Category}}</div>
+                <div class="d-flex gap-2 mb-1"><strong>category:</strong>
+                    <div>{{item.category}}</div>
                 </div>
                 <div class="d-flex gap-2 mb-1"><strong>Insight Part Number:</strong>
-                    <div>{{item.InsightPartNumber}}</div>
+                    <div>{{item.partNumber}}</div>
                 </div>
                 <div class="d-flex gap-2 mb-1"><strong>Manufacturer Name:</strong>
-                    <div>{{item.ManufacturerName}}</div>
+                    <div>{{item.manufacturerName}}</div>
                 </div>
-                <div>{{item.LongDescription}}</div>
+                <div>{{item.longDescription}}</div>
             </div>
             <div class="col-md-3">
                 <div class="d-flex flex-column justify-content-end h-100">
                     <div>
-                        <h3><strong>{{item.CustomerPrice | currency}}</strong></h3>
+                        <h3><strong>{{item.price | currency}}</strong></h3>
                     </div>
                     <div class="number-input-container d-flex justify-content-between align-items-end my-3">
                         <input type="number" [(ngModel)]="quantities[i]" class="number-input">
