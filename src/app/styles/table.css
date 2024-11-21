@@ -42,16 +42,16 @@
 }
 
 .active {
-    background-color: #FFF5EE;
-    color: #b2ce6d;
-    border: 1px solid #b2ce6d;
+    background-color: #D1E4DD40;
+    color: #0F4D50;
+    border: 1px solid #0F4D50;
     font-weight: 500;
 }
 
 .table-container {
     background-color: white;
     border-radius: 16px;
-    padding: 10px;
+    padding-bottom: 10px;
 }
 
 thead tr th {
@@ -59,7 +59,7 @@ thead tr th {
     font-weight: 600;
     line-height: 22px;
     white-space: nowrap;
-    background-color: #e6ead7 ;
+    background-color: #D1E4DD40 ;
 }
 
 .one {
@@ -107,8 +107,8 @@ td {
 
 .paginator-button:active {
     background-color: white !important;
-    color: #b2ce6d;
-    border: 1px solid #b2ce6d;
+    color: #0F4D50;
+    border: 1px solid #0F4D50;
 }
 
 tr:hover {
@@ -122,12 +122,12 @@ tr:hover {
 
 .page-item.active-page a {
     background-color: white;
-    color: #b2ce6d !important;
-    border: 1px solid #b2ce6d;
+    color: #0F4D50 !important;
+    border: 1px solid #0F4D50;
 }
 
 .page-item.active-page a:hover {
-    background-color: #b2ce6d;
+    background-color: #0F4D50;
     color: #fff !important;
 }
 
@@ -231,8 +231,8 @@ tr:hover {
     align-items: center;
     border-radius: 8px;
     padding: 10px;
-    border: 1px solid #b2ce6d;
-    background: #FFF5EE;
+    border: 1px solid #0F4D50;
+    background: #D1E4DD40;
     gap: 10px;
     width: 250px;
     height: 40px;
@@ -322,7 +322,7 @@ input::placeholder {
     border-radius: 14px 14px 0px 0px;
     display: flex;
     justify-content: center;
-    background: #FFF5EE;
+    background: #D1E4DD40;
     border-left: 1px;
     border-top: 1px;
     border-right: 1px;
@@ -341,7 +341,7 @@ input::placeholder {
 }
 
 .module-btn-active {
-    background-color: #b2ce6d;
+    background-color: #0F4D50;
     color: white;
     font-weight: 500;
     border-radius: 14px;
@@ -358,7 +358,7 @@ input::placeholder {
     align-items: center;
     gap: 5px;
     color: white;
-    background-color: #b2ce6d;
+    background-color: #0F4D50;
     border-radius: 8px;
     padding: 10px;
     width: 250px;

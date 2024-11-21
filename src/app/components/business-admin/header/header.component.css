@@ -79,19 +79,19 @@
     color: white;
 }
 .user-btn:hover{
-    color: #b2ce6d;
+    color: #0F4D50;
 }
 .logout-btn {
     font-size: 12px;
     font-weight: 500;
     line-height: 22px;
-    color: #b2ce6d;
+    color: #ffffff;
 }
 .mat-icon{
     color: white;
 }
 .mat-icon:hover{
-    color: #b2ce6d;
+    color: #0F4D50;
 }
 @media (max-width: 992px) {
     .togglebtn {

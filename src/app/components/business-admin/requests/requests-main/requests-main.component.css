@@ -7,7 +7,7 @@
     padding: 10px;
     padding-bottom: 10px !important;
     border-radius: 14px 14px 0px 0px;
-    background-color: #e6ead7;
+    background-color: #D1E4DD40;
     border-top: 1px;
     border-left: 1px;
     border-right: 1px;
@@ -30,8 +30,8 @@
     border-radius: 9px;
     min-width: 150px;
     height: 30px;
-    background: #e6ead7;
-    border: 1px solid #b2ce6d;
+    background: #D1E4DD40;
+    border: 1px solid #0F4D50;
     color: #000;
     font-size: 16px;
     font-weight: 400;
@@ -43,7 +43,7 @@
 .parent-btn:hover,
 .parent-btn:active {
     color: white;
-    background-color: #b2ce6d;
+    background-color: #0F4D50;
     font-weight: 400;
 }
 .menu-secondary-group {
@@ -53,7 +53,7 @@
 
 }
 .active{
-    background-color: #b2ce6d;
+    background-color: #0F4D50;
     color: white;
 }
 
