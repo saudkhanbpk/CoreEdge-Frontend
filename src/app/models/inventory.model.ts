@@ -1,16 +1,18 @@
+import { User } from "./users.model";
+
 export interface Inventory {
     id: number;
-    MaterialId:string;
-    InsightPartNumber: string;
-    ShortDescription:string;
-    LongDescription:string;
-    CustomerPrice:string;
-    ManufacturerPartNumber:string;
-    ManufacturerName:string;
-    UNSPSC:string;
-    ImageLarge:string;
-    QuantityAvailable:number;
-    Category:string;  
-    vendor:string; 
+    materialId:string;
+    partNumber: string;
+    shortDescription:string;
+    longDescription:string;
+    price:string;
+    manufacturerPartNumber:string;
+    manufacturerName:string;
+    unspc:string;
+    ImageUrl:string;
+    quantityAvailable:number;
+    category:string;  
+    user:User
   }
   

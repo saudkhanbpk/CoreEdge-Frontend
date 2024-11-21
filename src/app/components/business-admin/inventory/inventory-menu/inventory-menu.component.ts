@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data.service';
+import { InventoryService } from 'src/app/services/inventory.service';
 
 @Component({
   selector: 'app-inventory-menu',
@@ -8,29 +10,31 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./inventory-menu.component.css']
 })
 export class InventoryMenuComponent {
-  public data: any[] = [];
+  public inventoryData: any[] = [];
   searchTerm: string = ''; 
 
-  constructor(private dataService: DataService, private router: Router) {}
+
+  constructor(private dataService: DataService, private router: Router,
+    private inventoryService:InventoryService,
+    private authService:AuthService
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
   }
   get filteredData() {
-    return this.data.filter(item => item.MaterialId.includes(this.searchTerm));
+    return this.inventoryData.filter(item => item.materialId.includes(this.searchTerm));
   }
   loadData(): void {
-    this.dataService.getData().subscribe((response) => {
-      this.data = response;
+    this.inventoryService.findAll().subscribe((response) => {
+      this.inventoryData = response;
     });
   }
 
-  deleteItem(materialId: string): void {
-    if (confirm('Are you sure you want to delete this item?')) {
-      this.dataService.deleteInventoryItem(materialId).subscribe(() => {
+  deleteItem(materialId: any): void {
+      this.inventoryService.delete(materialId).subscribe(() => {
         this.loadData();
       });
-    }
   }
  
 }

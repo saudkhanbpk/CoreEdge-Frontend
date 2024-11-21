@@ -8,6 +8,9 @@ import { MaterialModule } from 'src/app/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { VendorsService } from 'src/app/services/vendors.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { InventoryService } from 'src/app/services/inventory.service';
 
 
 @NgModule({
@@ -23,6 +26,6 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers:[DataService]
+  providers:[DataService,VendorsService,AuthService,InventoryService]
 })
 export class InventoryModule { }

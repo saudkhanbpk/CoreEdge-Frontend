@@ -20,20 +20,20 @@
     <div class="sites d-flex flex-wrap justify-content-between gap-3 mt-3">
         <div class="card" *ngFor="let item of filteredData">
             <div class="position-relative">
-              <img src="{{item.ImageLarge}}" alt="" class="card-img-top">
+              <img src="{{item?.imageUrl}}" alt="" class="card-img-top">
             </div>
             <div class="icon-group position-absolute top-2 end-0 p-2 d-flex gap-2">
-              <button class="btn action-btn" [routerLink]="['/business-admin/inventory/inventory-form', item.MaterialId]">
+              <button class="btn action-btn" [routerLink]="['/business-admin/inventory/inventory-form', item.id]">
                 <img src="../../../../../../assets/icons/Union.png" alt="edit-btn" class="action-icon">
               </button>
-              <button class="btn action-btn me-2" (click)="deleteItem(item.MaterialId)">
+              <button class="btn action-btn me-2" (click)="deleteItem(item.id)">
                 <img src="../../../../../../assets/icons/Trash can.png" alt="delete-btn" class="action-icon">
               </button>
             </div>
             <div class="card-body">
-              <h2>{{item.MaterialId}}</h2>
-              <h2>{{item.CustomerPrice | currency}}</h2>
-              <p>{{item.ShortDescription}}</p>
+              <h2>{{item.id}}</h2>
+              <h2>{{item.price | currency}}</h2>
+              <p>{{item.shortDescription}}</p>
             </div>
           </div>
           
