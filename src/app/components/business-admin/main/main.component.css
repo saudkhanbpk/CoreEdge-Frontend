@@ -102,14 +102,4 @@ table tr {
   .active .mat-icon {
     color: white;
   }
-  /* Hide button content when loading */
-.hidden {
-    visibility: hidden;
-  }
-  
-  /* Adjust spinner positioning */
-  .spinner {
-    position: absolute;
-    right: 10px;
-  }
   
