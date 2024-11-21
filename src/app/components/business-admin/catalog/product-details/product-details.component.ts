@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -11,7 +11,8 @@ import Swal from 'sweetalert2';
 export class ProductDetailsComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private router: Router
+    private router: Router,
+    private dialogRef: MatDialogRef<ProductDetailsComponent>
   ) {
     console.log("product details", this.data)
   }
@@ -44,5 +45,16 @@ export class ProductDetailsComponent {
       icon: 'success',
       confirmButtonText: 'OK'
     });
+
+    let data = {
+      product: this.addedProducts[0].product,
+      quantity: this.addedProducts[0].quantity,
+
+    }
+    this.dialogRef.close(data);
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 }

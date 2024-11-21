@@ -156,12 +156,11 @@ export class ProductsComponent {
     this.paginator.pageSize = size;
   }
   openDialog(item:any) {
-    console.log("item touched", item)
     const dialogRef = this.dialog.open(ProductDetailsComponent,{
       data:item
     });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe((result) => {
+      this.addedProducts.push(result)
     });
   }
 
