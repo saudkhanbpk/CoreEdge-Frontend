@@ -23,10 +23,10 @@
                 <img src="{{item.imageUrl}}" alt="" class="card-img-top">
             </div>
             <div class="icon-group position-absolute top-2 end-0 p-2 d-flex gap-2">
-                <button class="btn action-btn" [routerLink]="['/vendor/vendor-catalog/add-catalog', item.MaterialId]">
+                <button class="btn action-btn" (click)="editCatalogItem(item)">
                     <img src="../../../../../../assets/icons/Union.png" alt="edit-btn" class="action-icon">
-                </button>
-                <button class="btn action-btn me-2" (click)="deleteItem(item.MaterialId)">
+                  </button>
+                <button class="btn action-btn me-2" (click)="deleteItem(item)">
                     <img src="../../../../../../assets/icons/Trash can.png" alt="delete-btn" class="action-icon">
                 </button>
             </div>
