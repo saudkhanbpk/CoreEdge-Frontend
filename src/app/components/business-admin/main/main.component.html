@@ -1,22 +1,10 @@
 <div class="bg-light p-3 main">
     <app-header (toggleDrawerEvent)="toggleDrawer()"></app-header>
     <mat-drawer-container class="example-container mt-3">
-        <mat-drawer #drawer  class="bg-white rounded-3"
-           >
+        <mat-drawer #drawer  class="bg-white rounded-3">
             <nav class="sidebar pb-3">
                 <ul class="nav flex-column">
                     <ng-container *ngFor="let menu of menus; let i = index">
-                        <!-- Procurement Heading -->
-                        <!-- <li class="nav-item px-2 text-uppercase font-weight-bold" *ngIf="i === 0">
-                            Procurement
-                        </li> -->
-            
-                        <!-- Sales Heading -->
-                        <!-- <li class="nav-item px-2 text-uppercase font-weight-bold" *ngIf="menu.id === 'marketing'">
-                            Sales
-                        </li> -->
-            
-                        <!-- Menu Item -->
                         <li class="nav-item px-2">
                             <button class="btn align-items-center d-flex justify-content-between"
                                 (click)="menu.submenus.length > 0 && openMenu(menu.id)"
@@ -41,13 +29,11 @@
                     </ng-container>
                 </ul>
             </nav>
-            
         </mat-drawer>
         <mat-drawer-content [ngStyle]="{'padding-left': drawer.opened ? '16px' : '0px' }" >
             <div class="maindiv">
                 <router-outlet></router-outlet>
             </div>
         </mat-drawer-content>
-        
     </mat-drawer-container>
 </div>

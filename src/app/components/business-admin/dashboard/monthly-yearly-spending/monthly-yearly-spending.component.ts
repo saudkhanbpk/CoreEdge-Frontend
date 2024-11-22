@@ -27,10 +27,10 @@ export class MonthlyYearlySpendingComponent {
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [
           {
-            label: 'Requests',
+            label: 'Spending',
             data: [1160, 1220, 2150, 2100, 4230, 3234, 2543, 1434, 4234, 4544, 7223, 2656],
             backgroundColor: '#5684AE',
             borderRadius: 5,
