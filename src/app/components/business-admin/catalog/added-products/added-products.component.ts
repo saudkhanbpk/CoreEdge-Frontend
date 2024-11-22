@@ -19,6 +19,9 @@ export class AddedProductsComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public addedProducts: any[]) {
     this.addedProducts =addedProducts || [];
   }
+
+  optionsList: string[] = ['Option 1', 'Option 2', 'Option 3', 'Option 4']; // Dropdown options
+
  
   async submitRequest() {
     this.loading = true;

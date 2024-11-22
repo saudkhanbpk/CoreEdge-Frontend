@@ -16,6 +16,15 @@
               <p><strong>Price:</strong> {{item.product.price | currency}}</p>
               <p><strong>Material ID:</strong> {{item.product.materialId}}</p>
               <p><strong>Quantity:</strong> {{item.quantity}}</p>
+
+              <mat-form-field appearance="outline" class="w-50 mt-2">
+                <mat-label>Select Additional Options</mat-label>
+                <mat-select [(ngModel)]="item.selectedOptions" multiple>
+                  <mat-option *ngFor="let option of optionsList" [value]="option">
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
           </div>
           <div>
