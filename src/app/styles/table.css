@@ -24,7 +24,7 @@
 .buttons-group {
     display: flex;
     gap: 10px;
-    padding: 15px 0px;
+    /* padding: 15px 0px; */
 }
 
 .nav-btn {
@@ -268,7 +268,7 @@ tr:hover {
     .buttons-group {
         width: 100%;
         overflow-x: scroll;
-        padding: 15px 5px 15px 5px;
+        /* padding: 15px 5px 15px 5px; */
     }
 
     .buttons-group::-webkit-scrollbar {

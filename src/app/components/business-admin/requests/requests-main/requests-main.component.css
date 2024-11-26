@@ -1,4 +1,4 @@
-.parent-buttons-group {
+/* .parent-buttons-group {
     display: flex;
     justify-content: start;
     align-items: center;
@@ -61,4 +61,21 @@
     .parent-btn{
         min-width: 170px;
     }
-}
+} */
+ .active{
+    background: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.10000000149011612px;
+ }
+ .parent-btn{
+    /* width: 175px; */
+height:57px;
+padding: 10px 10px 20px 10px;
+gap: 10px;
+border-radius: 8px 8px 0px 0px;
+opacity: 0px;
+white-space: nowrap;
+border: none;
+ }

@@ -4,7 +4,9 @@
     border: 1px solid #0F4D50;
     color: black;
 }
-
+.order-types-tables{
+    padding: 10px;
+}
 @media  screen and (max-width:600px) {
   
 }
