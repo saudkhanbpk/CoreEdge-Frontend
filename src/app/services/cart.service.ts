@@ -12,7 +12,12 @@ export class CartService {
 
   // Add item to the cart
   addToCart(item: any) {
-    this.cartItems.push(item);
+    let data={
+      product:item.product,
+      quantity: item.quantity,
+      price:item.quantity * item.product.price
+    }
+    this.cartItems.push(data);
   }
 
   // Get all items in the cart
