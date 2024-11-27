@@ -28,14 +28,14 @@
 //     const user = this.authService.getUserData();
 //     this.loadRoles(user.id);
 //   }
-  
+
 //   loadRoles(userId: number) {
 //     this.employesService.findById(userId).subscribe((response: any) => {
 //       console.log(response);
-      
+
 //       // Clear previous options (if needed)
 //       this.optionsList = [];
-  
+
 //       // Iterate over response and push each item name into optionsList
 //       response.forEach((item: any) => {
 //         console.log(item.name);
@@ -43,11 +43,11 @@
 //       });
 //     });
 //   }
-  
-  
+
+
 //   // ['Option 1', 'Option 2', 'Option 3', 'Option 4']; // Dropdown options
 
- 
+
 //   async submitRequest() {
 //     this.loading = true;
 //     const uniqueCode = `PurchaseRequest-${Date.now()}`;
@@ -80,7 +80,7 @@
 //     const barcodeDataURL = barcodeCanvas.toDataURL('image/png');
 //     doc.addImage(barcodeDataURL, 'PNG', 10, y, 80, 20);
 //     doc.save('Purchase_Request.pdf');
-    
+
 //     this.loading = false; // Hide loader
 
 //     // Display the purchase order in UI
@@ -115,6 +115,7 @@ import * as JsBarcode from 'jsbarcode';
 import jsPDF from 'jspdf';
 import { AuthService } from 'src/app/services/auth.service';
 import { EmployesService } from 'src/app/services/employes.service';
+import { RequestService } from 'src/app/services/request.service';
 
 @Component({
   selector: 'app-added-products',
@@ -123,7 +124,7 @@ import { EmployesService } from 'src/app/services/employes.service';
 })
 export class AddedProductsComponent implements OnInit {
   loading = false;
-  generatedRequest: any = null; 
+  generatedRequest: any = null;
   employeeName: string = '';  // Empty initially, will be set dynamically
   employeeEmail: string = ''; // Empty initially, will be set dynamically
   vendorName = 'TechVendor Inc.';
@@ -132,7 +133,8 @@ export class AddedProductsComponent implements OnInit {
   optionsList: any = []; // Dynamically populated options
   selectedOptions: any; // To store selected options
 
-  constructor(@Inject(MAT_DIALOG_DATA) public addedProducts: any[], private authService: AuthService, private employesService: EmployesService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public addedProducts: any[], private authService: AuthService, private employesService: EmployesService,
+    private requestService: RequestService) {
     this.addedProducts = addedProducts || [];
   }
 
@@ -144,19 +146,19 @@ export class AddedProductsComponent implements OnInit {
   loadRoles(userId: number): void {
     this.employesService.findById(userId).subscribe(
       (response: any) => {
-  
+
         // Clear previous options
         this.optionsList = [];
-  
+
         if (response.length > 0) {
           // Assuming each item in the array contains `id` and `name` for roles
           this.optionsList = response.map((role: any) => ({
             id: role.id,
             name: role.name,
           }));
-  
+
           console.log("this.optionsList:", this.optionsList);
-  
+
           // Assuming the first object in the array contains employee data
           const firstItem = response[0];
           this.employeeName = firstItem.employeeName || '';
@@ -171,8 +173,8 @@ export class AddedProductsComponent implements OnInit {
       }
     );
   }
-  
-  
+
+
 
   // async submitRequest(): Promise<void> {
   //   this.loading = true;
@@ -206,7 +208,7 @@ export class AddedProductsComponent implements OnInit {
   //   const barcodeDataURL = barcodeCanvas.toDataURL('image/png');
   //   doc.addImage(barcodeDataURL, 'PNG', 10, y, 80, 20);
   //   doc.save('Purchase_Request.pdf');
-    
+
   //   this.loading = false; // Hide loader
 
   //   // Display the purchase order in UI
@@ -229,7 +231,7 @@ export class AddedProductsComponent implements OnInit {
   // async submitRequest(): Promise<void> {
   //   this.loading = true; // Show loader
   //   const uniqueCode = `PurchaseRequest-${Date.now()}`;
-  
+
   //   // Prepare the PDF Document
   //   const doc = new jsPDF();
   //   doc.setFontSize(16);
@@ -237,7 +239,7 @@ export class AddedProductsComponent implements OnInit {
   //   doc.setFontSize(12);
   //   doc.text(`Date: ${new Date().toLocaleDateString()}`, 10, 20);
   //   doc.text(`Description: ${this.description}`, 10, 30);
-  
+
   //   let y = 40;
   //   this.addedProducts.forEach((item, index) => {
   //     doc.text(`Product ${index + 1}`, 10, y);
@@ -247,16 +249,16 @@ export class AddedProductsComponent implements OnInit {
   //     doc.text(`Quantity: ${item.quantity}`, 20, y + 40);
   //     y += 50;
   //   });
-  
+
   //   // Generate and Add Barcode to PDF
   //   const barcodeCanvas = document.createElement('canvas');
   //   JsBarcode(barcodeCanvas, uniqueCode, { format: 'CODE128' });
   //   const barcodeDataURL = barcodeCanvas.toDataURL('image/png');
   //   doc.addImage(barcodeDataURL, 'PNG', 10, y, 80, 20);
   //   doc.save('Purchase_Request.pdf');
-  
+
   //   this.loading = false; // Hide loader
-  
+
   //   // Display the purchase order in UI
   //   this.generatedRequest = {
   //     date: new Date().toLocaleDateString(),
@@ -266,27 +268,32 @@ export class AddedProductsComponent implements OnInit {
   //     employe:this.selectedOptions
   //   };
   //   console.log("Generated request:", this.generatedRequest);
-  
+
   //   this.sendForApproval(); // Send request for approval
   // }
 
-  
+
   async submitRequest(): Promise<void> {
     this.loading = true; // Show loader
 
     const uniqueCode = `PurchaseRequest-${Date.now()}`;
-    console.log("ihtizaz : ",this.addedProducts);
-      ;
+    console.log("ihtizaz : ", this.addedProducts);
+    ;
     // Prepare the order data
     const orderData = {
-      userId:this.authService.getUserData().id,
+      users: this.authService.getUserData().id,
       uniqueCode: uniqueCode,
       description: this.description,
-      items: this.addedProducts,
-      employee: this.selectedOptions,
-      date: new Date().toLocaleDateString(),
+      status: 'PENDING',
+      products: this.addedProducts,
+      employees: this.selectedOptions,
+      statusUpdatedAt: new Date().toLocaleDateString(),
     };
+    this.requestService.create(orderData).subscribe((res: any) => {
+      console.log('res: ', res);
 
+    })
+    return
     // Encode order data into a string and generate barcode
     const barcodeData = JSON.stringify(orderData); // JSON string of the order
     const barcodeCanvas = document.createElement('canvas');
@@ -326,8 +333,8 @@ export class AddedProductsComponent implements OnInit {
 
     // Send order data to the backend API for saving
     // this.saveOrder(orderData);
-    console.log("ihtizaz order : ",orderData);
-    
+    console.log("ihtizaz order : ", orderData);
+
   }
 
   // Method to save order data through API
