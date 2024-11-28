@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RmaRoutingModule } from './rma-routing.module';
 import { ReturnMerchandiseAuthorizationComponent } from './return-merchandise-authorization/return-merchandise-authorization.component';
 import { FormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/app/material';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RmaRoutingModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ]
 })
 export class RmaModule { }
