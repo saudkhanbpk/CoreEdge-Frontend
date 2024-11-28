@@ -5,11 +5,13 @@ import { ReceivingRoutingModule } from './receiving-routing.module';
 import { ReceivingOrdersComponent } from './receiving-orders/receiving-orders.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material';
+import { ReviewOrderComponent } from './review-order/review-order.component';
 
 
 @NgModule({
   declarations: [
-    ReceivingOrdersComponent
+    ReceivingOrdersComponent,
+    ReviewOrderComponent,
   ],
   imports: [
     CommonModule,

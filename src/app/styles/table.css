@@ -24,7 +24,7 @@
 .buttons-group {
     display: flex;
     gap: 10px;
-    padding: 15px 0px;
+    /* padding: 15px 0px; */
 }
 
 .nav-btn {
@@ -59,7 +59,7 @@ thead tr th {
     font-weight: 600;
     line-height: 22px;
     white-space: nowrap;
-    background-color: #D1E4DD40 ;
+    background-color: #E6EAD7 ;
 }
 
 .one {
@@ -268,7 +268,7 @@ tr:hover {
     .buttons-group {
         width: 100%;
         overflow-x: scroll;
-        padding: 15px 5px 15px 5px;
+        /* padding: 15px 5px 15px 5px; */
     }
 
     .buttons-group::-webkit-scrollbar {

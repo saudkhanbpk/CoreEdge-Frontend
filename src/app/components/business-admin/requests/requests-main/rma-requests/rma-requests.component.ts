@@ -1,69 +1,13 @@
 import { Component, inject } from '@angular/core';
+import { ViewRmaRequestComponent } from '../view-rma-request/view-rma-request.component';
 import { MatDialog } from '@angular/material/dialog';
 
-// interface ProductDetail {
-//   itemname: string;
-//   price: number;
-//   quantityReturned: number;
-//   reason: string;
-// }
-
-// interface RMAOrder {
-//   rmaNo: string;
-//   employeename: string;
-//   employeeemail: string;
-//   productRequested: string;
-//   requesteddate: string;
-//   returndate: string;
-//   totalamount: number;
-//   vendor: string;
-//   returnstatus: string;
-//   productdetails: ProductDetail[];
-//   approvalStatus: boolean;
-// }
 @Component({
-  selector: 'app-return-merchandise-authorization',
-  templateUrl: './return-merchandise-authorization.component.html',
-  styleUrls: ['./return-merchandise-authorization.component.css']
+  selector: 'app-rma-requests',
+  templateUrl: './rma-requests.component.html',
+  styleUrls: ['./rma-requests.component.css'],
 })
-export class ReturnMerchandiseAuthorizationComponent {
-  // rmaOrders: RMAOrder[] = [
-  //   {
-  //     rmaNo: 'RMA-001',
-  //     employeename: 'John Doe',
-  //     employeeemail: 'john.doe@example.com',
-  //     productRequested: 'Dell Laptop',
-  //     requesteddate: 'October 10th, 2024',
-  //     returndate: 'October 12th, 2024',
-  //     totalamount: 1500,
-  //     vendor: 'Tech Supplies Inc.',
-  //     returnstatus: 'Pending',
-  //     productdetails: [
-  //       { itemname: 'Laptop', price: 1500, quantityReturned: 1, reason: 'Defective screen' },
-  //     ],
-  //     approvalStatus: false,
-  //   },
-  //   {
-  //     rmaNo: 'RMA-002',
-  //     employeename: 'Jane Smith',
-  //     employeeemail: 'jane.smith@example.com',
-  //     productRequested: 'Wireless Mouse',
-  //     requesteddate: 'October 8th, 2024',
-  //     returndate: 'October 10th, 2024',
-  //     totalamount: 30,
-  //     vendor: 'Accessory Hub',
-  //     returnstatus: 'Approved',
-  //     productdetails: [
-  //       { itemname: 'Mouse', price: 30, quantityReturned: 1, reason: 'Not working' },
-  //     ],
-  //     approvalStatus: true,
-  //   }
-  // ];
-
-  // toggleApprovalStatus(order: RMAOrder) {
-  //   order.approvalStatus = !order.approvalStatus;
-  //   order.returnstatus = order.approvalStatus ? 'Approved' : 'Pending';
-  // }
+export class RmaRequestsComponent {
   currentPage = 1;
   itemsPerPage = 5;
   expandedIndex: number | null = null;
@@ -80,7 +24,7 @@ export class ReturnMerchandiseAuthorizationComponent {
       requesteddate: 'October 3rd, 2024',
       returndate: 'October 5th, 2024',
       totalamount: '3500',
-      status: 'Pending',
+      address: 'Las Vegas',
       productdetails: [
         {
           name: 'Items Requested',
@@ -110,7 +54,7 @@ export class ReturnMerchandiseAuthorizationComponent {
       requesteddate: 'October 10th, 2024',
       returndate: 'October 15th, 2024',
       totalamount: '5000',
-      status: 'Pending',
+      address: 'New York',
       productdetails: [
         {
           name: 'Items Requested',
@@ -139,7 +83,7 @@ export class ReturnMerchandiseAuthorizationComponent {
       requesteddate: 'October 20th, 2024',
       returndate: 'October 25th, 2024',
       totalamount: '8500',
-      status: 'Returned',
+      address: 'San Francisco',
       productdetails: [
         {
           name: 'Items Requested',
@@ -168,7 +112,7 @@ export class ReturnMerchandiseAuthorizationComponent {
       requesteddate: 'November 1st, 2024',
       returndate: 'November 5th, 2024',
       totalamount: '6000',
-      status: 'Approved',
+      address: 'Los Angeles',
       productdetails: [
         {
           name: 'Items Requested',
@@ -197,7 +141,7 @@ export class ReturnMerchandiseAuthorizationComponent {
       requesteddate: 'November 8th, 2024',
       returndate: 'November 12th, 2024',
       totalamount: '4500',
-      status: 'Returned',
+      address: 'Houston',
       productdetails: [
         {
           name: 'Items Requested',
@@ -221,11 +165,11 @@ export class ReturnMerchandiseAuthorizationComponent {
   ];
 
   openDialog() {
-    // const dialogRef = this.dialog.open(ViewRmaRequestComponent);
+    const dialogRef = this.dialog.open(ViewRmaRequestComponent);
 
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   toggleDetails(index: number) {
@@ -265,4 +209,3 @@ export class ReturnMerchandiseAuthorizationComponent {
     return this.currentPage > 1;
   }
 }
-

@@ -25,6 +25,7 @@ interface Order {
   receiveddate: string;
   totalamount: string;
   address: string;
+  status:string;
   vendor: string;
   productdetails: ProductDetail[];
   discrepancies?: string[]; // For manual entry of discrepancies
@@ -46,6 +47,7 @@ export class OrderService {
       totalamount: '3500',
       address: 'Las Vegas',
       vendor: 'Tech Supplies Inc.',
+      status:'Pending',
       productdetails: [
         {
           name: 'Items Requested',
@@ -66,6 +68,7 @@ export class OrderService {
       requesteddate: 'October 10th, 2024',
       receiveddate: 'October 12th, 2024',
       totalamount: '2000',
+      status:'In RMA',
       address: 'New York',
       vendor: 'Office Essentials Co.',
       productdetails: [
@@ -86,6 +89,7 @@ export class OrderService {
       requesteddate: 'October 15th, 2024',
       receiveddate: 'October 17th, 2024',
       totalamount: '4000',
+      status:'Cleared',
       address: 'Chicago',
       vendor: 'Corporate Gear Solutions',
       productdetails: [

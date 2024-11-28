@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center">
+    <h2 mat-dialog-title>RMA Request</h2>
+    <mat-icon class="icon" mat-dialog-close>close</mat-icon>
+  </div>
+  <mat-dialog-content class="mat-typography">
+    <div class="row row1">
+      <h3>These products are faulty 🥺</h3>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <h4>Employee Name:</h4>
+          <span>James Anderson</span>
+        </div>
+        <div class="mb-3">
+          <h4>Employee Email:</h4>
+          <span>JamesAnderson&#64;gmail.com</span>
+        </div>
+        <div class="mb-3">
+          <h4>Employee Contact:</h4>
+          <span>001 393 393 3923</span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <h4>Vendor Name:</h4>
+          <span>Brendon McCullum</span>
+        </div>
+        <div class="mb-3">
+          <h4>Vendor Email:</h4>
+          <span>Brendon&#64;gmail.com</span>
+        </div>
+        <div class="mb-3">
+          <h4>Vendor Contact:</h4>
+          <span>001 393 393 3923</span>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <h4>Description:</h4>
+        <span
+          >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
+          accusamus cumque voluptates impedit!</span
+        >
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="table-div p-0">
+        <div class="table-container p-0 mt-2">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" class="one">No</th>
+                  <th scope="col">Item Name</th>
+                  <th scope="col">Order Qty</th>
+                  <th scope="col">Received Qty</th>
+                  <th scope="col">Broken</th>
+                  <th scope="col" class="two">Wrong Item</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of request">
+                  <td>{{ item?.no }}</td>
+                  <td>{{ item?.itemName }}</td>
+                  <td>{{ item?.orderQty }}</td>
+                  <td>{{ item?.receivedQty }}</td>
+                  <td>{{ item?.broken }}</td>
+                  <td>{{ item?.wrongItem }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="d-flex justify-content-between">
+    <button class="btn check border gap-2">
+      <span class="btn-span">Approve Request</span>
+      <mat-icon class="btn-icon">check</mat-icon>
+    </button>
+    <button class="btn close border gap-2" mat-dialog-close>
+      <span class="btn-span">Reject Request</span>
+      <mat-icon class="btn-icon">close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</div>

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ViewRequestComponent } from '../../requests/hardware-requests/view-request/view-request.component';
+
 
 @Component({
   selector: 'app-purchase-request-table',
@@ -58,11 +58,11 @@ export class PurchaseRequestTableComponent {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(ViewRequestComponent);
+    // const dialogRef = this.dialog.open(ViewRequestComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
   }
   nextPage() {
     if (this.currentPage < this.totalPages) {

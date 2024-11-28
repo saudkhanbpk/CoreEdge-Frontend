@@ -115,3 +115,31 @@ span {
     max-width: 100%;
     height: auto !important;
   } */
+   .mat-mdc-dialog-container .mdc-dialog__content, h4{
+    font-family: 'poppins', sans-serif !important;
+   }
+   .send-btn{
+    width: 250px;
+height: 40px;
+padding: 10px;
+gap: 10px;
+border-radius: 8px ;
+font-size: 16px;
+font-weight: 400;
+line-height: 20px;
+letter-spacing: 0.10000000149011612px;
+background: #E6EAD7;
+   }
+.clear-btn{
+    width: 250px;
+height: 40px;
+padding: 10px;
+gap: 10px;
+border-radius: 8px ;
+font-size: 16px;
+font-weight: 400;
+line-height: 20px;
+letter-spacing: 0.10000000149011612px;
+background: #5A7F9D;
+color: white;
+   }
