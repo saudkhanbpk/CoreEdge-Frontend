@@ -6,12 +6,16 @@
     background-color: transparent;
     z-index: 1000;
     height: 90px;
-    background-image: url(../../../../assets/header.jpg);
+    background-image: 
+        linear-gradient(418.57deg, rgba(15, 77, 80, 0.5) 1.67%, rgba(74, 117, 81, 0.5) 207.69%), 
+        url(../../../../assets/header.jpg);
     background-position: center center;
-    color: white;
     background-repeat: no-repeat;
     background-size: cover;
+    color: white;
 }
+
+
 .toggle-btn{
     display: none !important;
 }

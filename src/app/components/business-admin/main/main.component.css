@@ -92,11 +92,13 @@ table tr {
   .active {
     width: 100%;
     color: white;
-    background: #5A7F9D;
+    /* background: #5A7F9D; */
+    background: linear-gradient(218.57deg, #0F4D50 -6.67%, #4A7551 137.69%);
+
   }
   
   .mat-icon {
-    color: #5A7F9D;
+    color:   #4A7551 ;
   }
   
   .active .mat-icon {

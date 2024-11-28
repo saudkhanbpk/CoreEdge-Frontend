@@ -1,62 +1,13 @@
-  
-  .card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-  }
-  
- 
-  
-  .text-end {
-    text-align: right;
-  }
-  
-  .alert {
-    margin-top: 20px;
-  }
-  .table-container {
-    background-color: white;
-    border-radius: 16px;
-    padding: 10px;
-}
+@import url(../../../../styles/table.css);
 
-thead tr th {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 22px;
-    white-space: nowrap;
-    background-color: #D1E4DD40 ;
-}
-
-.one {
-    border-radius: 14px 0px 0px 0px;
-}
-.table-responsive::-webkit-scrollbar{
-    width: 0px;
-}
-.two {
-    border-radius: 0px 14px 0px 0px;
-}
-
-td {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 22px;
-    white-space: nowrap;
-
-}
-
-.table-data {
-    display: flex;
-    align-items: center;
-    height: 3rem;
-}
- .btn-success{
+.review-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
   background-color: #0F4D50;
-  color: white;
-  border: none;
-}
-.btn-warning{
-  background-color: #a3c4d8 ;
-  color: white;
-  border: none;
+padding: 5px ;
+gap: 10px;
+border-radius: 4px ;
+color: white;
 }

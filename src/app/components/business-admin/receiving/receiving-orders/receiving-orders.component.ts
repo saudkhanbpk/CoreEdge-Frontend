@@ -11,6 +11,7 @@ interface Order {
   receiveddate: string;
   totalamount: string;
   address: string;
+  status:string;
   vendor: string;
   productdetails: any[]; // Update as per your actual structure
   discrepancies?: string[]; // For manual entry of discrepancies
