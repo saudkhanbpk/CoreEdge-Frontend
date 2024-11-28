@@ -273,70 +273,135 @@ export class AddedProductsComponent implements OnInit {
   // }
 
 
+  // async submitRequest(): Promise<void> {
+  //   this.loading = true; // Show loader
+
+  //   const uniqueCode = `PurchaseRequest-${Date.now()}`;
+  //   console.log("ihtizaz : ", this.addedProducts);
+  //   ;
+  //   // Prepare the order data
+  //   const orderData = {
+  //     users: this.authService.getUserData().id,
+  //     uniqueCode: uniqueCode,
+  //     description: this.description,
+  //     status: 'PENDING',
+  //     products: this.addedProducts,
+  //     employees: this.selectedOptions,
+  //     statusUpdatedAt: new Date().toLocaleDateString(),
+  //   };
+  //   this.requestService.create(orderData).subscribe((res: any) => {
+  //     console.log('res: ', res);
+
+  //   })
+  //   return
+  //   // Encode order data into a string and generate barcode
+  //   const barcodeData = JSON.stringify(orderData); // JSON string of the order
+  //   const barcodeCanvas = document.createElement('canvas');
+  //   JsBarcode(barcodeCanvas, barcodeData, { format: 'CODE128' });
+  //   const barcodeDataURL = barcodeCanvas.toDataURL('image/png');
+
+  //   // Prepare the PDF document
+  //   const doc = new jsPDF();
+  //   doc.setFontSize(16);
+  //   doc.text('Purchase Request', 10, 10);
+  //   doc.setFontSize(12);
+  //   doc.text(`Date: ${new Date().toLocaleDateString()}`, 10, 20);
+  //   doc.text(`Description: ${this.description}`, 10, 30);
+
+  //   let y = 40;
+  //   this.addedProducts.forEach((item, index) => {
+  //     doc.text(`Product ${index + 1}`, 10, y);
+  //     doc.text(`Short Description: ${item.product.shortDescription}`, 20, y + 10);
+  //     doc.text(`Price: $${item.product.price}`, 20, y + 20);
+  //     doc.text(`Material ID: ${item.product.materialId}`, 20, y + 30);
+  //     doc.text(`Quantity: ${item.quantity}`, 20, y + 40);
+  //     y += 50;
+  //   });
+
+  //   // Add barcode to the PDF
+  //   doc.addImage(barcodeDataURL, 'PNG', 10, y, 80, 20);
+  //   doc.save('Purchase_Request.pdf');
+
+  //   this.loading = false; // Hide loader
+
+  //   // Display the purchase order data in the UI
+  //   this.generatedRequest = {
+  //     ...orderData,  // Include the entire order data
+  //     barcode: barcodeDataURL,
+  //   };
+  //   console.log("Generated request:", this.generatedRequest);
+
+  //   // Send order data to the backend API for saving
+  //   // this.saveOrder(orderData);
+  //   console.log("ihtizaz order : ", orderData);
+
+  // }
+
+
   async submitRequest(): Promise<void> {
-    this.loading = true; // Show loader
-
-    const uniqueCode = `PurchaseRequest-${Date.now()}`;
-    console.log("ihtizaz : ", this.addedProducts);
-    ;
-    // Prepare the order data
-    const orderData = {
-      users: this.authService.getUserData().id,
-      uniqueCode: uniqueCode,
-      description: this.description,
-      status: 'PENDING',
-      products: this.addedProducts,
-      employees: this.selectedOptions,
-      statusUpdatedAt: new Date().toLocaleDateString(),
-    };
-    this.requestService.create(orderData).subscribe((res: any) => {
-      console.log('res: ', res);
-
-    })
-    return
-    // Encode order data into a string and generate barcode
-    const barcodeData = JSON.stringify(orderData); // JSON string of the order
-    const barcodeCanvas = document.createElement('canvas');
-    JsBarcode(barcodeCanvas, barcodeData, { format: 'CODE128' });
-    const barcodeDataURL = barcodeCanvas.toDataURL('image/png');
-
-    // Prepare the PDF document
-    const doc = new jsPDF();
-    doc.setFontSize(16);
-    doc.text('Purchase Request', 10, 10);
-    doc.setFontSize(12);
-    doc.text(`Date: ${new Date().toLocaleDateString()}`, 10, 20);
-    doc.text(`Description: ${this.description}`, 10, 30);
-
-    let y = 40;
-    this.addedProducts.forEach((item, index) => {
-      doc.text(`Product ${index + 1}`, 10, y);
-      doc.text(`Short Description: ${item.product.shortDescription}`, 20, y + 10);
-      doc.text(`Price: $${item.product.price}`, 20, y + 20);
-      doc.text(`Material ID: ${item.product.materialId}`, 20, y + 30);
-      doc.text(`Quantity: ${item.quantity}`, 20, y + 40);
-      y += 50;
-    });
-
-    // Add barcode to the PDF
-    doc.addImage(barcodeDataURL, 'PNG', 10, y, 80, 20);
-    doc.save('Purchase_Request.pdf');
-
-    this.loading = false; // Hide loader
-
-    // Display the purchase order data in the UI
-    this.generatedRequest = {
-      ...orderData,  // Include the entire order data
-      barcode: barcodeDataURL,
-    };
-    console.log("Generated request:", this.generatedRequest);
-
-    // Send order data to the backend API for saving
-    // this.saveOrder(orderData);
-    console.log("ihtizaz order : ", orderData);
-
+    try {
+      this.loading = true; // Show loader
+  
+      // Generate a unique code for the request
+      const uniqueCode = `PurchaseRequest-${Date.now()}`;
+  
+      // Prepare the order data
+      const orderData = {
+        users: [this.authService.getUserData().id], // Retrieve user ID from auth service
+        uniqueCode: uniqueCode,
+        description: this.description,
+        status: 'PENDING',
+        products: this.addedProducts,
+        employees: [this.selectedOptions],
+        statusUpdatedAt: new Date().toISOString(), // Use ISO format for consistency
+      };
+  
+      // Send order data to the backend API for saving
+      const response: any = await this.requestService.create(orderData).toPromise(); // Convert observable to promise for async/await
+      console.log('Request successfully created on server: ', response);
+  
+      // Encode order data into a string and generate barcode
+      const barcodeData = JSON.stringify(orderData); // JSON string of the order
+      const barcodeCanvas = document.createElement('canvas');
+      JsBarcode(barcodeCanvas, barcodeData, { format: 'CODE128' });
+      const barcodeDataURL = barcodeCanvas.toDataURL('image/png');
+  
+      // Prepare the PDF document
+      const doc = new jsPDF();
+      doc.setFontSize(16);
+      doc.text('Purchase Request', 10, 10);
+      doc.setFontSize(12);
+      doc.text(`Date: ${new Date().toLocaleDateString()}`, 10, 20);
+      doc.text(`Description: ${this.description}`, 10, 30);
+  
+      let y = 40;
+      this.addedProducts.forEach((item, index) => {
+        doc.text(`Product ${index + 1}`, 10, y);
+        doc.text(`Short Description: ${item.product.shortDescription}`, 20, y + 10);
+        doc.text(`Price: $${item.product.price}`, 20, y + 20);
+        doc.text(`Material ID: ${item.product.materialId}`, 20, y + 30);
+        doc.text(`Quantity: ${item.quantity}`, 20, y + 40);
+        y += 50;
+      });
+  
+      // Add barcode to the PDF
+      doc.addImage(barcodeDataURL, 'PNG', 10, y, 80, 20);
+      doc.save('Purchase_Request.pdf'); // Download the PDF file
+  
+      // Update the UI to display the generated request
+      this.generatedRequest = {
+        ...orderData, // Include the entire order data
+        barcode: barcodeDataURL,
+      };
+      console.log('Generated request:', this.generatedRequest);
+    } catch (error) {
+      console.error('Error submitting request:', error);
+      // Optionally, display an error message to the user
+    } finally {
+      this.loading = false; // Hide loader
+    }
   }
-
+  
   // Method to save order data through API
   // saveOrder(orderData: any): void {
   //   this.http.post(this.apiUrl, orderData)
