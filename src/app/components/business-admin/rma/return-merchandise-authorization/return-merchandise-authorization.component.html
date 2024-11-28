@@ -168,12 +168,12 @@
                     
                   </div> -->
                   <div class="table-data d-flex gap-1 justify-content-end">
-                      <button class="btn review" [ngStyle]="{'background-color': item.status === 'Returned' ? '#0F4D5026' : '#0F4D50', 'border-color': item.status === 'Returned'? '#0F4D5026': '#0F4D50'}">Review
+                      <button class="btn review" [ngStyle]="{'background-color': item.status === 'Returned' ? '#0F4D5026' : '#0F4D50', 'border-color': item.status === 'Returned'? '#0F4D5026': '#0F4D50'}" (click)="openDialog()">Review
                         <mat-icon>sms</mat-icon>
                       </button>
-                      <button class="btn visibility" (click)="openDialog()">
+                      <!-- <button class="btn visibility" >
                         <mat-icon>visibility</mat-icon>
-                      </button>
+                      </button> -->
                     </div>
                   </td>
                 </tr>

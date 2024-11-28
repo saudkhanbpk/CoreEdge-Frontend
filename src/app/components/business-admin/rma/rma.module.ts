@@ -5,11 +5,13 @@ import { RmaRoutingModule } from './rma-routing.module';
 import { ReturnMerchandiseAuthorizationComponent } from './return-merchandise-authorization/return-merchandise-authorization.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material';
+import { ViewRmaComponent } from './view-rma/view-rma.component';
 
 
 @NgModule({
   declarations: [
-    ReturnMerchandiseAuthorizationComponent
+    ReturnMerchandiseAuthorizationComponent,
+    ViewRmaComponent
   ],
   imports: [
     CommonModule,

@@ -123,6 +123,7 @@ border: 1px solid #0F4D50;
   gap:10px;
   font-size: 14px;
   line-height: 20px;
+  cursor: pointer;
   mat-icon{
     display: flex;
   align-items: center;
@@ -133,4 +134,5 @@ border: 1px solid #0F4D50;
 }
 .review:active{
   background-color: #0F4D50;
+  color:white;
 }
