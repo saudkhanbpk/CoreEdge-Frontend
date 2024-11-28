@@ -1,55 +1,54 @@
 import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ViewRequestComponent } from '../view-request/view-request.component';
+import { ViewHardwareRequestComponent } from '../view-hardware-request/view-hardware-request.component';
+
 
 @Component({
-  selector: 'app-pending-requests',
-  templateUrl: './pending-requests.component.html',
-  styleUrls: ['./pending-requests.component.css']
+  selector: 'app-hardware-requests',
+  templateUrl: './hardware-requests.component.html',
+  styleUrls: ['./hardware-requests.component.css']
 })
-export class PendingRequestsComponent {
-  isLoading: boolean[] = []; 
+export class HardwareRequestsComponent {
+
+  isLoading: boolean[] = [];
   isunavailable: boolean = false;
   currentPage = 1;
-  itemsPerPage = 10; 
+  itemsPerPage = 10;
   expandedIndex: number | null = null;
   readonly dialog = inject(MatDialog);
 
- 
-  constructor(){}
+  constructor() {}
   ngOnInit(): void {
-   console.log("this is data", this.data)
+    console.log('this is data', this.data);
   }
-  
 
   data = [
     {
       no: '001',
       employeename: 'Saad Khan',
-      employeeemail:'employeeemail@gmail.com',
-      hardwarerequested:'Dell Monitor',
-      description:'I just need it, my old monitor is broke.',
-      status:'Onhold'
+      employeeemail: 'employeeemail@gmail.com',
+      hardwarerequested: 'Dell Monitor',
+      description: 'I just need it, my old monitor is broke.',
+      status: 'Onhold',
     },
     {
       no: '002',
       employeename: 'Ihtizaz Ahmad',
-      employeeemail:'employeeemail@gmail.com',
-      hardwarerequested:'Dell Monitor',
-      description:'I just need it, my old monitor is broke.',
-      status:'Ready'
+      employeeemail: 'employeeemail@gmail.com',
+      hardwarerequested: 'Dell Monitor',
+      description: 'I just need it, my old monitor is broke.',
+      status: 'Ready',
     },
   ];
 
   openDialog() {
-    const dialogRef = this.dialog.open(ViewRequestComponent);
+    const dialogRef = this.dialog.open(ViewHardwareRequestComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }
- 
- 
+
   get totalPages() {
     return Math.ceil(this.data.length / this.itemsPerPage);
   }
@@ -83,3 +82,4 @@ export class PendingRequestsComponent {
     return this.currentPage > 1;
   }
 }
+

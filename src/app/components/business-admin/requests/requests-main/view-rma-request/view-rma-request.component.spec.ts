@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RequestsMainComponent } from './requests-main.component';
+import { ViewRmaRequestComponent } from './view-rma-request.component';
 
-describe('RequestsMainComponent', () => {
-  let component: RequestsMainComponent;
-  let fixture: ComponentFixture<RequestsMainComponent>;
+describe('ViewRmaRequestComponent', () => {
+  let component: ViewRmaRequestComponent;
+  let fixture: ComponentFixture<ViewRmaRequestComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RequestsMainComponent ]
+      declarations: [ ViewRmaRequestComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RequestsMainComponent);
+    fixture = TestBed.createComponent(ViewRmaRequestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

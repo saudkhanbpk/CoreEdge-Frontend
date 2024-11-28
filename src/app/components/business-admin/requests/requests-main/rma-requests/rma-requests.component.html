@@ -1,0 +1,160 @@
+<div class="menu-div">
+  <div class="order-types-tables">
+    <div class="dropdown-container">
+      <div class="styled-select-container">
+        <select class="styled-select">
+          <option value="sort">sort</option>
+          <option value="name">By Name</option>
+          <option value="date">By Date</option>
+          <option value="amount">By Amount</option>
+        </select>
+        <mat-icon class="dropdown-icon">keyboard_arrow_down</mat-icon>
+      </div>
+    </div>
+    <div class="table-container">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" class="one">
+                <div class="table-data">RMA No</div>
+              </th>
+              <th scope="col">
+                <div class="table-data">Employee Name</div>
+              </th>
+              <th scope="col">
+                <div class="table-data">Employee Email</div>
+              </th>
+              <th scope="col">
+                <div class="table-data">Vender Name</div>
+              </th>
+              <th scope="col">
+                <div class="table-data">Total Amount</div>
+              </th>
+              <th scope="col">
+                <div class="table-data">Requested Date</div>
+              </th>
+              <th scope="col">
+                <div class="table-data">Return Date</div>
+              </th>
+              <th scope="col" class="two"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of paginatedData; let i = index">
+              <tr>
+                <td>
+                  <div class="table-data">
+                    {{ item.rmano }}
+                  </div>
+                </td>
+                <td>
+                  <div class="table-data">
+                    {{ item.employeename }}
+                  </div>
+                </td>
+                <td>
+                  <div class="table-data">
+                    {{ item.employeeemail }}
+                  </div>
+                </td>
+                <td>
+                  <div class="table-data">
+                    {{ item.venderName }}
+                  </div>
+                </td>
+                <td>
+                  <div class="table-data">
+                    {{ item.totalamount | currency }}
+                  </div>
+                </td>
+                <td>
+                  <div class="table-data">
+                    {{ item.requesteddate }}
+                  </div>
+                </td>
+                <td>
+                  <div class="table-data">
+                    {{ item.returndate }}
+                  </div>
+                </td>
+                <td>
+                  <!-- <div class="table-data d-flex gap-1 w-100 justify-content-end">
+                    <button class="btn">
+                      <img src="../../../../../assets/icons/Trash can.png" alt="" />
+                    </button>
+                    <button class="btn" (click)="toggleDetails(i)">
+                      <mat-icon>{{
+                        expandedIndex === i ? "expand_less" : "expand_more"
+                      }}</mat-icon>
+                    </button>
+                  </div> -->
+                  <div class="table-data d-flex gap-1 justify-content-end">
+                    <button class="btn visibility" (click)="openDialog()">
+                      <mat-icon>visibility</mat-icon>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <!-- <tr *ngIf="expandedIndex === i">
+                <td colspan="12" class="expanded-data">
+                  <div class="container-fluid">
+                    <div class="row" *ngFor="let details of item.productdetails">
+                      <h2 class="expanded-row-heading">{{ details.name }}</h2>
+                      <div
+                        class="col-lg-3 col-md-6 mb-2 col-6"
+                        *ngFor="let ordereditems of details.items"
+                      >
+                        <div>
+                          <div class="d-flex flex-column justify-content-between">
+                            <div class="d-flex flex-row justify-content-between">
+                              <div class="expanded-row-data">
+                                {{ ordereditems.itemname }} x {{ ordereditems.qty }}
+                              </div>
+                              <div class="expanded-row-data">
+                                {{ ordereditems.price | currency }}
+                              </div>
+                            </div>
+                            <div class="expanded-row-data">
+                              Reason: {{ ordereditems.reason }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr> -->
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-start">
+          <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
+            <a class="paginator-button" (click)="previousPage()">
+              <mat-icon>chevron_left</mat-icon>
+            </a>
+          </li>
+          <ng-container
+            *ngFor="let page of [].constructor(totalPages); let index = index"
+          >
+            <li
+              class="page-item"
+              [ngClass]="{ 'active-page': currentPage === index + 1 }"
+            >
+              <a class="paginator-button" (click)="goToPage(index + 1)">
+                {{ index + 1 }}
+              </a>
+            </li>
+          </ng-container>
+          <li class="page-item" [class.disabled]="!isNextPageAvailable()">
+            <a class="paginator-button" (click)="nextPage()">
+              <mat-icon>chevron_right</mat-icon>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
