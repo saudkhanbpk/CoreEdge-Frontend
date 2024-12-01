@@ -7,6 +7,7 @@ const routes: Routes = [
     path: '', component: MainComponent, children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
+      { path: 'approvals', loadChildren: () => import('./approvals/approvals.module').then(m => m.ApprovalsModule) },
       { path: 'catalog', loadChildren: () => import('./catalog/catalog.module').then(m => m.CatalogModule) },
       { path: 'employees', loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule) },
       { path: 'vendors', loadChildren: () => import('./vendors/vendors.module').then(m => m.VendorsModule) },
@@ -14,7 +15,6 @@ const routes: Routes = [
       { path: 'requests', loadChildren: () => import('./requests/requests.module').then(m => m.RequestsModule) },
       { path: 'vendor-invoice', loadChildren: () => import('./vendor-invoice/vendor-invoice.module').then(m => m.VendorInvoiceModule) },
       { path: 'inventory', loadChildren: () => import('./inventory/inventory.module').then(m => m.InventoryModule) },
-      { path: 'approvals', loadChildren: () => import('./approvals/approvals.module').then(m => m.ApprovalsModule) },
       { path: 'purchase-orders', loadChildren: () => import('./purchase-orders/purchase-orders.module').then(m => m.PurchaseOrdersModule) },
       { path: 'receiving', loadChildren: () => import('./receiving/receiving.module').then(m => m.ReceivingModule) },
       { path: 'fulfillment', loadChildren: () => import('./fulfillment/fulfillment.module').then(m => m.FulfillmentModule) },

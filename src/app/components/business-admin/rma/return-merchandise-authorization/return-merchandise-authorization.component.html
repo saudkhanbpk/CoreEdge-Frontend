@@ -11,14 +11,14 @@
           <option value="date">Approved</option>
           <option value="amount">Returned</option>
         </select>
-    
+
         <select class="form-select border-0 w-auto shadow-none">
           <option value="" disabled selected>sort</option>
           <option value="name">By Name</option>
           <option value="date">By Date</option>
           <option value="amount">By Amount</option>
         </select>
-    </div>
+      </div>
       <div class="table-container p-0 mt-2">
         <div class="table-responsive">
           <table class="table table-hover">
@@ -91,22 +91,21 @@
                   </td>
                   <td>
                     <div class="table-data">
-                      <div
-                      class="status p-2"
-                      [ngClass]="{
+                      <div class="status p-2" [ngClass]="{
                         completed: item.status === 'Approved',
                         rejected: item.status === 'Returned',
                         inactive: item.status === 'Pending'
-                      }"
-                    >
-                      {{ item.status }}
-                    </div>
+                      }">
+                        {{ item.status }}
+                      </div>
                     </div>
                   </td>
                   <td>
-                  <div class="table-data d-flex gap-1 justify-content-end">
-                      <button class="btn review-btn text-white gap-2" [ngStyle]="{'background-color': item.status === 'Returned' ? '#0F4D5026' : '#0F4D50', 'border-color': item.status === 'Returned'? '#0F4D5026': '#0F4D50'}" (click)="openDialog()">Review
-                        <mat-icon>sms</mat-icon>
+                    <div class="table-data d-flex gap-1 justify-content-end">
+                      <button class="btn review-btn text-white gap-2"
+                        [ngStyle]="{'background-color': item.status === 'Returned' ? '#0F4D5026' : '#0F4D50', 'border-color': item.status === 'Returned'? '#0F4D5026': '#0F4D50'}"
+                        (click)="openDialog()">Review
+                        <img src="../../../../../assets/icons/Message square.png" alt="">
                       </button>
                     </div>
                   </td>
@@ -122,13 +121,8 @@
                 <mat-icon>chevron_left</mat-icon>
               </a>
             </li>
-            <ng-container
-              *ngFor="let page of [].constructor(totalPages); let index = index"
-            >
-              <li
-                class="page-item"
-                [ngClass]="{ 'active-page': currentPage === index + 1 }"
-              >
+            <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
+              <li class="page-item" [ngClass]="{ 'active-page': currentPage === index + 1 }">
                 <a class="paginator-button" (click)="goToPage(index + 1)">
                   {{ index + 1 }}
                 </a>
