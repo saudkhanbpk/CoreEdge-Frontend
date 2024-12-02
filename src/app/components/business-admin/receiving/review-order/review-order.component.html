@@ -1,169 +1,181 @@
-<div class="form-div">
-    <div class="headdiv">
-        <div class="heading d-flex align-items-center">
-          <button type="button" class="btn p-1 d-flex align-items-center justify-content-center shadow-none" routerLink="/business-admin/receiving">
-            <mat-icon>chevron_left</mat-icon>
-          </button>
-          <h1>Review Order</h1>
-        </div>
-        <div class="secondary-row">
-            <div>
-                <button
-                class="btn send-btn"
-              >
-                Send to RMA
-                <img src="../../../../../assets/newicons/Info square.png" alt="" />
-              </button> 
+<div class="container-fluid px-0 overflow-hidden">
+    <div class="form-div">
+        <div class="headdiv">
+            <div class="heading d-flex align-items-center">
+                <button type="button" class="btn p-1 d-flex align-items-center justify-content-center shadow-none"
+                    routerLink="/business-admin/receiving">
+                    <mat-icon>chevron_left</mat-icon>
+                </button>
+                <h1>Review Order</h1>
             </div>
-            <div>
-              <button
-                class="btn clear-btn"
-              >
-                Clear Received Order
-                <img src="../../../../../assets/newicons/Check.png" alt="" />
-              </button>
+            <div class="secondary-row">
+                <div>
+                    <button class="btn send-btn">
+                        Send to RMA
+                        <img src="../../../../../assets/newicons/Info square.png" alt="" />
+                    </button>
+                </div>
+                <div>
+                    <button class="btn clear-btn">
+                        Clear Received Order
+                        <img src="../../../../../assets/newicons/Check.png" alt="" />
+                    </button>
+                </div>
             </div>
-          </div>
-      </div>
-      <div class="mt-3 section-div ">
-        <div>
-            <h2>Employee Details</h2>
-          </div>
-          <div class="px-3">
-              <div class="row">
-                  <div class="col-lg-3 col-md-6 mb-2">
-                      <div class="order-head">Purchase Order No</div>
-                      <div class="order-data">01</div>
-                  </div>
-                  <div class="col-lg-3 col-md-6 mb-2">
-                    <div class="order-head">Employee Name</div>
-                    <div class="order-data">Dexter Stevens</div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-2">
-                    <div class="order-head">Vendor Name</div>
-                    <div class="order-data">Brandon Lee</div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-2">
-                    <div class="order-head">Requested Date</div>
-                    <div class="order-data">25th Jan, 2027</div>
-                </div>
-              </div>
-          </div>
-      </div>
-      <div class="d-flex gap-2 justify-content-end my-2" >
-        <button class="btn add-btn">Scan BarCode</button>
-        <button class="btn cancel-btn">Cancel</button>
-      </div>
-      <div class="mt-3 section-div">
-        <div>
-            <h2>Requested Item </h2>
         </div>
-        <div class="table-container p-2">
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead class="thead-dark ">
-                        <tr>
-                          <th scope="col" class="one">
-                            <div class="table-data">
-                              No    
-                            </div>
-                          </th>
-                          <th scope="col">
-                            <div class="table-data">
-                              Item Name
-                            </div>
-                          </th>
-                          <th scope="col">
-                            <div class="table-data">
-                              Order Quantity
-                            </div>
-                          </th>
-                          <th scope="col">
-                            <div class="table-data">
-                              Received Quantity
-                            </div>
-                          </th>
-                          <th scope="col">
-                            <div class="table-data">
-                              Broken Quantity
-                            </div>
-                          </th>
-                          <th scope="col">
-                            <div class="table-data">
-                              Wrong Item Quantity
-                            </div>
-                          </th>
-                          <th scope="col" class="two"></th>
-                        </tr>
-                      </thead>
-                    <tbody>
-                        <tr>
-                            <td><div class="table-data">01</div></td>
-                            <td><div class="table-data">Desktop Monitor</div></td>
-                            <td><div class="table-data">01</div></td>
-                            <td><div class="table-data">01</div></td>
-                            <td><div class="table-data">00</div></td>
-                            <td><div class="table-data">00</div></td>
+        <div class="mt-3 section-div ">
+            <div>
+                <h2>Employee Details</h2>
+            </div>
+            <div class="px-3">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-3">
+                        <div class="order-head">Purchase Order No</div>
+                        <div class="order-data">01</div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-3">
+                        <div class="order-head">Employee Name</div>
+                        <div class="order-data">Dexter Stevens</div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-3">
+                        <div class="order-head">Vendor Name</div>
+                        <div class="order-data">Brandon Lee</div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-3">
+                        <div class="order-head">Requested Date</div>
+                        <div class="order-data">25th Jan, 2027</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex gap-2 justify-content-end my-2">
+            <button class="btn add-btn">Scan BarCode</button>
+            <button class="btn cancel-btn">Cancel</button>
+        </div>
+        <div class="mt-3 section-div">
+            <div>
+                <h2>Requested Item </h2>
+            </div>
+            <div class="table-container p-2">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="thead-dark ">
+                            <tr>
+                                <th scope="col" class="one">
+                                    <div class="table-data">
+                                        No
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">
+                                        Item Name
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">
+                                        Order Quantity
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">
+                                        Received Quantity
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">
+                                        Broken Quantity
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">
+                                        Wrong Item Quantity
+                                    </div>
+                                </th>
+                                <th scope="col" class="two"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="table-data">01</div>
+                                </td>
+                                <td>
+                                    <div class="table-data">Desktop Monitor</div>
+                                </td>
+                                <td>
+                                    <div class="table-data">01</div>
+                                </td>
+                                <td>
+                                    <div class="table-data">01</div>
+                                </td>
+                                <td>
+                                    <div class="table-data">00</div>
+                                </td>
+                                <td>
+                                    <div class="table-data">00</div>
+                                </td>
 
-                            <td>
-                                <div class="table-data d-flex gap-1 w-100 justify-content-end">
-                                    <button class="btn" matTooltip="Edit"><img src="../../../../../assets/icons/Union.png" alt=""></button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                <td>
+                                    <div class="table-data d-flex gap-1 w-100 justify-content-end">
+                                        <button class="btn" matTooltip="Edit"><img
+                                                src="../../../../../assets/icons/Union.png" alt=""></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-md-4">
+                    <div class="input-div input-div-no-pad">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><label for="">Received Quantity</label></div>
+                            <div class="star">*</div>
+                        </div>
+                        <div>
+                            <input type="number" class="form-control" placeholder="Enter Received Quantity" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-div input-div-no-pad">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><label for="">Broken Quantity</label></div>
+                            <div class="star">*</div>
+                        </div>
+                        <div>
+                            <input type="number" class="form-control" placeholder="Enter Broken Quantity" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-div input-div-no-pad">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><label for="">Wrong Item Quantity</label></div>
+                            <div class="star">*</div>
+                        </div>
+                        <div>
+                            <input type="number" class="form-control" placeholder="Enter Wrong Item Quantity" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="input-div input-div-no-pad">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><label for="">Add Note</label></div>
+                            <div class="star">*</div>
+                        </div>
+                        <div>
+                            <textarea class="form-control" placeholder="Add Note" disabled></textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row p-2">
-            <div class="col-md-4">
-                <div class="input-div input-div-no-pad">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div><label for="">Received Quantity</label></div>
-                        <div class="star">*</div>
-                    </div>
-                    <div>
-                        <input type="number" class="form-control" placeholder="Enter Received Quantity" disabled>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="input-div input-div-no-pad">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div><label for="">Broken Quantity</label></div>
-                        <div class="star">*</div>
-                    </div>
-                    <div>
-                        <input type="number" class="form-control" placeholder="Enter Broken Quantity" disabled>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="input-div input-div-no-pad">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div><label for="">Wrong Item Quantity</label></div>
-                        <div class="star">*</div>
-                    </div>
-                    <div>
-                        <input type="number" class="form-control" placeholder="Enter Wrong Item Quantity" disabled>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="input-div input-div-no-pad">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div><label for="">Add Note</label></div>
-                        <div class="star">*</div>
-                    </div>
-                    <div>
-                        <textarea  class="form-control" placeholder="Add Note" disabled></textarea>
-                    </div>
-                </div>
-            </div>
+        <div class="d-flex gap-2 justify-content-end mb-2">
+            <button class="btn add-btn">Update</button>
+            <button class="btn cancel-btn">Cancel</button>
         </div>
-    </div>
-    <div class="d-flex gap-2 justify-content-end mb-2">
-        <button class="btn add-btn">Update</button>
-        <button class="btn cancel-btn">Cancel</button>
     </div>
 </div>

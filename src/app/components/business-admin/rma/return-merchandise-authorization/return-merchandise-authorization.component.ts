@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ViewRmaComponent } from '../view-rma/view-rma.component';
 
 // interface ProductDetail {
 //   itemname: string;
@@ -221,11 +222,11 @@ export class ReturnMerchandiseAuthorizationComponent {
   ];
 
   openDialog() {
-    // const dialogRef = this.dialog.open(ViewRmaRequestComponent);
+    const dialogRef = this.dialog.open(ViewRmaComponent);
 
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   toggleDetails(index: number) {
