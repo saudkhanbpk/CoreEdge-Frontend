@@ -48,17 +48,17 @@
                   <tr *ngFor="let item of paginatedData; let i = index">
                     <td>
                       <div class="table-data">
-                        {{ item.no }}
+                        {{ i+1 }}
                       </div>
                     </td>
                     <td>
                       <div class="table-data">
-                        {{ item.employeename }}
+                        {{ item.employees[0].name}}
                       </div>
                     </td>
                     <td>
                       <div class="table-data">
-                        {{ item.employeeemail }}
+                        {{ item.employees[0].email }}
                       </div>
                     </td>
                     <td>
@@ -86,7 +86,7 @@
                     </td>
                     <td>
                       <div class="table-data d-flex gap-1 justify-content-end">
-                        <button class="btn visibility" (click)="openDialog()">
+                        <button class="btn visibility" (click)="openDialog(item)">
                           <mat-icon>visibility</mat-icon>
                         </button>
                         <button class="btn"  routerLink="/business-admin/requests/hardware-requests/edit-hardware-requests"><img src="../../../../../assets/icons/Union.png" alt=""></button>
