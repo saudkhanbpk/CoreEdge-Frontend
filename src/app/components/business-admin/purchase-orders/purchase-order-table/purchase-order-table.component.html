@@ -79,6 +79,9 @@
               Address
             </div>
           </th>
+          <th scope="col">
+            <div class="table-data">Status</div>
+          </th>
           <th scope="col" class="two"></th>
 
         </tr>
@@ -119,6 +122,20 @@
             <td>
               <div class="table-data">
                 {{ item.address }}
+              </div>
+            </td>
+            <td>
+              <div class="table-data">
+                <div
+                  class="status p-2"
+                  [ngClass]="{
+                    completed: item.status === 'Ordered',
+                    rejected: item.status === 'Rejected',
+                    inprogress: item.status === 'Pending'
+                  }"
+                >
+                  {{ item.status }}
+                </div>
               </div>
             </td>
             <td>

@@ -29,6 +29,7 @@ export class PurchaseOrderTableComponent {
       receivedddate :'October 5th, 2024',
       totalamount :'3500',
       address:'Las Vegas',
+      status:'Ordered',
       productdetails: [
         {
           name: 'Items Requested', items: [
@@ -49,6 +50,28 @@ export class PurchaseOrderTableComponent {
       receivedddate :'October 5th, 2024',
       totalamount :'3500',
       address:'Las Vegas',
+      status:'Pending',
+      productdetails: [
+        {
+          name: 'Items Requested', items: [
+            { itemname: 'Monitor', price: 5 },
+            { itemname: 'Keyboard', price: 15 },
+            { itemname: 'Mouse', price: 25 },
+            { itemname: 'RAM', price: 35 },
+          ]
+        }
+      ]
+    },
+    {
+      purchaseorderno: '2982-XJ82-92',
+      employeename: 'Aamir Shehzad',
+      employeeemail:'employeeemail@gmail.com',
+      hardwarerequested:'Dell Monitor',
+      requesteddate :'October 3rd, 2024',
+      receivedddate :'October 5th, 2024',
+      totalamount :'3500',
+      address:'Las Vegas',
+      status:'Rejected',
       productdetails: [
         {
           name: 'Items Requested', items: [
