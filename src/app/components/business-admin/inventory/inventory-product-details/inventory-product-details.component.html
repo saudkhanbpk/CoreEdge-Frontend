@@ -1,0 +1,50 @@
+<div class="container-fluid py-4">
+    <div class="row" *ngIf="data">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-center">
+                <img src="{{data.ImageLarge}}" alt="{{data.MaterialId}}">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>{{data.ShortDescription}}</h4>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <div class="data"><strong>Manufacturer Name:</strong> &nbsp;
+                            <span>{{data.ManufacturerName}}</span></div>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <div class="data"><strong>Price:</strong> &nbsp; <span class="price">{{data.CustomerPrice |
+                                currency}}</span></div>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <div class="data"><strong>Material ID:</strong> &nbsp; <span>{{data.MaterialId}}</span></div>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <div class="data"><strong>Insight Part Number:</strong> &nbsp;
+                            <span>{{data.InsightPartNumber}}</span></div>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <div class="data"><strong>Manufacturer Part Number:</strong> &nbsp;
+                            <span>{{data.ManufacturerPartNumber}}</span></div>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <div class="data"><strong>UNSPSC:</strong> &nbsp; <span>{{data.UNSPSC}}</span></div>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <div class="data"><strong>Category:</strong> &nbsp; <span>{{data.Category}}</span></div>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <div class="data"><strong>QuantityAvailable:</strong> &nbsp; <span>{{data.QuantityAvailable}}</span></div>
+                    </div>
+                    <div class="col-md-12 mb-2">
+                        <h5>{{data.LongDescription}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

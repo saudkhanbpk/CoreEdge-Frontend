@@ -1,23 +1,5 @@
-@import url(../../../../styles/form.css);
-.my-textarea{
-    height: auto !important;
-}
-.add-field{
-    background-color: #0F4D50;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.sub-field{
-    background-color: white;
-    color: #0F4D50;
-    border: 1px solid #0F4D50;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-@import url(../../../../styles/table.css);
+@import url(../../../../../styles/form.css);
+@import url(../../../../../styles/table.css);
 .order-head{
 font-size: 14px;
 font-weight: 500;

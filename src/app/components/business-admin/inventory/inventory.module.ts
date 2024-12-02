@@ -8,12 +8,14 @@ import { MaterialModule } from 'src/app/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { InventoryProductDetailsComponent } from './inventory-product-details/inventory-product-details.component';
 
 
 @NgModule({
   declarations: [
     AddInventoryComponent,
-    InventoryMenuComponent
+    InventoryMenuComponent,
+    InventoryProductDetailsComponent
   ],
   imports: [
     CommonModule,

@@ -163,12 +163,18 @@
     </p>
 
     <div class="d-flex justify-content-center gap-3">
-      <p>Email: <span>admin@gmail.com</span></p>
+      <p>Email: <span>admin&#64;gmail.com</span></p>
       <p>Phone: <span>847-850-2577</span></p>
     </div>
   </div>
 </div>
-<div class="button-group me-5 mb-4">
-  <button class="btn add-btn" (click)="downloadPDF()">Download Pdf</button>
-  <button class="btn cancel-btn" mat-dialog-close="true">Cancel</button>
-</div>
+<mat-dialog-actions class="d-flex justify-content-between">
+  <button class="btn check border gap-2">
+      <span class="btn-span">Place Purchase Order</span>
+      <mat-icon class="btn-icon">check</mat-icon>
+  </button>
+  <button class="btn close border gap-2" mat-dialog-close>
+      <span class="btn-span">Reject Purchase Order</span>
+      <mat-icon class="btn-icon">close</mat-icon>
+  </button>
+</mat-dialog-actions>

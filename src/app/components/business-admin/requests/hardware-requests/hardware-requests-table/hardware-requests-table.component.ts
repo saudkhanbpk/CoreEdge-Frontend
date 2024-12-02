@@ -1,14 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ViewHardwareRequestComponent } from '../view-hardware-request/view-hardware-request.component';
-
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-hardware-requests',
-  templateUrl: './hardware-requests.component.html',
-  styleUrls: ['./hardware-requests.component.css']
+  selector: 'app-hardware-requests-table',
+  templateUrl: './hardware-requests-table.component.html',
+  styleUrls: ['./hardware-requests-table.component.css']
 })
-export class HardwareRequestsComponent {
+export class HardwareRequestsTableComponent {
 
   isLoading: boolean[] = [];
   isunavailable: boolean = false;
@@ -82,4 +81,3 @@ export class HardwareRequestsComponent {
     return this.currentPage > 1;
   }
 }
-

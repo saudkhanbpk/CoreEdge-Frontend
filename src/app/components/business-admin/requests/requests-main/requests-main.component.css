@@ -46,12 +46,7 @@
     background-color: #0F4D50;
     font-weight: 400;
 }
-.menu-secondary-group {
-    border-radius: 0px 14px 14px 14px;
-    background-color: white;
-    padding: 13px;
 
-}
 .active{
     background-color: #0F4D50;
     color: white;
@@ -79,3 +74,7 @@ opacity: 0px;
 white-space: nowrap;
 border: none;
  }
+ .menu-secondary-group {
+    border-radius: 0px 14px 14px 14px;
+    background-color: white;
+}
