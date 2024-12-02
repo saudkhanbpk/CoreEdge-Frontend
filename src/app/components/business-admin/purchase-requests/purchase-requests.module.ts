@@ -6,12 +6,14 @@ import { PurchaseRequestTableComponent } from './purchase-request-table/purchase
 import { PurchaseRequestFormComponent } from './purchase-request-form/purchase-request-form.component';
 import { MaterialModule } from 'src/app/material';
 import { FormsModule } from '@angular/forms';
+import { ViewPurchaseRequestComponent } from './view-purchase-request/view-purchase-request.component';
 
 
 @NgModule({
   declarations: [
     PurchaseRequestTableComponent,
-    PurchaseRequestFormComponent
+    PurchaseRequestFormComponent,
+    ViewPurchaseRequestComponent
   ],
   imports: [
     CommonModule,

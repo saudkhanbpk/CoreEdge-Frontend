@@ -1,0 +1,116 @@
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 mat-dialog-title>Purchase Request</h2>
+        <mat-icon class="icon me-2" mat-dialog-close>close</mat-icon>
+    </div>
+    <mat-dialog-content class="mat-typography">
+        <div class="row row1">
+            <h3>Hey I need These Products 🥺</h3>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <h4>Employee Name:</h4>
+                    <span>James Anderson</span>
+                </div>
+                <div class="mb-3">
+                    <h4>Employee Email:</h4>
+                    <span>JamesAnderson&#64;gmail.com</span>
+                </div>
+                <div class="mb-3">
+                    <h4>Employee Contact:</h4>
+                    <span>001 393 393 3923</span>
+                </div>
+                <div class="mb-3">
+                    <h4>Requested Date:</h4>
+                    <span>02 Dec 2024</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+          
+            </div>
+            <div class="col-md-12">
+                <h4>Description:</h4>
+                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta accusamus cumque voluptates impedit!</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="table-div p-0">
+                <div class="table-container p-0 mt-2">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" class="one">
+                                        <div class="table-data">
+                                            No
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="table-data">
+                                            Material ID
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="table-data">
+                                           Vendor Name
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="table-data">
+                                           Vendor Email
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="two">
+                                        <div class="table-data">
+                                            Price
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of request">
+                                    <td>
+                                        <div class="table-data">
+                                            {{item?.no}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{item?.materialid}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{item?.vendorname}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{item?.vendoremail}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{item?.price | currency}}
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="d-flex justify-content-between">
+        <button class="btn check border gap-2">
+            <span class="btn-span">Approve Request</span>
+            <mat-icon class="btn-icon">check</mat-icon>
+        </button>
+        <button class="btn close border gap-2" mat-dialog-close>
+            <span class="btn-span">Reject Request</span>
+            <mat-icon class="btn-icon">close</mat-icon>
+        </button>
+    </mat-dialog-actions>
+</div>
