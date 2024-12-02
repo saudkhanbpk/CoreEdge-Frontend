@@ -125,7 +125,7 @@ export class HardwareRequestsComponent {
     if (user) {
       this.requestService.findByUserId(user.id).subscribe(
         (items) => {
-          this.data = items;
+          this.data = items.orders;
         },
         (error) => {
           console.error('Error fetching data:', error);
