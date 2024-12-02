@@ -1,5 +1,6 @@
 // order.service.ts
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 interface Item {
   itemname: string;
@@ -36,6 +37,9 @@ interface Order {
   providedIn: 'root',
 })
 export class OrderService {
+
+  private apiUrl = `${environment.apiUrl}/inventory`;  // Base API URL for inventory-related endpoints
+
   orders: Order[] = [
     {
       purchaseorderno: '2982-XJ82-92',

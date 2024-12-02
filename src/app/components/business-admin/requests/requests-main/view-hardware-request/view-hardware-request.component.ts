@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Vendor } from 'src/app/models/vendor.model';
 import Swal from 'sweetalert2';
 
@@ -8,6 +9,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./view-hardware-request.component.css']
 })
 export class ViewHardwareRequestComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+    console.log('Dialog data:', this.data); // Access the passed item here
+  }
   isLoading: boolean = false; 
   isunavailable: boolean = false;
   vendors: any[] = [

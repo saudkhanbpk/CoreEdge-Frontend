@@ -1,15 +1,111 @@
+// import { Component, inject } from '@angular/core';
+// import { MatDialog } from '@angular/material/dialog';
+// import { ViewHardwareRequestComponent } from '../view-hardware-request/view-hardware-request.component';
+// import { RequestService } from 'src/app/services/request.service';
+// import { AuthService } from 'src/app/services/auth.service';
+
+
+// @Component({
+//   selector: 'app-hardware-requests',
+//   templateUrl: './hardware-requests.component.html',
+//   styleUrls: ['./hardware-requests.component.css']
+// })
+// export class HardwareRequestsComponent {
+
+//   isLoading: boolean[] = [];
+//   isunavailable: boolean = false;
+//   currentPage = 1;
+//   itemsPerPage = 10;
+//   expandedIndex: number | null = null;
+//   readonly dialog = inject(MatDialog);
+// data:any;
+//   constructor(private requestService:RequestService, private authService: AuthService,) {}
+//   ngOnInit(): void {
+//   let user= this.authService.getUserData();
+//   if(user){
+//     this.requestService.findByUserId(user.id).subscribe(item => {
+//     this.data=item
+//   })
+//   }
+//   }
+
+//   // data = [
+//   //   {
+//   //     no: '001',
+//   //     employeename: 'Saad Khan',
+//   //     employeeemail: 'employeeemail@gmail.com',
+//   //     hardwarerequested: 'Dell Monitor',
+//   //     description: 'I just need it, my old monitor is broke.',
+//   //     status: 'Onhold',
+//   //   },
+//   //   {
+//   //     no: '002',
+//   //     employeename: 'Ihtizaz Ahmad',
+//   //     employeeemail: 'employeeemail@gmail.com',
+//   //     hardwarerequested: 'Dell Monitor',
+//   //     description: 'I just need it, my old monitor is broke.',
+//   //     status: 'Ready',
+//   //   },
+//   // ];
+
+//   openDialog(item:any) {
+//     console.log(item);
+    
+//     const dialogRef = this.dialog.open(ViewHardwareRequestComponent);
+
+//     dialogRef.afterClosed().subscribe((result) => {
+//       console.log(`Dialog result: ${result}`);
+//     });
+//   }
+
+//   get totalPages() {
+//     return Math.ceil(this.data.length / this.itemsPerPage);
+//   }
+
+//   get paginatedData() {
+//     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+//     return this.data.slice(startIndex, startIndex + this.itemsPerPage);
+//   }
+
+//   goToPage(page: number) {
+//     this.currentPage = page;
+//   }
+
+//   nextPage() {
+//     if (this.currentPage < this.totalPages) {
+//       this.currentPage++;
+//     }
+//   }
+
+//   previousPage() {
+//     if (this.currentPage > 1) {
+//       this.currentPage--;
+//     }
+//   }
+
+//   isNextPageAvailable() {
+//     return this.currentPage < this.totalPages;
+//   }
+
+//   isPreviousPageAvailable() {
+//     return this.currentPage > 1;
+//   }
+// }
+
+
+
 import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewHardwareRequestComponent } from '../view-hardware-request/view-hardware-request.component';
-
+import { RequestService } from 'src/app/services/request.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-hardware-requests',
   templateUrl: './hardware-requests.component.html',
-  styleUrls: ['./hardware-requests.component.css']
+  styleUrls: ['./hardware-requests.component.css'],
 })
 export class HardwareRequestsComponent {
-
   isLoading: boolean[] = [];
   isunavailable: boolean = false;
   currentPage = 1;
@@ -17,32 +113,35 @@ export class HardwareRequestsComponent {
   expandedIndex: number | null = null;
   readonly dialog = inject(MatDialog);
 
-  constructor() {}
+  data: any[] = []; // Initialize as an empty array to prevent `undefined` issues
+
+  constructor(
+    private requestService: RequestService,
+    private authService: AuthService
+  ) {}
+
   ngOnInit(): void {
-    console.log('this is data', this.data);
+    const user = this.authService.getUserData();
+    if (user) {
+      this.requestService.findByUserId(user.id).subscribe(
+        (items) => {
+          this.data = items;
+        },
+        (error) => {
+          console.error('Error fetching data:', error);
+          this.data = []; // Ensure `data` is always defined
+        }
+      );
+    }
   }
 
-  data = [
-    {
-      no: '001',
-      employeename: 'Saad Khan',
-      employeeemail: 'employeeemail@gmail.com',
-      hardwarerequested: 'Dell Monitor',
-      description: 'I just need it, my old monitor is broke.',
-      status: 'Onhold',
-    },
-    {
-      no: '002',
-      employeename: 'Ihtizaz Ahmad',
-      employeeemail: 'employeeemail@gmail.com',
-      hardwarerequested: 'Dell Monitor',
-      description: 'I just need it, my old monitor is broke.',
-      status: 'Ready',
-    },
-  ];
+  openDialog(item: any) {
+    console.log('Opening dialog with item:', item);
 
-  openDialog() {
-    const dialogRef = this.dialog.open(ViewHardwareRequestComponent);
+    const dialogRef = this.dialog.open(ViewHardwareRequestComponent, {
+      data: item, // Pass the item to the dialog component
+      width: '500px', // Optional: Customize the dialog width
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
@@ -50,12 +149,12 @@ export class HardwareRequestsComponent {
   }
 
   get totalPages() {
-    return Math.ceil(this.data.length / this.itemsPerPage);
+    return Math.ceil((this.data?.length || 0) / this.itemsPerPage); // Handle cases where `data` might still be empty or undefined
   }
 
   get paginatedData() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.data.slice(startIndex, startIndex + this.itemsPerPage);
+    return this.data?.slice(startIndex, startIndex + this.itemsPerPage) || []; // Add a fallback to handle `undefined`
   }
 
   goToPage(page: number) {
@@ -82,4 +181,3 @@ export class HardwareRequestsComponent {
     return this.currentPage > 1;
   }
 }
-

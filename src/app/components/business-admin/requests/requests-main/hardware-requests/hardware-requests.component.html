@@ -37,9 +37,9 @@
                 <th scope="col">
                   <div class="table-data">Employee Email</div>
                 </th>
-                <th scope="col">
+                <!-- <th scope="col">
                   <div class="table-data">Hardware Requested</div>
-                </th>
+                </th> -->
                 <th scope="col">
                   <div class="table-data">Description</div>
                 </th>
@@ -54,24 +54,24 @@
                 <tr *ngFor="let item of paginatedData; let i = index">
                   <td>
                     <div class="table-data">
-                      {{ item.no }}
+                      {{ i +1 }}
                     </div>
                   </td>
                   <td>
                     <div class="table-data">
-                      {{ item.employeename }}
+                      {{ item?.employees[0]?.name }}
                     </div>
                   </td>
                   <td>
                     <div class="table-data">
-                      {{ item.employeeemail }}
+                      {{ item?.employees[0]?.email }}
                     </div>
                   </td>
-                  <td>
+                  <!-- <td>
                     <div class="table-data">
                       {{ item.hardwarerequested }}
                     </div>
-                  </td>
+                  </td> -->
                   <td>
                     <div class="table-data">
                       {{ item.description }}
@@ -83,7 +83,8 @@
                         class="status p-2"
                         [ngClass]="{
                           completed: item.status === 'Ready',
-                          rejected: item.status === 'Onhold'
+                          rejected: item.status === 'Onhold',
+                          inactive: item.status === 'PENDING'
                         }"
                       >
                         {{ item.status }}
@@ -92,7 +93,7 @@
                   </td>
                   <td>
                     <div class="table-data d-flex gap-1 justify-content-end">
-                      <button class="btn visibility" (click)="openDialog()">
+                      <button class="btn visibility" (click)="openDialog(item)">
                         <mat-icon>visibility</mat-icon>
                       </button>
                     </div>

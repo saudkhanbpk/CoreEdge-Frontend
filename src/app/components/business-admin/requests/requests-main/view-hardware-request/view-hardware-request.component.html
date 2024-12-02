@@ -3,17 +3,17 @@
         <h2 mat-dialog-title>Request</h2>
         <mat-icon class="icon" mat-dialog-close>close</mat-icon>
     </div>
-    <mat-dialog-content class="mat-typography">
+    <mat-dialog-content class="mat-typography" *ngFor="let item of [data]">
         <div class="row row1">
             <h3>Hey I need These Products 🥺</h3>
             <div class="col-md-6">
                 <div class="mb-3">
                     <h4>Employee Name:</h4>
-                    <span>James Anderson</span>
+                    <span>{{item.employees[0].name}}</span>
                 </div>
                 <div class="mb-3">
                     <h4>Employee Email:</h4>
-                    <span>JamesAnderson&#64;gmail.com</span>
+                    <span>{{item.employees[0].email}}</span>
                 </div>
                 <div class="mb-3">
                     <h4>Employee Contact:</h4>
@@ -36,7 +36,7 @@
             </div>
             <div class="col-md-12">
                 <h4>Description:</h4>
-                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta accusamus cumque voluptates impedit!</span>
+                <span>{{item.description}}</span>
             </div>
         </div>
 
@@ -54,11 +54,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of request">
-                                    <td>{{item?.no}}</td>
-                                    <td>{{item?.materialid}}</td>
-                                    <td>{{item?.employeeEmail}}</td>
-                                    <td>{{item?.price}}</td>
+                                <tr *ngFor="let product of item.products let i=index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{product?.product.materialId}}</td>
+                                    <td>{{item.employees[0].email}}</td>
+                                    <td>{{product?.price}}</td>
                                 </tr>
                             </tbody>
                         </table>
