@@ -1,166 +1,160 @@
 <div class="headdiv">
-    <div class="heading">
-      <h1>Purchase Order </h1>
+  <div class="heading">
+    <h1>Purchase Order </h1>
+  </div>
+  <div class="secondary-row">
+    <div class="input-group">
+      <input type="text" class="form-control input-group-form-control" placeholder="Search Purchase Order"
+        aria-label="Quick Search">
+      <button class="btn search-order-btn" type="button" id="button-addon2">
+        <mat-icon>search</mat-icon>
+      </button>
     </div>
-    <div class="secondary-row">
-      <div class="input-group">
-        <input type="text" class="form-control input-group-form-control" placeholder="Search Purchase Order"
-          aria-label="Quick Search">
-        <button class="btn search-order-btn" type="button" id="button-addon2">
-          <mat-icon>search</mat-icon>
-        </button>
-      </div>
-      <!-- <div>
-        <button class="btn add-btn" routerLink="/business-admin/purchase-orders/purchase-order-form">Add Purchase Order<img
-            src="../../../../../../assets/icons/Plus.png" alt=""></button>
-      </div> -->
+    <div>
+      <select name="" id="" class="form-select">
+        <option value="">Jimmy Anderson</option>
+        <option value="">Steven Smith</option>
+        <option value="">Mitchell Starc</option>
+        <option value="">Marnus Labuschagne</option>
+
+      </select>
+    </div>
+    <div>
+      <button class="btn add-btn">
+        Merge Orders
+        <img src="../../../../../assets/newicons/Layers.png" alt="" />
+      </button>
+    </div>
+    <div>
+      <button class="btn add-btn">
+        Merge Selection
+        <img src="../../../../../assets/newicons/Layers.png" alt="" />
+      </button>
+    </div>
+    <div>
+      <button class="btn add-btn" routerLink="/business-admin/purchase-orders/purchase-order-form">
+        Add Purchase Order
+        <img src="../../../../../../assets/icons/Plus.png" alt="" />
+      </button>
     </div>
   </div>
-  <div class="table-container mt-2">
-    <div class="table-responsive">
-      <table class="table table-hover ">
-        <thead class="thead-dark ">
-          <tr>
-            <th scope="col" class="one">
-                <div class="table-data">
+</div>
+<div class="table-container mt-2">
+  <div class="table-responsive">
+    <table class="table table-hover ">
+      <thead class="thead-dark ">
+        <tr>
+          <th scope="col" class="one">
+            <div class="table-data">
+              <div class="d-flex gap-2 align-items-center">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                <div>
                   Purchase Order No
                 </div>
-              </th>
-              <th scope="col">
-                <div class="table-data">
-                 Vendor
-                </div>
-              </th>
-              <th scope="col">
-                <div class="table-data">
-                 Vendor Email
-                </div>
-              </th>
-              <th scope="col">
-                <div class="table-data">
-                 Hardware Requested
-                </div>
-              </th>
-              <!-- <th scope="col">
-                <div class="table-data">
-               Requested Date
-                </div>
-              </th> -->
-              <th scope="col">
-                <div class="table-data">
-               Received Date
-                </div>
-              </th>
-              <th scope="col">
-                <div class="table-data">
-                Total Amount
-                </div>
-              </th>
-              <th scope="col" >
-                <div class="table-data">
-                Address
-                </div>
-              </th>
-              <th scope="col" class="two"></th>
+              </div>
+            </div>
+          </th>
+          <th scope="col">
+            <div class="table-data">
+              Vendor
+            </div>
+          </th>
+          <th scope="col">
+            <div class="table-data">
+              Vendor Email
+            </div>
+          </th>
+          <th scope="col">
+            <div class="table-data">
+              Received Date
+            </div>
+          </th>
+          <th scope="col">
+            <div class="table-data">
+              Total Amount
+            </div>
+          </th>
+          <th scope="col">
+            <div class="table-data">
+              Address
+            </div>
+          </th>
+          <th scope="col" class="two"></th>
 
-          </tr>
-        </thead>
-        <tbody>
-          <ng-container *ngFor="let item of paginatedData; let i = index">
-            <tr>
-                <td>
-                    <div class="table-data">
-                      {{ item.purchaseorderno }}
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-data">
-                      {{ item.employeename }}
-                    </div>
-                  </td>
-                  <td>
-                      <div class="table-data">
-                        {{ item.employeeemail }}
-                      </div>
-                    </td>
-                    <td>
-                      <div class="table-data">
-                        {{ item.hardwarerequested }}
-                      </div>
-                    </td>
-                    <!-- <td>
-                      <div class="table-data">
-                        {{ item.requesteddate }}
-                      </div>
-                    </td> -->
-                    <td>
-                      <div class="table-data">
-                        {{ item.receivedddate }}
-                      </div>
-                    </td>
-                    <td>
-                      <div class="table-data">
-                        {{ item.totalamount | currency }}
-                      </div>
-                    </td>
-                    <td>
-                      <div class="table-data">
-                        {{ item.address }}
-                      </div>
-                    </td>
-                    <td>
-                        <div class="table-data d-flex gap-1 w-100 justify-content-end">
-                            <button class="btn"  routerLink="/business-admin/purchase-orders/purchase-order-form"><img src="../../../../../assets/icons/Union.png" alt=""></button>
-                            <button class="btn"><img src="../../../../../assets/icons/Trash can.png" alt=""></button>
-                            <button class="btn visibility" (click)="openDialog()">
-                              <mat-icon>visibility</mat-icon>
-                            </button>
-                            <!-- <button class="btn" (click)="toggleDetails(i)">
-                              <mat-icon>{{ expandedIndex === i ? 'expand_less' : 'expand_more' }}</mat-icon>
-                            </button> -->
-                        </div>
-                      </td>
-            </tr>
-            <!-- <tr *ngIf="expandedIndex === i">
-              <td colspan="12" class="expanded-data">
-                <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-lg-3 col-md-6 mb-2  col-6" *ngFor="let details of item.productdetails">
-                      <h2 class="expanded-row-heading">{{details.name}}</h2>
-                      <div>
-                        <div class="d-flex justify-content-between" *ngFor="let ordereditems of details.items">
-                          <div class="expanded-row-data">{{ordereditems.itemname}}</div>
-                          <div class="expanded-row-data">{{ordereditems.price | currency}}</div>
-                        </div>
-                      </div>
-                    </div>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let item of paginatedData; let i = index">
+          <tr>
+            <td>
+              <div class="table-data">
+                <div class="d-flex gap-2 align-items-center">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                  <div>
+                    {{ item.purchaseorderno }}
                   </div>
                 </div>
-              </td>
-            </tr> -->
-          </ng-container>
-        </tbody>
-      </table>
-    </div>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-start">
-        <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
-          <a class="paginator-button" (click)="previousPage()">
-            <mat-icon>chevron_left</mat-icon>
-          </a>
-        </li>
-        <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
-          <li class="page-item" [ngClass]="{'active-page': currentPage === index + 1}">
-            <a class="paginator-button" (click)="goToPage(index + 1)">
-              {{ index + 1 }}
-            </a>
-          </li>
+              </div>
+            </td>
+            <td>
+              <div class="table-data">
+                {{ item.employeename }}
+              </div>
+            </td>
+            <td>
+              <div class="table-data">
+                {{ item.employeeemail }}
+              </div>
+            </td>
+            <td>
+              <div class="table-data">
+                {{ item.receivedddate }}
+              </div>
+            </td>
+            <td>
+              <div class="table-data">
+                {{ item.totalamount | currency }}
+              </div>
+            </td>
+            <td>
+              <div class="table-data">
+                {{ item.address }}
+              </div>
+            </td>
+            <td>
+              <div class="table-data d-flex gap-1 w-100 justify-content-end">
+                <button class="btn visibility" (click)="openDialog()">
+                  <img src="../../../../../assets/newicons/message square.png" alt="">
+                </button>
+                <button class="btn" routerLink="/business-admin/purchase-orders/purchase-order-form"><img
+                    src="../../../../../assets/icons/Union.png" alt=""></button>
+                <button class="btn"><img src="../../../../../assets/icons/Trash can.png" alt=""></button>
+              </div>
+            </td>
+          </tr>
         </ng-container>
-        <li class="page-item" [class.disabled]="!isNextPageAvailable()">
-          <a class="paginator-button" (click)="nextPage()">
-            <mat-icon>chevron_right</mat-icon>
+      </tbody>
+    </table>
+  </div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-start">
+      <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
+        <a class="paginator-button" (click)="previousPage()">
+          <mat-icon>chevron_left</mat-icon>
+        </a>
+      </li>
+      <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
+        <li class="page-item" [ngClass]="{'active-page': currentPage === index + 1}">
+          <a class="paginator-button" (click)="goToPage(index + 1)">
+            {{ index + 1 }}
           </a>
         </li>
-      </ul>
-    </nav>
-  </div>
+      </ng-container>
+      <li class="page-item" [class.disabled]="!isNextPageAvailable()">
+        <a class="paginator-button" (click)="nextPage()">
+          <mat-icon>chevron_right</mat-icon>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

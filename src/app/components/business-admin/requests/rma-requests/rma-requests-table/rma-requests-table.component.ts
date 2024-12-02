@@ -3,11 +3,11 @@ import { ViewRmaRequestComponent } from '../view-rma-request/view-rma-request.co
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-rma-requests',
-  templateUrl: './rma-requests.component.html',
-  styleUrls: ['./rma-requests.component.css'],
+  selector: 'app-rma-requests-table',
+  templateUrl: './rma-requests-table.component.html',
+  styleUrls: ['./rma-requests-table.component.css']
 })
-export class RmaRequestsComponent {
+export class RmaRequestsTableComponent {
   currentPage = 1;
   itemsPerPage = 5;
   expandedIndex: number | null = null;

@@ -53,3 +53,33 @@ p {
     padding: 0 2rem;
   }
 }
+.check, .check:active{
+  background-color: #0F4D50;
+  color: white;
+  width: 49%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-span{
+  color:white !important;
+}
+.btn-icon{
+  border: 2px solid #ffffff;
+font-size: 14px;
+color:#ffffff;
+font-weight: 600;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius:6px;
+line-height: 0px;
+}
+.close, .close:active{
+ background-color: #CE6D6D;
+ color: white;
+ width: 49%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}

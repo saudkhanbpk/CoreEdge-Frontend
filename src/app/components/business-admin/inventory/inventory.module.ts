@@ -11,12 +11,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { VendorsService } from 'src/app/services/vendors.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { InventoryService } from 'src/app/services/inventory.service';
+import { InventoryProductDetailsComponent } from './inventory-product-details/inventory-product-details.component';
 
 
 @NgModule({
   declarations: [
     AddInventoryComponent,
-    InventoryMenuComponent
+    InventoryMenuComponent,
+    InventoryProductDetailsComponent
   ],
   imports: [
     CommonModule,

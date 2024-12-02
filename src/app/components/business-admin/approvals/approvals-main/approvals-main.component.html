@@ -6,10 +6,14 @@
     </div>
     <div class="main-menu-div mt-3">
         <div class="parent-buttons-group pb-0 gap-2">
+            <button class="btn parent-btn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }"
+                routerLink="/business-admin/approvals/approvals-main/approved-hardware-request">Hardware
+                Requests</button>
             <button class="btn parent-btn" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: false }" routerLink="/business-admin/approvals/approvals-main/approved-hardware-request">Hardware Requests</button>
-            <button class="btn parent-btn" routerLinkActive="active" routerLink="/business-admin/approvals/approvals-main/approved-purchase-request">Purchase Requests</button>
-            <button class="btn parent-btn" routerLinkActive="active" routerLink="/business-admin/approvals/approvals-main/approved-rma-request">Purchase Requests</button>
+                routerLink="/business-admin/approvals/approvals-main/approved-purchase-request">Purchase
+                Requests</button>
+            <button class="btn parent-btn" routerLinkActive="active"
+                routerLink="/business-admin/approvals/approvals-main/approved-rma-request">RMA Requests</button>
         </div>
         <div class="menu-secondary-group bg-white p-2">
             <router-outlet></router-outlet>

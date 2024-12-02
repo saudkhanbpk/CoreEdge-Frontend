@@ -1,6 +1,6 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center">
-        <h2 mat-dialog-title>Request</h2>
+        <h2 mat-dialog-title>Hardware Request</h2>
         <mat-icon class="icon me-2" mat-dialog-close>close</mat-icon>
     </div>
     <mat-dialog-content class="mat-typography" *ngFor="let item of [data]">
@@ -47,25 +47,53 @@
                         <table class="table table-hover">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col" class="one">No</th>
-                                    <th scope="col">Material ID</th>
-                                    <th scope="col">Employee Email</th>
-                                    <th scope="col" class="two">Price</th>
+                                    <th scope="col" class="one">
+                                        <div class="table-data">
+                                            No
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="table-data">
+                                            Material ID
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="table-data">
+                                            Employee Email
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="two">
+                                        <div class="table-data">
+                                            Price
+                                        </div>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let product of item.products let i=index">
-                                    <td>{{i+1}}</td>
-                                    <td>{{product?.product.materialId}}</td>
-                                    <td>{{item.employees[0].email}}</td>
-                                    <td>{{product?.price}}</td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{i+1}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{product?.product.materialId}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{item?.employees[0].email}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{product?.price | currency}}
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-end gap-2">
-                            <h4>Total Amount:</h4>
-                            <span class="amount">$1071.00</span>
-                        </div>
                     </div>
                 </div>
             </div>

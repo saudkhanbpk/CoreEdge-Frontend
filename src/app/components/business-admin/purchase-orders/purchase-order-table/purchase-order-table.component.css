@@ -1,1 +1,7 @@
 @import url(../../../../styles/table.css);
+.form-check-input{
+    width: 24px;
+    height: 24px;
+    margin-top: 0px;
+    box-shadow: none;
+}
