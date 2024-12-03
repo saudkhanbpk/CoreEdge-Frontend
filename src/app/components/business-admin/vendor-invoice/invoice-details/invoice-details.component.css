@@ -30,9 +30,7 @@ thead tr th{
 textarea{
     height: 100px !important;
 }
-.form-control:disabled{
-    cursor: not-allowed;
-}
+
 .form-check-input{
     width: 24px;
     height: 24px;

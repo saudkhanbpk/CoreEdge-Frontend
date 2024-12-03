@@ -1,6 +1,17 @@
 <div class="container-fluid">
   <div class="headdiv">
-    <h1>Receiving</h1>
+    <div class="heading">
+      <h1>Receiving</h1>
+    </div>
+    <div class="secondary-row">
+      <div class="input-group">
+        <input type="text" class="form-control input-group-form-control" placeholder="Search Received Orders"
+          aria-label="Quick Search">
+        <button class="btn search-order-btn" type="button" id="button-addon2">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </div>
   </div>
 <div class="main-menu-div p-2 bg-white rounded-4 mt-3">
   <div class="d-flex justify-content-end my-2">
@@ -104,6 +115,34 @@
           </ng-container>
         </tbody>
       </table>
+      <nav aria-label="Page navigation example" class="m-2">
+        <ul class="pagination justify-content-start">
+          <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
+            <a class="paginator-button" (click)="previousPage()">
+              <mat-icon>chevron_left</mat-icon>
+            </a>
+          </li>
+    
+          <ng-container
+            *ngFor="let page of [].constructor(totalPages); let index = index"
+          >
+            <li
+              class="page-item"
+              [ngClass]="{ 'active-page': currentPage === index + 1 }"
+            >
+              <a class="paginator-button" (click)="goToPage(index + 1)">
+                {{ index + 1 }}
+              </a>
+            </li>
+          </ng-container>
+    
+          <li class="page-item" [class.disabled]="!isNextPageAvailable()">
+            <a class="paginator-button" (click)="nextPage()">
+              <mat-icon>chevron_right</mat-icon>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </div>

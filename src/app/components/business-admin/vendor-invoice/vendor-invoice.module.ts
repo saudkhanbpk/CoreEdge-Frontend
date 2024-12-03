@@ -5,6 +5,7 @@ import { VendorInvoiceRoutingModule } from './vendor-invoice-routing.module';
 import { InvoiceTableComponent } from './invoice-table/invoice-table.component';
 import { InvoiceDetailsComponent } from './invoice-details/invoice-details.component';
 import { MaterialModule } from 'src/app/material';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { MaterialModule } from 'src/app/material';
   imports: [
     CommonModule,
     VendorInvoiceRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ]
 })
 export class VendorInvoiceModule { }

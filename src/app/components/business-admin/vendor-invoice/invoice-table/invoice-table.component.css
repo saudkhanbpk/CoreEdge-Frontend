@@ -1,1 +1,4 @@
 @import url(../../../../styles/table.css);
+select{
+    background-color: none !important;
+}

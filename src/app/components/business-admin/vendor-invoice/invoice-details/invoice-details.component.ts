@@ -6,43 +6,29 @@ import { Component } from '@angular/core';
   styleUrls: ['./invoice-details.component.css']
 })
 export class InvoiceDetailsComponent {
+  showDisputeOptions: boolean = false;
+  masterCheckboxChecked: boolean = false;
   isLoading: boolean = false; // State for spinner
   isPaid: boolean = false;    // State to check if paid
   showDisputeSection: boolean = false; // Flag to show/hide dispute section
   disputeSubmitted: boolean = false; // Flag to toggle button text
-  data =[
-    {
-      name:'Jimmy Anderson',
-      email:'Jimmyanderson@gmail.com',
-      address:'Watertown, MA , USA',
-      totalinvoiceamount:3300,
-      requesteddate:'October 3rd, 2024',
-      receiveddate:'October 5th, 2024',
-      hardware:[
-        {
-          name:'monitor',
-          quantity:5,
-          price:200,
-          totalprice:1000
-        },
-        {
-          name:'keyboard',
-          quantity:3,
-          price:30,
-          totalprice:90
-        }
-      ]
-    }
-
+  purchasedItems = [
+    { name: 'Desktop Monitor', quantity: 1, unitPrice: 150, price: 150, checked: false },
   ]
-  markAsPaid() {
-    this.isLoading = true;
-    setTimeout(() => {
-      this.isLoading = false;
-      this.isPaid = true;
-    }, 2000); // Wait for 2 seconds to simulate the process
+  openDispute(): void {
+    this.showDisputeOptions = true;
   }
-  toggleDispute() {
-    this.showDisputeSection = true; // Immediately show dispute section and change button text
+  cancelDispute(): void {
+    this.showDisputeOptions = false;
+  }
+  get subtotal() {
+    return this.purchasedItems.reduce((sum, item) => sum + item.price, 0);
+  }
+  // Toggle all checkboxes
+  toggleAllCheckboxes(event: Event): void {
+    const isChecked = (event.target as HTMLInputElement).checked;
+    this.purchasedItems.forEach(item => {
+      item.checked = isChecked;
+    });
   }
 }

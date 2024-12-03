@@ -53,7 +53,18 @@
                             <tr>
                                 <th scope="col" class="one">
                                     <div class="table-data">
-                                        No
+                                        <div class="d-flex gap-2 align-items-center">
+                                            <input class="form-check-input"
+                                             type="checkbox" 
+                                             value="" 
+                                             *ngIf="showDisputeOptions" 
+                                             [(ngModel)]="masterCheckboxChecked" 
+                                             (change)="toggleAllCheckboxes($event)"
+                                             id="flexCheckChecked" >
+                                            <div>
+                                              No
+                                            </div>
+                                          </div>
                                     </div>
                                 </th>
                                 <th scope="col">
@@ -71,57 +82,49 @@
                                         Item Price Per unit
                                     </div>
                                 </th>
-                                <th scope="col">
+                                <th scope="col" class="two">
                                     <div class="table-data">
                                        Price
                                     </div>
                                 </th>
-                                <th scope="col" class="two"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr *ngFor="let item of purchasedItems; let i = index">
                                 <td>
                                     <div class="table-data">
                                         <div class="d-flex gap-2 align-items-center">
-                                          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-                                          <div>
-                                            01
-                                          </div>
+                                            <input 
+                                                class="form-check-input" 
+                                                type="checkbox" 
+                                                *ngIf="showDisputeOptions" 
+                                                [(ngModel)]="item.checked">
+                                            <div>{{ i + 1 }}</div>
                                         </div>
-                                      </div>
-                                </td>
-                                <td>
-                                    <div class="table-data">Desktop Monitor</div>
-                                </td>
-                                <td>
-                                    <div class="table-data">01</div>
-                                </td>
-                                <td>
-                                    <div class="table-data">$150</div>
-                                </td>
-                                <td>
-                                    <div class="table-data">$150</div>
-                                </td>
-                                <td>
-                                    <div class="table-data d-flex gap-1 w-100 justify-content-end">
-                                        <button class="btn" matTooltip="Edit"><img
-                                                src="../../../../../assets/icons/Union.png" alt=""></button>
                                     </div>
                                 </td>
+                                <td><div class="table-data">{{ item.name }}</div></td>
+                                <td><div class="table-data">{{ item.quantity }}</div></td>
+                                <td><div class="table-data">{{ item.unitPrice | currency }}</div></td>
+                                <td><div class="table-data">{{ item.price | currency }}</div></td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="d-flex justify-content-end p-3
-                    " style="font-size: 18px;">
-                        <div style="font-weight: 500;">Subtotal:</div> &nbsp; $150
+                    <div class="d-flex justify-content-end p-3" style="font-size: 18px;">
+                        <div style="font-weight: 500;">Subtotal:</div> &nbsp; {{ subtotal | currency }}
                     </div>
+                </div>
+                <div class="input-div input-div-no-pad my-3" *ngIf="showDisputeOptions">
+                    <label for="">Reason for Dispute:</label>
+                    <input type="text" class="form-control" placeholder="Enter reason to file dispute">
                 </div>
             </div>
         </div>
-        <div class="d-flex gap-2 justify-content-end mb-2">
-            <button class="btn add-btn">Settle Up</button>
-            <button class="btn close">Open Dispute</button>
+        <div class="d-flex gap-2 justify-content-end my-2">
+            <button class="btn add-btn" *ngIf="!showDisputeOptions">Settle Up</button>
+            <button class="btn close" *ngIf="!showDisputeOptions" (click)="openDispute()">Open Dispute</button>
+            <button class="btn close" *ngIf="showDisputeOptions">File Dispute</button>
+            <button class="btn cancel-btn" *ngIf="showDisputeOptions" (click)="cancelDispute()">Cancel</button>
         </div>
     </div>
 </div>

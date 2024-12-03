@@ -36,7 +36,7 @@ export class InvoiceTableComponent {
     {
       name: 'Imran Khan',
       email:'imrankhan804@gmail.com',
-      status:'Dispute',
+      status:'Resolved',
       amount:'899'
     },
     {
