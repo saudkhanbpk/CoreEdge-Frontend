@@ -20,13 +20,13 @@
         <option value="name">Saad Khan</option>
         <option value="date">Ihtizaz Ahmad</option>
       </select>
-  
+
       <select class="form-select bg-none border-0 w-auto shadow-none">
         <option value="" disabled selected>sort</option>
         <option value="name">By Name</option>
         <option value="date">By Date</option>
       </select>
-  </div>
+    </div>
     <div class="table-responsive">
       <table class="table table-hover">
         <thead class="thead-dark">
@@ -88,20 +88,20 @@
                       completed: item.status === 'Approved',
                       rejected: item.status === 'Rejected',
                       inactive: item.status === 'Pending'
-                    }"
-                  >
+                    }">
                     {{ item.status }}
                   </div>
                 </div>
               </td>
               <td>
                 <div class="table-data d-flex gap-1 justify-content-end">
-                  <button class="btn visibility" (click)="openDialog(item)">
+                  <button class="btn visibility" (click)="openDialog(item)" matTooltip="View Request">
                     <img src="../../../../../../assets/newicons/Eye.png" alt="">
                   </button>
-                  <button class="btn" routerLink="/business-admin/purchase-request/purchase-request-form"><img
-                    src="../../../../../assets/icons/Union.png" alt=""></button>
-                <button class="btn"><img src="../../../../../assets/icons/Trash can.png" alt=""></button>
+                  <button class="btn" routerLink="/business-admin/purchase-request/purchase-request-form"
+                    matTooltip="Edit Request"><img src="../../../../../assets/icons/Union.png"></button>
+                  <button class="btn"><img src="../../../../../assets/icons/Trash can.png"
+                      matTooltip="Delete Request"></button>
                 </div>
               </td>
             </tr>
@@ -115,20 +115,15 @@
               <mat-icon>chevron_left</mat-icon>
             </a>
           </li>
-    
-          <ng-container
-            *ngFor="let page of [].constructor(totalPages); let index = index"
-          >
-            <li
-              class="page-item"
-              [ngClass]="{ 'active-page': currentPage === index + 1 }"
-            >
+
+          <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
+            <li class="page-item" [ngClass]="{ 'active-page': currentPage === index + 1 }">
               <a class="paginator-button" (click)="goToPage(index + 1)">
                 {{ index + 1 }}
               </a>
             </li>
           </ng-container>
-    
+
           <li class="page-item" [class.disabled]="!isNextPageAvailable()">
             <a class="paginator-button" (click)="nextPage()">
               <mat-icon>chevron_right</mat-icon>

@@ -78,19 +78,18 @@
                           [ngClass]="{
                             completed: item.status === 'Ready',
                             rejected: item.status === 'Onhold'
-                          }"
-                        >
-                          {{ item.status }}
-                        </div>
+                          }">
+                        {{ item.status }}
+                      </div>
                       </div>
                     </td>
                     <td>
                       <div class="table-data d-flex gap-1 justify-content-end">
-                        <button class="btn visibility" (click)="openDialog(item)">
+                        <button class="btn visibility" (click)="openDialog(item)" matTooltip="View Details">
                           <img src="../../../../../../assets/newicons/Eye.png" alt="">
                         </button>
-                        <button class="btn"  routerLink="/business-admin/requests/hardware-requests/edit-hardware-requests"><img src="../../../../../assets/icons/Union.png" alt=""></button>
-                        <button class="btn"><img src="../../../../../assets/icons/Trash can.png" alt=""></button>
+                        <button class="btn"  routerLink="/business-admin/requests/hardware-requests/edit-hardware-requests" matTooltip="View Details"><img src="../../../../../assets/icons/Union.png" alt=""></button>
+                        <button class="btn" matTooltip="View Details"><img src="../../../../../assets/icons/Trash can.png" alt=""></button>
                       </div>
                     </td>
                   </tr>
@@ -99,35 +98,29 @@
             </table>
           </div>
         </div>
-        <nav aria-label="Page navigation example" class="m-2">
-          <ul class="pagination justify-content-start">
-            <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
-              <a class="paginator-button" (click)="previousPage()">
-                <mat-icon>chevron_left</mat-icon>
-              </a>
-            </li>
-  
-            <ng-container
-              *ngFor="let page of [].constructor(totalPages); let index = index"
-            >
-              <li
-                class="page-item"
-                [ngClass]="{ 'active-page': currentPage === index + 1 }"
-              >
-                <a class="paginator-button" (click)="goToPage(index + 1)">
-                  {{ index + 1 }}
-                </a>
-              </li>
-            </ng-container>
-  
-            <li class="page-item" [class.disabled]="!isNextPageAvailable()">
-              <a class="paginator-button" (click)="nextPage()">
-                <mat-icon>chevron_right</mat-icon>
-              </a>
-            </li>
-          </ul>
-        </nav>
       </div>
+      <nav aria-label="Page navigation example" class="m-2">
+        <ul class="pagination justify-content-start">
+          <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
+            <a class="paginator-button" (click)="previousPage()">
+              <mat-icon>chevron_left</mat-icon>
+            </a>
+          </li>
+
+          <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
+            <li class="page-item" [ngClass]="{ 'active-page': currentPage === index + 1 }">
+              <a class="paginator-button" (click)="goToPage(index + 1)">
+                {{ index + 1 }}
+              </a>
+            </li>
+          </ng-container>
+
+          <li class="page-item" [class.disabled]="!isNextPageAvailable()">
+            <a class="paginator-button" (click)="nextPage()">
+              <mat-icon>chevron_right</mat-icon>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
-  
