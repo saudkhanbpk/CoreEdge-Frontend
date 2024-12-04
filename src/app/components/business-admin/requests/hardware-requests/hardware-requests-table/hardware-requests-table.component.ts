@@ -31,6 +31,7 @@ export class HardwareRequestsTableComponent {
       this.requestService.findByUserId(user.id).subscribe(
         (items) => {
           this.data = items.orders;
+          console.log("this.order", items.orders)
         },
         (error) => {
           console.error('Error fetching data:', error);
@@ -66,7 +67,7 @@ export class HardwareRequestsTableComponent {
     console.log('Opening dialog with item:', item);
     const dialogRef = this.dialog.open(ViewHardwareRequestComponent, {
       data: item, // Pass the item to the dialog component
-      width: '500px', // Optional: Customize the dialog width
+      width: 'auto', // Optional: Customize the dialog width
     });
 
     dialogRef.afterClosed().subscribe((result) => {
