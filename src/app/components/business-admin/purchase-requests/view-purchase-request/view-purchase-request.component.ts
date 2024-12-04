@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-view-purchase-request',
@@ -6,6 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./view-purchase-request.component.css']
 })
 export class ViewPurchaseRequestComponent {
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+    console.log('Dialog data:', this.data); // Access the passed item here
+  }
   isLoading: boolean = false; 
   isunavailable: boolean = false;
   vendors: any[] = [

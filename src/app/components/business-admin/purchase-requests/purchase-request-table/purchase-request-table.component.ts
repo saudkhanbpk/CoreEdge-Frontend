@@ -82,8 +82,13 @@ export class PurchaseRequestTableComponent {
     this.currentPage = page;
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(ViewPurchaseRequestComponent);
+  openDialog(item:any) {
+    console.log(item);
+    
+    const dialogRef = this.dialog.open(ViewPurchaseRequestComponent, {
+      data: item, // Pass the item to the dialog component
+      width: '500px', // Optional: Customize the dialog width
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
