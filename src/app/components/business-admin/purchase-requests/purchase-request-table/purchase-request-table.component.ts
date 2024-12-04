@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewPurchaseRequestComponent } from '../view-purchase-request/view-purchase-request.component';
+import { AuthService } from 'src/app/services/auth.service';
+import { RequestService } from 'src/app/services/request.service';
 
 
 @Component({
@@ -13,7 +15,26 @@ export class PurchaseRequestTableComponent {
   itemsPerPage = 10; 
   readonly dialog = inject(MatDialog);
 
+  constructor(
+    private requestService: RequestService,
+    private authService: AuthService
+  ) {}
   
+  ngOnInit(): void {
+    const user = this.authService.getUserData();
+    if (user) {
+      this.requestService.findByUserId(user.id).subscribe(
+        (items) => {
+          this.data = items.purchaseOrders;
+        },
+        (error) => {
+          console.error('Error fetching data:', error);
+          this.data = []; // Ensure `data` is always defined
+        }
+      );
+    }
+  }
+
   data = [
     {
       no: '001',
@@ -51,6 +72,8 @@ export class PurchaseRequestTableComponent {
 
   get paginatedData() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    console.log("this.data.slice(startIndex, startIndex + this.itemsPerPage); : ",this.data.slice(startIndex, startIndex + this.itemsPerPage));
+    
     return this.data.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
