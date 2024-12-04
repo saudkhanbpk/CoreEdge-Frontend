@@ -13,8 +13,8 @@ import { RequestService } from 'src/app/services/request.service';
 export class PurchaseRequestTableComponent {
   currentPage = 1;
   itemsPerPage = 10; 
+  data: any[] = [];
   readonly dialog = inject(MatDialog);
-
   constructor(
     private requestService: RequestService,
     private authService: AuthService
@@ -29,44 +29,44 @@ export class PurchaseRequestTableComponent {
         },
         (error) => {
           console.error('Error fetching data:', error);
-          this.data = []; // Ensure `data` is always defined
+          // this.data = []; // Ensure `data` is always defined
         }
       );
     }
   }
 
-  data = [
-    {
-      no: '001',
-      employeename: 'Saad Khan',
-      employeeemail:'employeeemail@gmail.com',
-      hardwarerequested:'Dell Monitor',
-      date:'October 3rd, 2024',
-      address:'Las Vegas',
-      status : 'Pending',
-      description:'lorem ipsum dolor'
-    },
-    {
-      no: '002',
-      employeename: 'Khan',
-      employeeemail:'employeeemail@gmail.com',
-      hardwarerequested:'Dell Monitor',
-      date:'October 3rd, 2024',
-      address:'Las Vegas',
-      status : 'Rejected',
-      description:'lorem ipsum dolor'
-    },
-    {
-      no: '003',
-      employeename: 'Khan',
-      employeeemail:'employeeemail@gmail.com',
-      hardwarerequested:'Dell Monitor',
-      date:'October 3rd, 2024',
-      address:'Las Vegas',
-      status : 'Pending',
-      description:'lorem ipsum dolor'
-    },
-  ];
+  // data = [
+  //   {
+  //     no: '001',
+  //     employeename: 'Saad Khan',
+  //     employeeemail:'employeeemail@gmail.com',
+  //     hardwarerequested:'Dell Monitor',
+  //     date:'October 3rd, 2024',
+  //     address:'Las Vegas',
+  //     status : 'Pending',
+  //     description:'lorem ipsum dolor'
+  //   },
+  //   {
+  //     no: '002',
+  //     employeename: 'Khan',
+  //     employeeemail:'employeeemail@gmail.com',
+  //     hardwarerequested:'Dell Monitor',
+  //     date:'October 3rd, 2024',
+  //     address:'Las Vegas',
+  //     status : 'Rejected',
+  //     description:'lorem ipsum dolor'
+  //   },
+  //   {
+  //     no: '003',
+  //     employeename: 'Khan',
+  //     employeeemail:'employeeemail@gmail.com',
+  //     hardwarerequested:'Dell Monitor',
+  //     date:'October 3rd, 2024',
+  //     address:'Las Vegas',
+  //     status : 'Pending',
+  //     description:'lorem ipsum dolor'
+  //   },
+  // ];
  
  
   get totalPages() {
@@ -75,8 +75,6 @@ export class PurchaseRequestTableComponent {
 
   get paginatedData() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    console.log("this.data.slice(startIndex, startIndex + this.itemsPerPage); : ",this.data.slice(startIndex, startIndex + this.itemsPerPage));
-    
     return this.data.slice(startIndex, startIndex + this.itemsPerPage);
   }
 

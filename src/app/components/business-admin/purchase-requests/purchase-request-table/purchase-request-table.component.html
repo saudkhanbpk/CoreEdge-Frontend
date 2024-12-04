@@ -50,10 +50,10 @@
               <div class="table-data">Employee Email</div>
             </th>
             <th scope="col">
-              <div class="table-data">Date</div>
+              <div class="table-data">Description</div>
             </th>
             <th scope="col">
-              <div class="table-data">Description</div>
+              <div class="table-data">Date</div>
             </th>
             <th scope="col">
               <div class="table-data">Status</div>
@@ -66,27 +66,27 @@
             <tr *ngFor="let item of paginatedData; let i = index">
               <td>
                 <div class="table-data">
-                  {{ item.no }}
+                  {{ i + 1 }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ item.employeename }}
+                  {{ item.employees[0].name }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ item.employeeemail }}
-                </div>
-              </td>
-              <td>
-                <div class="table-data">
-                  {{ item.date }}
+                  {{ item.employees[0].email }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
                   {{ item.description }}
+                </div>
+              </td>
+              <td>
+                <div class="table-data">
+                  {{ item.createdAt | date }}
                 </div>
               </td>
               <td>
