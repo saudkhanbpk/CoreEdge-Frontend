@@ -26,6 +26,7 @@ export class RmaRequestsTableComponent {
       returndate: 'October 5th, 2024',
       totalamount: '3500',
       address: 'Las Vegas',
+      status:'Onhold',
       productdetails: [
         {
           name: 'Items Requested',
@@ -86,7 +87,7 @@ export class RmaRequestsTableComponent {
       returndate: 'October 25th, 2024',
       totalamount: '8500',
       address: 'San Francisco',
-      status:'PENDING',
+      status:'Ready',
       productdetails: [
         {
           name: 'Items Requested',
@@ -146,6 +147,7 @@ export class RmaRequestsTableComponent {
       returndate: 'November 12th, 2024',
       totalamount: '4500',
       address: 'Houston',
+      status:'PENDING',
       productdetails: [
         {
           name: 'Items Requested',
