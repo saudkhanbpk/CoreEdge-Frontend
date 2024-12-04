@@ -68,7 +68,7 @@
                     </td>
                     <td>
                       <div class="table-data">
-                        {{ item.date }}
+                        {{ item.createdAt | date}}
                       </div>
                     </td>
                     <td>
@@ -76,6 +76,7 @@
                         <div
                           class="status p-2"
                           [ngClass]="{
+                            inprogress: item.status === 'PENDING',
                             completed: item.status === 'Ready',
                             rejected: item.status === 'Onhold'
                           }">

@@ -30,6 +30,7 @@ export class InventoryMenuComponent {
   loadData(): void {
     this.inventoryService.findAll().subscribe((response) => {
       this.inventoryData = response;
+      console.log("this is inventory items", this.inventoryData)
     });
   }
 

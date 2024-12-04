@@ -87,7 +87,7 @@ export class PurchaseRequestTableComponent {
     
     const dialogRef = this.dialog.open(ViewPurchaseRequestComponent, {
       data: item, // Pass the item to the dialog component
-      width: '500px', // Optional: Customize the dialog width
+      width: 'auto', // Optional: Customize the dialog width
     });
 
     dialogRef.afterClosed().subscribe(result => {
