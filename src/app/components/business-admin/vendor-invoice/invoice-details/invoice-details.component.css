@@ -1,13 +1,47 @@
 @import url(../../../../styles/form.css);
+@import url(../../../../styles/table.css);
+.order-head{
+font-size: 14px;
+font-weight: 500;
+line-height: 22px;
+}
+.order-data{
+font-size: 14px;
+font-weight: 400;
+line-height: 22px;
+}
+.modifier-property {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+}
 
-.section-div span{
-    font-size: 18px !important;
+.table-responsive{
+    border: 1px solid lightgray;
+    border-radius: 16px;
 }
-.hardwarename{
-    font-size: 18px;
-    font-weight: 600;
-    text-transform: capitalize;
+
+.table{
+    margin-bottom: 0px;
 }
-h3{
-    font-size: 22px;
+thead tr th{
+    background-color: white !important;
 }
+textarea{
+    height: 100px !important;
+}
+
+.form-check-input{
+    width: 24px;
+    height: 24px;
+    margin-top: 0px;
+    box-shadow: none;
+}
+.close, .close:active{
+    background-color: #CE6D6D;
+    color: white;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }

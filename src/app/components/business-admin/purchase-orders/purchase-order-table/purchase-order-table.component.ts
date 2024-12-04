@@ -11,6 +11,8 @@ import { DialogRef } from '@angular/cdk/dialog';
 export class PurchaseOrderTableComponent {
   currentPage = 1;
   itemsPerPage = 5;
+  showMergeOptions: boolean = false;
+  masterCheckboxChecked: boolean = false;
   expandedIndex: number | null = null;
   readonly dialog = inject(MatDialog)
   constructor() { }
@@ -29,6 +31,8 @@ export class PurchaseOrderTableComponent {
       receivedddate :'October 5th, 2024',
       totalamount :'3500',
       address:'Las Vegas',
+      status:'Ordered',
+      checked:false,
       productdetails: [
         {
           name: 'Items Requested', items: [
@@ -49,6 +53,30 @@ export class PurchaseOrderTableComponent {
       receivedddate :'October 5th, 2024',
       totalamount :'3500',
       address:'Las Vegas',
+      status:'Pending',
+      checked:false,
+      productdetails: [
+        {
+          name: 'Items Requested', items: [
+            { itemname: 'Monitor', price: 5 },
+            { itemname: 'Keyboard', price: 15 },
+            { itemname: 'Mouse', price: 25 },
+            { itemname: 'RAM', price: 35 },
+          ]
+        }
+      ]
+    },
+    {
+      purchaseorderno: '2982-XJ82-92',
+      employeename: 'Aamir Shehzad',
+      employeeemail:'employeeemail@gmail.com',
+      hardwarerequested:'Dell Monitor',
+      requesteddate :'October 3rd, 2024',
+      receivedddate :'October 5th, 2024',
+      totalamount :'3500',
+      address:'Las Vegas',
+      status:'Rejected',
+      checked:false,
       productdetails: [
         {
           name: 'Items Requested', items: [
@@ -61,7 +89,12 @@ export class PurchaseOrderTableComponent {
       ]
     },
   ];
-
+  toggleAllCheckboxes(event: Event): void {
+    const isChecked = (event.target as HTMLInputElement).checked;
+    this.paginatedData.forEach(item => {
+      item.checked = isChecked;
+    });
+  }
   toggleDetails(index: number) {
     this.expandedIndex = this.expandedIndex === index ? null : index;
   }

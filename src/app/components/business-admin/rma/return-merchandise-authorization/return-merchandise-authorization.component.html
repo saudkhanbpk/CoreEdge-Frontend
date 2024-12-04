@@ -1,6 +1,17 @@
 <div class="container-fluid p-0 overflow-hidden">
   <div class="headdiv mb-4">
-    <h1>RMA</h1>
+    <div class="heading">
+      <h1>Return Merchandise Authorization</h1>
+    </div>
+    <div class="secondary-row">
+      <div class="input-group">
+        <input type="text" class="form-control input-group-form-control" placeholder="Search RMA"
+          aria-label="Quick Search">
+        <button class="btn search-order-btn" type="button" id="button-addon2">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </div>
   </div>
   <div class="menu-div">
     <div class="order-types-tables">
@@ -102,10 +113,9 @@
                   </td>
                   <td>
                     <div class="table-data d-flex gap-1 justify-content-end">
-                      <button class="btn review-btn text-white gap-2"
-                        [ngStyle]="{'background-color': item.status === 'Returned' ? '#0F4D5026' : '#0F4D50', 'border-color': item.status === 'Returned'? '#0F4D5026': '#0F4D50'}"
-                        (click)="openDialog()">Review
-                        <img src="../../../../../assets/icons/Message square.png" alt="">
+                      <button class="btn "
+                        (click)="openDialog()">
+                        <img src="../../../../../assets/newicons/message square.png" alt="">
                       </button>
                     </div>
                   </td>

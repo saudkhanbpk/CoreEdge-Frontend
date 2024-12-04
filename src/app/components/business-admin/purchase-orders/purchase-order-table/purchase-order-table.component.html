@@ -10,8 +10,8 @@
         <mat-icon>search</mat-icon>
       </button>
     </div>
-    <div>
-      <select name="" id="" class="form-select">
+    <div *ngIf="showMergeOptions">
+      <select name="" id="" class="form-select" id="vendors-list">
         <option value="">Jimmy Anderson</option>
         <option value="">Steven Smith</option>
         <option value="">Mitchell Starc</option>
@@ -19,19 +19,19 @@
 
       </select>
     </div>
-    <div>
-      <button class="btn add-btn">
+    <div *ngIf="!showMergeOptions">
+      <button class="btn add-btn" (click)="showMergeOptions = true">
         Merge Orders
         <img src="../../../../../assets/newicons/Layers.png" alt="" />
       </button>
     </div>
-    <div>
+    <div *ngIf="showMergeOptions">
       <button class="btn add-btn">
         Merge Selection
         <img src="../../../../../assets/newicons/Layers.png" alt="" />
       </button>
     </div>
-    <div>
+    <div *ngIf="!showMergeOptions">
       <button class="btn add-btn" routerLink="/business-admin/purchase-orders/purchase-order-form">
         Add Purchase Order
         <img src="../../../../../../assets/icons/Plus.png" alt="" />
@@ -39,7 +39,20 @@
     </div>
   </div>
 </div>
-<div class="table-container mt-2">
+<div class="table-container p-2 mt-2">
+  <div class="d-flex justify-content-end flex-wrap mb-2 gap-2 bg-none">
+    <select class="form-select bg-none border-0 w-auto shadow-none">
+      <option value="" disabled selected>Vendor</option>
+      <option value="name">Saad Khan</option>
+      <option value="date">Ihtizaz Ahmad</option>
+    </select>
+
+    <select class="form-select bg-none border-0 w-auto shadow-none">
+      <option value="" disabled selected>sort</option>
+      <option value="name">By Name</option>
+      <option value="date">By Date</option>
+    </select>
+</div>
   <div class="table-responsive">
     <table class="table table-hover ">
       <thead class="thead-dark ">
@@ -47,8 +60,13 @@
           <th scope="col" class="one">
             <div class="table-data">
               <div class="d-flex gap-2 align-items-center">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-                <div>
+                <input
+                *ngIf="showMergeOptions"
+                class="form-check-input"
+                type="checkbox"
+                [(ngModel)]="masterCheckboxChecked"
+                (change)="toggleAllCheckboxes($event)">
+                                <div>
                   Purchase Order No
                 </div>
               </div>
@@ -79,6 +97,9 @@
               Address
             </div>
           </th>
+          <th scope="col">
+            <div class="table-data">Status</div>
+          </th>
           <th scope="col" class="two"></th>
 
         </tr>
@@ -89,7 +110,11 @@
             <td>
               <div class="table-data">
                 <div class="d-flex gap-2 align-items-center">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                  <input *ngIf="showMergeOptions" 
+                   class="form-check-input" 
+                   type="checkbox" value=""
+                   [(ngModel)]="item.checked"
+                    id="flexCheckChecked" >
                   <div>
                     {{ item.purchaseorderno }}
                   </div>
@@ -119,6 +144,20 @@
             <td>
               <div class="table-data">
                 {{ item.address }}
+              </div>
+            </td>
+            <td>
+              <div class="table-data">
+                <div
+                  class="status p-2"
+                  [ngClass]="{
+                    completed: item.status === 'Ordered',
+                    rejected: item.status === 'Rejected',
+                    inprogress: item.status === 'Pending'
+                  }"
+                >
+                  {{ item.status }}
+                </div>
               </div>
             </td>
             <td>

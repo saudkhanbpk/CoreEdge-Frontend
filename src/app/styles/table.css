@@ -214,6 +214,18 @@ tr:hover {
     align-items: center;
     justify-content: center;
 }
+.resolved {
+    background-color: #3395F012;
+    color: #5A7F9D;
+    border: 1px solid #5A7F9D;
+    height: 22px;
+    width: 100px;
+    border-radius: 7px;
+    padding: 0px 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .expanded-data {
     border-radius: 7px;

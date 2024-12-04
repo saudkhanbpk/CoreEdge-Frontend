@@ -4,6 +4,13 @@
       <h1>Purchase Requests</h1>
     </div>
     <div class="secondary-row">
+      <div class="input-group">
+        <input type="text" class="form-control input-group-form-control" placeholder="Search Purchase Request"
+          aria-label="Quick Search">
+        <button class="btn search-order-btn" type="button" id="button-addon2">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
       <div>
         <button
           class="btn add-btn"
@@ -15,7 +22,20 @@
       </div>
     </div>
   </div>
-  <div class="table-container p-0 mt-2">
+  <div class="table-container p-2 mt-2">
+    <div class="d-flex justify-content-end flex-wrap mb-2 gap-2 bg-none">
+      <select class="form-select bg-none border-0 w-auto shadow-none">
+        <option value="" disabled selected>Employee</option>
+        <option value="name">Saad Khan</option>
+        <option value="date">Ihtizaz Ahmad</option>
+      </select>
+  
+      <select class="form-select bg-none border-0 w-auto shadow-none">
+        <option value="" disabled selected>sort</option>
+        <option value="name">By Name</option>
+        <option value="date">By Date</option>
+      </select>
+  </div>
     <div class="table-responsive">
       <table class="table table-hover">
         <thead class="thead-dark">
@@ -94,7 +114,7 @@
               <td>
                 <div class="table-data d-flex gap-1 justify-content-end">
                   <button class="btn visibility" (click)="openDialog()">
-                    <mat-icon>visibility</mat-icon>
+                    <img src="../../../../../../assets/newicons/Eye.png" alt="">
                   </button>
                   <button class="btn" routerLink="/business-admin/purchase-request/purchase-request-form"><img
                     src="../../../../../assets/icons/Union.png" alt=""></button>

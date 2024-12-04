@@ -1,11 +1,39 @@
 <div class="table-div">
   <div class="headdiv">
     <div class="heading">
-      <h1>Vendor's Invoices</h1>
+      <h1>Invoices</h1>
     </div>
+    <div class="secondary-row">
+      <div class="input-group">
+        <input type="text" class="form-control input-group-form-control" placeholder="Search Invoice"
+          aria-label="Quick Search">
+        <button class="btn search-order-btn" type="button" id="button-addon2">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+      </div>
   </div>
-
-  <div class="table-container p-0 mt-2">
+  <div class="table-container p-2 mt-2">
+    <div class="d-flex justify-content-end flex-wrap mb-2 gap-2 bg-none">
+      <select class="form-select bg-none border-0 w-auto shadow-none">
+        <option value="" disabled selected>Status</option>
+        <option value="pending">Pending</option>
+        <option value="resolved">Resolved</option>
+        <option value="paid">Paid</option>
+        <option value="dispute">Dispute</option>
+      </select>
+      <select class="form-select bg-none border-0 w-auto shadow-none">
+        <option value="" disabled selected>Vendor</option>
+        <option value="name">Saad Khan</option>
+        <option value="date">Ihtizaz Ahmad</option>
+      </select>
+  
+      <select class="form-select bg-none border-0 w-auto shadow-none">
+        <option value="" disabled selected>sort</option>
+        <option value="name">By Name</option>
+        <option value="date">By Date</option>
+      </select>
+  </div>
     <div class="table-responsive">
       <table class="table table-hover">
         <thead class="thead-dark">
@@ -58,7 +86,8 @@
                     [ngClass]="{
                       completed: vendor.status === 'Paid',
                       rejected: vendor.status === 'Dispute',
-                      inprogress: vendor.status === 'Pending'
+                      inprogress: vendor.status === 'Pending',
+                      resolved: vendor.status === 'Resolved'
                     }"
                   >
                     {{ vendor.status }}
@@ -73,8 +102,8 @@
                     class="btn"
                     routerLink="/business-admin/vendor-invoice/invoice-details"
                   >
-                    <mat-icon>visibility</mat-icon>
-                  </button>
+                  <img src="../../../../../../assets/newicons/Eye.png" alt="">
+                </button>
                   <button class="btn">
                     <img
                       src="../../../../../assets/icons/Trash can.png"
