@@ -9,23 +9,19 @@
   </div>
 
   <div class="mt-3 section-div">
-      <h2>Vendor Details</h2>
+      <h2>Employee Details</h2>
       <div class="row p-2">
           <div class="col-md-6">
               <div class="input-div input-div-no-pad">
-                  <label for="">Vendor</label>
-                  <select name="" id="" class="form-select">
-                      <option value="vendora">Vendor A</option>
-                      <option value="vendorb">Vendor B</option>
-                      <option value="vendorc">Vendor C</option>
-                      <option value="vendord">Vendor D</option>
-                  </select>
+                  <label for="">Employee Name</label>
+                  <input type="text" class="form-control"  placeholder="Enter Employee Name" disabled>
+
               </div>
           </div>
           <div class="col-md-6">
               <div class="input-div input-div-no-pad">
-                  <label for="">Vendor Email</label>
-                  <input type="email" class="form-control"  placeholder="Enter Vendor Email">
+                  <label for="">Employee Email</label>
+                  <input type="text" class="form-control"  placeholder="Enter Employee Email" disabled>
               </div>
           </div>
           <div class="col-md-6">
@@ -37,16 +33,10 @@
           <div class="col-md-6">
               <div class="input-div input-div-no-pad">
                   <label for="">Total Amount</label>
-                  <input type="number" class="form-control" placeholder="Enter Total Ammount">
+                  <input type="text" class="form-control" placeholder="Enter Total Ammount" disabled>
               </div>
           </div>
-          <div class="col-md-6">
-              <div class="input-div input-div-no-pad">
-                  <label for="">Address</label>
-                  <input type="text" class="form-control" placeholder="Enter Vendor Address">
-              </div>
-          </div>
-          <div class="col-md-6">
+          <div class="col-md-12">
               <div class="input-div input-div-no-pad">
                   <label for="">Description</label>
                   <input  class="form-control" placeholder="Enter Description">
@@ -70,6 +60,16 @@
                               </div>
                           </th>
                           <th scope="col">
+                            <div class="table-data">
+                                Vendor Name
+                            </div>
+                        </th>
+                        <th scope="col">
+                            <div class="table-data">
+                                Vendor Email
+                            </div>
+                        </th>
+                          <th scope="col">
                               <div class="table-data">
                                   Item Name
                               </div>
@@ -91,6 +91,22 @@
                           <td>
                               <div class="table-data">01</div>
                           </td>
+                          <td>
+                            <div class="table-data">
+                                <div class="input-div input-div-no-pad">
+                                    <select name="" id="" class="form-select new-width">
+                                        <option value="Vendor A">Vendor A</option>
+                                        <option value="Vendor B">Vendor B</option>
+                                        <option value="Vendor C">Vendor C</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="table-data w-100">
+                                <input type="email" name="" id="" class="form-control new-width" placeholder="Enter Vendor Email">
+                            </div>
+                        </td>
                           <td>
                               <div class="table-data">
                                   <div class="input-div input-div-no-pad">
