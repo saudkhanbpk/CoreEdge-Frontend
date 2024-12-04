@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewPurchaseRequestComponent } from '../../purchase-requests/view-purchase-request/view-purchase-request.component';
+import { ViewApprovedPurchaseRequestComponent } from '../view-approved-purchase-request/view-approved-purchase-request.component';
 
 @Component({
   selector: 'app-approved-purchase-request',
@@ -6,5 +9,82 @@ import { Component } from '@angular/core';
   styleUrls: ['./approved-purchase-request.component.css']
 })
 export class ApprovedPurchaseRequestComponent {
+  currentPage = 1;
+  itemsPerPage = 10; 
+  readonly dialog = inject(MatDialog);
 
+  
+  data = [
+    {
+      no: '001',
+      employeename: 'Saad Khan',
+      employeeemail:'employeeemail@gmail.com',
+      hardwarerequested:'Dell Monitor',
+      date:'October 3rd, 2024',
+      address:'Las Vegas',
+      status : 'Approved',
+      description:'lorem ipsum dolor'
+    },
+    {
+      no: '002',
+      employeename: 'Khan',
+      employeeemail:'employeeemail@gmail.com',
+      hardwarerequested:'Dell Monitor',
+      date:'October 3rd, 2024',
+      address:'Las Vegas',
+      status : 'Approved',
+      description:'lorem ipsum dolor'
+    },
+    {
+      no: '003',
+      employeename: 'Khan',
+      employeeemail:'employeeemail@gmail.com',
+      hardwarerequested:'Dell Monitor',
+      date:'October 3rd, 2024',
+      address:'Las Vegas',
+      status : 'Approved',
+      description:'lorem ipsum dolor'
+    },
+  ];
+ 
+ 
+  get totalPages() {
+    return Math.ceil(this.data.length / this.itemsPerPage);
+  }
+
+  get paginatedData() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.data.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  goToPage(page: number) {
+    this.currentPage = page;
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ViewApprovedPurchaseRequestComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  isNextPageAvailable() {
+    return this.currentPage < this.totalPages;
+  }
+
+  isPreviousPageAvailable() {
+    return this.currentPage > 1;
+  }
 }

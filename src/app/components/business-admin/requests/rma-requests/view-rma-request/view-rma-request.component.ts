@@ -7,13 +7,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./view-rma-request.component.css']
 })
 export class ViewRmaRequestComponent {
-  isLoading: boolean = false; 
-  isunavailable: boolean = false;
-  vendors: any[] = [
-    { id: 1, name: 'Vendor A' },
-    { id: 2, name: 'Vendor B' },
-    { id: 3, name: 'Vendor C' },
-  ];
   request = [
     {
       no: "01",
@@ -49,26 +42,4 @@ export class ViewRmaRequestComponent {
     },
   ];
   
-
-  selectVendor() {
-    const vendorOptions = this.vendors.reduce((acc, vendor) => {
-      acc[vendor.id] = vendor.name;
-      return acc;
-    }, {} as Record<number, string>); 
-
-    Swal.fire({
-      title: 'Select a Vendor',
-      input: 'select',
-      inputOptions: vendorOptions,
-      inputPlaceholder: 'Select a vendor',
-      showCancelButton: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const selectedVendor = this.vendors.find(v => v.id === +result.value);
-        if (selectedVendor) {
-          Swal.fire('Request Sent!', `Your request has been sent to ${selectedVendor.name}.`, 'success');
-        }
-      }
-    });
-  }
 }
