@@ -22,7 +22,8 @@ export class PurchaseRequestTableComponent {
       hardwarerequested:'Dell Monitor',
       date:'October 3rd, 2024',
       address:'Las Vegas',
-      status : 'Pending'
+      status : 'Pending',
+      description:'lorem ipsum dolor'
     },
     {
       no: '002',
@@ -31,7 +32,8 @@ export class PurchaseRequestTableComponent {
       hardwarerequested:'Dell Monitor',
       date:'October 3rd, 2024',
       address:'Las Vegas',
-      status : 'Rejected'
+      status : 'Rejected',
+      description:'lorem ipsum dolor'
     },
     {
       no: '003',
@@ -40,7 +42,8 @@ export class PurchaseRequestTableComponent {
       hardwarerequested:'Dell Monitor',
       date:'October 3rd, 2024',
       address:'Las Vegas',
-      status : 'Pending'
+      status : 'Pending',
+      description:'lorem ipsum dolor'
     },
   ];
  

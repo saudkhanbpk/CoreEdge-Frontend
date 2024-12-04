@@ -29,6 +29,7 @@ export class HardwareRequestsTableComponent {
       hardwarerequested: 'Dell Monitor',
       description: 'I just need it, my old monitor is broke.',
       status: 'Onhold',
+      date:'oct 20 , 2024'
     },
     {
       no: '002',
@@ -37,6 +38,8 @@ export class HardwareRequestsTableComponent {
       hardwarerequested: 'Dell Monitor',
       description: 'I just need it, my old monitor is broke.',
       status: 'Ready',
+      date:'oct 20 , 2024'
+
     },
   ];
 
