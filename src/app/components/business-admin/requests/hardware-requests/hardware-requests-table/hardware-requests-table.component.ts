@@ -18,7 +18,7 @@ export class HardwareRequestsTableComponent {
   expandedIndex: number | null = null;
   readonly dialog = inject(MatDialog);
 
-  data: any[] = []; // Initialize as an empty array to prevent `undefined` issues
+  data: any; // Initialize as an empty array to prevent `undefined` issues
 
   constructor(
     private requestService: RequestService,
@@ -34,15 +34,36 @@ export class HardwareRequestsTableComponent {
         },
         (error) => {
           console.error('Error fetching data:', error);
-          this.data = []; // Ensure `data` is always defined
+          // this.data = []; // Ensure `data` is always defined
         }
       );
     }
   }
 
+ 
+  // data = [
+  //   {
+  //     no: '001',
+  //     employeename: 'Saad Khan',
+  //     employeeemail: 'employeeemail@gmail.com',
+  //     hardwarerequested: 'Dell Monitor',
+  //     description: 'I just need it, my old monitor is broke.',
+  //     status: 'Onhold',
+  //     date:'oct 20 , 2024'
+  //   },
+  //   {
+  //     no: '002',
+  //     employeename: 'Ihtizaz Ahmad',
+  //     employeeemail: 'employeeemail@gmail.com',
+  //     hardwarerequested: 'Dell Monitor',
+  //     description: 'I just need it, my old monitor is broke.',
+  //     status: 'Ready',
+  //     date:'oct 20 , 2024'
+
+  //   },
+  // ];
   openDialog(item: any) {
     console.log('Opening dialog with item:', item);
-
     const dialogRef = this.dialog.open(ViewHardwareRequestComponent, {
       data: item, // Pass the item to the dialog component
       width: '500px', // Optional: Customize the dialog width
