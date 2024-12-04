@@ -28,6 +28,8 @@ export class ApprovedHardwareRequestComponent {
       employeeemail: 'employeeemail@gmail.com',
       hardwarerequested: 'Dell Monitor',
       description: 'I just need it, my old monitor is broke.',
+      status: 'Approved',
+      date:'oct 20 , 2024'
     },
     {
       no: '002',
@@ -35,9 +37,11 @@ export class ApprovedHardwareRequestComponent {
       employeeemail: 'employeeemail@gmail.com',
       hardwarerequested: 'Dell Monitor',
       description: 'I just need it, my old monitor is broke.',
+      status: 'Approved',
+      date:'oct 20 , 2024'
+
     },
   ];
-
   openDialog() {
     const dialogRef = this.dialog.open(ViewApprovedHardwareRequestComponent);
 

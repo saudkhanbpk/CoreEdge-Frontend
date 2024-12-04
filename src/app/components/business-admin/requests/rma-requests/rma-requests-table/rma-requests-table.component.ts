@@ -11,159 +11,162 @@ export class RmaRequestsTableComponent {
   currentPage = 1;
   itemsPerPage = 5;
   expandedIndex: number | null = null;
-  data:any;
+  // data:any;
   readonly dialog = inject(MatDialog);
   constructor() {}
   ngOnInit(): void {}
 
-  // data = [
-  //   {
-  //     rmano: '001',
-  //     employeename: 'Saad Khan',
-  //     employeeemail: 'employeeemail@gmail.com',
-  //     venderName: 'Dell Monitor',
-  //     requesteddate: 'October 3rd, 2024',
-  //     returndate: 'October 5th, 2024',
-  //     totalamount: '3500',
-  //     address: 'Las Vegas',
-  //     productdetails: [
-  //       {
-  //         name: 'Items Requested',
-  //         items: [
-  //           {
-  //             itemname: 'Monitor',
-  //             qty: 2,
-  //             price: 500,
-  //             reason:
-  //               'Broken Screen jksd kajhdajkl klajdkljhafklj lakjsdlfkjslk',
-  //           },
-  //           {
-  //             itemname: 'Keyboard',
-  //             qty: 1,
-  //             price: 15,
-  //             reason: 'return this order',
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     rmano: '002',
-  //     employeename: 'Ali Ahmed',
-  //     employeeemail: 'ali.ahmed@gmail.com',
-  //     venderName: 'HP Laptop',
-  //     requesteddate: 'October 10th, 2024',
-  //     returndate: 'October 15th, 2024',
-  //     totalamount: '5000',
-  //     address: 'New York',
-  //     productdetails: [
-  //       {
-  //         name: 'Items Requested',
-  //         items: [
-  //           {
-  //             itemname: 'Laptop',
-  //             qty: 1,
-  //             price: 4500,
-  //             reason: 'Battery issue and poor performance',
-  //           },
-  //           {
-  //             itemname: 'Charger',
-  //             qty: 1,
-  //             price: 500,
-  //             reason: 'Defective product',
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     rmano: '003',
-  //     employeename: 'Fatima Ali',
-  //     employeeemail: 'fatima.ali@gmail.com',
-  //     venderName: 'Apple Store',
-  //     requesteddate: 'October 20th, 2024',
-  //     returndate: 'October 25th, 2024',
-  //     totalamount: '8500',
-  //     address: 'San Francisco',
-  //     productdetails: [
-  //       {
-  //         name: 'Items Requested',
-  //         items: [
-  //           {
-  //             itemname: 'iPhone',
-  //             qty: 1,
-  //             price: 8000,
-  //             reason: 'Not functioning as expected',
-  //           },
-  //           {
-  //             itemname: 'AirPods',
-  //             qty: 1,
-  //             price: 500,
-  //             reason: 'Product damaged during delivery',
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     rmano: '004',
-  //     employeename: 'John Doe',
-  //     employeeemail: 'john.doe@gmail.com',
-  //     venderName: 'Samsung Store',
-  //     requesteddate: 'November 1st, 2024',
-  //     returndate: 'November 5th, 2024',
-  //     totalamount: '6000',
-  //     address: 'Los Angeles',
-  //     productdetails: [
-  //       {
-  //         name: 'Items Requested',
-  //         items: [
-  //           {
-  //             itemname: 'Tablet',
-  //             qty: 1,
-  //             price: 5500,
-  //             reason: 'Screen flickering issue',
-  //           },
-  //           {
-  //             itemname: 'Cover',
-  //             qty: 1,
-  //             price: 500,
-  //             reason: 'Does not fit the tablet model',
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     rmano: '005',
-  //     employeename: 'Zara Khan',
-  //     employeeemail: 'zara.khan@gmail.com',
-  //     venderName: 'Sony Electronics',
-  //     requesteddate: 'November 8th, 2024',
-  //     returndate: 'November 12th, 2024',
-  //     totalamount: '4500',
-  //     address: 'Houston',
-  //     productdetails: [
-  //       {
-  //         name: 'Items Requested',
-  //         items: [
-  //           {
-  //             itemname: 'Camera',
-  //             qty: 1,
-  //             price: 4000,
-  //             reason: 'Lens is not functioning properly',
-  //           },
-  //           {
-  //             itemname: 'Memory Card',
-  //             qty: 1,
-  //             price: 500,
-  //             reason: 'Not compatible with the camera',
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   },
-  // ];
+  data = [
+    {
+      rmano: '001',
+      employeename: 'Saad Khan',
+      employeeemail: 'employeeemail@gmail.com',
+      vendorName: 'Dell Monitor',
+      requesteddate: 'October 3rd, 2024',
+      returndate: 'October 5th, 2024',
+      totalamount: '3500',
+      address: 'Las Vegas',
+      productdetails: [
+        {
+          name: 'Items Requested',
+          items: [
+            {
+              itemname: 'Monitor',
+              qty: 2,
+              price: 500,
+              reason:
+                'Broken Screen jksd kajhdajkl klajdkljhafklj lakjsdlfkjslk',
+            },
+            {
+              itemname: 'Keyboard',
+              qty: 1,
+              price: 15,
+              reason: 'return this order',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      rmano: '002',
+      employeename: 'Ali Ahmed',
+      employeeemail: 'ali.ahmed@gmail.com',
+      vendorName: 'HP Laptop',
+      requesteddate: 'October 10th, 2024',
+      returndate: 'October 15th, 2024',
+      totalamount: '5000',
+      address: 'New York',
+      status:'PENDING',
+      productdetails: [
+        {
+          name: 'Items Requested',
+          items: [
+            {
+              itemname: 'Laptop',
+              qty: 1,
+              price: 4500,
+              reason: 'Battery issue and poor performance',
+            },
+            {
+              itemname: 'Charger',
+              qty: 1,
+              price: 500,
+              reason: 'Defective product',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      rmano: '003',
+      employeename: 'Fatima Ali',
+      employeeemail: 'fatima.ali@gmail.com',
+      vendorName: 'Apple Store',
+      requesteddate: 'October 20th, 2024',
+      returndate: 'October 25th, 2024',
+      totalamount: '8500',
+      address: 'San Francisco',
+      status:'PENDING',
+      productdetails: [
+        {
+          name: 'Items Requested',
+          items: [
+            {
+              itemname: 'iPhone',
+              qty: 1,
+              price: 8000,
+              reason: 'Not functioning as expected',
+            },
+            {
+              itemname: 'AirPods',
+              qty: 1,
+              price: 500,
+              reason: 'Product damaged during delivery',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      rmano: '004',
+      employeename: 'John Doe',
+      employeeemail: 'john.doe@gmail.com',
+      vendorName: 'Samsung Store',
+      requesteddate: 'November 1st, 2024',
+      returndate: 'November 5th, 2024',
+      totalamount: '6000',
+      address: 'Los Angeles',
+      status:'Onhold',
+      productdetails: [
+        {
+          name: 'Items Requested',
+          items: [
+            {
+              itemname: 'Tablet',
+              qty: 1,
+              price: 5500,
+              reason: 'Screen flickering issue',
+            },
+            {
+              itemname: 'Cover',
+              qty: 1,
+              price: 500,
+              reason: 'Does not fit the tablet model',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      rmano: '005',
+      employeename: 'Zara Khan',
+      employeeemail: 'zara.khan@gmail.com',
+      vendorName: 'Sony Electronics',
+      requesteddate: 'November 8th, 2024',
+      returndate: 'November 12th, 2024',
+      totalamount: '4500',
+      address: 'Houston',
+      productdetails: [
+        {
+          name: 'Items Requested',
+          items: [
+            {
+              itemname: 'Camera',
+              qty: 1,
+              price: 4000,
+              reason: 'Lens is not functioning properly',
+            },
+            {
+              itemname: 'Memory Card',
+              qty: 1,
+              price: 500,
+              reason: 'Not compatible with the camera',
+            },
+          ],
+        },
+      ],
+    },
+  ];
 
   openDialog(item:any) {
     const dialogRef = this.dialog.open(ViewRmaRequestComponent);
