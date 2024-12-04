@@ -1,136 +1,127 @@
 <div class="menu-div">
     <div class="order-types-tables">
-      <div class="d-flex justify-content-end">
-        <select class="form-select border-0 w-auto shadow-none">
-          <option value="" disabled selected>sort</option>
-          <option value="name">By Name</option>
-          <option value="date">By Date</option>
-          <option value="amount">By Amount</option>
-        </select>
-    </div>
-      <div class="table-container p-0 mt-2">
-        <div class="table-responsive">
-          <table class="table table-hover">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col" class="one">
-                  <div class="table-data">RMA No</div>
-                </th>
-                <th scope="col">
-                  <div class="table-data">Employee Name</div>
-                </th>
-                <th scope="col">
-                  <div class="table-data">Employee Email</div>
-                </th>
-                <th scope="col">
-                  <div class="table-data">Vendor Name</div>
-                </th>
-                <th scope="col">
-                  <div class="table-data">Total Amount</div>
-                </th>
-                <th scope="col">
-                  <div class="table-data">Requested Date</div>
-                </th>
-                <th scope="col">
-                  <div class="table-data">Return Date</div>
-                </th>
-                <th scope="col">
-                    <div class="table-data">Status</div>
-                  </th>
-                <th scope="col" class="two"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <ng-container *ngFor="let item of paginatedData; let i = index">
-                <tr>
-                  <td>
-                    <div class="table-data">
-                      {{ item.rmano }}
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-data">
-                      {{ item.employeename }}
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-data">
-                      {{ item.employeeemail }}
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-data">
-                      {{ item.vendorName }}
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-data">
-                      {{ item.totalamount | currency }}
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-data">
-                      {{ item.requesteddate }}
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-data">
-                      {{ item.returndate }}
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-data">
-                      <div
-                        class="status p-2"
-                        [ngClass]="{
-                          completed: item.status === 'Approved',
-                        }"
-                      >
-                        {{ item.status }}
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-data d-flex gap-1 justify-content-end">
-                      <button class="btn visibility" (click)="openDialog()">
-                        <img src="../../../../../../assets/newicons/Eye.png" alt="">
-                      </button>
-                      <button class="btn"  routerLink="/business-admin/requests/rma-requests/edit-rma-requests"><img src="../../../../../assets/icons/Union.png" alt=""></button>
-                      <button class="btn"><img src="../../../../../assets/icons/Trash can.png" alt=""></button>
-                    </div>
-                  </td>
-                </tr>
-              </ng-container>
-            </tbody>
-          </table>
+        <div class="d-flex justify-content-end">
+            <select class="form-select border-0 w-auto shadow-none">
+                <option value="" disabled selected>sort</option>
+                <option value="name">By Name</option>
+                <option value="date">By Date</option>
+                <option value="amount">By Amount</option>
+            </select>
         </div>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-start">
-            <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
-              <a class="paginator-button" (click)="previousPage()">
-                <mat-icon>chevron_left</mat-icon>
-              </a>
-            </li>
-            <ng-container
-              *ngFor="let page of [].constructor(totalPages); let index = index"
-            >
-              <li
-                class="page-item"
-                [ngClass]="{ 'active-page': currentPage === index + 1 }"
-              >
-                <a class="paginator-button" (click)="goToPage(index + 1)">
-                  {{ index + 1 }}
-                </a>
-              </li>
-            </ng-container>
-            <li class="page-item" [class.disabled]="!isNextPageAvailable()">
-              <a class="paginator-button" (click)="nextPage()">
-                <mat-icon>chevron_right</mat-icon>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+        <div class="table-container p-0 mt-2">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col" class="one">
+                                <div class="table-data">RMA No</div>
+                            </th>
+                            <th scope="col">
+                                <div class="table-data">Employee Name</div>
+                            </th>
+                            <th scope="col">
+                                <div class="table-data">Employee Email</div>
+                            </th>
+                            <th scope="col">
+                                <div class="table-data">Vendor Name</div>
+                            </th>
+                            <th scope="col">
+                                <div class="table-data">Total Amount</div>
+                            </th>
+                            <th scope="col">
+                                <div class="table-data">Requested Date</div>
+                            </th>
+                            <th scope="col">
+                                <div class="table-data">Return Date</div>
+                            </th>
+                            <th scope="col">
+                                <div class="table-data">Status</div>
+                            </th>
+                            <th scope="col" class="two"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let item of paginatedData; let i = index">
+                            <tr>
+                                <td>
+                                    <div class="table-data">
+                                        {{ item.rmano }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-data">
+                                        {{ item.employeename }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-data">
+                                        {{ item.employeeemail }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-data">
+                                        {{ item.vendorName }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-data">
+                                        {{ item.totalamount | currency }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-data">
+                                        {{ item.requesteddate }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-data">
+                                        {{ item.returndate }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-data">
+                                        <div class="status p-2" [ngClass]="{
+                          completed: item.status === 'Approved',
+                        }">
+                                            {{ item.status }}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-data d-flex gap-1 justify-content-end">
+                                        <button class="btn visibility" (click)="openDialog()" matTooltip="View Request">
+                                            <img src="../../../../../../assets/newicons/Eye.png" alt="">
+                                        </button>
+                                        <button class="btn" matTooltip="Delete Request"><img
+                                                src="../../../../../assets/icons/Trash can.png" alt=""></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-start">
+                    <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
+                        <a class="paginator-button" (click)="previousPage()">
+                            <mat-icon>chevron_left</mat-icon>
+                        </a>
+                    </li>
+                    <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
+                        <li class="page-item" [ngClass]="{ 'active-page': currentPage === index + 1 }">
+                            <a class="paginator-button" (click)="goToPage(index + 1)">
+                                {{ index + 1 }}
+                            </a>
+                        </li>
+                    </ng-container>
+                    <li class="page-item" [class.disabled]="!isNextPageAvailable()">
+                        <a class="paginator-button" (click)="nextPage()">
+                            <mat-icon>chevron_right</mat-icon>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
-  </div>
-  
+</div>

@@ -54,17 +54,13 @@
                                 <th scope="col" class="one">
                                     <div class="table-data">
                                         <div class="d-flex gap-2 align-items-center">
-                                            <input class="form-check-input"
-                                             type="checkbox" 
-                                             value="" 
-                                             *ngIf="showDisputeOptions" 
-                                             [(ngModel)]="masterCheckboxChecked" 
-                                             (change)="toggleAllCheckboxes($event)"
-                                             id="flexCheckChecked" >
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                *ngIf="showDisputeOptions" [(ngModel)]="masterCheckboxChecked"
+                                                (change)="toggleAllCheckboxes($event)" id="flexCheckChecked">
                                             <div>
-                                              No
+                                                No
                                             </div>
-                                          </div>
+                                        </div>
                                     </div>
                                 </th>
                                 <th scope="col">
@@ -84,7 +80,7 @@
                                 </th>
                                 <th scope="col" class="two">
                                     <div class="table-data">
-                                       Price
+                                        Price
                                     </div>
                                 </th>
                             </tr>
@@ -94,19 +90,24 @@
                                 <td>
                                     <div class="table-data">
                                         <div class="d-flex gap-2 align-items-center">
-                                            <input 
-                                                class="form-check-input" 
-                                                type="checkbox" 
-                                                *ngIf="showDisputeOptions" 
+                                            <input class="form-check-input" type="checkbox" *ngIf="showDisputeOptions"
                                                 [(ngModel)]="item.checked">
                                             <div>{{ i + 1 }}</div>
                                         </div>
                                     </div>
                                 </td>
-                                <td><div class="table-data">{{ item.name }}</div></td>
-                                <td><div class="table-data">{{ item.quantity }}</div></td>
-                                <td><div class="table-data">{{ item.unitPrice | currency }}</div></td>
-                                <td><div class="table-data">{{ item.price | currency }}</div></td>
+                                <td>
+                                    <div class="table-data">{{ item.name }}</div>
+                                </td>
+                                <td>
+                                    <div class="table-data">{{ item.quantity }}</div>
+                                </td>
+                                <td>
+                                    <div class="table-data">{{ item.unitPrice | currency }}</div>
+                                </td>
+                                <td>
+                                    <div class="table-data">{{ item.price | currency }}</div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -117,6 +118,25 @@
                 <div class="input-div input-div-no-pad my-3" *ngIf="showDisputeOptions">
                     <label for="">Reason for Dispute:</label>
                     <input type="text" class="form-control" placeholder="Enter reason to file dispute">
+                </div>
+            </div>
+        </div>
+        <div class="section-div mt-3">
+            <h2>Invoice Receipt</h2>
+            <div class="upload-container">
+                <div class="upload-icon">
+                    <img *ngIf="uploadedImageUrl; else icon" [src]="uploadedImageUrl" alt="Uploaded image"
+                        class="image-preview">
+                    <ng-template #icon>
+                        <img src="../../../../../assets/newicons/Picture.png" alt="">
+                    </ng-template>
+                </div>
+                <div class="upload-details">
+                    <label for="fileInput" class="upload-label">
+                        <span class="highlight">Upload</span> Invoice Receipt <br>(if Paid)
+                    </label>
+                    <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" hidden>
+                    <p>SVG, PNG, JPG, or GIF</p>
                 </div>
             </div>
         </div>

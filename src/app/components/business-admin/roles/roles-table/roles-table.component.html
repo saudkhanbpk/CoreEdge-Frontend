@@ -5,10 +5,7 @@
     </div>
     <div class="secondary-row">
       <div>
-        <button
-          class="btn add-btn"
-          routerLink="/business-admin/roles/add-roles"
-        >
+        <button class="btn add-btn" routerLink="/business-admin/roles/add-roles">
           Add Role <img src="../../../../../../assets/icons/Plus.png" alt="" />
         </button>
       </div>
@@ -51,20 +48,12 @@
                 </div>
               </td>
               <td>
-                <div
-                  class="table-data d-flex gap-1 w-100 justify-content-center"
-                >
-                  <button
-                    class="btn"
-                    routerLink="/business-admin/roles/add-roles"
-                  >
+                <div class="table-data d-flex gap-1 w-100 justify-content-center">
+                  <button class="btn" routerLink="/business-admin/roles/add-roles" matTooltip="Edit Role">
                     <img src="../../../../../assets/icons/Union.png" alt="" />
                   </button>
-                  <button class="btn">
-                    <img
-                      src="../../../../../assets/icons/Trash can.png"
-                      alt=""
-                    />
+                  <button class="btn" matTooltip="Delete Role">
+                    <img src="../../../../../assets/icons/Trash can.png" alt="" />
                   </button>
                 </div>
               </td>
@@ -79,20 +68,15 @@
               <mat-icon>chevron_left</mat-icon>
             </a>
           </li>
-    
-          <ng-container
-            *ngFor="let page of [].constructor(totalPages); let index = index"
-          >
-            <li
-              class="page-item"
-              [ngClass]="{ 'active-page': currentPage === index + 1 }"
-            >
+
+          <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
+            <li class="page-item" [ngClass]="{ 'active-page': currentPage === index + 1 }">
               <a class="paginator-button" (click)="goToPage(index + 1)">
                 {{ index + 1 }}
               </a>
             </li>
           </ng-container>
-    
+
           <li class="page-item" [class.disabled]="!isNextPageAvailable()">
             <a class="paginator-button" (click)="nextPage()">
               <mat-icon>chevron_right</mat-icon>

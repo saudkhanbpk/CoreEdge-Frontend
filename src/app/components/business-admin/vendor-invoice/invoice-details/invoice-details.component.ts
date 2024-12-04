@@ -12,6 +12,8 @@ export class InvoiceDetailsComponent {
   isPaid: boolean = false;    // State to check if paid
   showDisputeSection: boolean = false; // Flag to show/hide dispute section
   disputeSubmitted: boolean = false; // Flag to toggle button text
+  uploadedImageUrl: string = '';
+
   purchasedItems = [
     { name: 'Desktop Monitor', quantity: 1, unitPrice: 150, price: 150, checked: false },
   ]
@@ -31,4 +33,15 @@ export class InvoiceDetailsComponent {
       item.checked = isChecked;
     });
   }
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.uploadedImageUrl = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
 }
