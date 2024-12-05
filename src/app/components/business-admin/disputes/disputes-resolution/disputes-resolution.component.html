@@ -1,60 +1,13 @@
 <div class="headdiv">
     <h1>Disputes</h1>
 </div>
-<div class="container-fluid mt-5">
-    <h1 class="text-center head-order">Order Dispute Resolution System</h1>
-  
-    <!-- Dispute Logging Section -->
-    <div class="card mb-4">
-      <div class="card-header">
-        <h2 class="mb-0">Log a New Dispute</h2>
-      </div>
-      <div class="card-body">
-        <form (ngSubmit)="logDispute()">
-          <div class="mb-3">
-            <label for="orderId" class="form-label">Select Order</label>
-            <select [(ngModel)]="selectedOrderId" name="orderId" class="form-select" required>
-              <option *ngFor="let order of orders" [value]="order.id">{{ order.details }}</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="disputeType" class="form-label">Dispute Type</label>
-            <select [(ngModel)]="disputeType" name="disputeType" class="form-select" required>
-              <option value="Faulty Product">Faulty Product</option>
-              <option value="Invoice Mismatch">Invoice Mismatch</option>
-              <option value="Quantity Mismatch">Quantity Mismatch</option>
-              <option value="Internal Dispute">Internal Dispute</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea [(ngModel)]="disputeDescription" name="description" class="form-control" rows="3" placeholder="Describe the issue..." required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Log Dispute</button>
-        </form>
-      </div>
-    </div>
-  
-    <!-- Dispute List Section -->
-    <div class="card mb-4">
-      <div class="card-header">
-        <h2 class="mb-0">Disputes</h2>
-      </div>
-      <div class="card-body">
-        <ul class="list-group">
-          <li *ngFor="let dispute of disputes" class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">Order ID: {{ dispute.orderId }} - {{ dispute.type }}</div>
-              <p>{{ dispute.description }}</p>
-              <span class="badge bg-info">{{ dispute.status }}</span>
-            </div>
-            <div>
-              <button class="btn btn-success btn-sm me-2" (click)="resolveDispute(dispute.id)" *ngIf="dispute.status === 'Open'">Resolve</button>
-              <button class="btn btn-secondary btn-sm" (click)="escalateDispute(dispute.id)" *ngIf="dispute.status === 'Open'">Escalate</button>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+<div class="main-menu-div mt-3">
+  <div class="parent-buttons-group pb-0 gap-2">
+      <button class="btn parent-btn" routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: false }" routerLink="/business-admin/disputes/dispute-resolution/open-disputes">Open Disputes</button>
+      <button class="btn parent-btn" routerLinkActive="active" routerLink="/business-admin/disputes/dispute-resolution/resolved-disputes">Resolved Disputes</button>
   </div>
-  
+  <div class="menu-secondary-group bg-white">
+      <router-outlet></router-outlet>
+  </div>
+</div>
