@@ -65,9 +65,9 @@ thead tr th {
 .one {
     border-radius: 14px 0px 0px 0px;
 }
-.table-responsive::-webkit-scrollbar{
-    width: 0px;
-}
+/* .table-responsive::-webkit-scrollbar{
+    width: 10px;
+} */
 .two {
     border-radius: 0px 14px 0px 0px;
 }

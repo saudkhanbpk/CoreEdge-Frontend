@@ -13,19 +13,22 @@ export class ViewHardwareRequestComponent {
       no: '001',
       materialid: '242-X34-3422',
       price: '272',
-      employeeEmail: 'saadkhan922@company.com',
+      vendorname:'Saad Khan',
+      vendorEmail: 'saadkhan922@company.com',
     },
     {
       no: '002',
       materialid: '242-X34-3422',
       price: '272',
-      employeeEmail: 'hamza002@company.com',
+      vendorname:'Hamza Khan',
+      vendorEmail: 'hamza002@company.com',
     },
     {
       no: '003',
       materialid: '242-X34-3422',
       price: '272',
-      employeeEmail: 'asadali3@company.com',
+      vendorname:'Asad Ali',
+      vendorEmail: 'asadali3@company.com',
     },
   ];
   

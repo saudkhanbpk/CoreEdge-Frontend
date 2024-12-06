@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./resolve-open-disputes.component.css']
 })
 export class ResolveOpenDisputesComponent {
-
+        
 }
+
+
