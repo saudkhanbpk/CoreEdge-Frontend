@@ -1,0 +1,139 @@
+<div class="container-fluid">
+    <div class="container">
+        <div class="bg-white rounded-4 p-2 w-100 d-flex justify-content-center margin">
+            <h1 class="mb-0"><span>Cores</span><span class="color">Edge</span></h1>
+        </div>
+        <div class="bg-white rounded-4 p-2 w-100 d-flex justify-content-center flex-column gap-3">
+            <p class="text-muted text-center mb-0">Select User Type to Login with your Credentials</p>
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <div class="card border-0 p-2" [class.active]="activeCard === 1" (click)="onCardClick(1)">
+                    <div class="d-flex gap-3 align-items-center">
+                        <div>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M21.0763 8.58003V15.42C21.0763 16.54 20.4763 17.58 19.5063 18.15L13.5662 21.58C12.5962 22.14 11.3963 22.14 10.4163 21.58L4.47625 18.15C3.50625 17.59 2.90625 16.55 2.90625 15.42V8.58003C2.90625 7.46003 3.50625 6.41999 4.47625 5.84999L10.4163 2.42C11.3863 1.86 12.5862 1.86 13.5662 2.42L19.5063 5.84999C20.4763 6.41999 21.0763 7.45003 21.0763 8.58003Z"
+                                    stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M12.0019 10.9998C13.2887 10.9998 14.3319 9.95662 14.3319 8.6698C14.3319 7.38298 13.2887 6.33984 12.0019 6.33984C10.7151 6.33984 9.67188 7.38298 9.67188 8.6698C9.67188 9.95662 10.7151 10.9998 12.0019 10.9998Z"
+                                    stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M16 16.6599C16 14.8599 14.21 13.3999 12 13.3999C9.79 13.3999 8 14.8599 8 16.6599"
+                                    stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">Super Admin</h2>
+                        </div>
+                    </div>
+                    <div class="my-2">
+                        <p class="description">Super Admin is Someone who manages the business</p>
+                    </div>
+                    <div>
+                        <img src="../../../../assets/auth/superadmin.jpg" alt="image" class="user-image">
+                    </div>
+                </div>
+                <div class="card border-0 p-2" [class.active]="activeCard === 2" (click)="onCardClick(2)">
+                    <div class="d-flex gap-3 align-items-center">
+                        <div>
+                            <svg width="25" height="24" viewBox="0 0 25 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M18.7969 18.86H18.0369C17.2369 18.86 16.4769 19.17 15.9169 19.73L14.2068 21.42C13.4268 22.19 12.1569 22.19 11.3769 21.42L9.66687 19.73C9.10687 19.17 8.33688 18.86 7.54688 18.86H6.79688C5.13688 18.86 3.79688 17.53 3.79688 15.89V4.97C3.79688 3.33 5.13688 2 6.79688 2H18.7969C20.4569 2 21.7969 3.33 21.7969 4.97V15.88C21.7969 17.52 20.4569 18.86 18.7969 18.86Z"
+                                    stroke="#0F4D50" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M12.866 8.9498C12.826 8.9498 12.7659 8.9498 12.7159 8.9498C11.6659 8.9098 10.8359 8.0598 10.8359 6.9998C10.8359 5.9198 11.7059 5.0498 12.7859 5.0498C13.8659 5.0498 14.736 5.9298 14.736 6.9998C14.746 8.0598 13.916 8.9198 12.866 8.9498Z"
+                                    stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M10.0444 11.96C8.71438 12.85 8.71438 14.3 10.0444 15.19C11.5544 16.2 14.0344 16.2 15.5444 15.19C16.8744 14.3 16.8744 12.85 15.5444 11.96C14.0344 10.96 11.5644 10.96 10.0444 11.96Z"
+                                    stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">Business Admin</h2>
+                        </div>
+                    </div>
+                    <div class="my-2">
+                        <p class="description">Business Admin is Someone who own business</p>
+                    </div>
+                    <div>
+                        <img src="../../../../assets/auth/businessadmin.jpg" alt="image" class="user-image">
+                    </div>
+                </div>
+                <div class="card border-0 p-2" [class.active]="activeCard === 3" (click)="onCardClick(3)">
+                    <div class="d-flex gap-3 align-items-center">
+                        <div>
+                            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.5997 7.16C18.5397 7.15 18.4697 7.15 18.4097 7.16C17.0297 7.11 15.9297 5.98 15.9297 4.58C15.9297 3.15 17.0797 2 18.5097 2C19.9397 2 21.0897 3.16 21.0897 4.58C21.0797 5.98 19.9797 7.11 18.5997 7.16Z" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M17.5691 14.4402C18.9391 14.6702 20.4491 14.4302 21.5091 13.7202C22.9191 12.7802 22.9191 11.2402 21.5091 10.3002C20.4391 9.59016 18.9091 9.35016 17.5391 9.59016" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6.56813 7.16C6.62813 7.15 6.69813 7.15 6.75813 7.16C8.13813 7.11 9.23812 5.98 9.23812 4.58C9.23812 3.15 8.08813 2 6.65813 2C5.22813 2 4.07812 3.16 4.07812 4.58C4.08812 5.98 5.18813 7.11 6.56813 7.16Z" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M7.59906 14.4402C6.22906 14.6702 4.71906 14.4302 3.65906 13.7202C2.24906 12.7802 2.24906 11.2402 3.65906 10.3002C4.72906 9.59016 6.25906 9.35016 7.62906 9.59016" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12.5997 14.6302C12.5397 14.6202 12.4697 14.6202 12.4097 14.6302C11.0297 14.5802 9.92969 13.4502 9.92969 12.0502C9.92969 10.6202 11.0797 9.47021 12.5097 9.47021C13.9397 9.47021 15.0897 10.6302 15.0897 12.0502C15.0797 13.4502 13.9797 14.5902 12.5997 14.6302Z" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9.69031 17.7804C8.28031 18.7204 8.28031 20.2603 9.69031 21.2003C11.2903 22.2703 13.9103 22.2703 15.5103 21.2003C16.9203 20.2603 16.9203 18.7204 15.5103 17.7804C13.9203 16.7204 11.2903 16.7204 9.69031 17.7804Z" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">Sales Team</h2>
+                        </div>
+                    </div>
+                    <div class="my-2">
+                        <p class="description">Sales team of CoresEdge who manages the sales.</p>
+                    </div>
+                    <div>
+                        <img src="../../../../assets/auth/salesteam.jpg" alt="image" class="user-image">
+                    </div>
+                </div>
+                <div class="card border-0 p-2" [class.active]="activeCard === 4" (click)="onCardClick(4)">
+                    <div class="d-flex gap-3 align-items-center">
+                        <div>
+                            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.5378 21.6198C17.6578 21.8798 16.6178 21.9998 15.3978 21.9998H9.39781C8.17781 21.9998 7.13781 21.8798 6.25781 21.6198C6.47781 19.0198 9.14781 16.9697 12.3978 16.9697C15.6478 16.9697 18.3178 19.0198 18.5378 21.6198Z" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15.3984 2H9.39844C4.39844 2 2.39844 4 2.39844 9V15C2.39844 18.78 3.53844 20.85 6.25844 21.62C6.47844 19.02 9.14844 16.97 12.3984 16.97C15.6484 16.97 18.3184 19.02 18.5384 21.62C21.2584 20.85 22.3984 18.78 22.3984 15V9C22.3984 4 20.3984 2 15.3984 2ZM12.3984 14.17C10.4184 14.17 8.81844 12.56 8.81844 10.58C8.81844 8.60002 10.4184 7 12.3984 7C14.3784 7 15.9784 8.60002 15.9784 10.58C15.9784 12.56 14.3784 14.17 12.3984 14.17Z" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15.9803 10.58C15.9803 12.56 14.3803 14.17 12.4003 14.17C10.4203 14.17 8.82031 12.56 8.82031 10.58C8.82031 8.60002 10.4203 7 12.4003 7C14.3803 7 15.9803 8.60002 15.9803 10.58Z" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">Employee</h2>
+                        </div>
+                    </div>
+                    <div class="my-2">
+                        <p class="description">Employee of a register business who works there.</p>
+                    </div>
+                    <div>
+                        <img src="../../../../assets/auth/employee.jpg" alt="image" class="user-image">
+                    </div>
+                </div>
+                <div class="card border-0 p-2" [class.active]="activeCard === 5" (click)="onCardClick(5)">
+                    <div class="d-flex gap-3 align-items-center">
+                        <div>
+                            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.5997 7.16C18.5397 7.15 18.4697 7.15 18.4097 7.16C17.0297 7.11 15.9297 5.98 15.9297 4.58C15.9297 3.15 17.0797 2 18.5097 2C19.9397 2 21.0897 3.16 21.0897 4.58C21.0797 5.98 19.9797 7.11 18.5997 7.16Z" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M17.5691 14.4402C18.9391 14.6702 20.4491 14.4302 21.5091 13.7202C22.9191 12.7802 22.9191 11.2402 21.5091 10.3002C20.4391 9.59016 18.9091 9.35016 17.5391 9.59016" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6.56813 7.16C6.62813 7.15 6.69813 7.15 6.75813 7.16C8.13813 7.11 9.23812 5.98 9.23812 4.58C9.23812 3.15 8.08813 2 6.65813 2C5.22813 2 4.07812 3.16 4.07812 4.58C4.08812 5.98 5.18813 7.11 6.56813 7.16Z" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M7.59906 14.4402C6.22906 14.6702 4.71906 14.4302 3.65906 13.7202C2.24906 12.7802 2.24906 11.2402 3.65906 10.3002C4.72906 9.59016 6.25906 9.35016 7.62906 9.59016" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12.5997 14.6302C12.5397 14.6202 12.4697 14.6202 12.4097 14.6302C11.0297 14.5802 9.92969 13.4502 9.92969 12.0502C9.92969 10.6202 11.0797 9.47021 12.5097 9.47021C13.9397 9.47021 15.0897 10.6302 15.0897 12.0502C15.0797 13.4502 13.9797 14.5902 12.5997 14.6302Z" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9.69031 17.7804C8.28031 18.7204 8.28031 20.2603 9.69031 21.2003C11.2903 22.2703 13.9103 22.2703 15.5103 21.2003C16.9203 20.2603 16.9203 18.7204 15.5103 17.7804C13.9203 16.7204 11.2903 16.7204 9.69031 17.7804Z" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                        </div>
+                        <div>
+                            <h2 class="mb-0">Vendor</h2>
+                        </div>
+                    </div>
+                    <div class="my-2">
+                        <p class="description">Registered vendor with a registered business</p>
+                    </div>
+                    <div>
+                        <img src="../../../../assets/auth/vendor.jpg" alt="image" class="user-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button class="btn next-btn" [disabled]="!activeCard" (click)="goToNext()">Next</button>
+        </div>
+    </div>
+</div>

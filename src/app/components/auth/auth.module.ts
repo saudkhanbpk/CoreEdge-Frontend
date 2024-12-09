@@ -6,12 +6,14 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { MaterialModule } from 'src/app/material';
 import { FormsModule } from '@angular/forms';
+import { OnboardingComponent } from './onboarding/onboarding.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    OnboardingComponent
   ],
   imports: [
     CommonModule,
