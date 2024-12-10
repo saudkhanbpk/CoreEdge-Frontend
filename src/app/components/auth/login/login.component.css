@@ -59,6 +59,9 @@ line-height: 19.6px;
 color: #0F4D50 !important;
 text-decoration: none;
 }
+.mat-icon{
+    cursor: pointer;
+}
 span{
     font-size: 14px;
     font-weight: 400;

@@ -66,7 +66,7 @@ export class ReturnMerchandiseAuthorizationComponent {
   //   order.returnstatus = order.approvalStatus ? 'Approved' : 'Pending';
   // }
   currentPage = 1;
-  itemsPerPage = 5;
+  itemsPerPage = 10;
   expandedIndex: number | null = null;
   readonly dialog = inject(MatDialog);
   constructor() {}

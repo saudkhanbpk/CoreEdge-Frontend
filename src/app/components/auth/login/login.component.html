@@ -61,8 +61,8 @@
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
               <div class="input-group">
-                <span class="input-group-text"><mat-icon>lock</mat-icon></span>
-                <input type="password" class="form-control" id="password" placeholder="Enter Password" required>
+                <span class="input-group-text"><mat-icon (click)="hide = !hide">{{ hide ? 'lock' : 'lock_open' }}</mat-icon></span>
+                <input type="password" [type]="hide ? 'password' : 'text'" class="form-control" id="password" placeholder="Enter Password" required>
               </div>
             </div>
       

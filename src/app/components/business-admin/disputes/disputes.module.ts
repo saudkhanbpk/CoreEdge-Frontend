@@ -9,6 +9,7 @@ import { ResolvedDisputesComponent } from './resolved-disputes/resolved-disputes
 import { ViewOpenDisputesComponent } from './view-open-disputes/view-open-disputes.component';
 import { ResolveOpenDisputesComponent } from './resolve-open-disputes/resolve-open-disputes.component';
 import { MaterialModule } from 'src/app/material';
+import { ViewResolvedDisputesComponent } from './view-resolved-disputes/view-resolved-disputes.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MaterialModule } from 'src/app/material';
     OpenDisputesComponent,
     ResolvedDisputesComponent,
     ViewOpenDisputesComponent,
-    ResolveOpenDisputesComponent
+    ResolveOpenDisputesComponent,
+    ViewResolvedDisputesComponent
   ],
   imports: [
     CommonModule,

@@ -9,7 +9,6 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class OpenDisputesComponent {
 
-  isLoading: boolean[] = [];
   isunavailable: boolean = false;
   currentPage = 1;
   itemsPerPage = 10;

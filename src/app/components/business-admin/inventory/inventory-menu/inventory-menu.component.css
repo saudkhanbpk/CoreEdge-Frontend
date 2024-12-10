@@ -67,3 +67,17 @@ white-space: nowrap;
     background-color: green;
 }
 
+.cancel-btn{
+    width: 250px;
+    height: 40px;
+    padding: 12px 16px 12px 16px;
+    border-radius: 7px;
+    background-color: #E6EAD7;
+    color: #0F4D50;
+    border: 1px solid #0F4D50;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}

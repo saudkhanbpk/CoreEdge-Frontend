@@ -10,7 +10,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 })
 export class PurchaseOrderTableComponent {
   currentPage = 1;
-  itemsPerPage = 5;
+  itemsPerPage = 10;
   showMergeOptions: boolean = false;
   masterCheckboxChecked: boolean = false;
   expandedIndex: number | null = null;

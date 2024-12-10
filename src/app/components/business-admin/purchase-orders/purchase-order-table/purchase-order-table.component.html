@@ -12,6 +12,7 @@
     </div>
     <div *ngIf="showMergeOptions">
       <select name="" id="" class="form-select" id="vendors-list">
+        <option value="" disabled selected>Vendor's List</option>
         <option value="">Jimmy Anderson</option>
         <option value="">Steven Smith</option>
         <option value="">Mitchell Starc</option>
@@ -27,8 +28,14 @@
     </div>
     <div *ngIf="showMergeOptions">
       <button class="btn add-btn">
-        Merge Selection
+        Merge Selected Orders
         <img src="../../../../../assets/newicons/Layers.png" alt="" />
+      </button>
+    </div>
+    <div *ngIf="showMergeOptions" >
+      <button class="btn cancel-btn" (click)="showMergeOptions = false">
+        Cancel Merge
+        <img src="../../../../../assets/Close.png" alt="cancel" class="mx-1" />
       </button>
     </div>
     <div *ngIf="!showMergeOptions">
@@ -41,13 +48,7 @@
 </div>
 <div class="table-container p-2 mt-2">
   <div class="d-flex justify-content-end flex-wrap mb-2 gap-2 bg-none">
-    <select class="form-select bg-none border-0 w-auto shadow-none">
-      <option value="" disabled selected>Vendor</option>
-      <option value="name">Saad Khan</option>
-      <option value="date">Ihtizaz Ahmad</option>
-    </select>
-
-    <select class="form-select bg-none border-0 w-auto shadow-none">
+    <select class="form-select bg-none border-0 w-auto shadow-0">
       <option value="" disabled selected>sort</option>
       <option value="name">By Name</option>
       <option value="date">By Date</option>
