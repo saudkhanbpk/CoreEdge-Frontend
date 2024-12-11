@@ -14,7 +14,7 @@ export class SignupComponent {
  isCustomer: boolean = true; 
  wantsBusiness: boolean = false; 
  hide: boolean = true;
- 
+ hideconfirmpassword: boolean = true;
  signUp() {
    console.log('Sign Up Data:', {
      fullName: this.fullName,

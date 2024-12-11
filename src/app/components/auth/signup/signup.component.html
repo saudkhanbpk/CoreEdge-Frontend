@@ -1,84 +1,51 @@
-<div class="authdiv">
-    <div class="card">
-        <h1 class="auth-head text-center mb-2">Create an Account</h1>
-        <p class="text-center start-para">New to CoresEdge? To get started create your account</p>
-        <div class="d-flex flex-column gap-3">
-            <div class="input-group d-flex flex-column mb-2">
-                <label for="text">Full Name</label>
-                <div class="input-with-icon">
-                    <input type="text" id="fullname" placeholder="Your full name" class="form-control my-form-control"
-                        [(ngModel)]="fullName">
-                </div>
+
+    <div class="container-fluid">
+        <div class="container d-flex justify-content-center flex-column align-items-center vh-100">
+            <div class="rounded-4 p-2 w-100 d-flex justify-content-center margin">
+                <h1 class="mb-0 d-flex"><div>Cores</div><div class="color">Edge</div></h1>
             </div>
-            <div class="input-group d-flex flex-column mb-2">
-                <label for="text">Are you a customer?</label>
-                <div class="btn-group gap-3" role="group">
-                    <div class="d-flex gap-1">
-                        <input type="radio" name="options1" id="yes" autocomplete="off" [(ngModel)]="isCustomer"
-                            [value]="true">
-                        <label for="yes">Yes</label>
+            <div class="card bg-white border-0 rounded-4">
+              <h2 class="text-start my-3">Create your Account</h2>
+              <div class="d-flex justify-content-start">
+                  <p class="text-start text-muted mb-4">Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+              </div>
+          
+              <form>
+                <!-- Email Address -->
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email Address</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><mat-icon>person</mat-icon></span>
+                    <input type="email" class="form-control" id="email" placeholder="Enter Email Address" required>
+                  </div>
+                </div>
+          
+                <!-- Password -->
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><mat-icon (click)="hide = !hide">{{ hide ? 'lock' : 'lock_open' }}</mat-icon></span>
+                    <input type="password" [type]="hide ? 'password' : 'text'" class="form-control" id="password" placeholder="Enter Password" required>
+                  </div>
+                </div>
+          
+                  <!-- Password -->
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Confirm Password</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><mat-icon (click)="hideconfirmpassword = !hideconfirmpassword">{{ hideconfirmpassword ? 'lock' : 'lock_open' }}</mat-icon></span>
+                      <input type="password" [type]="hideconfirmpassword ? 'password' : 'text'" class="form-control" id="password" placeholder="Enter Password" required>
                     </div>
-                    <div class="d-flex gap-1">
-                        <input type="radio" name="options1" id="no" autocomplete="off" [(ngModel)]="isCustomer"
-                            [value]="false">
-                        <label for="no">No</label>
-                    </div>
+                  </div>
+
+                <div class="mt-3">
+                    <button type="submit" class="btn" routerLink="/auth/business-details">Sign Up</button>
                 </div>
-            </div>
-            <div class="input-group d-flex flex-column mb-2">
-                <label for="text">Want to Open a Business with CoresEdge?</label>
-                <div class="btn-group gap-3" role="group">
-                    <div class="d-flex gap-1">
-                        <input type="radio" name="options2" id="yesbusiness" autocomplete="off"
-                            [(ngModel)]="wantsBusiness" [value]="true">
-                        <label for="yesbusiness">Yes</label>
-                    </div>
-                    <div class="d-flex gap-1">
-                        <input type="radio" name="options2" id="nobusiness" autocomplete="off"
-                            [(ngModel)]="wantsBusiness" [value]="false">
-                        <label for="nobusiness">No</label>
-                    </div>
+                <div class="d-flex justify-content-center my-3">
+                    <span>Don't have an account? <a routerLink="/auth/login">Sign In</a></span>
                 </div>
+              </form>
             </div>
-            <div *ngIf="!isCustomer && wantsBusiness" class="input-group d-flex flex-column mb-2">
-                <label for="businessname">Business Name</label>
-                <div class="input-with-icon">
-                    <input type="text" id="businessname" placeholder="Your Business Name"
-                        class="form-control my-form-control" [(ngModel)]="businessName">
-                </div>
-            </div>
-            <div class="input-group d-flex flex-column mb-2">
-                <label for="email">Email</label>
-                <div class="input-with-icon">
-                    <input type="email" id="email" placeholder="Your email address" class="form-control my-form-control"
-                        [(ngModel)]="email">
-                </div>
-            </div>
-            <div class="input-group d-flex flex-column">
-                <label for="password">Password</label>
-                <div class="input-with-icon" style="position: relative;">
-                    <input [type]="hide ? 'password' : 'text'" id="password" placeholder="Your password"
-                        class="form-control my-form-control" [(ngModel)]="password">
-                    <mat-icon (click)="hide = !hide" class="card-icons"
-                        style="position: absolute; right: 15px; top: 8px; cursor: pointer;">
-                        {{ hide ? 'visibility_off' : 'visibility' }}
-                    </mat-icon>
-                </div>
-            </div>
-            <div class="input-group d-flex flex-column mt-2">
-                <label for="address">Address</label>
-                <div class="input-with-icon">
-                    <input type="text" id="address" placeholder="Your Address" class="form-control my-form-control"
-                        [(ngModel)]="address">
-                </div>
-            </div>
-            <div>
-                <button class="btn btn-auth my-3" (click)="signUp()">Sign up</button>
-            </div>
-            <div class="d-flex justify-content-center gap-1">
-                <p class="new">Already a CoresEdge Member?</p><a href="" class="signup-link"
-                    routerLink="/auth/login">Log in Now</a>
-            </div>
-        </div>
+          </div>
     </div>
-</div>
+          
