@@ -5,7 +5,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { MaterialModule } from 'src/app/material';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 import { BusinessDetailsComponent } from './business-details/business-details.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -27,7 +27,8 @@ import { RecoverPasswordComponent } from './recover-password/recover-password.co
     CommonModule,
     AuthRoutingModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AuthModule { }

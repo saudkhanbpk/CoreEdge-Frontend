@@ -107,5 +107,5 @@ span{
     background-color: #E6EAD7;
     color: #0F4D50;
     border: 1px solid #0F4D50;
-  
+    white-space: nowrap;
 }
