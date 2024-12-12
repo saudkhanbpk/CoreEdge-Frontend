@@ -138,4 +138,7 @@ span{
     color: #6c757d;
     margin-bottom: 0px;
   }
- 
+  .onboard-head{
+    max-width: 555px;
+    width: 100%;
+}

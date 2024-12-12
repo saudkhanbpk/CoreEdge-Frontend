@@ -55,11 +55,13 @@
 }
 
 thead tr th {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
     line-height: 22px;
     white-space: nowrap;
     background-color: #E6EAD7 ;
+    color:#000000D9;
+    
 }
 
 .one {
@@ -73,11 +75,12 @@ thead tr th {
 }
 
 td {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 22px;
     white-space: nowrap;
-
+    color: #000000D9;
+    
 }
 
 .table-data {

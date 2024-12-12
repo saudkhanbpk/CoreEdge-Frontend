@@ -98,6 +98,9 @@ span{
     border-radius: 7px;
     color: white;
     background-color: #0F4D50;
+    font-size: 16px;
+font-weight: 400;
+line-height: 24px;
 }
 .skip{
     width: 100%;
@@ -108,4 +111,13 @@ span{
     color: #0F4D50;
     border: 1px solid #0F4D50;
     white-space: nowrap;
+    font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+}
+
+
+.onboard-head{
+    max-width: 555px;
+    width: 100%;
 }
