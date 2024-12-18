@@ -25,7 +25,7 @@ export class PurchaseRequestTableComponent {
     if (user) {
       this.requestService.findByUserId(user.id).subscribe(
         (items) => {
-          this.data = items.purchaseOrders;
+          this.data = items;
         },
         (error) => {
           console.error('Error fetching data:', error);

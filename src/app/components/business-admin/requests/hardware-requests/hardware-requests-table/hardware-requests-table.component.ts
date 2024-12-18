@@ -30,8 +30,8 @@ export class HardwareRequestsTableComponent {
     if (user) {
       this.requestService.findByUserId(user.id).subscribe(
         (items) => {
-          this.data = items.orders;
-          console.log("this.order", items.orders)
+          this.data = items;
+          console.log("this.order", items)
         },
         (error) => {
           console.error('Error fetching data:', error);

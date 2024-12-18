@@ -68,7 +68,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let product of item.missingProducts let i=index">
+                                <tr *ngFor="let product of item.unavailableProducts let i=index">
                                     <td>
                                         <div class="table-data">
                                             {{i+1}}
@@ -91,7 +91,7 @@
                                     </td>
                                     <td>
                                         <div class="table-data">
-                                            {{product?.price | currency}}
+                                            {{product?.product?.price | currency}}
                                         </div>
                                     </td>
                                 </tr>

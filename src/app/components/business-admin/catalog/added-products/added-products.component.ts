@@ -347,6 +347,7 @@ export class AddedProductsComponent implements OnInit {
   
       // Prepare the order data
       const orderData = {
+        price:200,
         users: [this.authService.getUserData().id], // Retrieve user ID from auth service
         uniqueCode: uniqueCode,
         description: this.description,
