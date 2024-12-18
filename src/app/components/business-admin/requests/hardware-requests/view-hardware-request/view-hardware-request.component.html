@@ -6,7 +6,7 @@
     <mat-dialog-content class="mat-typography" *ngFor="let item of [data]">
         <div class="row row1">
             <h3>Hey I need These Products 🥺</h3>
-            <div class="col-md-6">
+            <div class="col-md-6 p-0">
                 <div class="mb-3">
                     <h4>Employee Name:</h4> 
                     <span>{{item.employees[0].name}}</span>
@@ -15,26 +15,18 @@
                     <h4>Employee Email:</h4>
                     <span>{{item.employees[0].email}}</span>
                 </div>
+                
+            </div>
+            <div class="col-md-6 p-0">
                 <div class="mb-3">
                     <h4>Employee Contact:</h4>
                     <span>001 393 393 3923</span>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <h4>Vendor Name:</h4>
-                    <span>Brendon McCullum</span>
-                </div>
-                <div class="mb-3">
-                    <h4>Vendor Email:</h4>
-                    <span>Brendon&#64;gmail.com</span>
-                </div>
-                <div class="mb-3">
-                    <h4>Vendor Contact:</h4>
-                    <span>001 393 393 3923</span>
-                </div>
-            </div>
-            <div class="col-md-12">
+          
+        </div>
+        <div class="row row1 mt-2">
+            <div class="col-md-12 p-0">
                 <h4>Description:</h4>
                 <span>{{item.description}}</span>
             </div>
@@ -59,7 +51,12 @@
                                     </th>
                                     <th scope="col">
                                         <div class="table-data">
-                                            Employee Email
+                                            Vendor Name
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="table-data">
+                                            Vendor Email
                                         </div>
                                     </th>
                                     <th scope="col" class="two">

@@ -9,7 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class RmaRequestsTableComponent {
   currentPage = 1;
-  itemsPerPage = 5;
+  itemsPerPage = 10;
   expandedIndex: number | null = null;
   // data:any;
   readonly dialog = inject(MatDialog);

@@ -1,35 +1,21 @@
-.card {
-    border: 1px solid #ced4da;
-  }
-  
-
-  h2 {
-    /* margin-bottom: 20px; */
-    font-size: 22px;
-  }
-  .head-order{
-    font-size: 24px;
-  }
-  .list-group-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-  }
-  
-  .badge {
-    font-size: 0.9rem;
-  }
-  
-  form .form-label {
-    font-weight: 500;
-  }
-  
-  .card-header {
-    background-color: #D1E4DD40;
-    color: black !important;
-  }
-  .btn-primary{
-    background-color: #0F4D50;
-    color: white;
-    border: none;
-  }
+.active{
+  background: #FFFFFF;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.10000000149011612px;
+}
+.parent-btn{
+  /* width: 175px; */
+height:57px;
+padding: 10px 10px 20px 10px;
+gap: 10px;
+border-radius: 8px 8px 0px 0px;
+opacity: 0px;
+white-space: nowrap;
+border: none;
+}
+.menu-secondary-group {
+  border-radius: 0px 14px 14px 14px;
+  background-color: white;
+}

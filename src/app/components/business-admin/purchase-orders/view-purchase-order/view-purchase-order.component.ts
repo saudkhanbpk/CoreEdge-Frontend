@@ -17,18 +17,18 @@ export class ViewPurchaseOrderComponent {
       return;
     }
 
-    // Store original styles
+    
     const originalStyle = {
       maxHeight: containerElement.style.maxHeight,
       overflow: containerElement.style.overflow,
     };
 
-    // Apply temporary styles
+    
     containerElement.style.maxHeight = 'none';
     containerElement.style.height = 'auto';
     containerElement.style.overflow = 'visible';
 
-    // PDF generation options
+    
     const options = {
       margin: [10, 10, 10, 10],
       filename: 'Purchase_Order.pdf',
@@ -41,19 +41,17 @@ export class ViewPurchaseOrderComponent {
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
     };
 
-    // Generate PDF
+    
     html2pdf()
       .set(options)
       .from(containerElement)
       .save()
       .then(() => {
-        // Revert styles back to original
         containerElement.style.maxHeight = originalStyle.maxHeight;
         containerElement.style.overflow = originalStyle.overflow;
       })
       .catch((error: any) => {
-        console.error('Error generating PDF:', error);
-        // Revert styles even on error
+        console.error('Error generating PDF:', error); 
         containerElement.style.maxHeight = originalStyle.maxHeight;
         containerElement.style.overflow = originalStyle.overflow;
       });

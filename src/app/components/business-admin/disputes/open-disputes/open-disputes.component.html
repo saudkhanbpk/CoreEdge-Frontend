@@ -1,0 +1,119 @@
+<div class="menu-div">
+    <div class="order-types-tables">
+      <div class="d-flex justify-content-end">
+        <select class="form-select border-0 w-auto shadow-none">
+          <option value="" disabled selected>Vendors</option>
+          <option value="name">Saad Khan</option>
+          <option value="date">Ihtizaz Ahmad</option>
+        </select>
+  
+        <select class="form-select border-0 w-auto shadow-none">
+          <option value="" disabled selected>sort</option>
+          <option value="name">By Name</option>
+          <option value="date">By Date</option>
+          <option value="amount">By Amount</option>
+        </select>
+      </div>
+      <div class="table-div">
+        <div class="table-container p-0 mt-2">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" class="one">
+                    <div class="table-data">No</div>
+                  </th>
+                  <th scope="col">
+                    <div class="table-data">Purchase Order No</div>
+                  </th>
+                  <th scope="col">
+                    <div class="table-data">Vendor Name</div>
+                  </th>
+                  <th scope="col">
+                    <div class="table-data">Vendor Email</div>
+                  </th>
+                  <th scope="col">
+                    <div class="table-data">Total Items</div>
+                  </th>
+                  <th scope="col">
+                    <div class="table-data">Total Amount</div>
+                  </th>
+                  <th scope="col" class="two"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container>
+                  <tr *ngFor="let item of paginatedData; let i = index">
+                    <td>
+                      <div class="table-data">
+                        {{ item.no }}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="table-data">
+                        {{ item.purchaseorderno }}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="table-data">
+                        {{ item.vendorname }}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="table-data">
+                        {{ item.vendoremail }}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="table-data">
+                        {{ item.totalitems }}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="table-data">
+                          {{ item.totalamount | currency }}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="table-data d-flex gap-1 justify-content-end">
+                        <button class="btn visibility" (click)="openDialog()" matTooltip="View Details">
+                          <img src="../../../../../../assets/newicons/Checknew.png" alt="">
+                        </button>
+                        <button class="btn" routerLink="/business-admin/disputes/resolve-open-dispute"
+                          matTooltip="Resolve here"><img src="../../../../../assets/newicons/message square.png" alt=""></button>
+                        <button class="btn" matTooltip="Delete Request"><img
+                            src="../../../../../assets/icons/Trash can.png" alt=""></button>
+                      </div>
+                    </td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <nav aria-label="Page navigation example" class="m-2">
+          <ul class="pagination justify-content-start">
+            <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
+              <a class="paginator-button" (click)="previousPage()">
+                <mat-icon>chevron_left</mat-icon>
+              </a>
+            </li>
+  
+            <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
+              <li class="page-item" [ngClass]="{ 'active-page': currentPage === index + 1 }">
+                <a class="paginator-button" (click)="goToPage(index + 1)">
+                  {{ index + 1 }}
+                </a>
+              </li>
+            </ng-container>
+  
+            <li class="page-item" [class.disabled]="!isNextPageAvailable()">
+              <a class="paginator-button" (click)="nextPage()">
+                <mat-icon>chevron_right</mat-icon>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>

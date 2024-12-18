@@ -55,29 +55,32 @@
 }
 
 thead tr th {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
     line-height: 22px;
     white-space: nowrap;
     background-color: #E6EAD7 ;
+    color:#000000D9;
+    
 }
 
 .one {
     border-radius: 14px 0px 0px 0px;
 }
-.table-responsive::-webkit-scrollbar{
-    width: 0px;
-}
+/* .table-responsive::-webkit-scrollbar{
+    width: 10px;
+} */
 .two {
     border-radius: 0px 14px 0px 0px;
 }
 
 td {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 22px;
     white-space: nowrap;
-
+    color: #000000D9;
+    
 }
 
 .table-data {

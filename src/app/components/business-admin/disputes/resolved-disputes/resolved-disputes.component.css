@@ -1,0 +1,15 @@
+@import url(../../../../styles/table.css);
+.active {
+  background-color: #d1e4dd40;
+  border: 1px solid #0f4d50;
+  color: black;
+}
+.order-types-tables {
+  padding: 10px;
+}
+.visibility{
+    color: #0F4D50;
+}
+
+
+

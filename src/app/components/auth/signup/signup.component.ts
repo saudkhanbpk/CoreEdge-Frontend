@@ -18,7 +18,7 @@ export class SignupComponent {
  isCustomer: boolean = true; 
  wantsBusiness: boolean = false; 
  hide: boolean = true;
- 
+ hideconfirmpassword: boolean = true;
  signUp() {
   let signUpData = {
     fullName: this.fullName,

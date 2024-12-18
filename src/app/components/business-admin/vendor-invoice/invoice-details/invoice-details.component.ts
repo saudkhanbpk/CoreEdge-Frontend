@@ -8,10 +8,10 @@ import { Component } from '@angular/core';
 export class InvoiceDetailsComponent {
   showDisputeOptions: boolean = false;
   masterCheckboxChecked: boolean = false;
-  isLoading: boolean = false; // State for spinner
-  isPaid: boolean = false;    // State to check if paid
-  showDisputeSection: boolean = false; // Flag to show/hide dispute section
-  disputeSubmitted: boolean = false; // Flag to toggle button text
+  isLoading: boolean = false; 
+  isPaid: boolean = false;    
+  showDisputeSection: boolean = false; 
+  disputeSubmitted: boolean = false; 
   uploadedImageUrl: string = '';
 
   purchasedItems = [

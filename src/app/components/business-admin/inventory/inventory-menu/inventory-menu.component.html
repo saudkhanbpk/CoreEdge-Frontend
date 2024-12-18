@@ -12,6 +12,23 @@
         </button>
       </div>
       <div>
+        <input type="file" accept=".csv" (change)="onFileSelect($event)" class="form-control " />
+      </div>
+      <!-- <div>
+        <button class="btn add-btn" [disabled]="!uploadedData.length" (click)="combineData()">Upload CSV</button>
+      </div> -->
+      <div>
+        <button class="btn cancel-btn" (click)="downloadCSV()">Download Example CSV <svg width="23" height="17"
+            viewBox="0 0 23 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M17.5 13.2003C19.7459 12.9773 21.5 11.0824 21.5 8.77778C21.5 6.10488 19.0452 4.00249 16.4198 4.37847C16.4155 4.37908 16.4113 4.3769 16.4093 4.37305C15.4052 2.37277 13.3351 1 10.9444 1C7.75974 1 5.14402 3.43609 4.85907 6.54647C4.8586 6.55164 4.85421 6.55563 4.84902 6.55563C3.02707 6.55405 1.5 8.06056 1.5 9.88889C1.5 11.7298 2.99238 13.2222 4.83333 13.2222H5.5"
+              stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" />
+            <path d="M9 13.5L11.1464 15.6464C11.3417 15.8417 11.6583 15.8417 11.8535 15.6464L14 13.5" stroke="#0F4D50"
+              stroke-width="1.5" stroke-linecap="round" />
+            <path d="M11.5 15L11.5 9" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" />
+          </svg></button>
+      </div>
+      <div>
         <button class="btn add-btn" routerLink="/business-admin/inventory/inventory-form">Add New Inventory <img
             src="../../../../../../assets/icons/Plus.png" alt=""></button>
       </div>
@@ -37,6 +54,27 @@
   </div>
   <div id="card-view" *ngIf="selectedView === 'cardview'">
     <div class="sites d-flex flex-wrap justify-content-between gap-3 mt-3">
+      <div class="card" *ngFor="let item of uploadedData" (click)="openDialog(item)">
+        <div class="position-relative">
+          <img src="{{item.ImageLarge}}" alt="" class="card-img-top">
+        </div>
+        <div class="icon-group position-absolute top-2 end-0 p-2 d-flex gap-2">
+          <button class="btn action-btn" matTooltip="Edit Item"
+            [routerLink]="['/business-admin/inventory/inventory-form', item.MaterialId]">
+            <img src="../../../../../../assets/icons/Union.png" alt="edit-btn" class="action-icon">
+          </button>
+          <button class="btn action-btn me-2" matTooltip="Delete Item" (click)="deleteItem(item.MaterialId)">
+            <img src="../../../../../../assets/icons/Trash can.png" alt="delete-btn" class="action-icon">
+          </button>
+        </div>
+        <div class="card-body">
+          <h2>{{item.MaterialId}}</h2>
+          <h2>{{item.CustomerPrice | currency}}</h2>
+          <p>{{item.ShortDescription}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="sites d-flex flex-wrap justify-content-between gap-3 mt-3">
       <div class="card" *ngFor="let item of filteredData" (click)="openDialog(item)">
         <div class="position-relative">
           <img src="{{item.imageUrl}}" alt="" class="card-img-top">
@@ -56,11 +94,11 @@
           <p>{{item.shortDescription}}</p>
         </div>
       </div>
-
     </div>
+
   </div>
   <div id="list-view" *ngIf="selectedView === 'listview'">
-    <div class="row mb-4" *ngFor="let item of filteredData;  let i = index">
+    <div class="row mb-4" *ngFor="let item of uploadedData;  let i = index">
       <div class="col-md-3">
         <div class="d-flex justify-content-between align-items-center h-100 rounded-3">
           <img src="{{item.imageUrl}}" alt="{{item.materialId}}" width="100%" class="rounded-3">
@@ -103,6 +141,51 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="row mb-4" *ngFor="let item of filteredData;  let i = index">
+      <div class="col-md-3">
+        <div class="d-flex justify-content-between align-items-center h-100 rounded-3">
+          <img src="{{item.ImageLarge}}" alt="{{item.MaterialId}}" width="100%" class="rounded-3">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h4>{{item.ShortDescription}}</h4>
+        <div class="d-flex gap-3 mb-3">
+          <span class="mgf-unspc">MFG# {{item.ManufacturerPartNumber}}</span>
+          <span class="mgf-unspc">UNSPSC# {{item.UNSPSC}}</span>
+        </div>
+        <div class="d-flex gap-2 mb-1"><strong>Material ID:</strong>
+          <div>{{item.MaterialId}}</div>
+        </div>
+        <div class="d-flex gap-2 mb-1"><strong>Category:</strong>
+          <div>{{item.Category}}</div>
+        </div>
+        <div class="d-flex gap-2 mb-1"><strong>Insight Part Number:</strong>
+          <div>{{item.InsightPartNumber}}</div>
+        </div>
+        <div class="d-flex gap-2 mb-1"><strong>Manufacturer Name:</strong>
+          <div>{{item.ManufacturerName}}</div>
+        </div>
+        <div>{{item.LongDescription}}</div>
+      </div>
+      <div class="col-md-3">
+        <div class="d-flex flex-column justify-content-between h-100">
+          <div>
+            <button class="btn action-btn" matTooltip="Edit Item"
+              [routerLink]="['/business-admin/inventory/inventory-form', item.MaterialId]">
+              <img src="../../../../../../assets/icons/Union.png" alt="edit-btn" class="action-icon">
+            </button>
+            <button class="btn action-btn me-2" matTooltip="Delete Item" (click)="deleteItem(item.MaterialId)">
+              <img src="../../../../../../assets/icons/Trash can.png" alt="delete-btn" class="action-icon">
+            </button>
+          </div>
+          <div>
+            <h6><strong>Available Quantity:</strong>&nbsp;{{item.QuantityAvailable}}</h6>
+            <h3><strong>{{item.CustomerPrice | currency}}</strong></h3>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
