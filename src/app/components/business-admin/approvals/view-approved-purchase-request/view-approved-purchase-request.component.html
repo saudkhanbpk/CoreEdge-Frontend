@@ -3,34 +3,28 @@
         <h2 mat-dialog-title>Purchase Request</h2>
         <mat-icon class="icon me-2" mat-dialog-close>close</mat-icon>
     </div>
-    <mat-dialog-content class="mat-typography">
+    <mat-dialog-content class="mat-typography" *ngFor="let item of [data]">
         <div class="row row1">
-            <h3>He needed These Products 🥺</h3>
+            <h3>Hey I needed These Products 🥺</h3>
             <div class="col-md-6 p-0">
                 <div class="mb-3">
                     <h4>Employee Name:</h4>
-                    <span>James Anderson</span>
+                    <span>{{item.employees[0].name}}</span>
                 </div>
                 <div class="mb-3">
                     <h4>Employee Email:</h4>
-                    <span>JamesAnderson&#64;gmail.com</span>
+                    <span>{{item.employees[0].email}}</span>
                 </div>
-            </div>
-            <div class="col-md-6 p-0">
                 <div class="mb-3">
                     <h4>Employee Contact:</h4>
                     <span>001 393 393 3923</span>
                 </div>
-                <div class="mb-3">
-                    <h4>Requested Date:</h4>
-                    <span>02 Dec 2024</span>
-                </div>
             </div>
         </div>
         <div class="row row1 mt-2">
-            <div class="col-md-12 p-0">
+            <div class="col-md-12">
                 <h4>Description:</h4>
-                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta accusamus cumque voluptates impedit!</span>
+                <span>{{item.description}}</span>
             </div>
         </div>
         <div class="row">
@@ -52,12 +46,12 @@
                                     </th>
                                     <th scope="col">
                                         <div class="table-data">
-                                           Vendor Name
+                                            Vendor Name
                                         </div>
                                     </th>
                                     <th scope="col">
                                         <div class="table-data">
-                                           Vendor Email
+                                            Vendor Email
                                         </div>
                                     </th>
                                     <th scope="col" class="two">
@@ -68,30 +62,35 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of request">
+                                <tr *ngFor="let product of item.unavailableProducts let i=index">
                                     <td>
                                         <div class="table-data">
-                                            {{item?.no}}
+                                            {{i+1}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data d-flex align-items-center">
+                                            <img
+                                                src="{{ product?.product?.imageUrl }}"
+                                                alt="Material"
+                                                class="material-image"
+                                            />
+                                            <span>{{ product?.product?.materialId }}</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="table-data">
-                                            {{item?.materialid}}
+                                            {{product?.product?.vendor?.name}}
                                         </div>
                                     </td>
                                     <td>
                                         <div class="table-data">
-                                            {{item?.vendorname}}
+                                            {{product?.product?.vendor?.email}}
                                         </div>
                                     </td>
                                     <td>
                                         <div class="table-data">
-                                            {{item?.vendoremail}}
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="table-data">
-                                            {{item?.price | currency}}
+                                            {{product?.product?.price | currency}}
                                         </div>
                                     </td>
                                 </tr>

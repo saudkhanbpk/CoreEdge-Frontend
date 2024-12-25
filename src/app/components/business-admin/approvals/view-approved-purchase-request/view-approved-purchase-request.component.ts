@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-view-approved-purchase-request',
@@ -8,6 +9,10 @@ import { Component } from '@angular/core';
 export class ViewApprovedPurchaseRequestComponent {
   isLoading: boolean = false; 
   isunavailable: boolean = false;
+
+   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ViewApprovedPurchaseRequestComponent>) {
+      
+  }
   request = [
     {
       no: '001',

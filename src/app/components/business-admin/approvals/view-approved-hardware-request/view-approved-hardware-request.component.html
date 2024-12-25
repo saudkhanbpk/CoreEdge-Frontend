@@ -20,20 +20,6 @@
                     <span>001 393 393 3923</span>
                 </div>
             </div>
-            <div class="col-md-6 p-0">
-                <div class="mb-3">
-                    <h4>Vendor Name:</h4>
-                    <span>Brendon McCullum</span>
-                </div>
-                <div class="mb-3">
-                    <h4>Vendor Email:</h4>
-                    <span>Brendon&#64;gmail.com</span>
-                </div>
-                <div class="mb-3">
-                    <h4>Vendor Contact:</h4>
-                    <span>001 393 393 3923</span>
-                </div>
-            </div>
         </div>
         <div class="row row1 mt-2">
             <div class="col-md-12">
@@ -52,14 +38,20 @@
                                         <div class="table-data">
                                             No
                                         </div>
-                                        </th>
+                                    </th>
                                     <th scope="col">
                                         <div class="table-data">
                                             Material ID
-                                        </div></th>
+                                        </div>
+                                    </th>
                                     <th scope="col">
                                         <div class="table-data">
-                                            Employee Email
+                                            Vendor Name
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="table-data">
+                                            Vendor Email
                                         </div>
                                     </th>
                                     <th scope="col" class="two">
@@ -77,13 +69,23 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="table-data">
-                                            {{product?.product.materialId}}
+                                        <div class="table-data d-flex align-items-center">
+                                            <img
+                                                src="{{ product?.product?.imageUrl }}"
+                                                alt="Material"
+                                                class="material-image"
+                                            />
+                                            <span>{{ product?.product?.materialId }}</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="table-data">
-                                            {{item?.employees[0].email}}
+                                            {{product?.product?.vendor?.name}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{product?.product?.vendor?.email}}
                                         </div>
                                     </td>
                                     <td>

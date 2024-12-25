@@ -11,8 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./view-approved-hardware-request.component.css']
 })
 export class ViewApprovedHardwareRequestComponent {
-   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ViewApprovedHardwareRequestComponent>, private orderService:RequestService, private sharedService: SharedService, private authService: AuthService) {
-      console.log('Dialog data:', this.data); // Access the passed item here
+   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ViewApprovedHardwareRequestComponent>) {
     }
   isLoading: boolean = false; 
   isunavailable: boolean = false;
