@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { AuthService } from 'src/app/services/auth.service';
+import { RequestService } from 'src/app/services/request.service';
+import { SharedService } from 'src/app/services/shared.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -7,6 +11,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./view-approved-hardware-request.component.css']
 })
 export class ViewApprovedHardwareRequestComponent {
+   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ViewApprovedHardwareRequestComponent>, private orderService:RequestService, private sharedService: SharedService, private authService: AuthService) {
+      console.log('Dialog data:', this.data); // Access the passed item here
+    }
   isLoading: boolean = false; 
   isunavailable: boolean = false;
   vendors: any[] = [

@@ -85,11 +85,11 @@
                   <div
                     class="status p-2"
                     [ngClass]="{
-                      completed: item.status === 'Approved',
-                      rejected: item.status === 'Rejected',
-                      inactive: item.status === 'Pending'
+                      completed: item.unavailableProducts[0].status === 'Approved',
+                      rejected: item.unavailableProducts[0].status === 'Rejected',
+                      inactive: item.unavailableProducts[0].status === 'Pending'
                     }">
-                    {{ item.status }}
+                    {{ item.unavailableProducts[0].status }}
                   </div>
                 </div>
               </td>
@@ -100,7 +100,7 @@
                   </button>
                   <button class="btn" routerLink="/business-admin/purchase-request/purchase-request-form"
                     matTooltip="Edit Request"><img src="../../../../../assets/icons/Union.png"></button>
-                  <button class="btn"><img src="../../../../../assets/icons/Trash can.png"
+                  <button class="btn" (click)="deleterequest(item)"><img src="../../../../../assets/icons/Trash can.png"
                       matTooltip="Delete Request"></button>
                 </div>
               </td>

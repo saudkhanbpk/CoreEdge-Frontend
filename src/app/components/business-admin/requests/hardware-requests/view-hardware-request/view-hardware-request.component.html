@@ -80,6 +80,11 @@
                                     </td>
                                     <td>
                                         <div class="table-data">
+                                            {{item?.employees[0].name}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
                                             {{item?.employees[0].email}}
                                         </div>
                                     </td>
@@ -95,16 +100,17 @@
                 </div>
             </div>
         </div>
-    </mat-dialog-content>
 
     <mat-dialog-actions class="d-flex justify-content-between">
-        <button class="btn check border gap-2">
+        <button class="btn check border gap-2" (click)="approve(item, 'Approved')">
             <span class="btn-span">Approve Request</span>
             <mat-icon class="btn-icon">check</mat-icon>
         </button>
-        <button class="btn close border gap-2" mat-dialog-close>
+        <button class="btn close border gap-2" (click)="approve(item, 'Rejected')">
             <span class="btn-span">Reject Request</span>
             <mat-icon class="btn-icon">close</mat-icon>
         </button>
     </mat-dialog-actions>
+</mat-dialog-content>
+
 </div>

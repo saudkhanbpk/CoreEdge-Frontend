@@ -1,5 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { RequestService } from 'src/app/services/request.service';
+import { ViewHardwareRequestComponent } from '../../requests/hardware-requests/view-hardware-request/view-hardware-request.component';
+import { SharedService } from 'src/app/services/shared.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-view-purchase-request',
@@ -8,7 +12,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ViewPurchaseRequestComponent {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ViewHardwareRequestComponent>, private orderService:RequestService, private sharedService: SharedService, private authService: AuthService) {
     console.log('Dialog data:', this.data); // Access the passed item here
   }
   isLoading: boolean = false; 
@@ -42,5 +46,32 @@ export class ViewPurchaseRequestComponent {
     },
   ];
   
+ approve(item: any, status: 'Approved' | 'Rejected'): void {
+  const payload = {
+    products: item.unavailableProducts.map((product: any) => ({
+      product: product.product,
+      status: status
+    }))
+  };
+
+  this.orderService.updateunavailableProductStatus(item.id, payload.products).subscribe(
+    (response: any) => {
+      const user = this.authService.getUserData();
+      if (user) {
+        this.sharedService.reloadData(user.id).subscribe((data) => {
+          if (data) {
+            this.dialogRef.close('refresh');
+          }
+        });
+      } else {
+        this.dialogRef.close('refresh');
+      }
+    },
+    (error: any) => {
+      console.error(`Error updating request to ${status}:`, error);
+    }
+  );
+}
+
 
 }

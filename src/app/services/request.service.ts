@@ -22,17 +22,29 @@ export class RequestService {
     return this.http.get<any>(`${this.apiUrl}/user/${userId}`);
   }
 
-
   create(order: any): Observable<any> {
-
-
     return this.http.post<any>(this.apiUrl, order);
+  }
+
+  updateProductStatus(
+    orderId: number,
+    availableProducts: Array<{ product: any; status: string }>
+  ): Observable<any> {
+    const url = `${this.apiUrl}/${orderId}/update-status`;
+    return this.http.patch(url, { availableProducts });
+  }
+  
+  updateunavailableProductStatus(
+    orderId: number,
+    unavailableProducts: Array<{ product: any; status: string }>
+  ): Observable<any> {
+    const url = `${this.apiUrl}/${orderId}/update-status`;
+    return this.http.patch(url, { unavailableProducts });
   }
 
 
   // Method to update an existing Catalog item
   updateCatalogItem(id: number, order: Partial<any>): Observable<void> {
-
     return this.http.put<void>(`${this.apiUrl}/${id}`, order);
   }
 

@@ -3,6 +3,7 @@ import { ViewHardwareRequestComponent } from '../view-hardware-request/view-hard
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
 import { RequestService } from 'src/app/services/request.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-hardware-requests-table',
@@ -22,24 +23,26 @@ export class HardwareRequestsTableComponent {
 
   constructor(
     private requestService: RequestService,
-    private authService: AuthService
+    private authService: AuthService,
+    private sharedService: SharedService
   ) {}
 
   ngOnInit(): void {
     const user = this.authService.getUserData();
     if (user) {
-      this.requestService.findByUserId(user.id).subscribe(
-        (items) => {
-          this.data = items;
-          console.log("this.order", items)
+      this.sharedService.getData(user.id).subscribe(
+        (items: any[]) => {
+          const filteredItems = items.filter((item) => item.availableProducts && item.availableProducts.length > 0);
+          this.data = filteredItems;
+          console.log('Filtered Data:', this.data);
         },
         (error) => {
           console.error('Error fetching data:', error);
-          // this.data = []; // Ensure `data` is always defined
         }
       );
     }
   }
+  
 
  
   // data = [
@@ -64,16 +67,18 @@ export class HardwareRequestsTableComponent {
   //   },
   // ];
   openDialog(item: any) {
-    console.log('Opening dialog with item:', item);
     const dialogRef = this.dialog.open(ViewHardwareRequestComponent, {
-      data: item, // Pass the item to the dialog component
-      width: 'auto', // Optional: Customize the dialog width
+      data: item, 
+      width: 'auto', 
     });
-
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+      if (result === 'refresh') {
+        this.ngOnInit()
+        }
     });
   }
+
+  
 
   get totalPages() {
     return Math.ceil((this.data?.length || 0) / this.itemsPerPage); // Handle cases where `data` might still be empty or undefined

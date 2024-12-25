@@ -47,17 +47,17 @@
                 <tr *ngFor="let item of paginatedData; let i = index">
                   <td>
                     <div class="table-data">
-                      {{ item.no }}
+                      {{ i + 1 }}
                     </div>
                   </td>
                   <td>
                     <div class="table-data">
-                      {{ item.employeename }}
+                      {{ item.employees[0].name }}
                     </div>
                   </td>
                   <td>
                     <div class="table-data">
-                      {{ item.employeeemail }}
+                      {{ item.employees[0].email }}
                     </div>
                   </td>
                   <td>
@@ -67,25 +67,31 @@
                   </td>
                   <td>
                     <div class="table-data">
-                      {{ item.date }}
+                      {{ item.createdAt | date }}
                     </div>
                   </td>
                   <td>
                     <div class="table-data">
-                      <div class="status p-2" [ngClass]="{
-                          completed: item.status === 'Approved',
+                      <div
+                        class="status p-2"
+                        [ngClass]="{
+                          completed: item.availableProducts[0].status === 'Approved',
+                          rejected: item.availableProducts[0].status === 'Rejected',
+                          inactive: item.availableProducts[0].status === 'Pending'
                         }">
-                        {{ item.status }}
+                        {{ item.availableProducts[0].status }}
                       </div>
                     </div>
                   </td>
                   <td>
                     <div class="table-data d-flex gap-1 justify-content-end">
-                      <button class="btn visibility" (click)="openDialog()" matTooltip="View Request">
+                      <button class="btn visibility" (click)="openDialog(item)" matTooltip="View Request">
                         <img src="../../../../../../assets/newicons/Eye.png" alt="">
                       </button>
-                      <button class="btn" matTooltip="Delete Request"><img
-                          src="../../../../../assets/icons/Trash can.png" alt=""></button>
+                      <!-- <button class="btn" routerLink="/business-admin/purchase-request/purchase-request-form"
+                        matTooltip="Edit Request"><img src="../../../../../assets/icons/Union.png"></button> -->
+                      <button class="btn" (click)="deleterequest(item)"><img src="../../../../../assets/icons/Trash can.png"
+                          matTooltip="Delete Request"></button>
                     </div>
                   </td>
                 </tr>

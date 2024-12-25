@@ -3,17 +3,17 @@
         <h2 mat-dialog-title>Approved Hardware Request</h2>
         <mat-icon class="icon me-2" mat-dialog-close>close</mat-icon>
     </div>
-    <mat-dialog-content class="mat-typography">
+    <mat-dialog-content class="mat-typography" *ngFor="let item of [data]">
         <div class="row row1">
             <h3>He needed These Products 🥺</h3>
             <div class="col-md-6 p-0">
                 <div class="mb-3">
                     <h4>Employee Name:</h4>
-                    <span>James Anderson</span>
+                    <span>{{item.employees[0].name}}</span>
                 </div>
                 <div class="mb-3">
                     <h4>Employee Email:</h4>
-                    <span>JamesAnderson&#64;gmail.com</span>
+                    <span>{{item.employees[0].email}}</span>
                 </div>
                 <div class="mb-3">
                     <h4>Employee Contact:</h4>
@@ -38,7 +38,7 @@
         <div class="row row1 mt-2">
             <div class="col-md-12">
                 <h4>Description:</h4>
-                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta accusamus cumque voluptates impedit!</span>
+                <span>{{item.description}}</span>
             </div>
         </div>
         <div class="row">
@@ -70,25 +70,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of request">
+                                <tr *ngFor="let product of item.availableProducts let i=index">
                                     <td>
                                         <div class="table-data">
-                                            {{item?.no}}
+                                            {{i+1}}
                                         </div>
                                     </td>
                                     <td>
                                         <div class="table-data">
-                                            {{item?.materialid}}
+                                            {{product?.product.materialId}}
                                         </div>
                                     </td>
                                     <td>
                                         <div class="table-data">
-                                            {{item?.employeeEmail}}
+                                            {{item?.employees[0].email}}
                                         </div>
                                     </td>
                                     <td>
                                         <div class="table-data">
-                                            {{item?.price | currency}}
+                                            {{product?.product?.price | currency}}
                                         </div>
                                     </td>
                                 </tr>

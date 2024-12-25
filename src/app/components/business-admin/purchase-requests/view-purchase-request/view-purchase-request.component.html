@@ -3,7 +3,7 @@
         <h2 mat-dialog-title>Purchase Request</h2>
         <mat-icon class="icon me-2" mat-dialog-close>close</mat-icon>
     </div>
-    <mat-dialog-content class="mat-typography" *ngFor="let item of [data]">
+    <mat-dialog-content class="mat-typography" *ngFor="let item of [data]" >
         <div class="row row1">
             <h3>Hey I need These Products 🥺</h3>
             <div class="col-md-6 p-0">
@@ -101,16 +101,15 @@
                 </div>
             </div>
         </div>
+        <mat-dialog-actions class="d-flex justify-content-between">
+            <button class="btn check border gap-2" (click)="approve(item, 'Approved')">
+                <span class="btn-span">Approve Request</span>
+                <mat-icon class="btn-icon">check</mat-icon>
+            </button>
+            <button class="btn close border gap-2" (click)="approve(item, 'Rejected')">
+                <span class="btn-span">Reject Request</span>
+                <mat-icon class="btn-icon">close</mat-icon>
+            </button>
+        </mat-dialog-actions>
     </mat-dialog-content>
-
-    <mat-dialog-actions class="d-flex justify-content-between">
-        <button class="btn check border gap-2">
-            <span class="btn-span">Approve Request</span>
-            <mat-icon class="btn-icon">check</mat-icon>
-        </button>
-        <button class="btn close border gap-2" mat-dialog-close>
-            <span class="btn-span">Reject Request</span>
-            <mat-icon class="btn-icon">close</mat-icon>
-        </button>
-    </mat-dialog-actions>
 </div>

@@ -351,7 +351,7 @@ export class AddedProductsComponent implements OnInit {
         users: [this.authService.getUserData().id], // Retrieve user ID from auth service
         uniqueCode: uniqueCode,
         description: this.description,
-        status: 'PENDING',
+        status: 'Pending',
         products: this.addedProducts,
         employees: [this.selectedOptions],
         statusUpdatedAt: new Date().toISOString(), // Use ISO format for consistency

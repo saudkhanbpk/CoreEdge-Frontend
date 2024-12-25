@@ -63,33 +63,36 @@
                     </td>
                     <td>
                       <div class="table-data">
-                        {{ item.description }}
+                        {{ item?.description }}
                       </div>
                     </td>
                     <td>
                       <div class="table-data">
-                        {{ item.createdAt | date}}
+                        {{ item?.createdAt | date}}
                       </div>
                     </td>
                     <td>
                       <div class="table-data">
                         <div
                           class="status p-2"
+                          *ngIf="item?.availableProducts?.length > 0"
                           [ngClass]="{
-                            inprogress: item.status === 'PENDING',
-                            completed: item.status === 'Ready',
-                            rejected: item.status === 'Onhold'
-                          }">
-                        {{ item.status }}
+                            inprogress: item.availableProducts[0].status === 'Pending',
+                            completed: item.availableProducts[0].status === 'Approved',
+                            rejected: item.availableProducts[0].status === 'Rejected'
+                          }"
+                        >
+                          {{ item?.availableProducts[0]?.status }}
+                        </div>
                       </div>
-                      </div>
+                      
                     </td>
                     <td>
                       <div class="table-data d-flex gap-1 justify-content-end">
                         <button class="btn visibility" (click)="openDialog(item)" matTooltip="View Details">
                           <img src="../../../../../../assets/newicons/Eye.png" alt="">
                         </button>
-                        <button class="btn"  routerLink="/business-admin/requests/hardware-requests/edit-hardware-requests" matTooltip="View Details"><img src="../../../../../assets/icons/Union.png" alt=""></button>
+                        <!-- <button class="btn"  routerLink="/business-admin/requests/hardware-requests/edit-hardware-requests" matTooltip="View Details"><img src="../../../../../assets/icons/Union.png" alt=""></button> -->
                         <button class="btn" matTooltip="View Details"><img src="../../../../../assets/icons/Trash can.png" alt=""></button>
                       </div>
                     </td>
