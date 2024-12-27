@@ -45,6 +45,7 @@ export class EmployeesFormComponent implements OnInit {
       name: ['', [Validators.required, Validators.maxLength(100)]],
       role: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      contactnumber: ['', Validators.required],
       password: ['', Validators.required],
       address: ['', [Validators.required, Validators.maxLength(255)]],
       isActive: [false, Validators.required],

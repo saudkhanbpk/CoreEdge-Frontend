@@ -2,43 +2,31 @@
   <h4 class="text-center">Purchase Order</h4>
   <!-- Company Info -->
   <div class="row mb-4 main-row">
-    <div class="col-md-6">
-      <div class="d-flex align-items-baseline gap-2">
+    <div class="col-md-12 col-lg-6 ">
+      <div class="d-flex align-items-baseline flex-onsmall gap-2">
         <label class="form-label">Company Name</label>
         <span class="editable-field d-block">{{data.employees[0].name}}</span>
       </div>
-      <div class="d-flex align-items-baseline gap-2">
+      <div class="d-flex align-items-baseline flex-onsmall gap-2">
         <label class="form-label">Street Address</label>
         <span class="editable-field d-block"> {{data.employees[0].address}}</span>
       </div>
-      <div class="d-flex align-items-baseline gap-2">
-        <label class="form-label">City, ST, ZIP</label>
-        <span class="editable-field d-block">{{data.employees[0].address}}</span>
-      </div>
-      <div class="d-flex align-items-baseline gap-2">
+      <div class="d-flex align-items-baseline flex-onsmall gap-2">
         <label class="form-label">Phone Number</label>
         <span class="editable-field d-block">847-850-2577</span>
       </div>
-      <div class="d-flex align-items-baseline gap-2">
-        <label class="form-label">Fax Number</label>
-        <span class="editable-field d-block">0033</span>
-      </div>
-      <div class="d-flex align-items-baseline gap-2">
-        <label class="form-label">Website</label>
-        <span class="editable-field d-block">abc.com</span>
-      </div>
     </div>
-    <div class="col-md-6 text-end">
+    <div class="col-md-12 col-lg-6 text-end">
       <!-- <h5>PURCHASE ORDER</h5> -->
       <img
         src="../../../../../assets/WhatsApp Image 2024-11-18 at 2.30.06 PM.jpeg"
         width="60%"
       />
-      <div class="d-flex justify-content-end align-items-baseline gap-2">
+      <div class="d-flex justify-content-end align-items-baseline flex-onsmall gap-2">
         <label class="form-label">REQUESTED DATE</label>
         <span class="editable-field2 d-block">October 3rd, 2024</span>
       </div>
-      <div class="d-flex justify-content-end align-items-baseline gap-2">
+      <div class="d-flex justify-content-end align-items-baseline flex-onsmall gap-2">
         <label class="form-label">P.O. #</label>
         <span class="editable-field2 d-block">2982-XJ82-92</span>
       </div>
@@ -47,52 +35,44 @@
 
   <!-- Vendor and Ship To -->
   <div class="row main-row2 d-flex flex-row">
-    <div class="col-md-6">
+    <div class="col-md-12 col-lg-6">
       <h6 class="fw-bold">VENDOR</h6>
-      <div class="d-flex align-items-baseline gap-2">
+      <div class="d-flex align-items-baseline flex-onsmall gap-2">
         <label class="form-label">Company Name</label>
         <span class="editable-field d-block">{{data.unavailableProducts[0].product.vendor.name}}</span>
       </div>
-      <div class="d-flex align-items-baseline gap-2">
-        <label class="form-label">Contact or Department</label>
+      <div class="d-flex align-items-baseline flex-onsmall gap-2">
+        <label class="form-label">Contact</label>
         <span class="editable-field d-block">{{data.unavailableProducts[0].product.vendor.contactPerson}}</span>
       </div>
-      <div class="d-flex align-items-baseline gap-2">
-        <label class="form-label">Street Address</label>
+      <div class="d-flex align-items-baseline flex-onsmall gap-2">
+        <label class="form-label">Address</label>
         <span class="editable-field d-block">{{data.unavailableProducts[0].product.vendor.address}}</span>
       </div>
-      <div class="d-flex align-items-baseline gap-2">
-        <label class="form-label">City, ST, ZIP</label>
-        <span class="editable-field d-block">{{data.unavailableProducts[0].product.vendor.address}}</span>
-      </div>
-      <div class="d-flex align-items-baseline gap-2">
+      <div class="d-flex align-items-baseline flex-onsmall gap-2">
         <label class="form-label">Phone</label>
         <span class="editable-field d-block">{{data.unavailableProducts[0].product.vendor.phone}}</span>
       </div>
-      <div class="d-flex align-items-baseline gap-2">
-        <label class="form-label">Fax</label>
-        <span class="editable-field d-block">0035</span>
-      </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12 col-lg-6">
       <h6 class="fw-bold">SHIP TO</h6>
-      <div class="d-flex align-items-baseline gap-2">
+      <div class="d-flex align-items-baseline flex-onsmall gap-2">
         <label class="form-label">Name</label>
         <span class="editable-field d-block">{{data.users[0].fullName}}</span>
       </div>
-      <div class="d-flex align-items-baseline gap-2">
+      <div class="d-flex align-items-baseline flex-onsmall gap-2">
         <label class="form-label">Company Name</label>
         <span class="editable-field d-block">{{data.users[0].fullName}}</span>
       </div>
-      <div class="d-flex align-items-baseline gap-2">
-        <label class="form-label">Street Address</label>
+      <div class="d-flex align-items-baseline flex-onsmall gap-2">
+        <label class="form-label">Address</label>
         <span class="editable-field d-block">{{data.users[0].address}}</span>
       </div>
-      <div class="d-flex align-items-baseline gap-2">
+      <!-- <div class="d-flex align-items-baseline flex-onsmall gap-2">
         <label class="form-label">City, ST, ZIP</label>
         <span class="editable-field d-block"> {{data.users[0].address}}</span>
-      </div>
-      <div class="d-flex align-items-baseline gap-2">
+      </div> -->
+      <div class="d-flex align-items-baseline flex-onsmall gap-2">
         <label class="form-label">Phone</label>
         <span class="editable-field d-block">847-850-2577</span>
       </div>
@@ -116,8 +96,8 @@
           <td>{{i+1}}</td>
           <td>{{item.product.materialId}}</td>
           <td>{{item.quantity}}</td>
-          <td>{{item.product.price}}</td>
-          <td>{{item.product.price * item.quantity}}</td>
+          <td>{{item.product.price | currency}}</td>
+          <td>{{item.product.price * item.quantity | currency}}</td>
         </tr>
         <!-- <tr>
           <td>2</td>
@@ -139,10 +119,10 @@
 
   <!-- Total Section -->
   <div class="row mt-3">
-    <div class="col-md-8">
+    <div class="col-md-6 col-lg-8">
       <p>NOTES/INSTRUCTIONS:</p>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6 col-lg-4">
       <div class="d-flex justify-content-between">
         <label class="form-label">Subtotal:</label>
         <span class="">$37</span>
@@ -153,22 +133,12 @@
       </div>
       <div class="d-flex justify-content-between">
         <label class="form-label fw-bold">Total:</label>
-        <span class="">{{data.totalPrice}}</span>
+        <span class="">{{data.totalPrice | currency}}</span>
       </div>
     </div>
   </div>
-  <div class="row mt-3 text-center">
-    <p class="mb-0">
-      For any enquiries regarding this purchase order, Please contact
-    </p>
-
-    <div class="d-flex justify-content-center gap-3">
-      <p>Email: <span>admin&#64;gmail.com</span></p>
-      <p>Phone: <span>847-850-2577</span></p>
-    </div>
-  </div>
 </div>
-<mat-dialog-actions class="d-flex justify-content-between">
+<mat-dialog-actions class="d-flex justify-content-between flex-onsmall">
   <button class="btn check border gap-2">
       <span class="btn-span">Place Purchase Order</span>
       <mat-icon class="btn-icon">check</mat-icon>

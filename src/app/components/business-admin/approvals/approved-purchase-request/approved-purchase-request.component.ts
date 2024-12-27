@@ -5,6 +5,7 @@ import { ViewApprovedPurchaseRequestComponent } from '../view-approved-purchase-
 import { AuthService } from 'src/app/services/auth.service';
 import { RequestService } from 'src/app/services/request.service';
 import { SharedService } from 'src/app/services/shared.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-approved-purchase-request',
@@ -90,8 +91,38 @@ export class ApprovedPurchaseRequestComponent implements OnInit {
   }
 
   deleterequest(item: any) {
-    this.requestService.delete(item.id).subscribe((res:any)=> {
-    }) 
+    // Show a confirmation dialog
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'This action will permanently delete the Purchase Order!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Proceed to delete the item
+        this.requestService.delete(item.id).subscribe({
+          next: (res: any) => {
+            // Show success feedback
+            Swal.fire(
+              'Deleted!',
+              'The Purchase Request has been deleted successfully.',
+              'success'
+            );
+          },
+          error: (err: any) => {
+            // Show error feedback
+            Swal.fire(
+              'Error!',
+              'Unable to delete the Purchase Request. Please try again.',
+              'error'
+            );
+          }
+        });
+      }
+    });
   }
 
   get paginatedData() {

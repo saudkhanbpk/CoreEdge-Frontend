@@ -83,3 +83,24 @@ line-height: 0px;
  align-items: center;
  justify-content: center;
 }
+
+@media screen and (max-width:600px){
+  .flex-onsmall{
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 0px !important;
+  }
+  label{
+    margin-bottom: 0px !important;
+  }
+  .editable-field{
+    text-align: start;
+    white-space: wrap !important;
+  }
+  .container{
+    padding: 10px 10px !important;
+  }
+  .check, .close{
+    width: 100% !important;
+  }
+}
