@@ -1,19 +1,19 @@
-<div class="container mt-4 px-5 py-2 overflow-auto download" #container>
+<div class="container mt-4 px-5 py-2 overflow-auto download" #container >
   <h4 class="text-center">Purchase Order</h4>
   <!-- Company Info -->
   <div class="row mb-4 main-row">
     <div class="col-md-6">
       <div class="d-flex align-items-baseline gap-2">
         <label class="form-label">Company Name</label>
-        <span class="editable-field d-block">Patron Foods</span>
+        <span class="editable-field d-block">{{data.employees[0].name}}</span>
       </div>
       <div class="d-flex align-items-baseline gap-2">
         <label class="form-label">Street Address</label>
-        <span class="editable-field d-block"> 208 W Alexander St</span>
+        <span class="editable-field d-block"> {{data.employees[0].address}}</span>
       </div>
       <div class="d-flex align-items-baseline gap-2">
         <label class="form-label">City, ST, ZIP</label>
-        <span class="editable-field d-block">Plant City, Fl 33563</span>
+        <span class="editable-field d-block">{{data.employees[0].address}}</span>
       </div>
       <div class="d-flex align-items-baseline gap-2">
         <label class="form-label">Phone Number</label>
@@ -51,23 +51,23 @@
       <h6 class="fw-bold">VENDOR</h6>
       <div class="d-flex align-items-baseline gap-2">
         <label class="form-label">Company Name</label>
-        <span class="editable-field d-block">Dell</span>
+        <span class="editable-field d-block">{{data.unavailableProducts[0].product.vendor.name}}</span>
       </div>
       <div class="d-flex align-items-baseline gap-2">
         <label class="form-label">Contact or Department</label>
-        <span class="editable-field d-block">IT</span>
+        <span class="editable-field d-block">{{data.unavailableProducts[0].product.vendor.contactPerson}}</span>
       </div>
       <div class="d-flex align-items-baseline gap-2">
         <label class="form-label">Street Address</label>
-        <span class="editable-field d-block">Las Vegas</span>
+        <span class="editable-field d-block">{{data.unavailableProducts[0].product.vendor.address}}</span>
       </div>
       <div class="d-flex align-items-baseline gap-2">
         <label class="form-label">City, ST, ZIP</label>
-        <span class="editable-field d-block">Plant City, Fl 33563</span>
+        <span class="editable-field d-block">{{data.unavailableProducts[0].product.vendor.address}}</span>
       </div>
       <div class="d-flex align-items-baseline gap-2">
         <label class="form-label">Phone</label>
-        <span class="editable-field d-block">825-490-2127</span>
+        <span class="editable-field d-block">{{data.unavailableProducts[0].product.vendor.phone}}</span>
       </div>
       <div class="d-flex align-items-baseline gap-2">
         <label class="form-label">Fax</label>
@@ -78,19 +78,19 @@
       <h6 class="fw-bold">SHIP TO</h6>
       <div class="d-flex align-items-baseline gap-2">
         <label class="form-label">Name</label>
-        <span class="editable-field d-block">Employee</span>
+        <span class="editable-field d-block">{{data.users[0].fullName}}</span>
       </div>
       <div class="d-flex align-items-baseline gap-2">
         <label class="form-label">Company Name</label>
-        <span class="editable-field d-block">Patron Foods</span>
+        <span class="editable-field d-block">{{data.users[0].fullName}}</span>
       </div>
       <div class="d-flex align-items-baseline gap-2">
         <label class="form-label">Street Address</label>
-        <span class="editable-field d-block"> 208 W Alexander St</span>
+        <span class="editable-field d-block">{{data.users[0].address}}</span>
       </div>
       <div class="d-flex align-items-baseline gap-2">
         <label class="form-label">City, ST, ZIP</label>
-        <span class="editable-field d-block"> Plant City, Fl 33563</span>
+        <span class="editable-field d-block"> {{data.users[0].address}}</span>
       </div>
       <div class="d-flex align-items-baseline gap-2">
         <label class="form-label">Phone</label>
@@ -111,15 +111,15 @@
           <th scope="col">TOTAL</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngFor="let item of data.unavailableProducts; let i = index">
         <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>KG</td>
-          <td>$15</td>
+          <td>{{i+1}}</td>
+          <td>{{item.product.materialId}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.product.price}}</td>
+          <td>{{item.product.price * item.quantity}}</td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>2</td>
           <td>Mark</td>
           <td>Otto</td>
@@ -132,7 +132,7 @@
           <td>Otto</td>
           <td>KG</td>
           <td>$12</td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </div>
@@ -153,7 +153,7 @@
       </div>
       <div class="d-flex justify-content-between">
         <label class="form-label fw-bold">Total:</label>
-        <span class="">$37.50</span>
+        <span class="">{{data.totalPrice}}</span>
       </div>
     </div>
   </div>

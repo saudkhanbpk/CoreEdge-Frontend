@@ -35,7 +35,7 @@ export class CatalogTableComponent {
     });
   }
   loadsData(): void {
-    this.catalogService.findByUserId(this.user.userId.id).subscribe((response:any) => {
+    this.catalogService.findByVendorId(this.user.id).subscribe((response:any) => {
       console.log(response);
       
       this.data = response;

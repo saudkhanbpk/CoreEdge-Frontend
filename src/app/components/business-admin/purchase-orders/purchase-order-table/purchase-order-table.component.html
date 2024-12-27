@@ -11,14 +11,21 @@
       </button>
     </div>
     <div *ngIf="showMergeOptions">
-      <select name="" id="" class="form-select" id="vendors-list">
+      <!-- <select class="form-select" id="vendors-list" (change)="onVendorChange($event)">
         <option value="" disabled selected>Vendor's List</option>
-        <option value="">Jimmy Anderson</option>
-        <option value="">Steven Smith</option>
-        <option value="">Mitchell Starc</option>
-        <option value="">Marnus Labuschagne</option>
+        <option *ngFor="let vendor of uniqueVendors" [value]="vendor.id">
+          {{ vendor.name }}
+        </option>
+      </select>       -->
 
+      <select class="form-select" id="vendors-list" (change)="onVendorChange($event)">
+        <option value="" disabled selected>Vendor's List</option>
+        <option value="0">All Vendors</option> <!-- "All" option -->
+        <option *ngFor="let vendor of uniqueVendors" [value]="vendor.id">
+          {{ vendor.name }}
+        </option>
       </select>
+      
     </div>
     <div *ngIf="!showMergeOptions">
       <button class="btn add-btn" (click)="showMergeOptions = true">
@@ -27,7 +34,7 @@
       </button>
     </div>
     <div *ngIf="showMergeOptions">
-      <button class="btn add-btn">
+      <button class="btn add-btn" (click)="mergeSelectedOrders()">
         Merge Selected Orders
         <img src="../../../../../assets/newicons/Layers.png" alt="" />
       </button>
@@ -71,27 +78,22 @@
           </th>
           <th scope="col">
             <div class="table-data">
-              Vendor
+              Vendor Name
             </div>
           </th>
           <th scope="col">
             <div class="table-data">
-              Vendor Email
+              Total items
             </div>
           </th>
           <th scope="col">
             <div class="table-data">
-              Received Date
+              Employee Name
             </div>
           </th>
           <th scope="col">
             <div class="table-data">
-              Total Amount
-            </div>
-          </th>
-          <th scope="col">
-            <div class="table-data">
-              Address
+              Price
             </div>
           </th>
           <th scope="col">
@@ -102,7 +104,7 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let item of paginatedData; let i = index">
+        <ng-container *ngFor="let item of data; let i = index">
           <tr>
             <td>
               <div class="table-data">
@@ -110,34 +112,29 @@
                   <input *ngIf="showMergeOptions" class="form-check-input" type="checkbox" value=""
                     [(ngModel)]="item.checked" id="flexCheckChecked">
                   <div>
-                    {{ item.purchaseorderno }}
+                    {{ item.uniqueCode }}
                   </div>
                 </div>
               </div>
             </td>
             <td>
               <div class="table-data">
-                {{ item.employeename }}
+                {{ item?.unavailableProducts[0]?.product.vendor.name }}
               </div>
             </td>
             <td>
               <div class="table-data">
-                {{ item.employeeemail }}
+                {{ item?.unavailableProducts.length }}
               </div>
             </td>
             <td>
               <div class="table-data">
-                {{ item.receivedddate }}
+                {{ item?.employees[0]?.name }}
               </div>
             </td>
             <td>
               <div class="table-data">
-                {{ item.totalamount | currency }}
-              </div>
-            </td>
-            <td>
-              <div class="table-data">
-                {{ item.address }}
+                {{ item.totalPrice | currency }}
               </div>
             </td>
             <td>
@@ -153,7 +150,7 @@
             </td>
             <td>
               <div class="table-data d-flex gap-1 w-100 justify-content-end">
-                <button class="btn visibility" (click)="openDialog()" matTooltip="View Order">
+                <button class="btn visibility" (click)="openDialog(item)" matTooltip="View Order">
                   <img src="../../../../../assets/newicons/message square.png">
                 </button>
                 <button class="btn" routerLink="/business-admin/purchase-orders/purchase-order-form"

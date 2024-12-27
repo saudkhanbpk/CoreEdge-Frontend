@@ -14,3 +14,11 @@
     color: #0F4D50;
     border: 1px solid #0F4D50;
 }
+
+.table-data {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    height: 100%; /* Ensure the parent has a defined height */
+    text-align: center; /* Fallback for inline content alignment */
+  }

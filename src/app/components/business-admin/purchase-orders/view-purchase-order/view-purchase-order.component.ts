@@ -1,5 +1,9 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import html2pdf from 'html2pdf.js';
+import { AuthService } from 'src/app/services/auth.service';
+import { RequestService } from 'src/app/services/request.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-view-purchase-order',
@@ -8,8 +12,9 @@ import html2pdf from 'html2pdf.js';
 })
 export class ViewPurchaseOrderComponent {
   @ViewChild('container', { static: false }) container!: ElementRef;
-
-  downloadPDF(): void {
+ constructor(@Inject(MAT_DIALOG_DATA) public data: any,public dialogRef: MatDialogRef<ViewPurchaseOrderComponent>, private orderService:RequestService, private sharedService: SharedService, private authService: AuthService) {
+    console.log('Dialog data:', this.data); // Access the passed item here
+  }  downloadPDF(): void {
     const containerElement = this.container.nativeElement;
 
     if (!containerElement) {

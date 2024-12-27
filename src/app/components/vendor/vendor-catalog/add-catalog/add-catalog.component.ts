@@ -33,6 +33,7 @@ export class AddCatalogComponent implements OnInit {
   ngOnInit(): void {
     // Get the id from route parameters
     this.id = this.route.snapshot.paramMap.get('id');
+    console.log("log is : ",this.id);
     
     if (this.id) {
       this.isEdit = true;
@@ -58,6 +59,7 @@ export class AddCatalogComponent implements OnInit {
 
     // Get user data from auth service
     this.user = this.authService.getUserData();
+console.log("user is : ",this.user);
 
     // Initialize the form with default values
     this.inventoryItemForm = this.fb.group({

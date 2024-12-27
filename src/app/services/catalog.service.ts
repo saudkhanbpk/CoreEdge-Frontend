@@ -25,6 +25,9 @@ export class CatalogService {
   findByUserId(userId: number): Observable<Catalog> {
     return this.http.get<Catalog>(`${this.apiUrl}/user/${userId}`);
   }
+  findByVendorId(userId: number): Observable<Catalog> {
+    return this.http.get<Catalog>(`${this.apiUrl}/vendor/${userId}`);
+  }
 
   // Method to create a new Catalog item
   // create(Catalog: Partial<Catalog>, file: File): Observable<Catalog> {
