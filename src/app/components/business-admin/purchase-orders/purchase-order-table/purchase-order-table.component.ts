@@ -5,6 +5,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { AuthService } from 'src/app/services/auth.service';
 import { RequestService } from 'src/app/services/request.service';
 import { SharedService } from 'src/app/services/shared.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-purchase-order-table',
@@ -286,36 +287,52 @@ ngOnInit(): void {
   //   }
   // }
 
+ 
+
   mergeSelectedOrders(): void {
     const selectedOrders = this.paginatedData.filter((item: any) => item.checked); // Get all checked items
-  
     if (selectedOrders.length === 0) {
-      console.warn('No orders selected for merging.');
+      Swal.fire({
+        icon: 'warning',
+        title: 'No Orders Selected',
+        text: 'Please select at least one order to merge.',
+      });
       return;
     }
   
-    // Combine unavailableProducts from all selected orders
-    const mergedUnavailableProducts = selectedOrders.flatMap((order: any) => order.unavailableProducts);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to merge the selected orders?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, merge them!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Perform the merge
+        const mergedUnavailableProducts = selectedOrders.flatMap((order: any) => order.unavailableProducts);
+        const vendorDetails = selectedOrders[0]?.unavailableProducts[0]?.product?.vendor || {};
+        const barcode = `BARCODE-${Date.now()}`;
+        const newOrder = {
+          id: `NEW-ORDER-${Date.now()}`,
+          mergedProducts: mergedUnavailableProducts,
+          vendor: vendorDetails,
+          barcode,
+        };
   
-    // Extract vendor details from the first selected order (assuming they share the same vendor)
-    const vendorDetails = selectedOrders[0]?.unavailableProducts[0]?.product?.vendor || {};
+        console.log('New Merged Order:', newOrder);
+        this.paginatedData.push(newOrder);
   
-    // Generate a unique barcode for the new order (example: using timestamp)
-    const barcode = `BARCODE-${Date.now()}`;
-  
-    // Create the new merged order
-    const newOrder = {
-      id: `NEW-ORDER-${Date.now()}`, // Unique ID for the merged order
-      mergedProducts: mergedUnavailableProducts,
-      vendor: vendorDetails,
-      barcode,
-    };
-  
-    console.log('New Merged Order:', newOrder);
-  
-    // Optionally, add the new order to your data or perform additional actions
-    this.paginatedData.push(newOrder);
+        Swal.fire(
+          'Merged and Sent!',
+          'The selected Purchase Orders have been successfully merged and sent to vendor.',
+          'success'
+        );
+      }
+    });
   }
+  
   
   
   toggleDetails(index: number) {

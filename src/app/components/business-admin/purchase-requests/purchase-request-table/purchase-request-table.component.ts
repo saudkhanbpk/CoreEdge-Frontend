@@ -4,6 +4,7 @@ import { ViewPurchaseRequestComponent } from '../view-purchase-request/view-purc
 import { AuthService } from 'src/app/services/auth.service';
 import { RequestService } from 'src/app/services/request.service';
 import { SharedService } from 'src/app/services/shared.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -87,8 +88,36 @@ export class PurchaseRequestTableComponent {
   }
   
   deleterequest(item: any) {
-    this.requestService.delete(item.id).subscribe((res:any)=> {
-    }) 
+    // Show a confirmation dialog
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Proceed to delete the item
+        this.requestService.delete(item.id).subscribe({
+          next: (res: any) => {
+            Swal.fire(
+              'Deleted!',
+              'Your item has been deleted.',
+              'success'
+            );
+          },
+          error: (err: any) => {
+            Swal.fire(
+              'Error!',
+              'Something went wrong. Please try again.',
+              'error'
+            );
+          }
+        });
+      }
+    });
   }
 
   openDialog(item: any): void {  

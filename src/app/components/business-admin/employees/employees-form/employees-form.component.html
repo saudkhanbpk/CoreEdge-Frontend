@@ -76,9 +76,23 @@
               </small>
             </div>
           </div>
-  
+          <div class="col-md-6">
+            <div class="input-div input-div-no-pad">
+              <label for="contactnumber">Contact Number<span class="star">*</span></label>
+              <input
+                type="text"
+                id="contactnumber"
+                formControlName="contactnumber"
+                class="form-control"
+                placeholder="Enter Contact Number"
+              />
+              <small *ngIf="employeeForm.get('contactnumber')?.invalid && employeeForm.get('contactnumber')?.touched" class="text-danger">
+                Contact Number is required.
+              </small>
+            </div>
+          </div>
           <!-- Address -->
-          <div class="col-md-12">
+          <div class="col-md-6">
             <div class="input-div input-div-no-pad">
               <label for="address">Address<span class="star">*</span></label>
               <input

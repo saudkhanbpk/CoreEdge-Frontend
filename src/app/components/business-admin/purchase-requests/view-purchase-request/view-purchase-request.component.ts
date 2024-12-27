@@ -4,6 +4,7 @@ import { RequestService } from 'src/app/services/request.service';
 import { ViewHardwareRequestComponent } from '../../requests/hardware-requests/view-hardware-request/view-hardware-request.component';
 import { SharedService } from 'src/app/services/shared.service';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-purchase-request',
@@ -46,32 +47,62 @@ export class ViewPurchaseRequestComponent {
     },
   ];
   
- approve(item: any, status: 'Approved' | 'Rejected'): void {
-  const payload = {
-    products: item.unavailableProducts.map((product: any) => ({
-      product: product.product,
-      status: status
-    }))
-  };
-
-  this.orderService.updateunavailableProductStatus(item.id, payload.products).subscribe(
-    (response: any) => {
-      const user = this.authService.getUserData();
-      if (user) {
-        this.sharedService.reloadData(user.id).subscribe((data) => {
-          if (data) {
-            this.dialogRef.close('refresh');
+  approve(item: any, status: 'Approved' | 'Rejected'): void {
+    // Confirmation Modal
+    Swal.fire({
+      title: `Are you sure you want to ${status.toLowerCase()} this item?`,
+      text: `This item will be marked as ${status.toLowerCase()}.`,
+      icon: status === 'Approved' ? 'success' : 'warning',
+      showCancelButton: true,
+      confirmButtonColor: status === 'Approved' ? '#28a745' : '#d33',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: `Yes, ${status.toLowerCase()} it!`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Prepare the payload
+        const payload = {
+          products: item.unavailableProducts.map((product: any) => ({
+            product: product.product,
+            status: status,
+          })),
+        };
+  
+        // Call the service to update the product status
+        this.orderService.updateunavailableProductStatus(item.id, payload.products).subscribe(
+          (response: any) => {
+            const user = this.authService.getUserData();
+            if (user) {
+              this.sharedService.reloadData(user.id).subscribe((data) => {
+                if (data) {
+                  this.dialogRef.close('refresh');
+                  Swal.fire(
+                    `${status}!`,
+                    `The item has been successfully ${status.toLowerCase()}ed.`,
+                    'success'
+                  );
+                }
+              });
+            } else {
+              this.dialogRef.close('refresh');
+              Swal.fire(
+                `${status}!`,
+                `The item has been successfully ${status.toLowerCase()}ed.`,
+                'success'
+              );
+            }
+          },
+          (error: any) => {
+            console.error(`Error updating request to ${status}:`, error);
+            Swal.fire(
+              'Error',
+              `There was an error while trying to ${status.toLowerCase()} the item.`,
+              'error'
+            );
           }
-        });
-      } else {
-        this.dialogRef.close('refresh');
+        );
       }
-    },
-    (error: any) => {
-      console.error(`Error updating request to ${status}:`, error);
-    }
-  );
-}
+    });
+  }
 
 
 }
