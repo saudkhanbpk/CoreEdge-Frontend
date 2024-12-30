@@ -1,0 +1,162 @@
+<div class="headdiv">
+    <div class="heading">
+      <h1>Purchase Order </h1>
+    </div>
+    <div class="secondary-row">
+      <div class="input-group">
+        <input type="text" class="form-control input-group-form-control" placeholder="Search Purchase Order"
+          aria-label="Quick Search">
+        <button class="btn search-order-btn" type="button" id="button-addon2">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+      <!-- <div >
+        <select name="" id="" class="form-select" id="vendors-list">
+          <option value="" disabled selected>Vendor's List</option>
+          <option value="">Jimmy Anderson</option>
+          <option value="">Steven Smith</option>
+          <option value="">Mitchell Starc</option>
+          <option value="">Marnus Labuschagne</option>
+  
+        </select>
+      </div> -->
+    </div>
+  </div>
+  <div class="table-container p-2 mt-2">
+    <div class="d-flex justify-content-end flex-wrap mb-2 gap-2 bg-none">
+      <select class="form-select bg-none border-0 w-auto shadow-0">
+        <option value="" disabled selected>sort</option>
+        <option value="name">By Name</option>
+        <option value="date">By Date</option>
+      </select>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover ">
+        <thead class="thead-dark ">
+          <tr>
+            <th scope="col" class="one">
+              <div class="table-data">
+                <div class="d-flex gap-2 align-items-center">
+                  <div>
+                    Purchase Order No
+                  </div>
+                </div>
+              </div>
+            </th>
+            <th scope="col">
+              <div class="table-data">
+                Business Name
+              </div>
+            </th>
+            <th scope="col">
+              <div class="table-data">
+                Business Email
+              </div>
+            </th>
+            <th scope="col">
+              <div class="table-data">
+                Received Date
+              </div>
+            </th>
+            <th scope="col">
+              <div class="table-data">
+                Total Amount
+              </div>
+            </th>
+            <th scope="col">
+              <div class="table-data">
+                Address
+              </div>
+            </th>
+            <th scope="col">
+              <div class="table-data">Status</div>
+            </th>
+            <th scope="col" class="two"></th>
+  
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of paginatedData; let i = index">
+            <tr>
+              <td>
+                <div class="table-data">
+                  <div class="d-flex gap-2 align-items-center">
+                    
+                    <div>
+                      {{ item.purchaseorderno }}
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="table-data">
+                  {{ item.businessname }}
+                </div>
+              </td>
+              <td>
+                <div class="table-data">
+                  {{ item.businessemail }}
+                </div>
+              </td>
+              <td>
+                <div class="table-data">
+                  {{ item.receivedddate }}
+                </div>
+              </td>
+              <td>
+                <div class="table-data">
+                  {{ item.totalamount | currency }}
+                </div>
+              </td>
+              <td>
+                <div class="table-data">
+                  {{ item.address }}
+                </div>
+              </td>
+              <td>
+                <div class="table-data">
+                  <div class="status p-2" [ngClass]="{
+                      completed: item.status === 'Ordered',
+                      rejected: item.status === 'Rejected',
+                      inprogress: item.status === 'Pending'
+                    }">
+                    {{ item.status }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="table-data d-flex gap-1 w-100 justify-content-end">
+                  <button class="btn visibility" (click)="openDialog()" matTooltip="View Order">
+                    <img src="../../../../../assets/newicons/message square.png">
+                  </button>
+                  <button class="btn"><img src="../../../../../assets/icons/Trash can.png"
+                      matTooltip="Delete Order"></button>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-start">
+        <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
+          <a class="paginator-button" (click)="previousPage()">
+            <mat-icon>chevron_left</mat-icon>
+          </a>
+        </li>
+        <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
+          <li class="page-item" [ngClass]="{'active-page': currentPage === index + 1}">
+            <a class="paginator-button" (click)="goToPage(index + 1)">
+              {{ index + 1 }}
+            </a>
+          </li>
+        </ng-container>
+        <li class="page-item" [class.disabled]="!isNextPageAvailable()">
+          <a class="paginator-button" (click)="nextPage()">
+            <mat-icon>chevron_right</mat-icon>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>

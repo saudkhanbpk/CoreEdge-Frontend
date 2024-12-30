@@ -1,0 +1,16 @@
+@import url(../../../../styles/table.css);
+.form-check-input{
+    width: 24px;
+    height: 24px;
+    margin-top: 0px;
+    box-shadow: none;
+}
+.cancel-btn{
+    width: 250px;
+    height: 40px;
+    padding: 12px 16px 12px 16px;
+    border-radius: 7px;
+    background-color: #E6EAD7;
+    color: #0F4D50;
+    border: 1px solid #0F4D50;
+}
