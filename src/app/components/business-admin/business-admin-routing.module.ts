@@ -21,6 +21,8 @@ const routes: Routes = [
       { path: 'rma', loadChildren: () => import('./rma/rma.module').then(m => m.RmaModule) },
       { path: 'disputes', loadChildren: () => import('./disputes/disputes.module').then(m => m.DisputesModule) },
       { path: 'roles', loadChildren: () => import('./roles/roles.module').then(m => m.RolesModule) },
+      { path: 'asset-management', loadChildren: () => import('./asset-management/asset-management.module').then(m => m.AssetManagementModule) },
+
       
     ]
   }

@@ -58,6 +58,8 @@ export class MainComponent {
     { id: 'fulfillmenttasks', title: 'Fulfillment Tasks', icon: 'assignment_turned_in', link: '/business-admin/fulfillment', submenus: [] },
     { id: 'rma', title: 'RMA', icon: 'repeat', link: '/business-admin/rma', submenus: [] },
     { id: 'disputes', title: 'Disputes', icon: 'gavel', link: '/business-admin/disputes', submenus: [] },
+    { id: 'asset-management', title: 'Asset Management', icon: 'storage', link: '/business-admin/asset-management', submenus: [] },
+
     {
       id: 'administration',
       title: 'Administration',

@@ -7,7 +7,9 @@ const routes: Routes = [
     path: '', component: VendorMainComponent, children: [
       { path: '', redirectTo: 'vendor-dashboard', pathMatch: 'full' },
       { path: 'vendor-dashboard', loadChildren: () => import('./vendor-dashboard/vendor-dashboard.module').then(m => m.VendorDashboardModule) },
-      { path: 'vendor-catalog', loadChildren: () => import('./vendor-catalog/vendor-catalog.module').then(m => m.VendorCatalogModule) }
+      { path: 'vendor-catalog', loadChildren: () => import('./vendor-catalog/vendor-catalog.module').then(m => m.VendorCatalogModule) },
+      { path: 'vendor-purchase-order', loadChildren: () => import('./vendor-purchase-order/vendor-purchase-order.module').then(m => m.VendorPurchaseOrderModule) },
+
 
     ]
   }

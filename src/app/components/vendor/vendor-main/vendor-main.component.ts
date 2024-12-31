@@ -9,7 +9,6 @@ import { MatDrawer } from '@angular/material/sidenav';
 })
 export class VendorMainComponent {
   isSmallScreen = false;
-  hovered = false;
 
   @ViewChild(MatDrawer) drawer: MatDrawer | any;
 
@@ -51,7 +50,7 @@ export class VendorMainComponent {
     // { id: 'inventory', title: 'Inventory', icon: 'category', link: '/business-admin/inventory', submenus: [] },
     // { id: 'purchaserequest', title: 'Purchase Request', icon: 'request_quote', link: '/business-admin/purchase-request', submenus: [] },
     // { id: 'approvals', title: 'Approvals', icon: 'thumb_up', link: '/business-admin/approvals', submenus: [] },
-    // { id: 'purchaseorder', title: 'Purchase Orders', icon: 'assignment', link: '/business-admin/purchase-orders', submenus: [] },
+    { id: 'purchaseorder', title: 'Purchase Orders', icon: 'assignment', link: '/vendor/vendor-purchase-order', submenus: [] },
     // { id: 'invoice', title: 'Invoice', icon: 'receipt_long', link: '/business-admin/vendor-invoice', submenus: [] },
     // { id: 'receiving', title: 'Receiving', icon: 'move_to_inbox', link: '/business-admin/receiving', submenus: [] },
     // { id: 'fulfillmenttasks', title: 'Fulfillment Tasks', icon: 'assignment_turned_in', link: '/business-admin/fulfillment', submenus: [] },
