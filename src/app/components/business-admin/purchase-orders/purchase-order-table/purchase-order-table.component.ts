@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { RequestService } from 'src/app/services/request.service';
 import { SharedService } from 'src/app/services/shared.service';
 import Swal from 'sweetalert2';
+import { PurchaseOrderService } from 'src/app/services/purchase-order.service';
 
 @Component({
   selector: 'app-purchase-order-table',
@@ -24,7 +25,9 @@ export class PurchaseOrderTableComponent {
   readonly dialog = inject(MatDialog)
   constructor(private requestService: RequestService,
     private authService: AuthService,
-    private sharedService: SharedService) {
+    private sharedService: SharedService,
+    private purchaseOrderService: PurchaseOrderService
+  ) {
   }
   ngOnInit(): void {
     const user = this.authService.getUserData();
@@ -83,80 +86,6 @@ export class PurchaseOrderTableComponent {
       );
     }
   }
-
-
-
-
-
-
-  // data = [
-  //   {
-  //     purchaseorderno: '2982-XJ82-92',
-  //     employeename: 'Saad Khan',
-  //     employeeemail:'employeeemail@gmail.com',
-  //     hardwarerequested:'Dell Monitor',
-  //     requesteddate :'October 3rd, 2024',
-  //     receivedddate :'October 5th, 2024',
-  //     totalamount :'3500',
-  //     address:'Las Vegas',
-  //     status:'Ordered',
-  //     checked:false,
-  //     productdetails: [
-  //       {
-  //         name: 'Items Requested', items: [
-  //           { itemname: 'Monitor', price: 5 },
-  //           { itemname: 'Keyboard', price: 15 },
-  //           { itemname: 'Mouse', price: 25 },
-  //           { itemname: 'RAM', price: 35 },
-  //         ]
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     purchaseorderno: '2982-XJ82-92',
-  //     employeename: 'Ihtizaz Ahmad',
-  //     employeeemail:'employeeemail@gmail.com',
-  //     hardwarerequested:'Dell Monitor',
-  //     requesteddate :'October 3rd, 2024',
-  //     receivedddate :'October 5th, 2024',
-  //     totalamount :'3500',
-  //     address:'Las Vegas',
-  //     status:'Pending',
-  //     checked:false,
-  //     productdetails: [
-  //       {
-  //         name: 'Items Requested', items: [
-  //           { itemname: 'Monitor', price: 5 },
-  //           { itemname: 'Keyboard', price: 15 },
-  //           { itemname: 'Mouse', price: 25 },
-  //           { itemname: 'RAM', price: 35 },
-  //         ]
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     purchaseorderno: '2982-XJ82-92',
-  //     employeename: 'Aamir Shehzad',
-  //     employeeemail:'employeeemail@gmail.com',
-  //     hardwarerequested:'Dell Monitor',
-  //     requesteddate :'October 3rd, 2024',
-  //     receivedddate :'October 5th, 2024',
-  //     totalamount :'3500',
-  //     address:'Las Vegas',
-  //     status:'Rejected',
-  //     checked:false,
-  //     productdetails: [
-  //       {
-  //         name: 'Items Requested', items: [
-  //           { itemname: 'Monitor', price: 5 },
-  //           { itemname: 'Keyboard', price: 15 },
-  //           { itemname: 'Mouse', price: 25 },
-  //           { itemname: 'RAM', price: 35 },
-  //         ]
-  //       }
-  //     ]
-  //   },
-  // ];
   toggleAllCheckboxes(event: Event): void {
     const isChecked = (event.target as HTMLInputElement).checked;
     this.paginatedData.forEach((item: any) => {
@@ -164,8 +93,9 @@ export class PurchaseOrderTableComponent {
     });
 
   }
+
   mergeSelectedOrders(): void {
-    const selectedOrders = this.paginatedData.filter((item: any) => item.checked); // Get all checked items
+    const selectedOrders = this.paginatedData.filter((item: any) => item.checked);
 
     if (selectedOrders.length === 0) {
       Swal.fire({
@@ -175,42 +105,85 @@ export class PurchaseOrderTableComponent {
       });
       return;
     }
-  
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'Do you want to merge the selected orders?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, merge them!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Perform the merge
-        const mergedUnavailableProducts = selectedOrders.flatMap((order: any) => order.unavailableProducts);
-        const vendorDetails = selectedOrders[0]?.unavailableProducts[0]?.product?.vendor || {};
-        const barcode = `BARCODE-${Date.now()}`;
-        const newOrder = {
-          id: `NEW-ORDER-${Date.now()}`,
-          mergedProducts: mergedUnavailableProducts,
-          vendor: vendorDetails,
-          barcode,
-        };
-  
-        console.log('New Merged Order:', newOrder);
-        this.paginatedData.push(newOrder);
-  
-        Swal.fire(
-          'Merged and Sent!',
-          'The selected Purchase Orders have been successfully merged and sent to vendor.',
-          'success'
-        );
-      }
-    });
+
+    const orderedProducts = selectedOrders.flatMap((order: any) =>
+      order.unavailableProducts.filter((item: any) => item.poStatus === 'Ordered')
+    );
+    if (orderedProducts.length > 0) {
+      const orderedProductIds = orderedProducts.map((item: any) => item.product.id).join(', ');
+      Swal.fire({
+        icon: 'warning',
+        title: 'Some Products Already Ordered',
+        text: `The following products have already been ordered: ${orderedProductIds}. They will not be included in the merge.`,
+      });
+    } else {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to merge the selected orders?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, merge them!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const mergedUnavailableProducts = selectedOrders.flatMap((order: any) =>
+            order.unavailableProducts
+              .filter((item: any) => item.poStatus !== 'Ordered') 
+              .map((item: any) => ({
+                product: item.product,
+                quantity: item.quantity,
+                status: 'New',
+                price: item.product.price * item.quantity,
+              }))
+          );
+
+          const totalPrice = mergedUnavailableProducts.reduce((sum: number, item: any) => sum + item.price, 0);
+
+          const orderIds = selectedOrders.map((order: any) => order.id);
+
+          const vendorDetails = selectedOrders[0]?.unavailableProducts[0]?.product?.vendor || {};
+          const barcode = `BARCODE-${Date.now()}`;
+          const user = this.authService.getUserData();
+
+          const newOrder = {
+            barcode,
+            users: [user.id],
+            vendor: [vendorDetails.id],
+            products: mergedUnavailableProducts,
+            totalPrice,
+            description: 'Merged Order from multiple orders',
+            orderIds, 
+          };
+
+          this.purchaseOrderService.create(newOrder).subscribe({
+            next: (response) => {
+              console.log('Order successfully created:', response);
+              Swal.fire(
+                'Merged and Sent!',
+                'The selected Purchase Orders have been successfully merged and sent to the vendor.',
+                'success'
+              );
+              this.ngOnInit();
+              this.paginatedData.push(response);
+            },
+            error: (error) => {
+              console.error('Error while creating order:', error);
+              Swal.fire(
+                'Error',
+                'An error occurred while merging and sending the orders.',
+                'error'
+              );
+            },
+          });
+        }
+
+      });
+    }
   }
-  
-  
-  
+
+
+
   toggleDetails(index: number) {
     this.expandedIndex = this.expandedIndex === index ? null : index;
   }

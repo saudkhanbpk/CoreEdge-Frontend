@@ -140,11 +140,11 @@
             <td>
               <div class="table-data">
                 <div class="status p-2" [ngClass]="{
-                    completed: item.status === 'Ordered',
-                    rejected: item.status === 'Rejected',
-                    inprogress: item.status === 'Pending'
+                    completed: item?.unavailableProducts[0]?.poStatus === 'Ordered',
+                    rejected: item?.unavailableProducts[0]?.poStatus === 'Rejected',
+                    inprogress: item?.unavailableProducts[0]?.poStatus == undefined || item?.unavailableProducts[0]?.poStatus === 'Pending'
                   }">
-                  {{ item.status }}
+                  {{ item?.unavailableProducts[0]?.poStatus || 'Pending' }}
                 </div>
               </div>
             </td>
