@@ -1,0 +1,105 @@
+@import url(../../../../styles/form.css);
+
+.my-textarea{
+    height: 140px !important;
+}
+.checkbox-group {
+    border: 1px solid #ccc;
+    padding: 10px;
+    position: absolute;
+    background-color: white;
+    z-index: 100;
+    width: 100%;
+  }
+  
+  .form-select {
+    cursor: pointer;
+  }
+  .form-check-label{
+    height: 24px;
+    display: flex;
+    align-items: center;
+  }
+  .form-check {
+    margin-bottom: 5px;
+  }
+  
+  .mycheckbox {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .selected-tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+thead tr th .table-data{
+    font-size: 14px;
+    font-weight: 500 !important;
+    line-height: 22px;
+    white-space: nowrap;
+    color: #000000D9;
+}
+.tag {
+    background-color: #E6EAD7;
+    color: black;
+padding: 3px 7px 3px 7px;
+border-radius: 3px;
+margin: 5px;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 14px;
+font-weight: 400;
+
+}
+
+.remove-tag {
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.table-data{
+    font-weight: 400;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+.new-width{
+    width: 250px !important;
+}
+.table-responsive{
+    border: 1px solid lightgray;
+    border-radius: 16px;
+}
+
+.table{
+    margin-bottom: 0px;
+}
+thead tr th{
+    background-color: white !important;
+    font-weight: 500 !important;
+}
+.submit{
+    width: 250px !important;
+}
+table .table-data .form-control, .form-select{
+font-size: 14px;
+font-weight: 400;
+line-height: 22px;
+height: 40px;
+}
+table .form-select{
+height: 40px !important;
+}
+@media screen and (min-width:1201px){
+    .container-fluid{
+        overflow: hidden;
+        padding-left: 0px;
+    }
+}

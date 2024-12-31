@@ -1,0 +1,161 @@
+  <div class="container-fluid">
+      <div class="form-div ">
+           <div class="headdiv">
+               <div class="heading d-flex align-items-center">
+                   <button class="btn p-1 d-flex align-items-center justify-content-center shadow-none"
+                       routerLink="/business-admin/rfq">
+                       <mat-icon>chevron_left</mat-icon>
+                   </button>
+                   <h1>Create RFQ</h1>
+               </div>
+           </div>
+           <div class="mt-3 section-div">
+               <div>
+                   <h2>RFQ Details</h2>
+               </div>
+               <div class="row p-2">
+                   <div class="col-md-6">
+                       <div class="input-div input-div-no-pad">
+                           <label>RFQ Name <span class="star">*</span></label>
+                           <input type="text" class="form-control" placeholder="Enter RFQ Name" required />
+                       </div>
+                   </div>
+                   <div class="col-md-6">
+                       <div class="input-div input-div-no-pad">
+                           <label>Open Date <span class="star">*</span></label>
+                           <input type="date" class="form-control" placeholder="Enter Open Date" required />
+                       </div>
+                   </div>
+                   <div class="col-md-6">
+                       <div class="input-div input-div-no-pad">
+                           <label>End Date <span class="star">*</span></label>
+                           <input type="date" class="form-control" placeholder="Enter End Date" required />
+                       </div>
+                   </div>
+                   <div class="col-md-6">
+                       <div class="input-div input-div-no-pad">
+                           <label>Requested Delivery Date <span class="star">*</span></label>
+                           <input type="date" class="form-control" placeholder="Enter Requested Delivery Date" required />
+                       </div>
+                   </div>
+                   <div class="col-md-12">
+                       <div class="input-div input-div-no-pad">
+                           <label>Description<span class="star">*</span></label>
+                           <input type="text" class="form-control" placeholder="Enter Description" required />
+                       </div>
+                   </div>
+                   
+               </div>
+           </div>
+           <div class="mt-3 section-div">
+               <div>
+                   <h2>Participent Vendors</h2>
+               </div>
+               <div class="row">
+                   <div class="col-md-12 px-4">
+                       <div class="input-div input-div-no-pad">
+                           <label>Invite Vendors <span class="star">*</span></label>
+                           <div class="dropdown">
+                               <button type="button" class="form-select" id="selectButton" (click)="toggleDropdown()">
+                                   Select Vendors
+                               </button>
+                               <div id="checkboxGroup" [ngStyle]="{ display: showCheckboxes ? 'block' : 'none' }"
+                                   class="checkbox-group">
+                                   <div>
+                                       <div class="form-check gap-2" *ngFor="let recipient of vendors; let i = index">
+                                           <input class="form-check-input mycheckbox" type="checkbox"
+                                               (change)="onCheckboxChange($event, recipient)" />
+                                           <label class="form-check-label mx-2">{{ recipient }}</label>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="selected-tags">
+                               <span class="tag" *ngFor="let selected of selectedvendors; let i = index">
+                                   <button class="remove-tag" (click)="removeTag(i)"><mat-icon>close</mat-icon></button>
+                                   <div>{{ selected }}</div>
+                               </span>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               </div>
+               <div class="mt-3 section-div">
+                   <div>
+                       <h2>Requested Hardware Details</h2>
+                   </div>
+                   <div class="table-container p-2">
+                       <div class="table-responsive">
+                           <table class="table table-hover">
+                               <thead class="thead-dark ">
+                                   <tr>
+                                       <th scope="col" class="one">
+                                           <div class="table-data">
+                                               No
+                                           </div>
+                                       </th>
+                                       <th scope="col">
+                                           <div class="table-data">
+                                               Item Name
+                                           </div>
+                                       </th>
+                                       <th scope="col">
+                                           <div class="table-data">
+                                               Order Quantity
+                                           </div>
+                                       </th>
+                                       <th scope="col" >
+                                           <div class="table-data">
+                                               Item Price
+                                           </div>
+                                       </th>
+                                       <th class="two">
+   
+                                       </th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                   <tr>
+                                       <td>
+                                           <div class="table-data">01</div>
+                                       </td>
+                                       <td>
+                                           <div class="table-data">
+                                               <div class="input-div p-0">
+                                                   <select name="" id="" class="form-select mt-0 new-width">
+                                                       <option value="laptop">Laptop</option>
+                                                       <option value="monitor">Monitor</option>
+                                                       <option value="keyboard">Keyboard</option>
+                                                   </select>
+                                               </div>
+                                           </div>
+                                       </td>
+                                       <td>
+                                           <div class="table-data w-100">
+                                               <input type="number" name="" id="" class="form-control new-width" placeholder="Enter Quantity">
+                                           </div>
+                                       </td>
+                                       <td>
+                                           <div class="table-data">$200</div>
+                                       </td>
+                                       <td>
+                                           <div class="table-data d-flex gap-1 w-100 justify-content-end">
+                                               <button class="btn"><img src="../../../../../assets/icons/Trash can.png"
+                                                   matTooltip="Delete Order"></button>
+                                             </div>
+                                       </td>
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                       <div class="button-group">
+                           <button class="btn add-btn submit" >Add Item</button>
+                       </div>
+                   </div>
+               </div>
+           <div class="button-group">
+               <button type="submit" class="btn add-btn submit">Submit RFQ</button>
+               <button class="btn cancel-btn" routerLink="/administration/email-marketing">Cancel</button>
+           </div>
+       </div>
+  </div> 

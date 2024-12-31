@@ -8,7 +8,7 @@
 
 .example-container {
     width: auto;
-    height: 85.5vh;
+    height: 90vh;
 }
 .mat-drawer-inner-container::-webkit-scrollbar{
     width: 0px;
@@ -38,7 +38,7 @@
 }
 @media screen and (max-width:600px) {
     .example-container {
-        height: 83.8vh;
+        height: 87.8vh;
     }
 
     .p-3 {
@@ -103,4 +103,11 @@ table tr {
   .active .mat-icon {
     color: white;
   }
-  
+  .mydrawer{
+    border-radius: 0px ;
+  }
+  @media screen and (max-width:600px){
+    .mydrawer{
+        border-radius:0px !important;
+    }
+  }

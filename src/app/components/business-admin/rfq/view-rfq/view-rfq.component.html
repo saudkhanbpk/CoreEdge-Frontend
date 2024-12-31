@@ -1,0 +1,152 @@
+<div class="container-fluid px-0 overflow-hidden">
+    <div class="form-div">
+        <div class="headdiv">
+            <div class="heading d-flex align-items-center">
+                <button type="button" class="btn p-1 d-flex align-items-center justify-content-center shadow-none"
+                    routerLink="/business-admin/rfq">
+                    <mat-icon>chevron_left</mat-icon>
+                </button>
+                <h1>View RFQ</h1>
+            </div>
+        </div>
+        <div class="mt-3 section-div ">
+            <div>
+                <h2>RFQ Details</h2>
+            </div>
+            <div class="px-3">
+                <div class="row">
+                    <div class="col-lg-2 col-md-4 mb-3">
+                        <div class="order-head">RFQ Name</div>
+                        <div class="order-data">Batch # Deliverables Office 3</div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 mb-3">
+                        <div class="order-head">Open Date</div>
+                        <div class="order-data">25th Jan, 2027</div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 mb-3">
+                        <div class="order-head">End Date</div>
+                        <div class="order-data">25th Jan, 2027</div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 mb-3">
+                        <div class="order-head">Requested Date</div>
+                        <div class="order-data">25th Jan, 2027</div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 mb-3">
+                        <div class="order-head">Requested Items</div>
+                        <div class="order-data">25</div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 mb-3">
+                        <div class="order-head">Quoted Amount</div>
+                        <div class="order-data">$3533</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-3 section-div">
+            <div>
+                <h2>Received Responses</h2>
+            </div>
+            <div class="table-container p-2">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="thead-dark ">
+                            <tr>
+                                <th scope="col" class="one">
+                                    <div class="table-data">
+                                        <div class="d-flex gap-2 align-items-center">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckChecked">
+                                            <div>
+                                                No
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">
+                                        Vendor Name
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">
+                                        Items Available
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">
+                                        Response Date
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">
+                                        Quoted Amount
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">
+                                        Approved Amount
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">
+                                        Status
+                                    </div>
+                                </th>
+                                <th scope="col" class="two">
+                                    <div class="table-data">
+
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let rfq of purchasedItems; let i = index">
+                                <td>
+                                    <div class="table-data">
+                                        <div class="d-flex gap-2 align-items-center">
+                                            <input class="form-check-input" type="checkbox">
+                                            <div>{{ i + 1 }}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-data">{{ rfq.vendorname }}</div>
+                                </td>
+                                <td>
+                                    <div class="table-data">{{ rfq.itemsavailable }}</div>
+                                </td>
+                                <td>
+                                    <div class="table-data">{{ rfq.responsedate}}</div>
+                                </td>
+                                <td>
+                                    <div class="table-data">{{ rfq.quotedamount}}</div>
+                                </td>
+                                <td>
+                                    <div class="table-data">{{ rfq.approvedamount}}</div>
+                                </td>
+                                <td>
+                                    <div class="table-data">
+                                        <div class="status p-2" [ngClass]="{
+                          completed: rfq.status === 'Accepted',
+                          rejected: rfq.status === 'Rejected'
+                        }">
+                                            {{ rfq.status }}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-data d-flex gap-1 justify-content-start">
+                                        <button class="btn visibility" matTooltip="View Details"
+                                            routerLink="/business-admin/rfq/view-rfq">
+                                            <img src="../../../../../../assets/newicons/Eye.png" alt="">
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

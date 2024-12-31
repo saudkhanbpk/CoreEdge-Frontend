@@ -1,0 +1,24 @@
+@import url(../../../../styles/table.css);
+.active {
+  background-color: #d1e4dd40;
+  border: 1px solid #0f4d50;
+  color: black;
+}
+.order-types-tables {
+  padding: 10px;
+}
+.visibility{
+    color: #0F4D50;
+}
+
+
+.page-item.active-page a {
+    background-color: white;
+    color: #0F4D50 !important;
+    border: 1px solid #0F4D50;
+}
+
+.page-item.active-page a:hover {
+    background-color: #0F4D50;
+    color: #fff !important;
+}

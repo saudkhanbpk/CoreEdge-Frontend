@@ -1,0 +1,35 @@
+<div class="menu-div">
+    <div class="headdiv ">
+        <div class="heading d-flex align-items-center">
+            <h1>RFQ</h1>
+        </div>
+        <div class="secondary-row">
+            <div class="input-group">
+              <input type="text" class="form-control input-group-form-control" placeholder="Search RFQ"
+                aria-label="Quick Search">
+              <button class="btn search-order-btn" type="button" id="button-addon2">
+                <mat-icon>search</mat-icon>
+              </button>
+            </div>
+            <div >
+                <button class="btn add-btn" routerLink="/business-admin/rfq/create-rfq">
+                  Create RFQ
+                  <img src="../../../../../../assets/icons/Plus.png" alt="" />
+                </button>
+              </div>
+            </div>
+    </div>
+    <div class="main-menu-div mt-3">
+        <div class="parent-buttons-group pb-0 gap-2">
+            <button class="btn parent-btn" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }" routerLink="/business-admin/rfq/rfq-main/all-rfqs">All RFQ's</button>
+            <button class="btn parent-btn" routerLinkActive="active" routerLink="/business-admin/rfq/rfq-main/requisitioned-rfq">Requisitioned</button>
+            <button class="btn parent-btn" routerLinkActive="active" routerLink="/business-admin/rfq/rfq-main/accepted-rfq">Accepted</button>
+            <button class="btn parent-btn" routerLinkActive="active" routerLink="/business-admin/rfq/rfq-main/rejected-rfq">Rejected</button>
+
+        </div>
+        <div class="menu-secondary-group bg-white">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
