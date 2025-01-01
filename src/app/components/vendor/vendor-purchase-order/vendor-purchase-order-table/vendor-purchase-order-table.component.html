@@ -1,6 +1,6 @@
 <div class="headdiv">
     <div class="heading">
-      <h1>Purchase Order </h1>
+      <h1>Purchase Order 32423 </h1>
     </div>
     <div class="secondary-row">
       <div class="input-group">
@@ -83,34 +83,34 @@
                   <div class="d-flex gap-2 align-items-center">
                     
                     <div>
-                      {{ item.purchaseorderno }}
+                      {{ item.barcode }}
                     </div>
                   </div>
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ item.businessname }}
+                  {{ item.users[0]?.fullName }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ item.businessemail }}
+                  {{ item.users[0]?.email }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ item.receivedddate }}
+                  {{ item.createdAt | date }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ item.totalamount | currency }}
+                  {{ item.totalPrice | currency }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ item.address }}
+                  {{ item.users[0]?.address }}
                 </div>
               </td>
               <td>
@@ -126,11 +126,11 @@
               </td>
               <td>
                 <div class="table-data d-flex gap-1 w-100 justify-content-end">
-                  <button class="btn visibility" (click)="openDialog()" matTooltip="View Order">
+                  <button class="btn visibility" (click)="openDialog(item)" matTooltip="View Order">
                     <img src="../../../../../assets/newicons/message square.png">
                   </button>
-                  <button class="btn"><img src="../../../../../assets/icons/Trash can.png"
-                      matTooltip="Delete Order"></button>
+                  <!-- <button class="btn" (click)="deleterequest(item)"><img src="../../../../../assets/icons/Trash can.png"
+                      matTooltip="Delete Order"></button> -->
                 </div>
               </td>
             </tr>
