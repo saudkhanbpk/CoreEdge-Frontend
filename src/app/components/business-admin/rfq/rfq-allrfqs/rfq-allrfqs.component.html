@@ -1,0 +1,167 @@
+<div class="menu-div">
+    <div class="order-types-tables">
+        <div class="d-flex gap-2 justify-content-end">
+            <select class="form-select filter-select w-auto shadow-none">
+                <option value="" disabled selected>Status</option>
+                <option value="name">Requisitioned</option>
+                <option value="date">Submitted</option>
+            </select>
+
+            <select class="form-select filter-select w-auto shadow-none">
+                <option value="" disabled selected>sort</option>
+                <option value="name">By Name</option>
+                <option value="date">By Date</option>
+                <option value="amount">By Amount</option>
+            </select>
+        </div>
+        <div class="table-div">
+            <div class="table-container p-0 mt-2">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" class="one">
+                                    <div class="table-data">No</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">Reference No</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">RFQ Name</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">Owner</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">Description</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">End Date</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">Total Responses</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">Accepted</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">Requisitioned</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">Rejected</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">Status</div>
+                                </th>
+                                <th scope="col" class="two"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container>
+                                <tr *ngFor="let rfq of paginatedData; let i = index">
+                                    <td>
+                                        <div class="table-data">
+                                            {{ rfq.no }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{ rfq.referenceno }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{ rfq.rfqname }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{ rfq.owner }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{ rfq.description }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{ rfq.enddate }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{ rfq.totalresponses }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{ rfq.accepted }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{ rfq.requisitioned }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{ rfq.rejected }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            <div class="status p-2" [ngClass]="{
+                              completed: rfq.status === 'Requisitioned',
+                              resolved: rfq.status === 'Submitted'
+                            }">
+                                                {{ rfq.status }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data d-flex gap-1 justify-content-start">
+                                            <button class="btn visibility" matTooltip="View Details"
+                                                routerLink="/business-admin/rfq/view-rfq">
+                                                <img src="../../../../../../assets/newicons/Eye.png" alt="">
+                                            </button>
+                                            <button class="btn"
+                                                routerLink="/business-admin/requests/hardware-requests/edit-hardware-requests"
+                                                matTooltip="Edit Request"><img
+                                                    src="../../../../../assets/icons/Union.png" alt=""></button>
+                                            <button class="btn" matTooltip="Delete Request"><img
+                                                    src="../../../../../assets/icons/Trash can.png" alt=""></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <nav aria-label="Page navigation example" class="m-2">
+                <ul class="pagination justify-content-start">
+                    <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
+                        <a class="paginator-button" (click)="previousPage()">
+                            <mat-icon>chevron_left</mat-icon>
+                        </a>
+                    </li>
+
+                    <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
+                        <li class="page-item" [ngClass]="{ 'active-page': currentPage === index + 1 }">
+                            <a class="paginator-button" (click)="goToPage(index + 1)">
+                                {{ index + 1 }}
+                            </a>
+                        </li>
+                    </ng-container>
+
+                    <li class="page-item" [class.disabled]="!isNextPageAvailable()">
+                        <a class="paginator-button" (click)="nextPage()">
+                            <mat-icon>chevron_right</mat-icon>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

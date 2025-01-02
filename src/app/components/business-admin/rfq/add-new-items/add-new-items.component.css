@@ -1,0 +1,67 @@
+
+.form-check{
+    padding: 0px 10px 16px 10px;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: none;
+    padding: 20px 8px;
+
+  }
+  .form-control, .form-select, .form-check-label{
+    font-size: 14px !important;
+  }
+  .item-no{
+    font-size: 18px;
+  }
+  .modal-title {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 22px;
+  }
+
+  .close-btn {
+    font-size: 1.2rem;
+    border: none;
+    background: none;
+    outline: none;
+  }
+ 
+  .btn-create {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.10000000149011612px;
+    background: #0F4D50;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    
+  }
+
+ 
+.modal-footer{
+    padding: 8px;
+}
+.new-items-btn{
+    color: rgb(44, 44, 235);
+    font-size: 14px;
+    outline: none;
+    border: none;
+}
+.new-items-btn:active{
+    color: blue;
+}
+.modal-body{
+    max-height: 300px;
+    overflow-y: scroll;
+}

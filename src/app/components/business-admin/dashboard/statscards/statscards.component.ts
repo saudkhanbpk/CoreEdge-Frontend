@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 })
 export class StatscardsComponent {
 constructor(private router: Router){}
-gotoOrders(){
-  this.router.navigate(['/business-admin/purchase-orders'])
+
+navigateTo(route: string): void {
+  this.router.navigate([route]);
 }
 }

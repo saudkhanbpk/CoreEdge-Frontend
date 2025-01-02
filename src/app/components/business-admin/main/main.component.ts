@@ -46,6 +46,7 @@ export class MainComponent {
   menus = [
     { id: 'dashboard', title: 'Dashboard', icon: 'dashboard', link: '/business-admin/dashboard', submenus: [] },
     { id: 'catalog', title: 'Catalog', icon: 'menu_book', link: '/business-admin/catalog', submenus: [] },
+    { id: 'rfq', title: 'RFQ', icon: 'assignment', link: '/business-admin/rfq', submenus: [] },
     { id: 'request', title: 'Requests', icon: 'request_quote', link: '/business-admin/requests', submenus: [] },
     { id: 'rfq', title: 'Rfq', icon: 'request_quote', link: '/business-admin/rfq', submenus: [] },
     { id: 'quote', title: 'Quote', icon: 'request_quote', link: '/business-admin/quote', submenus: [] },

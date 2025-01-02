@@ -132,3 +132,11 @@
         display: block !important;
     }
 }
+@media screen and (max-width:600px){
+    .navbar{
+        border-radius: 0px !important;
+    }
+}
+.navbar{
+    border-radius:  0px ;
+}

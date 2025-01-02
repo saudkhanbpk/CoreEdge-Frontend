@@ -389,3 +389,8 @@ input::placeholder {
     border-radius: 8px;
     object-fit: cover;
 }
+.filter-select{
+    border-radius: 24px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
