@@ -11,6 +11,10 @@ import { AddRfqComponent } from './add-rfq/add-rfq.component';
 import { MaterialModule } from 'src/app/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewRfqComponent } from './view-rfq/view-rfq.component';
+import { CreateRequisitionComponent } from './create-requisition/create-requisition.component';
+import { VendorResponseComponent } from './vendor-response/vendor-response.component';
+import { OrderDetailsOfVendorComponent } from './order-details-of-vendor/order-details-of-vendor.component';
+import { AddNewItemsComponent } from './add-new-items/add-new-items.component';
 
 
 @NgModule({
@@ -21,7 +25,11 @@ import { ViewRfqComponent } from './view-rfq/view-rfq.component';
     AcceptedRfqComponent,
     RejectedRfqComponent,
     AddRfqComponent,
-    ViewRfqComponent
+    ViewRfqComponent,
+    CreateRequisitionComponent,
+    VendorResponseComponent,
+    OrderDetailsOfVendorComponent,
+    AddNewItemsComponent
   ],
   imports: [
     CommonModule,

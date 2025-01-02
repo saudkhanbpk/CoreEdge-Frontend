@@ -3,8 +3,7 @@
         <div class="d-flex gap-2 justify-content-end">
             <select class="form-select filter-select w-auto shadow-none">
                 <option value="" disabled selected>Status</option>
-                <option value="name">Requisitioned
-                <option>
+                <option value="name">Requisitioned</option>
                 <option value="date">Submitted</option>
             </select>
 
@@ -83,6 +82,11 @@
                                     <td>
                                         <div class="table-data">
                                             {{ rfq.description }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{ rfq.enddate }}
                                         </div>
                                     </td>
                                     <td>

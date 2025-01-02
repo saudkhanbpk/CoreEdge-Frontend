@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateRequisitionComponent } from '../create-requisition/create-requisition.component';
+import { VendorResponseComponent } from '../vendor-response/vendor-response.component';
+import { OrderDetailsOfVendorComponent } from '../order-details-of-vendor/order-details-of-vendor.component';
 
 @Component({
   selector: 'app-view-rfq',
@@ -6,7 +10,37 @@ import { Component } from '@angular/core';
   styleUrls: ['./view-rfq.component.css']
 })
 export class ViewRfqComponent {
+  constructor(public dialog: MatDialog) {}
 
+  openRequisition() {
+    const dialogRef = this.dialog.open(CreateRequisitionComponent, {
+      width: '400px' // Set the desired width
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+    openVendorResponse() {
+      const dialogRef = this.dialog.open(VendorResponseComponent,{
+        maxWidth:'1200px',
+        width:'100%'
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
+    openOrderDetails() {
+      const dialogRef = this.dialog.open(OrderDetailsOfVendorComponent,{
+        maxWidth:'1200px',
+        width:'100%'
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
 
   purchasedItems = [
     {
