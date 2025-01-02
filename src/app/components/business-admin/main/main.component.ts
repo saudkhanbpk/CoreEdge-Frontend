@@ -47,6 +47,7 @@ export class MainComponent {
     { id: 'dashboard', title: 'Dashboard', icon: 'dashboard', link: '/business-admin/dashboard', submenus: [] },
     { id: 'catalog', title: 'Catalog', icon: 'menu_book', link: '/business-admin/catalog', submenus: [] },
     { id: 'rfq', title: 'RFQ', icon: 'assignment', link: '/business-admin/rfq', submenus: [] },
+    { id: 'contracts', title: 'Contracts', icon: 'description', link: '/business-admin/contracts', submenus: [] },
     { id: 'request', title: 'Requests', icon: 'request_quote', link: '/business-admin/requests', submenus: [] },
     { id: 'inventory', title: 'Inventory', icon: 'category', link: '/business-admin/inventory', submenus: [] },
     { id: 'purchaserequest', title: 'Purchase Request', icon: 'request_quote', link: '/business-admin/purchase-request', submenus: [] },
@@ -65,7 +66,7 @@ export class MainComponent {
       icon: 'admin_panel_settings',
       submenus: [
         { title: 'Vendors', link: '/business-admin/vendors' },
-        { title: 'Contracts', link: '/business-admin/contracts' },
+        // { title: 'Contracts', link: '/business-admin/contracts' },
         { title: 'Roles', link: '/business-admin/roles' },
         { title: 'Employees', link: '/business-admin/employees' },
         { title: 'Reports', link: '/business-admin/reports' }

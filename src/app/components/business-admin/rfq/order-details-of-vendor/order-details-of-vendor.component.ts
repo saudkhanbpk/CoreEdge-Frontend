@@ -24,25 +24,19 @@ export class OrderDetailsOfVendorComponent {
       no: '001',
       itemname:'Desktop Monitor',
       orderqty:'3',
-      availableqty:'3',
       askedprice:'350',
-      quotedprice:'340'
     },
     {
       no: '002',
       itemname:'Desktop Monitor',
       orderqty:'3',
-      availableqty:'3',
       askedprice:'350',
-      quotedprice:'340'
     },
     {
       no: '003',
       itemname:'Desktop Monitor',
       orderqty:'3',
-      availableqty:'3',
       askedprice:'350',
-      quotedprice:'340'
     },
   ];
 }

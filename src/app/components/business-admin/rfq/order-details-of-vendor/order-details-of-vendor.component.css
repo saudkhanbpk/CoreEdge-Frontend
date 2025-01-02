@@ -1,4 +1,5 @@
 @import url(../../../../styles/table.css);
+@import url(../../../../styles/form.css);
 
 
 .mdc-dialog__title {
@@ -9,6 +10,11 @@
     white-space: nowrap; 
     padding:0 0 0 12px ;
 }
+.submit{
+    width: 250px !important;
+    background-color: #8FAF3F !important;
+}
+ 
 h3{
     color:#292524;
     font-size: 18px;

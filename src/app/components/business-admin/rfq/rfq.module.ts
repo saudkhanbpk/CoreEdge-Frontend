@@ -5,8 +5,6 @@ import { RfqRoutingModule } from './rfq-routing.module';
 import { RfqMainComponent } from './rfq-main/rfq-main.component';
 import { RfqAllrfqsComponent } from './rfq-allrfqs/rfq-allrfqs.component';
 import { RequisitonedRfqComponent } from './requisitoned-rfq/requisitoned-rfq.component';
-import { AcceptedRfqComponent } from './accepted-rfq/accepted-rfq.component';
-import { RejectedRfqComponent } from './rejected-rfq/rejected-rfq.component';
 import { AddRfqComponent } from './add-rfq/add-rfq.component';
 import { MaterialModule } from 'src/app/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,8 +20,6 @@ import { AddNewItemsComponent } from './add-new-items/add-new-items.component';
     RfqMainComponent,
     RfqAllrfqsComponent,
     RequisitonedRfqComponent,
-    AcceptedRfqComponent,
-    RejectedRfqComponent,
     AddRfqComponent,
     ViewRfqComponent,
     CreateRequisitionComponent,

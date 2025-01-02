@@ -1,0 +1,174 @@
+<div class="table-div">
+    <div class="headdiv">
+      <div class="heading">
+        <h1>Contracts</h1>
+      </div>
+      <div class="secondary-row">
+        <div class="input-group">
+          <input type="text" class="form-control input-group-form-control" placeholder="Search Contract"
+            aria-label="Quick Search">
+          <button class="btn search-order-btn" type="button" id="button-addon2">
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
+        <div >
+            <button class="btn add-btn" routerLink="/business-admin/contracts/contracts-form">
+              Create Contract
+              <img src="../../../../../../assets/icons/Plus.png" alt="" />
+            </button>
+          </div>
+      </div>
+    </div>
+    <div class="table-container p-2 mt-2">
+      <div class="d-flex justify-content-end flex-wrap mb-2 gap-2 bg-none">
+        <select class="form-select bg-none filter-select w-auto shadow-none">
+          <option value="" disabled selected>Vendors</option>
+          <option value="name">Saad Khan</option>
+          <option value="date">Ihtizaz Ahmad</option>
+        </select>
+        <select class="form-select bg-none filter-select w-auto shadow-none">
+            <option value="" disabled selected>Status</option>
+            <option value="name">In Draft</option>
+            <option value="date">Approved</option>
+            <option value="date">Vendor Review</option>
+          </select>
+        <select class="form-select bg-none filter-select w-auto shadow-none">
+          <option value="" disabled selected>sort</option>
+          <option value="name">By Name</option>
+          <option value="date">By Date</option>
+        </select>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" class="one">
+                <div class="table-data">No</div>
+              </th>
+              <th scope="col">
+                <div class="table-data">Reference No</div>
+              </th>
+              <th scope="col">
+                <div class="table-data">Contract Name</div>
+              </th>
+              <th scope="col">
+                <div class="table-data">Owner</div>
+              </th>
+              <th scope="col">
+                <div class="table-data">Vendor</div>
+              </th>
+              <th scope="col">
+                <div class="table-data">Start Date</div>
+              </th>
+              <th scope="col">
+                <div class="table-data">End Date</div>
+              </th>
+              <th scope="col">
+                <div class="table-data">Description</div>
+              </th>
+              <th scope="col">
+                <div class="table-data">Status</div>
+              </th>
+              <th scope="col" class="two"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container>
+              <tr *ngFor="let item of paginatedData; let i = index">
+                <td>
+                  <div class="table-data">
+                    {{ item.no }}
+                  </div>
+                </td>
+                <td>
+                  <div class="table-data">
+                    {{ item.referenceno }}
+                  </div>
+                </td>
+                <td>
+                  <div class="table-data">
+                    {{ item.contractname }}
+                  </div>
+                </td>
+                <td>
+                  <div class="table-data">
+                    {{ item.owner }}
+                  </div>
+                </td>
+                <td>
+                  <div class="table-data">
+                    {{ item.description }}
+                  </div>
+                </td>
+                <td>
+                    <div class="table-data">
+                      {{ item.vendor }}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-data">
+                      {{ item.startdate }}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-data">
+                      {{ item.enddate }}
+                    </div>
+                  </td>
+                <td>
+                  <div class="table-data">
+                    <div class="status p-2" [ngClass]="{
+                        completed: item.status === 'Approved',
+                        inactive: item.status === 'In Draft',
+                        resolved: item.status === 'Vendor Review'
+                      }">
+                      {{ item.status }}
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="table-data d-flex gap-1 justify-content-end">
+                    <button class="btn visibility" matTooltip="Download Contract PDF">
+                        <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 6L5 6C2.79086 6 1 7.79086 1 10L1 15C1 17.2091 2.79086 19 5 19L17 19C19.2091 19 21 17.2091 21 15L21 10C21 7.79086 19.2091 6 17 6L15 6" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M8 11L10.2929 13.2929C10.6834 13.6834 11.3166 13.6834 11.7071 13.2929L14 11" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M11 13L11 1" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            
+                    </button>
+                    <button class="btn" routerLink="/business-admin/contracts/contracts-form"
+                      matTooltip="Edit Request"><img src="../../../../../assets/icons/Union.png"></button>
+                    <button class="btn"><img src="../../../../../assets/icons/Trash can.png"
+                        matTooltip="Delete Request"></button>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+        <nav aria-label="Page navigation example" class="m-2">
+          <ul class="pagination justify-content-start">
+            <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
+              <a class="paginator-button" (click)="previousPage()">
+                <mat-icon>chevron_left</mat-icon>
+              </a>
+            </li>
+  
+            <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
+              <li class="page-item" [ngClass]="{ 'active-page': currentPage === index + 1 }">
+                <a class="paginator-button" (click)="goToPage(index + 1)">
+                  {{ index + 1 }}
+                </a>
+              </li>
+            </ng-container>
+  
+            <li class="page-item" [class.disabled]="!isNextPageAvailable()">
+              <a class="paginator-button" (click)="nextPage()">
+                <mat-icon>chevron_right</mat-icon>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RejectedRfqComponent } from './rejected-rfq.component';
+import { ContractsTableComponent } from './contracts-table.component';
 
-describe('RejectedRfqComponent', () => {
-  let component: RejectedRfqComponent;
-  let fixture: ComponentFixture<RejectedRfqComponent>;
+describe('ContractsTableComponent', () => {
+  let component: ContractsTableComponent;
+  let fixture: ComponentFixture<ContractsTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RejectedRfqComponent ]
+      declarations: [ ContractsTableComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RejectedRfqComponent);
+    fixture = TestBed.createComponent(ContractsTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
