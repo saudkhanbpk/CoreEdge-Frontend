@@ -1,6 +1,6 @@
 <div class="headdiv">
     <div class="heading">
-      <h1>Purchase Order 32423 </h1>
+      <h1>Purchase Order </h1>
     </div>
     <div class="secondary-row">
       <div class="input-group">
@@ -116,7 +116,7 @@
               <td>
                 <div class="table-data">
                   <div class="status p-2" [ngClass]="{
-                      completed: item.status === 'Ordered',
+                      completed: item.status === 'Sent',
                       rejected: item.status === 'Rejected',
                       inprogress: item.status === 'Pending'
                     }">

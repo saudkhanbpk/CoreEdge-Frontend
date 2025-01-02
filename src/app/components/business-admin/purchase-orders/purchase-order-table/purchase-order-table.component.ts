@@ -133,7 +133,7 @@ export class PurchaseOrderTableComponent {
               .map((item: any) => ({
                 product: item.product,
                 quantity: item.quantity,
-                status: 'New',
+                status: 'Pending',
                 price: item.product.price * item.quantity,
               }))
           );

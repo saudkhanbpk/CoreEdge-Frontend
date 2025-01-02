@@ -3,47 +3,47 @@
     <!-- Company Info -->
     <div class="row mb-4 main-row">
         <div class="col-md-6">
-            <div class="d-flex align-items-baseline gap-2">
+            <div class="d-flex align-items-baseline flex-onsmall gap-2">
                 <label class="form-label">Company Name</label>
-                <span class="editable-field d-block">Patron Foods</span>
-            </div>
-            <div class="d-flex align-items-baseline gap-2">
+                <span class="editable-field d-block">{{data.users[0].fullName}}</span>
+              </div>
+              <div class="d-flex align-items-baseline flex-onsmall gap-2">
                 <label class="form-label">Street Address</label>
-                <span class="editable-field d-block"> 208 W Alexander St</span>
-            </div>
-            <div class="d-flex align-items-baseline gap-2">
-                <label class="form-label">City, ST, ZIP</label>
-                <span class="editable-field d-block">Plant City, Fl 33563</span>
-            </div>
-            <div class="d-flex align-items-baseline gap-2">
+                <span class="editable-field d-block"> {{data.users[0].address}}</span>
+              </div>
+              <div class="d-flex align-items-baseline flex-onsmall gap-2">
                 <label class="form-label">Phone Number</label>
-                <span class="editable-field d-block">847-850-2577</span>
-            </div>
-            <div class="d-flex align-items-baseline gap-2">
-                <label class="form-label">Fax Number</label>
-                <span class="editable-field d-block">0033</span>
-            </div>
-            <div class="d-flex align-items-baseline gap-2">
-                <label class="form-label">Website</label>
-                <span class="editable-field d-block">abc.com</span>
-            </div>
+                <span class="editable-field d-block">{{data.users[0].contactnumber}}</span>
+              </div>
         </div>
-        <div class="col-md-6 text-end">
-            <!-- <h5>PURCHASE ORDER</h5> -->
+        <!-- <div class="col-md-6 text-end">
             <img src="../../../../../assets/WhatsApp Image 2024-11-18 at 2.30.06 PM.jpeg" width="60%" />
             <div class="d-flex justify-content-end align-items-baseline gap-2">
                 <label class="form-label">REQUESTED DATE</label>
-                <span class="editable-field2 d-block">October 3rd, 2024</span>
+                <span class="editable-field2 d-block">{{data.createdAt | date}}</span>
             </div>
             <div class="d-flex justify-content-end align-items-baseline gap-2">
                 <label class="form-label">P.O. #</label>
-                <span class="editable-field2 d-block">2982-XJ82-92</span>
+                <span class="editable-field2 d-block">{{data.barcode}}</span>
+            </div>
+        </div> -->
+        <div class="col-md-6 text-end">
+            <canvas id="barcodeCanvas" width="300" height="100"></canvas>
+            <button class="btn btn-primary mt-2" (click)="printBarcode()">Print Barcode</button>
+            <div class="d-flex justify-content-end align-items-baseline gap-2">
+                <label class="form-label">REQUESTED DATE</label>
+                <span class="editable-field2 d-block">{{data.createdAt | date}}</span>
+            </div>
+            <div class="d-flex justify-content-end align-items-baseline gap-2">
+                <label class="form-label">P.O. #</label>
+                <span class="editable-field2 d-block">{{data.barcode}}</span>
             </div>
         </div>
+        
     </div>
 
     <!-- Vendor and Ship To -->
-    <div class="row main-row2 d-flex flex-row">
+    <!-- <div class="row main-row2 d-flex flex-row">
         <div class="col-md-6">
             <h6 class="fw-bold">VENDOR</h6>
             <div class="d-flex align-items-baseline gap-2">
@@ -94,7 +94,7 @@
                 <span class="editable-field d-block">847-850-2577</span>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Table Section -->
     <div class="mt-4 table-responsive">
@@ -108,20 +108,20 @@
                     <th scope="col">TOTAL</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody *ngFor="let item of data.products let i = index">
                 <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
+                    <td>{{i+1}}</td>
+                    <td>{{item.product.materialId}}</td>
+                    <td>{{item.quantity}}</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <div>$30</div>
+                            <div>{{item.product.price}}</div>
                             <button class="btn update-price" mat-dialog-close (click)="openDialog()">Update Price</button>
                         </div>
                     </td>
-                    <td>$15</td>
+                    <td>{{item.price}}</td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>2</td>
                     <td>Mark</td>
                     <td>Otto</td>
@@ -144,7 +144,7 @@
                         </div>
                     </td>
                     <td>$12</td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
     </div>
@@ -157,15 +157,15 @@
         <div class="col-md-4">
             <div class="d-flex justify-content-between">
                 <label class="form-label">Subtotal:</label>
-                <span class="">$37</span>
+                <span class="">{{data.totalPrice}}</span>
             </div>
-            <div class="d-flex justify-content-between">
+            <!-- <div class="d-flex justify-content-between">
                 <label class="form-label">Tax (if applicable):</label>
-                <span class="">$.50</span>
-            </div>
+                <span class="">$0</span>
+            </div> -->
             <div class="d-flex justify-content-between">
                 <label class="form-label fw-bold">Total:</label>
-                <span class="">$37.50</span>
+                <span class="">{{data.totalPrice}}</span>
             </div>
         </div>
     </div>
@@ -175,17 +175,17 @@
         </p>
 
         <div class="d-flex justify-content-center gap-3">
-            <p>Email: <span>admin&#64;gmail.com</span></p>
+            <p>{{data.users[0].email}}</p>
             <p>Phone: <span>847-850-2577</span></p>
         </div>
     </div>
 </div>
 <mat-dialog-actions class="d-flex justify-content-between">
-    <button class="btn check border gap-2">
+    <button class="btn check border gap-2"  (click)="approve(data, 'Approved')">
         <span class="btn-span">Place Purchase Order</span>
         <mat-icon class="btn-icon">check</mat-icon>
     </button>
-    <button class="btn close border gap-2" mat-dialog-close>
+    <button class="btn close border gap-2" mat-dialog-close  (click)="approve(data, 'Rejected')">
         <span class="btn-span">Reject Purchase Order</span>
         <mat-icon class="btn-icon">close</mat-icon>
     </button>
