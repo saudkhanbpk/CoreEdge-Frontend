@@ -16,11 +16,7 @@
         border: 1px solid #0F4D50;
         color: #0F4D50;
     }
-    /* .form-div{
-        width: 100%;
-        overflow-x: hidden;
-        padding-right: 16px;
-    } */
+    
 
     @media screen and (min-width:1200px){
         .container-fluid{
