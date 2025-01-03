@@ -1,1 +1,122 @@
-<p>contracts-form works!</p>
+<div class="form-div container-fluid">
+    <div class="headdiv">
+        <div class="heading d-flex align-items-center">
+            <button class="btn p-1 d-flex align-items-center justify-content-center shadow-none"
+                routerLink="/business-admin/contracts">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+            <h1>Create Contract</h1>
+        </div>
+        <div class="secondary-row">
+            <div>
+                <button class="btn send-btn">
+                    Save as Draft
+                    <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="1.5" y="1" width="20" height="20" rx="5" stroke="#0F4D50" stroke-width="1.5"/>
+                        <path d="M8.5 11H14.5" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M11.5 8L11.5 14" stroke="#0F4D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="mt-3 section-div ">
+        <div>
+            <h2>Business Information</h2>
+        </div>
+        <div class="px-3">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="order-head">Business Name</div>
+                    <div class="order-data">Denver Office Market</div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="order-head">Business Contact</div>
+                    <div class="order-data">001 587 991 8633</div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="order-head">Business Email</div>
+                    <div class="order-data">Denver&#64;gmail.com</div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="order-head">Business Address</div>
+                    <div class="order-data">Water Town, MA</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-3 section-div">
+        <h2>Vendor Information</h2>
+        <div class="row p-2">
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Select Vendor</label>
+                    <select class="form-select">
+                        <option value="selectvendor">Select Vendor</option>
+                        <option value="vendora"> Vendor A</option>
+                        <option value="vendorb"> Vendor B</option>
+                        <option value="vendorc"> Vendor C</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Vendor Contact</label>
+                    <input type="text" class="form-control" placeholder="Enter Vendor Contact">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Vendor Email</label>
+                    <input type="text" class="form-control" placeholder="Enter Vendor Email">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Vendor Address</label>
+                    <input type="text" class="form-control" formControlName="MaterialId"
+                        placeholder="Enter Vendor Address">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-div mt-3">
+        <h2>Contract Details</h2>
+        <div class="row p-2">
+            <div class="col-md-4">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Reference No</label>
+                    <input type="text" class="form-control" placeholder="Enter Reference No" disabled>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Open Date</label>
+                    <input type="date" class="form-control" placeholder="Enter Open Date">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Close Date</label>
+                    <input type="Date" class="form-control" formControlName="MaterialId" placeholder="Enter Close Date">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <editor apiKey="beb0xhd2lmmcjpg5jsl0r1dlikrpwt2nu76ed8dq81x0etha" [init]="{
+                 plugins: ['lists', 'link', 'image', 'code','advlist'],
+                  toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+                }" formControlName="blogsContent" #tinyMCEEditor>
+                </editor>
+            </div>
+            <div class="col-md-6">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="button-group">
+        <button class="btn add-btn">Send to Vendor</button>
+        <button class="btn cancel-btn" routerLink="/business-admin/contracts">Cancel</button>
+    </div>
