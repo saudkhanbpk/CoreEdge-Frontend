@@ -5,6 +5,7 @@ import { VendorRoutingModule } from './vendor-routing.module';
 import { VendorMainComponent } from './vendor-main/vendor-main.component';
 import { MaterialModule } from 'src/app/material';
 import { VendorHeaderComponent } from './vendor-header/vendor-header.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,6 +17,8 @@ import { VendorHeaderComponent } from './vendor-header/vendor-header.component';
     CommonModule,
     VendorRoutingModule,
     MaterialModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class VendorModule { }

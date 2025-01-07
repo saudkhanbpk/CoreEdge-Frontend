@@ -24,7 +24,6 @@
     "html2pdf.js": "^0.9.0",
     "jsbarcode": "^3.11.6",
     "jspdf": "^2.5.2",
-    "ngx-editor": "^15.3.0",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.14.5",
     "tslib": "^2.3.0",

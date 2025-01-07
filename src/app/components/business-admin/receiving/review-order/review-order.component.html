@@ -10,15 +10,28 @@
             </div>
             <div class="secondary-row">
                 <div>
-                    <button class="btn send-btn">
+                    <button class="btn send-btn" [disabled]="!isAnyCheckboxChecked">
                         Send to RMA
-                        <img src="../../../../../assets/newicons/Info square.png" alt="" />
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1" y="1" width="20" height="20" rx="5" stroke="#090909" stroke-opacity="0.5"
+                                stroke-width="1.5" />
+                            <path d="M11.5 16L11.5 10" stroke="#090909" stroke-opacity="0.5" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M9.5 10L11.5 10" stroke="#090909" stroke-opacity="0.5" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M11.5 7L11.5 6" stroke="#090909" stroke-opacity="0.5" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
                     </button>
                 </div>
                 <div>
-                    <button class="btn clear-btn">
+                    <button class="btn clear-btn" [disabled]="isAnyCheckboxChecked">
                         Clear Received Order
-                        <img src="../../../../../assets/newicons/Check.png" alt="" />
+                        <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1.5" y="1" width="20" height="20" rx="5" stroke="white" stroke-width="1.5" />
+                            <path d="M9 10.5L11 12.5L15 8.5" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
                     </button>
                 </div>
             </div>
@@ -59,66 +72,62 @@
             <div class="table-container p-2">
                 <div class="table-responsive">
                     <table class="table table-hover">
-                        <thead class="thead-dark ">
+                        <thead class="thead-dark">
                             <tr>
                                 <th scope="col" class="one">
-                                    <div class="table-data">
+                                    <div class="table-data d-flex gap-2">
+                                        <input class="form-check-input" type="checkbox" [(ngModel)]="allChecked"
+                                            (change)="toggleAllCheckboxes($event)">
                                         No
                                     </div>
                                 </th>
                                 <th scope="col">
-                                    <div class="table-data">
-                                        Item Name
-                                    </div>
+                                    <div class="table-data">Item Name</div>
                                 </th>
                                 <th scope="col">
-                                    <div class="table-data">
-                                        Order Quantity
-                                    </div>
+                                    <div class="table-data">Order Quantity</div>
                                 </th>
                                 <th scope="col">
-                                    <div class="table-data">
-                                        Received Quantity
-                                    </div>
+                                    <div class="table-data">Received Quantity</div>
                                 </th>
                                 <th scope="col">
-                                    <div class="table-data">
-                                        Broken Quantity
-                                    </div>
+                                    <div class="table-data">Broken Quantity</div>
                                 </th>
                                 <th scope="col">
-                                    <div class="table-data">
-                                        Wrong Item Quantity
-                                    </div>
+                                    <div class="table-data">Wrong Item Quantity</div>
                                 </th>
                                 <th scope="col" class="two"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr *ngFor="let item of tableData; let i = index">
                                 <td>
-                                    <div class="table-data">01</div>
+                                    <div class="table-data gap-2 d-flex">
+                                        <input class="form-check-input" type="checkbox" [(ngModel)]="item.checked"
+                                            (change)="onCheckboxChange()">
+                                        {{ i + 1 }}
+                                    </div>
                                 </td>
                                 <td>
-                                    <div class="table-data">Desktop Monitor</div>
+                                    <div class="table-data">{{ item.name }}</div>
                                 </td>
                                 <td>
-                                    <div class="table-data">01</div>
+                                    <div class="table-data">{{ item.orderQuantity }}</div>
                                 </td>
                                 <td>
-                                    <div class="table-data">01</div>
+                                    <div class="table-data">{{ item.receivedQuantity }}</div>
                                 </td>
                                 <td>
-                                    <div class="table-data">00</div>
+                                    <div class="table-data">{{ item.brokenQuantity }}</div>
                                 </td>
                                 <td>
-                                    <div class="table-data">00</div>
+                                    <div class="table-data">{{ item.wrongItemQuantity }}</div>
                                 </td>
-
                                 <td>
                                     <div class="table-data d-flex gap-1 w-100 justify-content-end">
-                                        <button class="btn" matTooltip="Edit"><img
-                                                src="../../../../../assets/icons/Union.png" alt=""></button>
+                                        <button class="btn" matTooltip="Edit">
+                                            <img src="../../../../../assets/icons/Union.png" alt="">
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
