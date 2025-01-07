@@ -17,36 +17,48 @@ export class InvoiceTableComponent {
   data = [
     {
       name: 'Babar Azam',
+      invoiceno:'INV-3328432',
+      purchaseorderno:'PuOr-342422',
       email:'babar56@gmail.com',
       status:'Paid',
       amount:'3000'
     },
     {
       name: 'Virat Kohli',
+      invoiceno:'INV-3328432',
+      purchaseorderno:'PuOr-342422',
       email:'virat18@gmail.com',
       status:'Dispute',
       amount:'2500'
     },
     {
       name: 'Rohit Sharma',
+      invoiceno:'INV-3328432',
+      purchaseorderno:'PuOr-342422',
       email:'rohit32@gmail.com',
       status:'Pending',
       amount:'1800'
     },
     {
       name: 'Imran Khan',
+      invoiceno:'INV-3328432',
+      purchaseorderno:'PuOr-342422',
       email:'imrankhan804@gmail.com',
       status:'Resolved',
       amount:'899'
     },
     {
       name: 'Jimmy Anderson',
+      invoiceno:'INV-3328432',
+      purchaseorderno:'PuOr-342422',
       email:'jimmy91@gmail.com',
       status:'Paid',
       amount:'10000'
     },
     {
       name: 'Carlos Brathwate',
+      invoiceno:'INV-3328432',
+      purchaseorderno:'PuOr-342422',
       email:'carlos6666@gmail.com',
       status:'Pending',
       amount:'9200'
