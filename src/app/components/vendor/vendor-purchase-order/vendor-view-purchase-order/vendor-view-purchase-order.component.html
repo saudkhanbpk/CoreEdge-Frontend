@@ -181,11 +181,11 @@
     </div>
 </div>
 <mat-dialog-actions class="d-flex justify-content-between">
-    <button class="btn check border gap-2"  (click)="approve(data, 'Approved')">
+    <button class="btn check border gap-2" (click)="approve(data, 'Sent')">
         <span class="btn-span">Place Purchase Order</span>
         <mat-icon class="btn-icon">check</mat-icon>
     </button>
-    <button class="btn close border gap-2" mat-dialog-close  (click)="approve(data, 'Rejected')">
+    <button class="btn close border gap-2" (click)="approve(data, 'Rejected')">
         <span class="btn-span">Reject Purchase Order</span>
         <mat-icon class="btn-icon">close</mat-icon>
     </button>

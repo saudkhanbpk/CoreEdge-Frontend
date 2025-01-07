@@ -17,7 +17,7 @@ import { ReviewOrderComponent } from './review-order/review-order.component';
     CommonModule,
     ReceivingRoutingModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
   ]
 })
 export class ReceivingModule { }

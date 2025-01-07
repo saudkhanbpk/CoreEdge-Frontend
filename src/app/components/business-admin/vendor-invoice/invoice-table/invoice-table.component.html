@@ -66,17 +66,17 @@
               </td>
               <td>
                 <div class="table-data">
-                  {{ vendor.name }}
+                  {{ vendor.vendor[0].name }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ vendor.email }}
+                  {{ vendor.vendor[0].email }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ vendor.amount | currency }}
+                  {{ vendor.totalPrice | currency }}
                 </div>
               </td>
               <td>

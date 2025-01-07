@@ -40,9 +40,9 @@
             <th scope="col">
               <div class="table-data">Purchase Order No</div>
             </th>
-            <th scope="col">
+            <!-- <th scope="col">
               <div class="table-data">Employee Name</div>
-            </th>
+            </th> -->
             <th scope="col">
               <div class="table-data">Vendor Name</div>
             </th>
@@ -70,49 +70,53 @@
               </td>
               <td>
                 <div class="table-data">
-                  {{ order.purchaseorderno }}
+                  {{ order.barcode }}
                 </div>
               </td>
-              <td>
+              <!-- <td>
                 <div class="table-data">
                   {{ order.employeename }}
                 </div>
-              </td>
+              </td> -->
               <td>
                 <div class="table-data">
-                  {{ order.vendor }}
+                  {{ order.vendor[0].name }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ order.requesteddate }}
+                  {{ order.createdAt | date }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ order.totalamount }}
+                  {{ order.totalPrice | currency }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
                   <div class="status p-2" [ngClass]="{
-                    completed: order.status === 'Cleared',
-                    rejected: order.status === 'In RMA',
-                    inactive: order.status === 'Pending'
+                    completed: order.vendorStatus === 'Cleared',
+                    rejected: order.vendorStatus === 'In RMA',
+                    inactive: order.vendorStatus === 'Pending'
                   }">
-                    {{ order.status }}
+                    {{ order.vendorStatus }}
                   </div>
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  <button class="btn" routerLink="/business-admin/receiving/review-order" matTooltip="Review Order">
+                  <button 
+                    class="btn" 
+                    (click)="setOrder(order)" 
+                    matTooltip="Review Order">
                     <div><img src="../../../../../assets/newicons/message square.png" alt=""></div>
                   </button>
                   <button class="btn" matTooltip="Delete Received Order">
                     <img src="../../../../../assets/icons/Trash can.png" alt="" />
                   </button>
                 </div>
+                
               </td>
             </tr>
           </ng-container>

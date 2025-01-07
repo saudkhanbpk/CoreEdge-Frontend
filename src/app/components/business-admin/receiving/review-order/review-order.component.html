@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-6 mb-3">
                         <div class="order-head">Purchase Order No</div>
-                        <div class="order-data">01</div>
+                        <div class="order-data">{{selectedOrder.id}}</div>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-3">
                         <div class="order-head">Employee Name</div>
@@ -39,11 +39,11 @@
                     </div>
                     <div class="col-lg-3 col-md-6 mb-3">
                         <div class="order-head">Vendor Name</div>
-                        <div class="order-data">Brandon Lee</div>
+                        <div class="order-data">{{selectedOrder?.vendor[0]?.name}}</div>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-3">
                         <div class="order-head">Requested Date</div>
-                        <div class="order-data">25th Jan, 2027</div>
+                        <div class="order-data">{{selectedOrder.createdAt | date}}</div>
                     </div>
                 </div>
             </div>
@@ -94,25 +94,25 @@
                                 <th scope="col" class="two"></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody *ngFor="let item of selectedOrder?.products; let i = index">
                             <tr>
                                 <td>
-                                    <div class="table-data">01</div>
+                                    <div class="table-data">{{i+1}}</div>
                                 </td>
                                 <td>
-                                    <div class="table-data">Desktop Monitor</div>
+                                    <div class="table-data">{{item?.product.materialId}}</div>
                                 </td>
                                 <td>
-                                    <div class="table-data">01</div>
+                                    <div class="table-data">{{item.quantity}}</div>
                                 </td>
                                 <td>
-                                    <div class="table-data">01</div>
+                                    <div class="table-data">{{item.quantity}}</div>
                                 </td>
                                 <td>
-                                    <div class="table-data">00</div>
+                                    <div class="table-data">{{item.quantity}}</div>
                                 </td>
                                 <td>
-                                    <div class="table-data">00</div>
+                                    <div class="table-data">{{item.quantity}}</div>
                                 </td>
 
                                 <td>

@@ -13,9 +13,9 @@ import * as JsBarcode from 'jsbarcode';
 })
 export class VendorViewPurchaseOrderComponent {
   @ViewChild('container', { static: false }) container!: ElementRef;
-    readonly dialog = inject(MatDialog)
-  
- constructor(@Inject(MAT_DIALOG_DATA) public data: any,public dialogRef: MatDialogRef<VendorViewPurchaseOrderComponent>, purchaseOrderService: PurchaseOrderService) {
+  readonly dialog = inject(MatDialog)
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<VendorViewPurchaseOrderComponent>, private purchaseOrderService: PurchaseOrderService) {
     console.log('Dialog data:', this.data); // Access the passed item here
   }
 
@@ -86,18 +86,18 @@ export class VendorViewPurchaseOrderComponent {
       return;
     }
 
-    
+
     const originalStyle = {
       maxHeight: containerElement.style.maxHeight,
       overflow: containerElement.style.overflow,
     };
 
-    
+
     containerElement.style.maxHeight = 'none';
     containerElement.style.height = 'auto';
     containerElement.style.overflow = 'visible';
 
-    
+
     const options = {
       margin: [10, 10, 10, 10],
       filename: 'Purchase_Order.pdf',
@@ -109,8 +109,8 @@ export class VendorViewPurchaseOrderComponent {
       },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
     };
-  
-    
+
+
     html2pdf()
       .set(options)
       .from(containerElement)
@@ -120,76 +120,68 @@ export class VendorViewPurchaseOrderComponent {
         containerElement.style.overflow = originalStyle.overflow;
       })
       .catch((error: any) => {
-        console.error('Error generating PDF:', error); 
+        console.error('Error generating PDF:', error);
         containerElement.style.maxHeight = originalStyle.maxHeight;
         containerElement.style.overflow = originalStyle.overflow;
       });
   }
 
-  openDialog(){
+  openDialog() {
     this.dialog.open(VendorUpdatePriceComponent, {
-      maxWidth:'500px',
-      width:'100%'
+      maxWidth: '500px',
+      width: '100%'
     })
   }
 
 
+  approve(item: any, status: 'Sent' | 'Rejected'): void {
+    // Confirmation Modal
+    Swal.fire({
+      title: `Are you sure you want to ${status.toLowerCase()} this item?`,
+      text: `This item will be marked as ${status.toLowerCase()}.`,
+      icon: status === 'Sent' ? 'success' : 'warning',
+      showCancelButton: true,
+      confirmButtonColor: status === 'Sent' ? '#28a745' : '#d33',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: `Yes, ${status.toLowerCase()} it!`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+  let payload={
+    status:status
+  }
+        // Call the service to update the product status, passing the payload
+        this.purchaseOrderService.updatePurchaseStatus(item.id, payload).subscribe(
+          (response: any) => {
+            // Update was successful, close the dialog and show success message
+            if (response) {
+              this.dialogRef.close('refresh');
+              Swal.fire(
+                `${status}!`,
+                `The item has been successfully ${status.toLowerCase()}ed.`,
+                'success'
+              ); 
+            }  
+            // Optionally, refresh data if needed (uncomment if required)
+            // const user = this.authService.getUserData();
+            // if (user) {
+            //   this.purchaseOrderService.reloadData(user.id).subscribe((data) => {
+            //     if (data) {
+            //       // Handle successful reload if needed
+            //     }
+            //   });
+            // }
+          },
+          (error: any) => {
+            console.error(`Error updating request to ${status}:`, error);
+            Swal.fire(
+              'Error',
+              `There was an error while trying to ${status.toLowerCase()} the item.`,
+              'error'
+            );
+          }
+        );
+      }
+    });
+  }
   
-    approve(item: any, status: 'Approved' | 'Rejected'): void {
-      // Confirmation Modal
-      Swal.fire({
-        title: `Are you sure you want to ${status.toLowerCase()} this item?`,
-        text: `This item will be marked as ${status.toLowerCase()}.`,
-        icon: status === 'Approved' ? 'success' : 'warning',
-        showCancelButton: true,
-        confirmButtonColor: status === 'Approved' ? '#28a745' : '#d33',
-        cancelButtonColor: '#6c757d',
-        confirmButtonText: `Yes, ${status.toLowerCase()} it!`,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Prepare the payload
-          const payload = {
-            products: item.unavailableProducts.map((product: any) => ({
-              product: product.product,
-              status: status,
-            })),
-          };
-    
-        //   // Call the service to update the product status
-        //   this.purchaseOrderService.updateunavailableProductStatus(item.id, payload.products).subscribe(
-        //     (response: any) => {
-        //       const user = this.authService.getUserData();
-        //       if (user) {
-        //         this.purchaseOrderService.reloadData(user.id).subscribe((data) => {
-        //           if (data) {
-        //             this.dialogRef.close('refresh');
-        //             Swal.fire(
-        //               `${status}!`,
-        //               `The item has been successfully ${status.toLowerCase()}ed.`,
-        //               'success'
-        //             );
-        //           }
-        //         });
-        //       } else {
-        //         this.dialogRef.close('refresh');
-        //         Swal.fire(
-        //           `${status}!`,
-        //           `The item has been successfully ${status.toLowerCase()}ed.`,
-        //           'success'
-        //         );
-        //       }
-        //     },
-        //     (error: any) => {
-        //       console.error(`Error updating request to ${status}:`, error);
-        //       Swal.fire(
-        //         'Error',
-        //         `There was an error while trying to ${status.toLowerCase()} the item.`,
-        //         'error'
-        //       );
-        //     }
-        //   );
-        // 
-        }
-      });
-    }
 }

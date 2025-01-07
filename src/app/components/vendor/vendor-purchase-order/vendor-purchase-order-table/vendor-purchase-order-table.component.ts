@@ -224,12 +224,28 @@ export class VendorPurchaseOrderTableComponent implements OnInit {
     return this.currentPage > 1;
   }
 
-  openDialog(item:any): void {
-    this.dialog.open(VendorViewPurchaseOrderComponent, {
-      data:item,
-      width: '60%'
+  // openDialog(item:any): void {
+  //   this.dialog.open(VendorViewPurchaseOrderComponent, {
+  //     data:item,
+  //     width: '60%'
+  //   });
+
+  // }
+  openDialog(item: any): void {
+    const dialogRef = this.dialog.open(VendorViewPurchaseOrderComponent, {
+      data: item,
+      width: '60%',
+    });
+  
+    // Subscribe to the afterClosed event
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'refresh') {
+        // Call fetchVendorOrders() if the dialog returns 'refresh'
+        this.fetchVendorOrders();
+      }
     });
   }
+  
 
   
     deleterequest(item: any) {
@@ -247,6 +263,7 @@ export class VendorPurchaseOrderTableComponent implements OnInit {
           // Proceed to delete the item
           this.purchaseOrderService.delete(item.id).subscribe({
             next: (res: any) => {
+              this.fetchVendorOrders();
               // Show success feedback
               Swal.fire(
                 'Deleted!',

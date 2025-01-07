@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 })
 export class PurchaseOrderService {
   private apiUrl = `${environment.apiUrl}/purchase-orders`;
-  user:any;
+  user: any;
   constructor(private http: HttpClient, private authService: AuthService) {
     this.user = this.authService.getUserData();
   }
@@ -21,21 +21,25 @@ export class PurchaseOrderService {
   findById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
- 
+
   findVendorOrders(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/vendor/${this.user.id}`);
+  }
+ 
+  findAdminOrders(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/user/${this.user.id}`);
   }
 
   create(order: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, order);
   }
 
-  updateProductStatus(
+  updatePurchaseStatus(
     orderId: number,
-    availableProducts: Array<{ product: any; status: string }>
+    status: any
   ): Observable<any> {
-    const url = `${this.apiUrl}/${orderId}/update-status`;
-    return this.http.patch(url, { availableProducts });
+    const url = `${this.apiUrl}/${orderId}/status`;
+    return this.http.put(url, status);
   }
 
   updateUnavailableProductStatus(
