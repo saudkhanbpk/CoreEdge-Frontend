@@ -22,6 +22,7 @@ const routes: Routes = [
       { path: 'disputes', loadChildren: () => import('./disputes/disputes.module').then(m => m.DisputesModule) },
       { path: 'roles', loadChildren: () => import('./roles/roles.module').then(m => m.RolesModule) },
       { path: 'rfq', loadChildren: () => import('./rfq/rfq.module').then(m => m.RfqModule) },
+      { path: 'contracts', loadChildren: () => import('./contracts/contracts.module').then(m => m.ContractsModule) },
       { path: 'asset-management', loadChildren: () => import('./asset-management/asset-management.module').then(m => m.AssetManagementModule) },
 
       

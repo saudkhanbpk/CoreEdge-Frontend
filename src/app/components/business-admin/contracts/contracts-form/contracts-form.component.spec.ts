@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AcceptedRfqComponent } from './accepted-rfq.component';
+import { ContractsFormComponent } from './contracts-form.component';
 
-describe('AcceptedRfqComponent', () => {
-  let component: AcceptedRfqComponent;
-  let fixture: ComponentFixture<AcceptedRfqComponent>;
+describe('ContractsFormComponent', () => {
+  let component: ContractsFormComponent;
+  let fixture: ComponentFixture<ContractsFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AcceptedRfqComponent ]
+      declarations: [ ContractsFormComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AcceptedRfqComponent);
+    fixture = TestBed.createComponent(ContractsFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

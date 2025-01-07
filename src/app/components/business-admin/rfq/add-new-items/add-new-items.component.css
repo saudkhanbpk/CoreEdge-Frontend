@@ -1,3 +1,4 @@
+@import url(../../../../styles/form.css);
 
 .form-check{
     padding: 0px 10px 16px 10px;
@@ -47,7 +48,10 @@
     gap: 10px;
     
   }
-
+  .submit{
+    width: 250px !important;
+    background-color: #8FAF3F !important;
+}
  
 .modal-footer{
     padding: 8px;

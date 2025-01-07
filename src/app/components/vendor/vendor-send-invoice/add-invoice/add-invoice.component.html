@@ -1,0 +1,215 @@
+<div class="form-div">
+    <div class="headdiv">
+        <div class="heading d-flex align-items-center">
+            <button class="btn p-1 d-flex align-items-center justify-content-center shadow-none" routerLink="/vendor/vendor-catalog">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+            <h1>Create Invoice</h1>
+        </div>
+    </div>
+
+    <div class="mt-3 section-div">
+        <h2>Invoice Details</h2>
+        <div class="row p-2">
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Invoice Number</label>
+                    <input type="text" class="form-control" placeholder="INV-2025001">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Invoice Date</label>
+                    <input type="date" class="form-control" placeholder="2025-01-07">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Due Date</label>
+                    <input type="date" class="form-control" placeholder="2025-01-14">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3 section-div">
+        <h2>Vendor Details</h2>
+        <div class="row p-2">
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Vendor Name</label>
+                    <input type="text" class="form-control" placeholder="ABC Supplies Co.">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Vendor Address</label>
+                    <input type="text" class="form-control" placeholder="123 Market Street, NY 10001">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Vendor Contact Information</label>
+                    <input type="text" class="form-control" placeholder="Phone: +1 234 567 8901, Email: info@abc.com">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Vendor Tax Identification Number</label>
+                    <input type="text" class="form-control" placeholder="TIN-5678901234">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3 section-div">
+        <h2>Customer/Buyer Details</h2>
+        <div class="row p-2">
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Customer Name</label>
+                    <input type="text" class="form-control" placeholder="XYZ Corporation">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Customer Address</label>
+                    <input type="text" class="form-control" placeholder="456 Elm Avenue, CA 90210">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Customer Contact Information</label>
+                    <input type="text" class="form-control" placeholder="Phone: +1 987 654 3210, Email: procurement@xyz.com">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Customer Purchase Order Number</label>
+                    <select name="" id="" class="form-select">
+                        <option value="" selected>Select Purchase Order No</option>
+                        <option value="">PuOr-23423</option>
+                        <option value="">PuOr-23423</option>
+                        <option value="">PuOr-23423</option>
+                        <option value="">PuOr-23423</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3 section-div">
+        <h2>Order Details</h2>
+        <div class="table-container p-2">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="thead-dark ">
+                        <tr>
+                            <th scope="col" class="one">
+                                <div class="table-data">
+                                    No
+                                </div>
+                            </th>
+                            <th scope="col">
+                                <div class="table-data">
+                                    Item Name
+                                </div>
+                            </th>
+                            <th scope="col">
+                                <div class="table-data">
+                                    Order Quantity
+                                </div>
+                            </th>
+                            <th scope="col">
+                                <div class="table-data">
+                                    Unit Price
+                                </div>
+                            </th>
+                            <th scope="col" class="two">
+                                <div class="table-data">
+                                    Subtotal
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="table-data">01</div>
+                            </td>
+                            <td>
+                                <div class="table-data">
+                                    <div class="input-div input-div-no-pad">
+                                        <select name="" id="" class="form-select new-width">
+                                            <option value="laptop">Laptop</option>
+                                            <option value="monitor">Monitor</option>
+                                            <option value="keyboard">Keyboard</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-data w-100">
+                                    <input type="number" name="" id="" class="form-control new-width" placeholder="Enter Quantity">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-data">$200</div>
+                            </td>
+                            <td>
+                                <div class="table-data">$1200</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3 section-div">
+        <h2>Summary Section</h2>
+        <div class="row p-2">
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Subtotal Amount</label>
+                    <input type="number" class="form-control" value="9000" disabled>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Discounts</label>
+                    <input type="number" class="form-control" value="500">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Taxes</label>
+                    <input type="number" class="form-control" value="810">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Shipping Charges</label>
+                    <input type="number" class="form-control" value="200">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Other Charges</label>
+                    <input type="number" class="form-control" value="0">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-div input-div-no-pad">
+                    <label for="">Total Amount Due</label>
+                    <input type="number" class="form-control" value="9510" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-group">
+        <button class="btn add-btn">Create Invoice</button>
+        <button class="btn cancel-btn" routerLink="/vendor/vendor-invoice">Cancel</button>
+    </div>
+</div>
