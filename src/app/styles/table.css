@@ -167,10 +167,9 @@ tr:hover {
 .completed {
     background-color: #ECFEED;
     color: #13C91B;
-    height: 22px;
+    height: 24px;
     border: 1px solid #13C91B;
     border-radius: 7px;
-    padding: 0px 7px;
     display: flex;
     align-items: center;
     width: 120px;
@@ -182,9 +181,8 @@ tr:hover {
     background-color: #FFF9EB;
     color: #F0B433;
     border: 1px solid #F0B433;
-    height: 22px;
+    height: 24px;
     border-radius: 7px;
-    padding: 0px 7px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -195,9 +193,8 @@ tr:hover {
     background-color: #ffe6e6;
     color: red;
     border: 1px solid red;
-    height: 22px;
+    height: 24px;
     border-radius: 7px;
-    padding: 0px 7px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -209,10 +206,9 @@ tr:hover {
     background-color: #ffe1a06b;
     color: #F0B433;
     border: 1px solid #F0B433;
-    height: 22px;
+    height: 24px;
     width: 120px;
     border-radius: 7px;
-    padding: 0px 7px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -221,10 +217,9 @@ tr:hover {
     background-color: #3395F012;
     color: #5A7F9D;
     border: 1px solid #5A7F9D;
-    height: 22px;
+    height: 24px;
     width: 120px;
     border-radius: 7px;
-    padding: 0px 7px;
     display: flex;
     align-items: center;
     justify-content: center;
