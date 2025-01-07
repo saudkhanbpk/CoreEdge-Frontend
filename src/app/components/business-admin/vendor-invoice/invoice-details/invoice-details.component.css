@@ -30,7 +30,9 @@ thead tr th{
 textarea{
     height: 100px !important;
 }
-
+.highlight{
+    color: #0F4D50 !important;
+}
 .form-check-input{
     width: 20px;
     height: 20px;

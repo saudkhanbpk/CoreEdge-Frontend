@@ -111,8 +111,25 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="d-flex justify-content-end p-3" style="font-size: 18px;">
-                        <div style="font-weight: 500;">Subtotal:</div> &nbsp; {{ subtotal | currency }}
+                    <div class="d-flex justify-content-between align-items-center gap-2 flex-wrap">
+                        <div class="d-flex justify-content-end p-3" style="font-size: 18px;">
+                            <div style="font-weight: 500;">Subtotal:</div> &nbsp; {{ subtotal | currency }}
+                        </div>
+                        <div class="d-flex justify-content-end p-3" style="font-size: 18px;">
+                            <div style="font-weight: 500;">Discount:</div> &nbsp; {{ subtotal | currency }}
+                        </div>
+                        <div class="d-flex justify-content-end p-3" style="font-size: 18px;">
+                            <div style="font-weight: 500;">Tax:</div> &nbsp; {{ subtotal | currency }}
+                        </div>
+                        <div class="d-flex justify-content-end p-3" style="font-size: 18px;">
+                            <div style="font-weight: 500;">Shipping Charges:</div> &nbsp; {{ subtotal | currency }}
+                        </div>
+                        <div class="d-flex justify-content-end p-3" style="font-size: 18px;">
+                            <div style="font-weight: 500;">Other Charges:</div> &nbsp; {{ subtotal | currency }}
+                        </div>
+                        <div class="d-flex justify-content-end p-3" style="font-size: 18px;">
+                            <div style="font-weight: 500;">Total Amount:</div> &nbsp; {{ subtotal | currency }}
+                        </div>
                     </div>
                 </div>
                 <div class="input-div input-div-no-pad my-3" *ngIf="showDisputeOptions">
