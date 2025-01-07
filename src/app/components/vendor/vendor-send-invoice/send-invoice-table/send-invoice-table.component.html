@@ -1,17 +1,21 @@
 <div class="headdiv">
     <div class="heading">
-      <h1>Purchase Order </h1>
+      <h1>Invoice</h1>
     </div>
     <div class="secondary-row">
       <div class="input-group">
-        <input type="text" class="form-control input-group-form-control" placeholder="Search Purchase Order"
+        <input type="text" class="form-control input-group-form-control" placeholder="Search Invoice"
           aria-label="Quick Search">
         <button class="btn search-order-btn" type="button" id="button-addon2">
           <mat-icon>search</mat-icon>
         </button>
       </div>
+      <div>
+        <button class="btn add-btn" routerLink="/vendor/vendor-invoice/add-invoice">Create Invoice</button>
+      </div>
     </div>
   </div>
+  
   <div class="table-container p-2 mt-2">
     <div class="d-flex justify-content-end flex-wrap mb-2 gap-2 bg-none">
       <select class="form-select bg-none border-0 w-auto shadow-0">
@@ -21,18 +25,27 @@
       </select>
     </div>
     <div class="table-responsive">
-      <table class="table table-hover ">
-        <thead class="thead-dark ">
+      <table class="table table-hover">
+        <thead class="thead-dark">
           <tr>
             <th scope="col" class="one">
               <div class="table-data">
                 <div class="d-flex gap-2 align-items-center">
                   <div>
-                    Purchase Order No
+                    Invoice No
                   </div>
                 </div>
               </div>
             </th>
+            <th scope="col">
+                <div class="table-data">
+                  <div class="d-flex gap-2 align-items-center">
+                    <div>
+                      Purchase Order No
+                    </div>
+                  </div>
+                </div>
+              </th>
             <th scope="col">
               <div class="table-data">
                 Business Name
@@ -59,19 +72,28 @@
               </div>
             </th>
             <th scope="col">
-              <div class="table-data">Status</div>
+              <div class="table-data">
+                Status
+              </div>
             </th>
             <th scope="col" class="two"></th>
-  
           </tr>
         </thead>
         <tbody>
-          <ng-container *ngFor="let item of paginatedData; let i = index">
+          <ng-container *ngFor="let item of invoiceData; let i = index">
             <tr>
               <td>
                 <div class="table-data">
                   <div class="d-flex gap-2 align-items-center">
-                    
+                    <div>
+                      {{ item.invoicenumber }}
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="table-data">
+                  <div class="d-flex gap-2 align-items-center">
                     <div>
                       {{ item.purchaseorderno }}
                     </div>
@@ -90,7 +112,7 @@
               </td>
               <td>
                 <div class="table-data">
-                  {{ item.receivedddate }}
+                  {{ item.receiveddate }}
                 </div>
               </td>
               <td>
@@ -106,9 +128,9 @@
               <td>
                 <div class="table-data">
                   <div class="status p-2" [ngClass]="{
-                      completed: item.status === 'Ordered',
-                      rejected: item.status === 'Rejected',
-                      inprogress: item.status === 'Pending'
+                      completed: item.status === 'Paid',
+                      inprogress: item.status === 'Pending',
+                      rejected: item.status === 'Overdue'
                     }">
                     {{ item.status }}
                   </div>
@@ -116,11 +138,14 @@
               </td>
               <td>
                 <div class="table-data d-flex gap-1 w-100 justify-content-end">
-                  <button class="btn visibility" (click)="openDialog()" matTooltip="View Order">
+                  <button class="btn visibility" matTooltip="View Invoice">
                     <img src="../../../../../assets/newicons/message square.png">
                   </button>
+                  <button class="btn visibility" matTooltip="Edit Invoice" routerLink="/vendor/vendor-invoice/add-invoice">
+                    <img src="../../../../../assets/icons/Union.png">
+                  </button>
                   <button class="btn"><img src="../../../../../assets/icons/Trash can.png"
-                      matTooltip="Delete Order"></button>
+                      matTooltip="Delete Invoice"></button>
                 </div>
               </td>
             </tr>
@@ -150,3 +175,4 @@
       </ul>
     </nav>
   </div>
+  

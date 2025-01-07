@@ -15,7 +15,7 @@ import { VendorHeaderComponent } from './vendor-header/vendor-header.component';
   imports: [
     CommonModule,
     VendorRoutingModule,
-    MaterialModule
+    MaterialModule,
   ]
 })
 export class VendorModule { }

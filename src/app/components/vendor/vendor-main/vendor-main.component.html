@@ -1,38 +1,41 @@
-<div class="bg-light p-3 main">
+<div class="bg-light main">
     <app-vendor-header (toggleDrawerEvent)="toggleDrawer()"></app-vendor-header>
-    <mat-drawer-container class="example-container mt-3">
-        <mat-drawer #drawer  class="bg-white rounded-3">
-            <nav class="sidebar">
+    <mat-drawer-container class="example-container">
+        <mat-drawer #drawer  class="bg-white mydrawer">
+            <nav class="sidebar pb-3">
                 <ul class="nav flex-column">
-                    <li class="nav-item px-2" *ngFor="let menu of menus">
-                        <button class="btn align-items-center d-flex justify-content-between"
-                            (click)="menu.submenus.length > 0 && openMenu(menu.id)"
-                            [routerLink]="menu.submenus.length === 0 ? menu.link : null" routerLinkActive="active">
-                            <div class="d-flex align-items-center gap-2">
-                                <mat-icon>{{ menu.icon }}</mat-icon>
-                                <span  class="title">{{ menu.title }}</span>
-                            </div>
-                            <div *ngIf="menu.submenus.length > 0 " class="d-flex align-items-center">
-                                <mat-icon>{{ isMenuOpen(menu.id) ? 'expand_less' : 'expand_more' }}</mat-icon>
-                            </div>
-                        </button>
-                        <!-- <ul class="nav flex-column ml-3"
-                            *ngIf="isMenuOpen(menu.id) && menu.submenus.length > 0 && hovered">
-                            <li class="nav-item" *ngFor="let submenu of menu.submenus">
-                                <a class="nav-link" [routerLink]="submenu.link" routerLinkActive="active">
-                                    {{ submenu.title }}
-                                </a>
-                            </li>
-                        </ul> -->
-                    </li>
+                    <ng-container *ngFor="let menu of menus; let i = index">
+                        <li class="nav-item px-2">
+                            <button class="btn align-items-center d-flex justify-content-between"
+                                (click)="menu.submenus.length > 0 && openMenu(menu.id)"
+                                [routerLink]="menu.submenus.length === 0 ? menu.link : null" routerLinkActive="active">
+                                <div class="d-flex align-items-center gap-2">
+                                    <mat-icon>{{ menu.icon }}</mat-icon>
+                                    <span  class="title">{{ menu.title }}</span>
+                                </div>
+                                <div *ngIf="menu.submenus.length > 0 " class="d-flex align-items-center">
+                                    <mat-icon>{{ isMenuOpen(menu.id) ? 'expand_less' : 'expand_more' }}</mat-icon>
+                                </div>
+                            </button>
+                            <!-- <ul class="nav flex-column ml-3"
+                                *ngIf="isMenuOpen(menu.id) && menu.submenus.length > 0 ">
+                                <li class="nav-item" *ngFor="let submenu of menu.submenus">
+                                    <a class="nav-link" [routerLink]="submenu.link" routerLinkActive="active">
+                                        {{ submenu.title }}
+                                    </a>
+                                </li>
+                            </ul> -->
+                        </li>
+                    </ng-container>
                 </ul>
             </nav>
         </mat-drawer>
-        <mat-drawer-content [ngStyle]="{  'padding-left': drawer.opened ? '16px' : '0px' }">
-            <div class="maindiv">
-                <router-outlet></router-outlet>
+        <mat-drawer-content>
+            <div class="container-fluid">
+                <div class="maindiv mt-3">
+                    <router-outlet></router-outlet>
+                </div>
             </div>
         </mat-drawer-content>
-        
     </mat-drawer-container>
 </div>
