@@ -124,7 +124,7 @@
                                     <div class="table-data">{{item.quantity}}</div>
                                 </td>
                                 <td>
-                                    <div class="table-data d-flex gap-1 w-100 justify-content-end">
+                                    <div class="table-data d-flex gap-1 w-100 justify-content-end"  (click)="toggleEdit(item)">
                                         <button class="btn" matTooltip="Edit">
                                             <img src="../../../../../assets/icons/Union.png" alt="">
                                         </button>
@@ -135,15 +135,15 @@
                     </table>
                 </div>
             </div>
-            <div class="row p-2">
+            <div class="row p-2" *ngIf="isEditing">
                 <div class="col-md-4">
-                    <div class="input-div input-div-no-pad">
+                    <div class="input-div input-div-no-pad"  >
                         <div class="d-flex justify-content-between align-items-center">
                             <div><label for="">Received Quantity</label></div>
                             <div class="star">*</div>
                         </div>
                         <div>
-                            <input type="number" class="form-control" placeholder="Enter Received Quantity" disabled>
+                            <input type="number" name="receivedQuantity" class="form-control" [(ngModel)]="selectedOrder.receivedQuantity" placeholder="Enter Received Quantity">
                         </div>
                     </div>
                 </div>
@@ -154,7 +154,7 @@
                             <div class="star">*</div>
                         </div>
                         <div>
-                            <input type="number" class="form-control" placeholder="Enter Broken Quantity" disabled>
+                            <input type="number" name="brokenQuantity" class="form-control" [(ngModel)]="selectedOrder.brokenQuantity" placeholder="Enter Broken Quantity">
                         </div>
                     </div>
                 </div>
@@ -165,7 +165,7 @@
                             <div class="star">*</div>
                         </div>
                         <div>
-                            <input type="number" class="form-control" placeholder="Enter Wrong Item Quantity" disabled>
+                            <input type="number" name="wrongItemQuantity" class="form-control" [(ngModel)]="selectedOrder.wrongItemQuantity" placeholder="Enter Wrong Item Quantity">
                         </div>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                             <div class="star">*</div>
                         </div>
                         <div>
-                            <textarea class="form-control" placeholder="Add Note" disabled></textarea>
+                            <textarea class="form-control" [(ngModel)]="selectedOrder.note" placeholder="Add Note"></textarea>
                         </div>
                     </div>
                 </div>

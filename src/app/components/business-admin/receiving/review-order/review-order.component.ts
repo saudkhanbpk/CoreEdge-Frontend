@@ -9,6 +9,7 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class ReviewOrderComponent implements OnInit {
   selectedOrder: any;
+  isEditing: boolean = false;
 
   tableData = [
     { name: 'Desktop Monitor', orderQuantity: 1, receivedQuantity: 1, brokenQuantity: 0, wrongItemQuantity: 0, checked: false },
@@ -41,5 +42,14 @@ export class ReviewOrderComponent implements OnInit {
     this.tableData.forEach(item => (item.checked = isChecked));
     this.isAnyCheckboxChecked = isChecked;
   }
+  toggleEdit(item: any) {
+    this.isEditing = !this.isEditing;
+    console.log("item" , item)
+    // If editing an item, assign its values to the selectedOrder fields
+  this.selectedOrder.receivedQuantity = item.quantity;
+  this.selectedOrder.brokenQuantity = item.quantity;
+  this.selectedOrder.wrongItemQuantity = item.quantity;
+}
+
 }
 
