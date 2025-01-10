@@ -15,6 +15,7 @@ export class VendorsTableComponent {
   itemsPerPage = 10; // Number of orders per page
   expandedIndex: number | null = null;
   totalItems: number = 0; 
+  searchterm = '';
   constructor(    private authService: AuthService,
     private vendorService: VendorsService,
     private router: Router
@@ -22,16 +23,28 @@ export class VendorsTableComponent {
 
   ) { }
   ngOnInit(): void {
-    const user = this.authService.getUserData();
-    this.loadRoles(user.id);
+    this.loadRoles();
   }
-
-  loadRoles(userId: number) {
-    this.vendorService.findAll(userId).subscribe((response: any) => {
-      this.vendors = response; 
-      this.totalItems = response.length; 
+  onInputChange(event:any){
+  this.searchterm = event.target.value;
+  }
+  loadRoles() {
+    this.vendorService.findAll().subscribe({
+      next: (data) => {
+        this.vendors = data;
+        this.totalItems = data.length; 
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      }
     });
   }
+    // this.vendorService.findAll(userId).subscribe((response: any) => {
+    //   this.vendors = response; 
+    //   this.vendorService.setVendorsToProduct(this.vendors)
+    //   this.totalItems = response.length; 
+    // });
+  
   // vendors = [
   //   {
   //     id: 1,
@@ -153,9 +166,14 @@ export class VendorsTableComponent {
   }
 
   get paginatedData() {
+    const filteredVendors = this.vendors.filter((vendor:any) =>
+      vendor.name.toLowerCase().includes(this.searchterm.toLowerCase()) ||
+      vendor.email.toLowerCase().includes(this.searchterm.toLowerCase()) 
+    );
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.vendors.slice(startIndex, startIndex + this.itemsPerPage);
+    return filteredVendors.slice(startIndex, startIndex + this.itemsPerPage);
   }
+
 
   goToPage(page: number) {
     this.currentPage = page;

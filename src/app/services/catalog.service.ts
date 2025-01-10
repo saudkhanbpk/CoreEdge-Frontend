@@ -2,14 +2,19 @@ import { Injectable } from '@angular/core';
 import { Catalog } from '../models/catalog.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CatalogService {
   private apiUrl = `${environment.apiUrl}/catalog`;  // Base API URL for Catalog-related endpoints
-
+  private searchTermSubject = new BehaviorSubject<string>('');
+  currentSearchTerm = this.searchTermSubject.asObservable();
+  // this search term form catalog main component
+  updateSearchTerm(term: string) {
+    this.searchTermSubject.next(term);
+  }
   constructor(private http: HttpClient) { }
 
   // Method to retrieve all Catalog items

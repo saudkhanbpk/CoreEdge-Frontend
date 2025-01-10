@@ -12,8 +12,9 @@
           class="form-control input-group-form-control"
           placeholder="Search Vendor"
           aria-label="Quick Search"
+          (input)="onInputChange($event)"
         />
-        <button class="btn search-order-btn" type="button" id="button-addon2">
+        <button class="btn search-order-btn" type="button" id="button-addon2" >
           <mat-icon>search</mat-icon>
         </button>
       </div>
@@ -73,82 +74,89 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let vendor of paginatedData; let i = index">
-          <tr>
-            <td>
-              <div class="table-data">{{ vendor.id }}</div>
-            </td>
-            <td>
-              <div class="table-data">
-                <img
-                  *ngIf="vendor.imageUrl; else defaultLogo"
-                  [src]="vendor.imageUrl"
-                  alt="{{ vendor.name }} Logo"
-                  class="vendor-logo"
-                />
-                <ng-template #defaultLogo>
+        <div *ngIf="paginatedData.length > 0; else notFound">
+          <ng-container *ngFor="let vendor of paginatedData;let i = index ">
+            <tr>
+              <td>
+                <div class="table-data">{{ vendor.id }}</div>
+              </td>
+              <td>
+                <div class="table-data">
                   <img
-                    src="../../../../../../assets/icons/default-logo.png"
-                    alt="Default Logo"
+                    *ngIf="vendor.imageUrl; else defaultLogo"
+                    [src]="vendor.imageUrl"
+                    alt="{{ vendor.name }} Logo"
                     class="vendor-logo"
                   />
-                </ng-template>
-              </div>
-            </td>
-            <td>
-              <div class="table-data">{{ vendor.name }}</div>
-            </td>
-            <td>
-              <div class="table-data">{{ vendor.contactPerson }}</div>
-            </td>
-            <td>
-              <div class="table-data">{{ vendor.email }}</div>
-            </td>
-            <td>
-              <div class="table-data">{{ vendor.password }}</div>
-            </td>
-            <td>
-              <div class="table-data">{{ vendor.phone }}</div>
-            </td>
-            <td>
-              <div class="table-data">{{ vendor.address }}</div>
-            </td>
-            <td>
-              <div class="table-data">{{ vendor.status }}</div>
-            </td>
-            <td>
-              <div class="table-data">
-                {{ vendor.dateJoined | date : "mediumDate" }}
-              </div>
-            </td>
-            <td>
-              <div class="table-data">
-                <a href="{{ vendor.website }}" target="_blank">{{
-                  vendor.website
-                }}</a>
-              </div>
-            </td>
-            <td>
-              <div
-                class="table-data d-flex gap-1 w-100 justify-content-center align-items-center"
-              >
-                <button
-                  class="btn"
-                  routerLink="/business-admin/vendors/add-vendors"
-                  matTooltip="Edit Vendor"
+                  <ng-template #defaultLogo>
+                    <img
+                      src="../../../../../../assets/icons/default-logo.png"
+                      alt="Default Logo"
+                      class="vendor-logo"
+                    />
+                  </ng-template>
+                </div>
+              </td>
+              <td>
+                <div class="table-data">{{ vendor.name }}</div>
+              </td>
+              <td>
+                <div class="table-data">{{ vendor.contactPerson }}</div>
+              </td>
+              <td>
+                <div class="table-data">{{ vendor.email }}</div>
+              </td>
+              <td>
+                <div class="table-data">{{ vendor.password }}</div>
+              </td>
+              <td>
+                <div class="table-data">{{ vendor.phone }}</div>
+              </td>
+              <td>
+                <div class="table-data">{{ vendor.address }}</div>
+              </td>
+              <td>
+                <div class="table-data">{{ vendor.status }}</div>
+              </td>
+              <td>
+                <div class="table-data">
+                  {{ vendor.dateJoined | date : "mediumDate" }}
+                </div>
+              </td>
+              <td>
+                <div class="table-data">
+                  <a href="{{ vendor.website }}" target="_blank">{{
+                    vendor.website
+                  }}</a>
+                </div>
+              </td>
+              <td>
+                <div
+                  class="table-data d-flex gap-1 w-100 justify-content-center align-items-center"
                 >
-                  <img src="../../../../../assets/icons/Union.png" alt="" />
-                </button>
-                <button class="btn"  matTooltip="Delete Vendor">
-                  <img
-                    src="../../../../../assets/icons/Trash can.png"
-                    alt=""
-                  />
-                </button>
-              </div>
-            </td>
-          </tr>
-        </ng-container>
+                  <button
+                    class="btn"
+                    routerLink="/business-admin/vendors/add-vendors"
+                    matTooltip="Edit Vendor"
+                  >
+                    <img src="../../../../../assets/icons/Union.png" alt="" />
+                  </button>
+                  <button class="btn"  matTooltip="Delete Vendor">
+                    <img
+                      src="../../../../../assets/icons/Trash can.png"
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </div>
+          <ng-template #notFound>
+            <div class="alert alert-warning d-flex  justify-content-center align-items-center" role="alert">
+              No matches found(❁´◡`❁). Try adjusting your search.
+            </div>
+          </ng-template>
       </tbody>
     </table>
   </div>
