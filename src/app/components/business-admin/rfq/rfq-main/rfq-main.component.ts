@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-rfq-main',
@@ -6,5 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./rfq-main.component.css']
 })
 export class RfqMainComponent {
+  searchQuery: string = '';
+  @Output() searchQueryChanged = new EventEmitter<string>();
+  constructor(private Sharedservices: SharedService) {
+  }
 
+  onInputChange(event: any) {
+    this.searchQuery = event.target.value;
+    this.emitSearchQuery();
+  }
+  onSearch() {
+    this.emitSearchQuery();
+  }
+  emitSearchQuery() {
+    this.Sharedservices.updateSearchTerm(this.searchQuery);
+  }
 }

@@ -1,39 +1,36 @@
-
-
 <div class="headdiv">
   <div class="heading">
-    <h1>Vendor </h1>
+    <h1>Vendor</h1>
   </div>
   <div class="secondary-row">
-    <div class="secondary-row">
-      <div class="input-group">
-        <input
-          type="text"
-          class="form-control input-group-form-control"
-          placeholder="Search Vendor"
-          aria-label="Quick Search"
-          (input)="onInputChange($event)"
-        />
-        <button class="btn search-order-btn" type="button" id="button-addon2" >
-          <mat-icon>search</mat-icon>
-        </button>
-      </div>
-      <div>
-        <button
-          class="btn add-btn"
-          routerLink="/business-admin/vendors/add-vendors"
-        >
-          Add New Vendor
-          <img src="../../../../../../assets/icons/Plus.png" alt="" />
-        </button>
-      </div>
+    <div class="input-group">
+      <input
+        type="text"
+        class="form-control input-group-form-control"
+        placeholder="Search Vendor"
+        aria-label="Quick Search"
+        (input)="onInputChange($event)"
+      />
+      <button class="btn search-order-btn" type="button" id="button-addon2">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+    <div>
+      <button
+        class="btn add-btn"
+        routerLink="/business-admin/vendors/add-vendors"
+      >
+        Add New Vendor
+        <img src="../../../../../../assets/icons/Plus.png" alt="Add New Vendor" />
+      </button>
     </div>
   </div>
 </div>
+
 <div class="table-container mt-2">
   <div class="table-responsive">
-    <table class="table table-hover ">
-      <thead class="thead-dark ">
+    <table class="table table-hover">
+      <thead class="thead-dark">
         <tr>
           <th scope="col" class="one">
             <div class="table-data">ID</div>
@@ -74,8 +71,8 @@
         </tr>
       </thead>
       <tbody>
-        <div *ngIf="paginatedData.length > 0; else notFound">
-          <ng-container *ngFor="let vendor of paginatedData;let i = index ">
+        <ng-container *ngIf="paginatedData.length > 0; else notFound">
+          <ng-container *ngFor="let vendor of paginatedData; let i = index">
             <tr>
               <td>
                 <div class="table-data">{{ vendor.id }}</div>
@@ -120,65 +117,60 @@
               </td>
               <td>
                 <div class="table-data">
-                  {{ vendor.dateJoined | date : "mediumDate" }}
+                  {{ vendor.dateJoined | date: 'mediumDate' }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  <a href="{{ vendor.website }}" target="_blank">{{
-                    vendor.website
-                  }}</a>
+                  <a href="{{ vendor.website }}" target="_blank">{{ vendor.website }}</a>
                 </div>
               </td>
               <td>
-                <div
-                  class="table-data d-flex gap-1 w-100 justify-content-center align-items-center"
-                >
+                <div class="table-data d-flex gap-1 w-100 justify-content-center align-items-center">
                   <button
                     class="btn"
-                    routerLink="/business-admin/vendors/add-vendors"
+                    routerLink="/business-admin/vendors/edit-vendors"
                     matTooltip="Edit Vendor"
+                    (click)="vendorEdit(vendor)"
                   >
-                    <img src="../../../../../assets/icons/Union.png" alt="" />
-                  </button>
-                  <button class="btn"  matTooltip="Delete Vendor">
-                    <img
-                      src="../../../../../assets/icons/Trash can.png"
-                      alt=""
-                    />
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </ng-container>
-        </div>
-          <ng-template #notFound>
-            <div class="alert alert-warning d-flex  justify-content-center align-items-center" role="alert">
-              No matches found(❁´◡`❁). Try adjusting your search.
-            </div>
-          </ng-template>
-      </tbody>
-    </table>
-  </div>
-  <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-start">
-      <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
-        <a class="paginator-button" (click)="previousPage()">
-          <mat-icon>chevron_left</mat-icon>
-        </a>
-      </li>
-      <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
-        <li class="page-item" [ngClass]="{'active-page': currentPage === index + 1}">
-          <a class="paginator-button" (click)="goToPage(index + 1)">
-            {{ index + 1 }}
-          </a>
-        </li>
+                  <img src="../../../../../assets/icons/Union.png" alt="Edit Vendor" />
+                </button>
+                <button class="btn" matTooltip="Delete Vendor" (click)="vendorDelete(vendor)">
+                  <img src="../../../../../assets/icons/Trash can.png" alt="Delete Vendor" />
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
       </ng-container>
-      <li class="page-item" [class.disabled]="!isNextPageAvailable()">
-        <a class="paginator-button" (click)="nextPage()">
-          <mat-icon>chevron_right</mat-icon>
+      <ng-template #notFound>
+        <div class="alert alert-warning d-flex justify-content-center align-items-center" role="alert">
+          No matches found (❁´◡`❁). Try adjusting your search.
+        </div>
+      </ng-template>
+    </tbody>
+  </table>
+</div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-start">
+    <li class="page-item" [class.disabled]="!isPreviousPageAvailable()">
+      <a class="paginator-button" (click)="previousPage()">
+        <mat-icon>chevron_left</mat-icon>
+      </a>
+    </li>
+    <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
+      <li class="page-item" [ngClass]="{'active-page': currentPage === index + 1}">
+        <a class="paginator-button" (click)="goToPage(index + 1)">
+          {{ index + 1 }}
         </a>
       </li>
-    </ul>
-  </nav>
+    </ng-container>
+    <li class="page-item" [class.disabled]="!isNextPageAvailable()">
+      <a class="paginator-button" (click)="nextPage()">
+        <mat-icon>chevron_right</mat-icon>
+      </a>
+    </li>
+  </ul>
+</nav>
 </div>

@@ -13,6 +13,7 @@ import { ProductDetailsComponent } from '../product-details/product-details.comp
 import { AddedProductsComponent } from '../added-products/added-products.component';
 import Swal from 'sweetalert2';
 import { VendorsService } from 'src/app/services/vendors.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 
 @Component({
@@ -44,6 +45,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(
     private dataService: DataService,
     private catalogService: CatalogService,
+    private sharedservice:SharedService,
     private filterService: FilterService,
     private searchService: SearchService,
     private cartService: CartService,
@@ -58,7 +60,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.loadCatalogData();
     this.initializeSubscriptions();
     this.loadRoles()
-    this.catalogService.currentSearchTerm.subscribe(term => {
+    this.sharedservice.currentSearchTerm.subscribe(term => {
       this.searchTerm = term //this search term get from catalog menu components using catalog service
     })
   }
@@ -133,12 +135,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
       return []; // Return empty array if no data
     }  
     return this.data.filter(item => {
+      console.log("material id" , item)
       const matchesSearchTerm =
         item.materialId?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
         item.shortDescription?.toLowerCase().includes(this.searchTerm.toLowerCase());
-  
       const matchesVendor = !this.venderid || item?.vendor?.id === this.venderid;
-  
       return matchesSearchTerm && matchesVendor;
     });
   }

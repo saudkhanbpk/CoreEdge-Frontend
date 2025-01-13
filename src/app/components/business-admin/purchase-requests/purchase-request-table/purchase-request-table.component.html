@@ -17,8 +17,7 @@
     <div class="d-flex justify-content-end flex-wrap mb-2 gap-2 bg-none">
       <select class="form-select bg-none filter-select w-auto shadow-none">
         <option value="" disabled selected>Employee</option>
-        <option value="name">Saad Khan</option>
-        <option value="date">Ihtizaz Ahmad</option>
+        <option *ngFor="let e of Employee" [value]="e">{{e?.name}}</option>
       </select>
 
       <select class="form-select bg-none filter-select w-auto shadow-none">

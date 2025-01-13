@@ -4,6 +4,7 @@ import { ContractsRoutingModule } from './contracts-routing.module';
 import { ContractsTableComponent } from './contracts-table/contracts-table.component';
 import { ContractsFormComponent } from './contracts-form/contracts-form.component';
 import { MaterialModule } from 'src/app/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,8 @@ import { MaterialModule } from 'src/app/material';
     CommonModule,
     ContractsRoutingModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ContractsModule { }

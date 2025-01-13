@@ -8,6 +8,7 @@ import { CatalogService } from 'src/app/services/catalog.service';
 import { DataService } from 'src/app/services/data.service';
 import { FilterService } from 'src/app/services/filter.service';
 import { SearchService } from 'src/app/services/search.service';
+import { SharedService } from 'src/app/services/shared.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,7 +19,7 @@ import Swal from 'sweetalert2';
 export class CatalogMenuComponent {
   searchQuery: string = '';
   @Output() searchQueryChanged = new EventEmitter<string>();
-  constructor(private catalogservice: CatalogService) {
+  constructor(private sharedservice: SharedService) {
   }
 
   onInputChange(event: any) {
@@ -29,7 +30,7 @@ export class CatalogMenuComponent {
     this.emitSearchQuery();
   }
   emitSearchQuery() {
-    this.catalogservice.updateSearchTerm(this.searchQuery);
+    this.sharedservice.updateSearchTerm(this.searchQuery);
   }
 
 }

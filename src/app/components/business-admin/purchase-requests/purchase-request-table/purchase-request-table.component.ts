@@ -16,6 +16,7 @@ export class PurchaseRequestTableComponent {
   currentPage = 1;
   itemsPerPage = 10; 
   data: any[] = [];
+  Employee:any[] =[];
   readonly dialog = inject(MatDialog);
   constructor(
     private requestService: RequestService,
@@ -31,6 +32,10 @@ export class PurchaseRequestTableComponent {
           const filteredItems = items.filter((item) => item.unavailableProducts && item.unavailableProducts.length > 0);
           this.data = filteredItems;
           console.log('Filtered Data:', this.data);
+         this.Employee = this.data.map((i:any) =>{
+          const employee = i.employee;
+          return employee;
+         })
         },
         (error) => {
           console.error('Error fetching data:', error);

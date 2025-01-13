@@ -58,12 +58,17 @@ export class HardwareRequestsTableComponent {
   }
 
   filterByStatus() {
-    this.filteredData = this.selectedReviewStatus
+    if(this.selectedReviewStatus == 'all'){
+      this.filteredData = [...this.data];
+    }else{
+      this.filteredData = this.selectedReviewStatus
       ? this.data.filter(
           (item) =>
             item.availableProducts[0]?.status === this.selectedReviewStatus
         )
       : [...this.data];
+    }
+   
   }
 
   sortData() {
