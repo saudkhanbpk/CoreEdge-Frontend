@@ -124,11 +124,14 @@
                                     <div class="table-data">{{item.quantity}}</div>
                                 </td>
                                 <td>
-                                    <div class="table-data d-flex gap-1 w-100 justify-content-end"  (click)="toggleEdit(item)">
-                                        <button class="btn" matTooltip="Edit">
-                                            <img src="../../../../../assets/icons/Union.png" alt="">
-                                        </button>
-                                    </div>
+                                    <div
+                                    class="table-data d-flex gap-1 w-100 justify-content-end"
+                                    (click)="toggleEdit(item, i)"
+                                  >
+                                    <button class="btn" matTooltip="Edit">
+                                      <img src="../../../../../assets/icons/Union.png" alt="" />
+                                    </button>
+                                  </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -137,54 +140,61 @@
             </div>
             <div class="row p-2" *ngIf="isEditing">
                 <div class="col-md-4">
-                    <div class="input-div input-div-no-pad"  >
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div><label for="">Received Quantity</label></div>
-                            <div class="star">*</div>
-                        </div>
-                        <div>
-                            <input type="number" name="receivedQuantity" class="form-control" [(ngModel)]="selectedOrder.receivedQuantity" placeholder="Enter Received Quantity">
-                        </div>
+                  <div class="input-div input-div-no-pad">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div><label for="">Received Quantity</label></div>
+                      <div class="star">*</div>
                     </div>
+                    <div>
+                      <input type="number" name="receivedQuantity" class="form-control"
+                             [(ngModel)]="currentEditingItem.receivedQuantity" placeholder="Enter Received Quantity">
+                    </div>
+                  </div>
                 </div>
+              
                 <div class="col-md-4">
-                    <div class="input-div input-div-no-pad">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div><label for="">Broken Quantity</label></div>
-                            <div class="star">*</div>
-                        </div>
-                        <div>
-                            <input type="number" name="brokenQuantity" class="form-control" [(ngModel)]="selectedOrder.brokenQuantity" placeholder="Enter Broken Quantity">
-                        </div>
+                  <div class="input-div input-div-no-pad">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div><label for="">Broken Quantity</label></div>
+                      <div class="star">*</div>
                     </div>
+                    <div>
+                      <input type="number" name="brokenQuantity" class="form-control"
+                             [(ngModel)]="currentEditingItem.brokenQuantity" placeholder="Enter Broken Quantity">
+                    </div>
+                  </div>
                 </div>
+              
                 <div class="col-md-4">
-                    <div class="input-div input-div-no-pad">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div><label for="">Wrong Item Quantity</label></div>
-                            <div class="star">*</div>
-                        </div>
-                        <div>
-                            <input type="number" name="wrongItemQuantity" class="form-control" [(ngModel)]="selectedOrder.wrongItemQuantity" placeholder="Enter Wrong Item Quantity">
-                        </div>
+                  <div class="input-div input-div-no-pad">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div><label for="">Wrong Item Quantity</label></div>
+                      <div class="star">*</div>
                     </div>
+                    <div>
+                      <input type="number" name="wrongItemQuantity" class="form-control"
+                             [(ngModel)]="currentEditingItem.wrongItemQuantity" placeholder="Enter Wrong Item Quantity">
+                    </div>
+                  </div>
                 </div>
+              
                 <div class="col-md-12">
-                    <div class="input-div input-div-no-pad">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div><label for="">Add Note</label></div>
-                            <div class="star">*</div>
-                        </div>
-                        <div>
-                            <textarea class="form-control" [(ngModel)]="selectedOrder.note" placeholder="Add Note"></textarea>
-                        </div>
+                  <div class="input-div input-div-no-pad">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div><label for="">Add Note</label></div>
+                      <div class="star">*</div>
                     </div>
+                    <div>
+                      <textarea class="form-control" [(ngModel)]="currentEditingItem.note" placeholder="Add Note"></textarea>
+                    </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-        <div class="d-flex gap-2 justify-content-end mb-2">
-            <button class="btn add-btn">Update</button>
-            <button class="btn cancel-btn">Cancel</button>
-        </div>
+              </div>
+              
+              <div class="d-flex gap-2 justify-content-end mb-2">
+                <button class="btn add-btn" (click)="updateReport()">Update</button>
+                <button class="btn cancel-btn">Cancel</button>
+              </div>
+              
     </div>
 </div>

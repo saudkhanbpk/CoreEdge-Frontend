@@ -59,11 +59,13 @@
             <th scope="col">
               <div class="table-data">Status</div>
             </th>
-            <th scope="col" class="two"></th>
+            <th scope="col" class="two">
+              <div class="table-data">Action</div>
+            </th>
           </tr>
         </thead>
         <tbody>
-          <ng-container *ngFor="let vendor of paginatedData; let i = index">
+          <ng-container *ngFor="let invoice of paginatedData; let i = index">
             <tr>
               <td>
                 <div class="table-data">
@@ -72,17 +74,28 @@
               </td>
               <td>
                 <div class="table-data">
-                  {{ vendor.vendor[0].name }}
+                  {{ invoice.id }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ vendor.vendor[0].email }}
+                  {{ invoice.purchaseOrderNo }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ vendor.totalPrice | currency }}
+                  {{ invoice.vendor.name }}
+                </div>
+              </td>
+              <td>
+                <div class="table-data">
+                  {{ invoice.vendor.email }}
+
+                </div>
+              </td>
+              <td>
+                <div class="table-data">
+                  {{ invoice.totalPrice | currency }}
                 </div>
               </td>
               <td>
@@ -90,13 +103,13 @@
                   <div
                     class="status p-2"
                     [ngClass]="{
-                      completed: vendor.status === 'Paid',
-                      rejected: vendor.status === 'Dispute',
-                      inprogress: vendor.status === 'Pending',
-                      resolved: vendor.status === 'Resolved'
+                      completed: invoice.adminStatus === 'Paid',
+                      rejected: invoice.adminStatus === 'Dispute',
+                      inprogress: invoice.adminStatus === 'Pending',
+                      resolved: invoice.adminStatus === 'Resolved'
                     }"
                   >
-                    {{ vendor.status }}
+                    {{ invoice.adminStatus }}
                   </div>
                 </div>
               </td>

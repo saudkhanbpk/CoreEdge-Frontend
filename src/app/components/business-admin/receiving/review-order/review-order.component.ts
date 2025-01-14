@@ -42,14 +42,56 @@ export class ReviewOrderComponent implements OnInit {
     this.tableData.forEach(item => (item.checked = isChecked));
     this.isAnyCheckboxChecked = isChecked;
   }
-  toggleEdit(item: any) {
-    this.isEditing = !this.isEditing;
-    console.log("item" , item)
-    // If editing an item, assign its values to the selectedOrder fields
-  this.selectedOrder.receivedQuantity = item.quantity;
-  this.selectedOrder.brokenQuantity = item.quantity;
-  this.selectedOrder.wrongItemQuantity = item.quantity;
-}
+  currentEditingItem: any = null; // To track the currently editing item
+
+  toggleEdit(item: any, index: number) {
+    if (this.currentEditingItem === item) {
+      this.currentEditingItem = null; 
+      this.isEditing = false;
+    } else {
+      this.currentEditingItem = item;
+      this.isEditing = true;
+  
+      if (!this.selectedOrder || !this.selectedOrder.products) {
+        this.selectedOrder = { products: [] }; 
+      }
+  
+      const product = this.selectedOrder.products[index];
+  
+      if (product) {
+        product.receivedQuantity = item.receivedQuantity;
+        product.brokenQuantity = item.brokenQuantity;
+        product.wrongItemQuantity = item.wrongItemQuantity;
+        product.note = item.note;  
+      } else {
+        this.selectedOrder.products[index] = {
+          receivedQuantity: item.receivedQuantity,
+          brokenQuantity: item.brokenQuantity,
+          wrongItemQuantity: item.wrongItemQuantity,
+          note: item.note,  
+        };
+      }
+    }
+  
+    console.log("Currently editing item:", this.currentEditingItem);
+    console.log("Updated selectedOrder:", this.selectedOrder);
+  }
+  
+  updateReport() {
+    const index = this.selectedOrder.products.findIndex((product:any) => product === this.currentEditingItem);
+  
+    if (index !== -1) {
+      this.selectedOrder.products[index] = {
+        ...this.selectedOrder.products[index],  
+        receivedQuantity: this.currentEditingItem.receivedQuantity,
+        brokenQuantity: this.currentEditingItem.brokenQuantity,
+        wrongItemQuantity: this.currentEditingItem.wrongItemQuantity,
+        note: this.currentEditingItem.note
+      };
+    }
+  
+    console.log("Updated selectedOrder:", this.selectedOrder);
+  }
 
 }
 
