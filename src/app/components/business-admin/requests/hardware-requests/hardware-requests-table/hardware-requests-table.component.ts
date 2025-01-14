@@ -1,25 +1,26 @@
+
 import { Component, inject } from '@angular/core';
-import { ViewHardwareRequestComponent } from '../view-hardware-request/view-hardware-request.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
 import { RequestService } from 'src/app/services/request.service';
 import { SharedService } from 'src/app/services/shared.service';
+import { ViewHardwareRequestComponent } from '../view-hardware-request/view-hardware-request.component';
 
 @Component({
   selector: 'app-hardware-requests-table',
   templateUrl: './hardware-requests-table.component.html',
-  styleUrls: ['./hardware-requests-table.component.css']
+  styleUrls: ['./hardware-requests-table.component.css'],
 })
 export class HardwareRequestsTableComponent {
-
   isLoading: boolean[] = [];
-  isunavailable: boolean = false;
   currentPage = 1;
   itemsPerPage = 10;
-  expandedIndex: number | null = null;
-  readonly dialog = inject(MatDialog);
+  data: any[] = [];
+  filteredData: any[] = [];
+  selectedReviewStatus = '';
+  selectedSortOption = '';
 
-  data: any; // Initialize as an empty array to prevent `undefined` issues
+  readonly dialog = inject(MatDialog);
 
   constructor(
     private requestService: RequestService,
@@ -32,9 +33,10 @@ export class HardwareRequestsTableComponent {
     if (user) {
       this.sharedService.getData(user.id).subscribe(
         (items: any[]) => {
+          this.data = items;
           const filteredItems = items.filter((item) => item.availableProducts && item.availableProducts.length > 0);
           this.data = filteredItems;
-          console.log('Filtered Data:', this.data);
+          this.filteredData = [...this.data];
         },
         (error) => {
           console.error('Error fetching data:', error);
@@ -42,51 +44,56 @@ export class HardwareRequestsTableComponent {
       );
     }
   }
-  
 
- 
-  // data = [
-  //   {
-  //     no: '001',
-  //     employeename: 'Saad Khan',
-  //     employeeemail: 'employeeemail@gmail.com',
-  //     hardwarerequested: 'Dell Monitor',
-  //     description: 'I just need it, my old monitor is broke.',
-  //     status: 'Onhold',
-  //     date:'oct 20 , 2024'
-  //   },
-  //   {
-  //     no: '002',
-  //     employeename: 'Ihtizaz Ahmad',
-  //     employeeemail: 'employeeemail@gmail.com',
-  //     hardwarerequested: 'Dell Monitor',
-  //     description: 'I just need it, my old monitor is broke.',
-  //     status: 'Ready',
-  //     date:'oct 20 , 2024'
-
-  //   },
-  // ];
   openDialog(item: any) {
     const dialogRef = this.dialog.open(ViewHardwareRequestComponent, {
-      data: item, 
-      width: 'auto', 
+      data: item,
+      width: 'auto',
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'refresh') {
-        this.ngOnInit()
-        }
+        this.ngOnInit();
+      }
     });
   }
 
-  
+  filterByStatus() {
+    if(this.selectedReviewStatus == 'all'){
+      this.filteredData = [...this.data];
+    }else{
+      this.filteredData = this.selectedReviewStatus
+      ? this.data.filter(
+          (item) =>
+            item.availableProducts[0]?.status === this.selectedReviewStatus
+        )
+      : [...this.data];
+    }
+   
+  }
+
+  sortData() {
+    if (this.selectedSortOption === 'name') {
+      this.filteredData.sort((a, b) =>
+        a.employees[0]?.name.localeCompare(b.employees[0]?.name)
+      );
+    } else if (this.selectedSortOption === 'date') {
+      this.filteredData.sort(
+        (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+      );
+    } else if (this.selectedSortOption === 'amount') {
+      this.filteredData.sort(
+        (a, b) => a.amount - b.amount
+      );
+    }
+  }
 
   get totalPages() {
-    return Math.ceil((this.data?.length || 0) / this.itemsPerPage); // Handle cases where `data` might still be empty or undefined
+    return Math.ceil(this.filteredData.length / this.itemsPerPage);
   }
 
   get paginatedData() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.data?.slice(startIndex, startIndex + this.itemsPerPage) || []; // Add a fallback to handle `undefined`
+    return this.filteredData.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
   goToPage(page: number) {
@@ -98,7 +105,6 @@ export class HardwareRequestsTableComponent {
       this.currentPage++;
     }
   }
-
   previousPage() {
     if (this.currentPage > 1) {
       this.currentPage--;

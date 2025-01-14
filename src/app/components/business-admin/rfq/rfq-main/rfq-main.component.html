@@ -5,9 +5,9 @@
         </div>
         <div class="secondary-row">
             <div class="input-group">
-              <input type="text" class="form-control input-group-form-control" placeholder="Search RFQ"
+              <input type="text" (input)="onInputChange($event)" class="form-control input-group-form-control" placeholder="Search RFQ"
                 aria-label="Quick Search">
-              <button class="btn search-order-btn" type="button" id="button-addon2">
+              <button class="btn search-order-btn" type="button" id="button-addon2" (click)="onSearch()">
                 <mat-icon>search</mat-icon>
               </button>
             </div>

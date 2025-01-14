@@ -1,25 +1,31 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, shareReplay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Vendor } from '../models/vendor.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VendorsService {
-  private apiUrl = `${environment.apiUrl}/vendor`;  // Base API URL for vendor-related endpoints
+  constructor(private http: HttpClient , private authService:AuthService) {}
+  private apiUrl = `${environment.apiUrl}/vendor`;  // Base API URL for vendor-related endpoints]
+  private vendorCache$: Observable<Vendor[]> | null = null;
 
-  constructor(private http: HttpClient) {}
-
-  // Method to retrieve all vendors for a specific user
-  findAll(userId: number): Observable<Vendor[]> {
-    return this.http.get<Vendor[]>(`${this.apiUrl}/${userId}`)
-      .pipe(
-        catchError(this.handleError)  // Error handling
+  findAll(): Observable<Vendor[]> {
+    if (!this.vendorCache$) {
+      const user = this.authService.getUserData();
+      const userId = user.id;
+      this.vendorCache$ = this.http.get<Vendor[]>(`${this.apiUrl}/${userId}`).pipe(
+        shareReplay(1), // Cache the response and share it with all subscribers
+        catchError(this.handleError) // Error handling
       );
+    }
+    return this.vendorCache$;
   }
+
 
   // Method to retrieve a vendor by ID
   findById(id: number): Observable<Vendor> {

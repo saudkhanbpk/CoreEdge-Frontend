@@ -11,150 +11,60 @@ import Swal from 'sweetalert2';
 })
 export class VendorsTableComponent {
   currentPage = 1;
-  vendors:any;
-  itemsPerPage = 10; // Number of orders per page
+  vendors: any[] = []; // Initialize as an empty array
+  filteredData: any[] = [];
+  itemsPerPage = 10; // Number of vendors per page
   expandedIndex: number | null = null;
   totalItems: number = 0; 
-  constructor(    private authService: AuthService,
+  searchTerm = ''; // Corrected variable name to match usage
+
+  constructor(
+    private authService: AuthService,
     private vendorService: VendorsService,
     private router: Router
-
-
   ) { }
+
   ngOnInit(): void {
-    const user = this.authService.getUserData();
-    this.loadRoles(user.id);
+    this.loadVendors(); // Changed method name for clarity
   }
 
-  loadRoles(userId: number) {
-    this.vendorService.findAll(userId).subscribe((response: any) => {
-      this.vendors = response; 
-      this.totalItems = response.length; 
+  loadVendors() {
+    this.vendorService.findAll().subscribe({
+      next: (data) => {
+        this.vendors = data;
+        this.totalItems = data.length; 
+        this.filteredData = data; // Initialize filteredData with all vendors
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      }
     });
   }
-  // vendors = [
-  //   {
-  //     id: 1,
-  //     name: 'ABC Supplies',
-  //     imageUrl: '../../../../../assets/icons/WhatsApp Image 2024-09-09 at 14.31.00_f9483b72.jpg',
-  //     contactPerson: 'John Doe',
-  //     email: 'john@abc.com',
-  //     password: 'password.123',
-  //     phone: '123-456-7890',
-  //     address: '123 Main St, City, Country',
-  //     status: 'Active',
 
-  //     dateJoined: new Date('2023-01-15'),
-  //     website: 'https://www.abc.com'
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'XYZ Traders',
-  //     imageUrl: '../../../../../assets/icons/WhatsApp Image 2024-09-09 at 14.31.00_f9483b72.jpg',
-  //     contactPerson: 'Jane Smith',
-  //     email: 'jane@xyztraders.com',
-  //     password: 'password.123',
-  //     phone: '987-654-3210',
-  //     address: '456 Market Ave, City, Country',
-  //     status: 'Inactive',
-  //     dateJoined: new Date('2022-07-22'),
-  //     website: 'https://www.xyztraders.com'
-  //   },
-  //   {
-  //     id: 3,
-  //     name: 'ABC Supplies',
-  //     imageUrl: '../../../../../assets/icons/WhatsApp Image 2024-09-09 at 14.31.00_f9483b72.jpg',
-  //     contactPerson: 'John Doe',
-  //     email: 'john@abc.com',
-  //     password: 'password.123',
-  //     phone: '123-456-7890',
-  //     address: '123 Main St, City, Country',
-  //     status: 'Active',
-
-  //     dateJoined: new Date('2023-01-15'),
-  //     website: 'https://www.abc.com'
-  //   },
-  //   {
-  //     id: 4,
-  //     name: 'XYZ Traders',
-  //     imageUrl: '../../../../../assets/icons/WhatsApp Image 2024-09-09 at 14.31.00_f9483b72.jpg',
-  //     contactPerson: 'Jane Smith',
-  //     email: 'jane@xyztraders.com',
-  //     password: 'password.123',
-  //     phone: '987-654-3210',
-  //     address: '456 Market Ave, City, Country',
-  //     status: 'Inactive',
-  //     dateJoined: new Date('2022-07-22'),
-  //     website: 'https://www.xyztraders.com'
-  //   },
-  //   {
-  //     id: 5,
-  //     name: 'ABC Supplies',
-  //     imageUrl: '../../../../../assets/icons/WhatsApp Image 2024-09-09 at 14.31.00_f9483b72.jpg',
-  //     contactPerson: 'John Doe',
-  //     email: 'john@abc.com',
-  //     password: 'password.123',
-  //     phone: '123-456-7890',
-  //     address: '123 Main St, City, Country',
-  //     status: 'Active',
-
-  //     dateJoined: new Date('2023-01-15'),
-  //     website: 'https://www.abc.com'
-  //   },
-  //   {
-  //     id: 6,
-  //     name: 'XYZ Traders',
-  //     imageUrl: '../../../../../assets/icons/WhatsApp Image 2024-09-09 at 14.31.00_f9483b72.jpg',
-  //     contactPerson: 'Jane Smith',
-  //     email: 'jane@xyztraders.com',
-  //     password: 'password.123',
-  //     phone: '987-654-3210',
-  //     address: '456 Market Ave, City, Country',
-  //     status: 'Inactive',
-  //     dateJoined: new Date('2022-07-22'),
-  //     website: 'https://www.xyztraders.com'
-  //   },
-  //   {
-  //     id: 7,
-  //     name: 'ABC Supplies',
-  //     imageUrl: '../../../../../assets/icons/WhatsApp Image 2024-09-09 at 14.31.00_f9483b72.jpg',
-  //     contactPerson: 'John Doe',
-  //     email: 'john@abc.com',
-  //     password: 'password.123',
-  //     phone: '123-456-7890',
-  //     address: '123 Main St, City, Country',
-  //     status: 'Active',
-
-  //     dateJoined: new Date('2023-01-15'),
-  //     website: 'https://www.abc.com'
-  //   },
-  //   {
-  //     id: 8,
-  //     name: 'XYZ Traders',
-  //     imageUrl: '../../../../../assets/icons/WhatsApp Image 2024-09-09 at 14.31.00_f9483b72.jpg',
-  //     contactPerson: 'Jane Smith',
-  //     email: 'jane@xyztraders.com',
-  //     password: 'password.123',
-  //     phone: '987-654-3210',
-  //     address: '456 Market Ave, City, Country',
-  //     status: 'Inactive',
-  //     dateJoined: new Date('2022-07-22'),
-  //     website: 'https://www.xyztraders.com'
-  //   },
-  // ];
-
+  onInputChange(event: any) {
+    this.searchTerm = event.target.value; // Update the searchTerm variable
+    if (this.searchTerm) {
+      this.filteredData = this.vendors.filter((vendor: any) =>
+        vendor.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        vendor.email.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    } else {
+      this.filteredData = this.vendors; // Reset to all vendors if search term is empty
+    }
+    this.currentPage = 1; // Reset to the first page when filtering
+  }
 
   toggleDetails(index: number) {
     this.expandedIndex = this.expandedIndex === index ? null : index;
   }
 
   get totalPages() {
-    return Math.ceil(this.vendors.length / this.itemsPerPage);
+    return Math.ceil(this.filteredData.length / this.itemsPerPage); // Use filteredData for total pages
   }
 
   get paginatedData() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.vendors.slice(startIndex, startIndex + this.itemsPerPage);
+    return this.filteredData.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
   goToPage(page: number) {
@@ -162,26 +72,25 @@ export class VendorsTableComponent {
   }
 
   // Method to handle vendor edit
-vendorEdit(vendor: any) {
-  this.router.navigate(['/business-admin/vendors/edit-vendors'], { state: { vendorData: vendor } });
-}
+  vendorEdit(vendor: any) {
+    this.router.navigate(['/business-admin/vendors/edit-vendors'], { state: { vendorData: vendor } });
+  }
 
-// Method to handle vendor deletion
-vendorDelete(vendor: any) {
-  Swal.fire({
-    icon: 'success',
-    title: 'Vendor Deleted',
-    text: `The vendor "${vendor.name}" has been deleted successfully!`,
-    confirmButtonText: 'OK',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      this.vendorService.delete(vendor.id).subscribe((response: any) => {
-        this.ngOnInit(); // Reload data after deletion
-      });
-    }
-  });
-}
-
+  // Method to handle vendor deletion
+  vendorDelete(vendor: any) {
+    Swal.fire({
+      icon: 'success',
+      title: 'Vendor Deleted',
+      text: `The vendor "${vendor.name}" has been deleted successfully!`,
+      confirmButtonText: 'OK',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.vendorService.delete(vendor.id).subscribe(() => {
+          this.loadVendors(); // Reload data after deletion
+        });
+      }
+    });
+  }
 
   nextPage() {
     if (this.currentPage < this.totalPages) {

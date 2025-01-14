@@ -11,10 +11,31 @@ export class RmaRequestsTableComponent {
   currentPage = 1;
   itemsPerPage = 10;
   expandedIndex: number | null = null;
+  selectedSortOption='';
+  filteredData:any[]=[]
   // data:any;
   readonly dialog = inject(MatDialog);
   constructor() {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.filteredData = this.data
+  }
+
+
+  sortData() {
+    if (this.selectedSortOption === 'name') {
+      this.filteredData.sort((a, b) =>
+        a.employeename.localeCompare(b.employeename)
+      );
+    } else if (this.selectedSortOption === 'date') {
+      this.filteredData.sort(
+        (a, b) => new Date(a.returndate).getTime() - new Date(b.returndate).getTime()
+      );
+    } else if (this.selectedSortOption === 'amount') {
+      this.filteredData.sort(
+        (a, b) => a.totalamount - b.totalamount
+      );
+    }
+  }
 
   data = [
     {
@@ -188,7 +209,7 @@ export class RmaRequestsTableComponent {
 
   get paginatedData() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.data.slice(startIndex, startIndex + this.itemsPerPage);
+    return this.filteredData.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
   goToPage(page: number) {

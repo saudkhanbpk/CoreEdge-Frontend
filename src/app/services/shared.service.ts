@@ -77,6 +77,13 @@ export class SharedService {
   private selectedOrderSubject = new BehaviorSubject<any>(null);
   selectedOrder$ = this.selectedOrderSubject.asObservable();
 
+  private searchTermSubject = new BehaviorSubject<string>('');
+  currentSearchTerm = this.searchTermSubject.asObservable();
+  // this search term form catalog main component
+  updateSearchTerm(term: string) {
+    this.searchTermSubject.next(term);
+  }
+
 
   constructor(private http: HttpClient) {}
 
