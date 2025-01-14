@@ -11,9 +11,31 @@ export class ApprovedRmaRequestComponent {
   currentPage = 1;
   itemsPerPage = 5;
   expandedIndex: number | null = null;
+  filteredData:any[]=[];
+  selectedSortOption:any='';
   readonly dialog = inject(MatDialog);
   constructor() {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+this.filteredData = this.data
+  }
+
+
+  sortData() {
+    if (this.selectedSortOption === 'name') {
+      this.filteredData.sort((a, b) =>
+        a.employeename.localeCompare(b.employeename)
+      );
+    } else if (this.selectedSortOption === 'date') {
+      this.filteredData.sort(
+        (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+      );
+    } else if (this.selectedSortOption === 'amount') {
+      this.filteredData.sort(
+        (a, b) => a.totalamount - b.totalamount
+      );
+    }
+  }
+
 
   data = [
     {
@@ -187,7 +209,7 @@ export class ApprovedRmaRequestComponent {
 
   get paginatedData() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.data.slice(startIndex, startIndex + this.itemsPerPage);
+    return this.filteredData.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
   goToPage(page: number) {

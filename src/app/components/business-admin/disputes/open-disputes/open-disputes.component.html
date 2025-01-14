@@ -3,11 +3,13 @@
       <div class="d-flex justify-content-end gap-2">
         <select class="form-select filter-select w-auto shadow-none">
           <option value="" disabled selected>Vendors</option>
-          <option value="name">Saad Khan</option>
-          <option value="date">Ihtizaz Ahmad</option>
+          <option value="all">All</option>
+          <option [value]="s" *ngFor="let s of status">{{s}}</option>
         </select>
   
-        <select class="form-select filter-select w-auto shadow-none">
+        <select class="form-select filter-select w-auto shadow-none"
+        [(ngModel)]="selectedSortOption" 
+        (change)="sortData()">
           <option value="" disabled selected>sort</option>
           <option value="name">By Name</option>
           <option value="date">By Date</option>

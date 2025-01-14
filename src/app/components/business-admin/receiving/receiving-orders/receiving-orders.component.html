@@ -6,7 +6,7 @@
     <div class="secondary-row">
       <div class="input-group">
         <input type="text" class="form-control input-group-form-control" placeholder="Search Received Orders"
-          aria-label="Quick Search">
+          aria-label="Quick Search" (input)="onInputChange($event)">
         <button class="btn search-order-btn" type="button" id="button-addon2">
           <mat-icon>search</mat-icon>
         </button>
@@ -15,14 +15,17 @@
   </div>
 <div class="main-menu-div p-2 bg-white rounded-4 mt-3">
   <div class="d-flex justify-content-end gap-2 my-2">
-    <select class="form-select filter-select w-auto shadow-none">
+    <select class="form-select filter-select w-auto shadow-none"
+    [(ngModel)]="selectedstatus" 
+    (change)="filteredbystatus()">
       <option value="" disabled selected>Review Status</option>
-      <option value="name">Pending</option>
-      <option value="date">Cleared</option>
-      <option value="amount">In RMA</option>
+      <option  *ngFor="let s of status" [value]="s">{{s}}</option>
     </select>
 
-    <select class="form-select filter-select w-auto shadow-none">
+    <select class="form-select filter-select w-auto shadow-none"
+    [(ngModel)]="selectedSortOption" 
+    (change)="sortData()"
+    >
       <option value="" disabled selected>sort</option>
       <option value="name">By Name</option>
       <option value="date">By Date</option>
@@ -62,7 +65,7 @@
         </thead>
         <tbody>
           <ng-container>
-            <tr *ngFor="let order of allOrders; let i=index">
+            <tr *ngFor="let order of paginatedData; let i=index">
               <td>
                 <div class="table-data">
                   {{ i+1 }}
@@ -96,11 +99,11 @@
               <td>
                 <div class="table-data">
                   <div class="status p-2" [ngClass]="{
-                    completed: order.vendorStatus === 'Cleared',
-                    rejected: order.vendorStatus === 'In RMA',
-                    inactive: order.vendorStatus === 'Pending'
+                    completed: order.status === 'Cleared',
+                    rejected: order.status === 'In RMA',
+                    inactive: order.status === 'Pending'
                   }">
-                    {{ order.vendorStatus }}
+                    {{ order.status }}
                   </div>
                 </div>
               </td>

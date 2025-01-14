@@ -16,9 +16,13 @@ export class ApprovedPurchaseRequestComponent implements OnInit {
   currentPage = 1;
   itemsPerPage = 10; 
   data: any[] = [];
+  filteredData:any[]=[]
+  selectedEmployee:any='';
+  selectedSortOption='';
+  Employee:any=[]
   readonly dialog = inject(MatDialog);
   constructor(
-        private requestService: RequestService,
+        private requestService: RequestService,  
         private authService: AuthService,
         private sharedService: SharedService){
 
@@ -31,6 +35,18 @@ export class ApprovedPurchaseRequestComponent implements OnInit {
         (items: any[]) => {
           const filteredItems = items.filter((item) => item.unavailableProducts && item.unavailableProducts.length > 0 && item.unavailableProducts[0]?.status == 'Approved');
           this.data = filteredItems;
+          this.filteredData = this.data
+          // here check the employee lit before the same name are present
+          const seenNames = new Set();
+          this.Employee = this.data
+            .map((i: any) => i.employees[0])
+            .filter((employee: any) => {
+              if (!seenNames.has(employee.name)) {
+                seenNames.add(employee.name);
+                return true;
+              }
+              return false;
+            });
         },
         (error) => {
           console.error('Error fetching data:', error);
@@ -38,7 +54,31 @@ export class ApprovedPurchaseRequestComponent implements OnInit {
       );
     }
   }
+
+  filterByEmployeeNAme() {
+    if(this.selectedEmployee == 'all'){
+      this.filteredData = [...this.data];
+    }else{
+      this.filteredData = this.selectedEmployee
+      ? this.data.filter(
+          (item) =>
+            item.employees[0]?.name == this.selectedEmployee
+        )
+      : [...this.data];
+    }   
+  }
   
+  sortData() {
+    if (this.selectedSortOption === 'name') {
+      this.filteredData.sort((a, b) =>
+        a.employees[0]?.name.localeCompare(b.employees[0]?.name)
+      );
+    } else if (this.selectedSortOption === 'date') {
+      this.filteredData.sort(
+        (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+      );
+    }
+  }
   
   // data = [
   //   {

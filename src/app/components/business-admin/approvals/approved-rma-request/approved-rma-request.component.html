@@ -1,7 +1,10 @@
 <div class="menu-div">
     <div class="order-types-tables">
         <div class="d-flex justify-content-end">
-            <select class="form-select filter-select w-auto shadow-none">
+            <select class="form-select filter-select w-auto shadow-none"
+            [(ngModel)]="selectedSortOption" 
+            (change)="sortData()"
+            >
                 <option value="" disabled selected>sort</option>
                 <option value="name">By Name</option>
                 <option value="date">By Date</option>
