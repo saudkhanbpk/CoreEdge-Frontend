@@ -13,9 +13,7 @@ export class HeaderComponent {
   @Output() toggleDrawerEvent = new EventEmitter<void>();
 
  constructor(private authService: AuthService) {
-    this.user = this.authService.getUserData();
-    console.log(this.user);
-    
+    this.user = this.authService.getUserData();    
   }
 
 

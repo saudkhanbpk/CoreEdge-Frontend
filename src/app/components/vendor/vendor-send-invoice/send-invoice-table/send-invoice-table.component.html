@@ -80,13 +80,13 @@
           </tr>
         </thead>
         <tbody>
-          <ng-container *ngFor="let item of invoiceData; let i = index">
+          <ng-container *ngFor="let item of invoices; let i = index">
             <tr>
               <td>
                 <div class="table-data">
                   <div class="d-flex gap-2 align-items-center">
                     <div>
-                      {{ item.invoicenumber }}
+                      {{ i + 1 }}
                     </div>
                   </div>
                 </div>
@@ -95,44 +95,44 @@
                 <div class="table-data">
                   <div class="d-flex gap-2 align-items-center">
                     <div>
-                      {{ item.purchaseorderno }}
+                      {{ item.purchaseOrderNo }}
                     </div>
                   </div>
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ item.businessname }}
+                  {{ item.user.fullName }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ item.businessemail }}
+                  {{ item.user.email }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ item.receiveddate }}
+                  {{ item.invoiceDate }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ item.totalamount | currency }}
+                  {{ item.totalPrice | currency }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ item.address }}
+                  {{ item.user.address }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
                   <div class="status p-2" [ngClass]="{
-                      completed: item.status === 'Paid',
-                      inprogress: item.status === 'Pending',
-                      rejected: item.status === 'Overdue'
+                      completed: item.vendorStatus === 'Paid',
+                      inprogress: item.vendorStatus === 'Pending',
+                      rejected: item.vendorStatus === 'Overdue'
                     }">
-                    {{ item.status }}
+                    {{ item.vendorStatus }}
                   </div>
                 </div>
               </td>

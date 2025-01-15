@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { PurchaseOrderService } from 'src/app/services/purchase-order.service';
-import { SharedService } from 'src/app/services/shared.service';
+import { InvoiceService } from 'src/app/services/invoice.service';
 
 @Component({
   selector: 'app-invoice-table',
@@ -10,61 +9,80 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class InvoiceTableComponent {
   currentPage = 1;
-  itemsPerPage = 10; // Number of orders per page
+  itemsPerPage = 10;
   expandedIndex: number | null = null;
-  data: any;
+  data: any[]=[];
   filteredData:any=[];
-  vendor:any []=[]
+  vendor:any=['']
   status:any=[];
   selectedvendor:any
   selectedstatus:any;
   selectedSortOption:any='';
   
+  user: any;
   constructor(private authService: AuthService,
-    private sharedService: SharedService,) { }
-  ngOnInit(): void {
-    const user = this.authService.getUserData();
-    if (user) {
-      this.sharedService.getPurchaseOrders(user.id).subscribe(
-        (orders: any[]) => {
-          // const filteredOrders = orders.filter(
-          //   (order) =>
-          //     order.availableProducts &&
-          //     order.availableProducts.length > 0 &&
-          //     order.availableProducts[0]?.status === 'Approved'
-          // );
-          console.log("orders : ", orders);
+    private invoiceService: InvoiceService,) { }
 
-          this.data = orders;
-          this.filteredData = this.data
-          const seenNames = new Set();
-          this.data.forEach((element:any) => {
-            const vendor = element.vendor
-            vendor.map((i:any)=>{
-                seenNames.add(i.name)
-                this.vendor.push(i)
-             })
+      //     this.data = orders;
+      //     this.filteredData = this.data
+      //     const seenNames = new Set();
+      //     this.data.forEach((element:any) => {
+      //       const vendor = element.vendor
+      //       vendor.map((i:any)=>{
+      //           seenNames.add(i.name)
+      //           this.vendor.push(i)
+      //        })
 
-             if (!seenNames.has(element.status)) {
-              seenNames.add(element.status);
-              this.status.push(element.status);
-              }
-          });
+      //        if (!seenNames.has(element.status)) {
+      //         seenNames.add(element.status);
+      //         this.status.push(element.status);
+      //         }
+      //     });
           
-        },
-        (error) => {
-          console.error('Error fetching vendor orders:', error);
-        }
-      );
+      //   },
+      //   (error) => {
+      //     console.error('Error fetching vendor orders:', error);
+      //   }
+      // );
+    ngOnInit(): void {
+      this.user = this.authService.getUserData();
+      this.loadInvoices();
     }
+  
+    loadInvoices(): void {
+      this.invoiceService.getInvoicesByUserId(this.user.id).subscribe(
+          (data: any) => {
+              if (data) {
+                  this.data = data;
+                  this.filteredData = data;
+                  const seenStatuses = new Set();
+                  const seenVendors = new Set();
+                  data.forEach(({ vendorStatus, vendor }: any) => {
+                      if (vendorStatus && !seenStatuses.has(vendorStatus)) {
+                          seenStatuses.add(vendorStatus);
+                          this.status.push(vendorStatus);
+                      }
+                      if (vendor?.name && !seenVendors.has(vendor.name)) {
+                          seenVendors.add(vendor.name);
+                          this.vendor.push(vendor.name);
+                      }
+                  });
+  
+                  console.log("Unique statuses:", this.status);
+                  console.log("Unique vendors:", this.vendor);
+              }
+          },
+          (error: any) => console.error('Error loading invoices', error)
+      );
   }
-
+  
+  
   onInputChange(event: any) {
     const searchTerm = event.target.value; // Update the searchTerm variable
     if (searchTerm) {
-      this.filteredData = this.data.filter((item: any) =>
-        item.vendor[0].name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.vendor[0].email.toLowerCase().includes(searchTerm.toLowerCase())
+      this.filteredData = this.data.filter(({item}:any) =>
+        item.vendor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.vendor.email.toLowerCase().includes(searchTerm.toLowerCase())
       );
     } else {
       this.filteredData = this.data; // Reset to all vendors if search term is empty
@@ -75,7 +93,7 @@ export class InvoiceTableComponent {
 
   filterData() {  
     this.filteredData = this.data.filter((item:any) => {
-      const matchesVendor = this.selectedvendor === 'all' || item?.vendor[0].name == this.selectedvendor;
+      const matchesVendor = this.selectedvendor === 'all' || item?.vendor?.name == this.selectedvendor;
       const matchesStatus = this.selectedstatus === 'all' || item.status == this.selectedstatus;
       return matchesVendor && matchesStatus;
     });
@@ -93,46 +111,7 @@ export class InvoiceTableComponent {
 
     }
   }
-
-  // data = [
-  //   {
-  //     name: 'Babar Azam',
-  //     email:'babar56@gmail.com',
-  //     status:'Paid',
-  //     amount:'3000'
-  //   },
-  //   {
-  //     name: 'Virat Kohli',
-  //     email:'virat18@gmail.com',
-  //     status:'Dispute',
-  //     amount:'2500'
-  //   },
-  //   {
-  //     name: 'Rohit Sharma',
-  //     email:'rohit32@gmail.com',
-  //     status:'Pending',
-  //     amount:'1800'
-  //   },
-  //   {
-  //     name: 'Imran Khan',
-  //     email:'imrankhan804@gmail.com',
-  //     status:'Resolved',
-  //     amount:'899'
-  //   },
-  //   {
-  //     name: 'Jimmy Anderson',
-  //     email:'jimmy91@gmail.com',
-  //     status:'Paid',
-  //     amount:'10000'
-  //   },
-  //   {
-  //     name: 'Carlos Brathwate',
-  //     email:'carlos6666@gmail.com',
-  //     status:'Pending',
-  //     amount:'9200'
-  //   },
-  // ];
-
+ 
   toggleDetails(index: number) {
     this.expandedIndex = this.expandedIndex === index ? null : index;
   }

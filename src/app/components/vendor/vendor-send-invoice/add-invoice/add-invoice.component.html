@@ -13,20 +13,14 @@
         <div class="row p-2">
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
-                    <label for="">Invoice Number</label>
-                    <input type="text" class="form-control" placeholder="INV-2025001">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="input-div input-div-no-pad">
                     <label for="">Invoice Date</label>
-                    <input type="date" class="form-control" placeholder="2025-01-07">
+                    <input type="date" class="form-control" [(ngModel)]="invoiceDate" placeholder="2025-01-07">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Due Date</label>
-                    <input type="date" class="form-control" placeholder="2025-01-14">
+                    <input type="date" class="form-control" placeholder="2025-01-14" [(ngModel)]="dueDate">
                 </div>
             </div>
         </div>
@@ -38,25 +32,25 @@
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Vendor Name</label>
-                    <input type="text" class="form-control" placeholder="ABC Supplies Co.">
+                    <input type="text" class="form-control" placeholder="ABC Supplies Co." [(ngModel)]="user.fullName">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Vendor Address</label>
-                    <input type="text" class="form-control" placeholder="123 Market Street, NY 10001">
+                    <input type="text" class="form-control" placeholder="123 Market Street, NY 10001" [(ngModel)]="user.businessName">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Vendor Contact Information</label>
-                    <input type="text" class="form-control" placeholder="Phone: +1 234 567 8901, Email: info@abc.com">
+                    <input type="text" class="form-control" placeholder="Phone: +1 234 567 8901, Email: info@abc.com" [(ngModel)]="vendorContact">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Vendor Tax Identification Number</label>
-                    <input type="text" class="form-control" placeholder="TIN-5678901234">
+                    <input type="text" class="form-control" placeholder="TIN-5678901234" [(ngModel)]="vendorTIN">
                 </div>
             </div>
         </div>
@@ -68,96 +62,62 @@
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Customer Name</label>
-                    <input type="text" class="form-control" placeholder="XYZ Corporation">
+                    <input type="text" class="form-control" placeholder="XYZ Corporation" [(ngModel)]="user.userId.fullName">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Customer Address</label>
-                    <input type="text" class="form-control" placeholder="456 Elm Avenue, CA 90210">
+                    <input type="text" class="form-control" placeholder="456 Elm Avenue, CA 90210" [(ngModel)]="user.userId.address">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Customer Contact Information</label>
-                    <input type="text" class="form-control" placeholder="Phone: +1 987 654 3210, Email: procurement@xyz.com">
+                    <input type="text" class="form-control" placeholder="Phone: +1 987 654 3210, Email: procurement@xyz.com" [(ngModel)]="user.userId.email">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Customer Purchase Order Number</label>
-                    <select name="" id="" class="form-select">
-                        <option value="" selected>Select Purchase Order No</option>
-                        <option value="">PuOr-23423</option>
-                        <option value="">PuOr-23423</option>
-                        <option value="">PuOr-23423</option>
-                        <option value="">PuOr-23423</option>
+                    <select name="" id="" class="form-select" [(ngModel)]="selectedOrder" (ngModelChange)="logSelectedOrder()">
+                        <option value="" disabled selected>Select Purchase Order</option>
+                        <option *ngFor="let po of data" [ngValue]="po">{{ po.barcode }}</option>
                     </select>
                 </div>
+                
             </div>
         </div>
     </div>
 
-    <div class="mt-3 section-div">
+    <div class="mt-3 section-div" *ngIf="selectedOrder">
         <h2>Order Details</h2>
         <div class="table-container p-2">
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <thead class="thead-dark ">
+                    <thead class="thead-dark">
                         <tr>
-                            <th scope="col" class="one">
-                                <div class="table-data">
-                                    No
-                                </div>
-                            </th>
-                            <th scope="col">
-                                <div class="table-data">
-                                    Item Name
-                                </div>
-                            </th>
-                            <th scope="col">
-                                <div class="table-data">
-                                    Order Quantity
-                                </div>
-                            </th>
-                            <th scope="col">
-                                <div class="table-data">
-                                    Unit Price
-                                </div>
-                            </th>
-                            <th scope="col" class="two">
-                                <div class="table-data">
-                                    Subtotal
-                                </div>
-                            </th>
+                            <th scope="col">No</th>
+                            <th scope="col">Item Name</th>
+                            <th scope="col">Order Quantity</th>
+                            <th scope="col">Unit Price</th>
+                            <th scope="col">Subtotal</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr *ngFor="let item of selectedOrder?.products; let i = index">
+                            <td>{{ i + 1 }}</td>
                             <td>
-                                <div class="table-data">01</div>
+                                {{ item.product.materialId }}
                             </td>
                             <td>
-                                <div class="table-data">
-                                    <div class="input-div input-div-no-pad">
-                                        <select name="" id="" class="form-select new-width">
-                                            <option value="laptop">Laptop</option>
-                                            <option value="monitor">Monitor</option>
-                                            <option value="keyboard">Keyboard</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                {{ item.quantity }}
                             </td>
                             <td>
-                                <div class="table-data w-100">
-                                    <input type="number" name="" id="" class="form-control new-width" placeholder="Enter Quantity">
-                                </div>
+                                ${{ item.product.price }}
                             </td>
                             <td>
-                                <div class="table-data">$200</div>
-                            </td>
-                            <td>
-                                <div class="table-data">$1200</div>
+                                ${{ item.price }}
                             </td>
                         </tr>
                     </tbody>
@@ -166,50 +126,50 @@
         </div>
     </div>
 
-    <div class="mt-3 section-div">
+    <div class="mt-3 section-div" *ngIf="selectedOrder">
         <h2>Summary Section</h2>
         <div class="row p-2">
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Subtotal Amount</label>
-                    <input type="number" class="form-control" value="9000" disabled>
+                    <input type="number" class="form-control" value="{{ selectedOrder?.totalPrice }}" disabled>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Discounts</label>
-                    <input type="number" class="form-control" value="500">
+                    <input type="number" class="form-control" [(ngModel)]="discounts">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Taxes</label>
-                    <input type="number" class="form-control" value="810">
+                    <input type="number" class="form-control" [(ngModel)]="taxes">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Shipping Charges</label>
-                    <input type="number" class="form-control" value="200">
+                    <input type="number" class="form-control" [(ngModel)]="shippingCharges">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Other Charges</label>
-                    <input type="number" class="form-control" value="0">
+                    <input type="number" class="form-control" [(ngModel)]="otherCharges">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-div input-div-no-pad">
                     <label for="">Total Amount Due</label>
-                    <input type="number" class="form-control" value="9510" disabled>
+                    <input type="number" class="form-control" value="{{ totalAmountDue }}" disabled>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="button-group">
-        <button class="btn add-btn">Create Invoice</button>
+        <button class="btn add-btn" (click)="createInvoice()">Create Invoice</button>
         <button class="btn cancel-btn" routerLink="/vendor/vendor-invoice">Cancel</button>
     </div>
 </div>

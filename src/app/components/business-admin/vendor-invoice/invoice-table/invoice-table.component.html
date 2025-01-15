@@ -21,14 +21,14 @@
       >
         <option value="" disabled selected>Status</option>
         <option value="all" >All</option>
-        <option *ngFor="let s of status">{{s}}</option>
+        <option *ngFor="let s of status" >{{s}}</option>
       </select>
       <select class="form-select bg-none filter-select w-auto shadow-none"
       [(ngModel)]="selectedvendor" 
       (change)="filterData()">
         <option value="" disabled selected>Vendor</option>
         <option value="all" >All</option>
-        <option *ngFor="let vend of vendor" >{{vend?.name}}</option>
+        <option *ngFor="let vend of vendor" >{{vend}}</option>
       </select>
   
       <select class="form-select bg-none filter-select w-auto shadow-none"
@@ -64,11 +64,13 @@
             <th scope="col">
               <div class="table-data">Status</div>
             </th>
-            <th scope="col" class="two"></th>
+            <th scope="col" class="two">
+              <div class="table-data">Action</div>
+            </th>
           </tr>
         </thead>
         <tbody>
-          <ng-container *ngFor="let vendor of paginatedData; let i = index">
+          <ng-container *ngFor="let invoice of data; let i = index">
             <tr>
               <td>
                 <div class="table-data">
@@ -77,27 +79,28 @@
               </td>
               <td>
                 <div class="table-data">
-                  {{ vendor?.id }}<!--  dummey -->
+                  {{ invoice.id }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ vendor?.id }}<!--  dummey -->
+                  {{ invoice.purchaseOrderNo }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ vendor?.vendor[0]?.name }}
+                  {{ invoice.vendor.name }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ vendor?.vendor[0]?.email }}
+                  {{ invoice.vendor.email }}
+
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ vendor?.totalPrice | currency }}
+                  {{ invoice.totalPrice | currency }}
                 </div>
               </td>
               <td>
@@ -105,13 +108,13 @@
                   <div
                     class="status p-2"
                     [ngClass]="{
-                      completed: vendor.status === 'Paid',
-                      rejected: vendor.status === 'Dispute',
-                      inprogress: vendor.status === 'Pending',
-                      resolved: vendor.status === 'Resolved'
+                      completed: invoice.adminStatus === 'Paid',
+                      rejected: invoice.adminStatus === 'Dispute',
+                      inprogress: invoice.adminStatus === 'Pending',
+                      resolved: invoice.adminStatus === 'Resolved'
                     }"
                   >
-                    {{ vendor?.status }}
+                    {{ invoice.adminStatus }}
                   </div>
                 </div>
               </td>
