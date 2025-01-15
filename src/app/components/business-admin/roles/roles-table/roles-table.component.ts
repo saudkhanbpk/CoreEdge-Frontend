@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./roles-table.component.css'],
 })
 export class RolesTableComponent implements OnInit {
+  loading : boolean = false
   currentPage = 1;
   itemsPerPage = 10;
   expandedIndex: number | null = null;
@@ -27,9 +28,13 @@ export class RolesTableComponent implements OnInit {
   }
 
   loadRoles(userId: number) {
+    this.loading = true
     this.rolesService.findAll(userId).subscribe((response: any) => {
       this.data = response; 
       this.totalItems = response.length; 
+      if (this.data) {
+        this.loading = false
+      }
     });
   }
 

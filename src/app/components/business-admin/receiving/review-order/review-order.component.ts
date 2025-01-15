@@ -10,7 +10,7 @@ import { SharedService } from 'src/app/services/shared.service';
 export class ReviewOrderComponent implements OnInit {
   selectedOrder: any;
   isEditing: boolean = false;
-
+  loading:boolean =true
   tableData = [
     { name: 'Desktop Monitor', orderQuantity: 1, receivedQuantity: 1, brokenQuantity: 0, wrongItemQuantity: 0, checked: false },
     // Add more rows as needed
@@ -21,7 +21,11 @@ export class ReviewOrderComponent implements OnInit {
   constructor(private sharedService: SharedService, private router: Router) {}
 
   ngOnInit(): void {
+    this.loading = true
     this.selectedOrder = this.sharedService.getSelectedOrder();
+    if (this.selectedOrder) {
+      this.loading = false
+    }
     console.log('Selected Order:', this.selectedOrder);
     if (!this.selectedOrder) {
       console.error('No order found. Redirecting back to the orders page.');

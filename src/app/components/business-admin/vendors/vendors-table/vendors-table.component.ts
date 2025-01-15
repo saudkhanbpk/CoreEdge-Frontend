@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./vendors-table.component.css']
 })
 export class VendorsTableComponent {
+  loading:boolean = true
   currentPage = 1;
   vendors: any[] = []; // Initialize as an empty array
   filteredData: any[] = [];
@@ -29,11 +30,15 @@ export class VendorsTableComponent {
   }
 
   loadVendors() {
+    this.loading = true
     this.vendorService.findAll().subscribe({
       next: (data) => {
         this.vendors = data;
         this.totalItems = data.length; 
         this.filteredData = data; // Initialize filteredData with all vendors
+        if (this.filteredData) {
+          this.loading= false
+        }
       },
       error: (error) => {
         console.error('Error:', error);

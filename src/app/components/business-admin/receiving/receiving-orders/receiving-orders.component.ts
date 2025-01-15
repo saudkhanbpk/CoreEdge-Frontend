@@ -27,6 +27,7 @@ interface Order {
   styleUrls: ['./receiving-orders.component.css']
 })
 export class ReceivingOrdersComponent {
+  loading:boolean = false
   allOrders: any[] = [];
   currentPage = 1;
   itemsPerPage = 10;
@@ -47,6 +48,7 @@ export class ReceivingOrdersComponent {
   ngOnInit(): void {
     const user = this.authService.getUserData();
     if (user) {
+      this.loading = true
       this.sharedService.getPurchaseOrders(user.id).subscribe(
         (orders: any[]) => {
           // const filteredOrders = orders.filter(
@@ -59,6 +61,9 @@ export class ReceivingOrdersComponent {
 
           this.allOrders = orders;
           this.filteredData = this.allOrders
+          if (this.filteredData) {
+            this.loading = false
+          }
           const seenNames = new Set();
           this.allOrders.forEach((element:any) => {
              if (!seenNames.has(element.status)) {

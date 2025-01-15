@@ -13,12 +13,12 @@ export class InvoiceTableComponent {
   expandedIndex: number | null = null;
   data: any[]=[];
   filteredData:any=[];
-  vendor:any=['']
+  vendor:any=[]
   status:any=[];
   selectedvendor:any
   selectedstatus:any;
   selectedSortOption:any='';
-  
+  loading:boolean = false;
   user: any;
   constructor(private authService: AuthService,
     private invoiceService: InvoiceService,) { }
@@ -50,17 +50,21 @@ export class InvoiceTableComponent {
     }
   
     loadInvoices(): void {
+      this.loading = true
       this.invoiceService.getInvoicesByUserId(this.user.id).subscribe(
-          (data: any) => {
+        (data: any) => {
               if (data) {
                   this.data = data;
                   this.filteredData = data;
+                  if (this.filteredData) {
+                    this.loading = false
+                  }
                   const seenStatuses = new Set();
                   const seenVendors = new Set();
-                  data.forEach(({ vendorStatus, vendor }: any) => {
-                      if (vendorStatus && !seenStatuses.has(vendorStatus)) {
-                          seenStatuses.add(vendorStatus);
-                          this.status.push(vendorStatus);
+                  data.forEach(({ adminStatus, vendor }: any) => {
+                      if (adminStatus && !seenStatuses.has(adminStatus)) {
+                          seenStatuses.add(adminStatus);
+                          this.status.push(adminStatus);
                       }
                       if (vendor?.name && !seenVendors.has(vendor.name)) {
                           seenVendors.add(vendor.name);
@@ -80,11 +84,11 @@ export class InvoiceTableComponent {
   onInputChange(event: any) {
     const searchTerm = event.target.value; // Update the searchTerm variable
     if (searchTerm) {
-      this.filteredData = this.data.filter(({item}:any) =>
-        item.vendor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.vendor.email.toLowerCase().includes(searchTerm.toLowerCase())
+      this.filteredData = this.data.filter((item:any) =>
+        item?.vendor?.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item?.vendor?.email.toLowerCase().includes(searchTerm.toLowerCase())
       );
-    } else {
+    }else {
       this.filteredData = this.data; // Reset to all vendors if search term is empty
     }
     this.currentPage = 1; // Reset to the first page when filtering
@@ -93,8 +97,11 @@ export class InvoiceTableComponent {
 
   filterData() {  
     this.filteredData = this.data.filter((item:any) => {
+      console.log("item" , item)
+      console.log("item slected" , this.selectedstatus)
+
       const matchesVendor = this.selectedvendor === 'all' || item?.vendor?.name == this.selectedvendor;
-      const matchesStatus = this.selectedstatus === 'all' || item.status == this.selectedstatus;
+      const matchesStatus = this.selectedstatus === 'all' || item.adminStatus == this.selectedstatus;
       return matchesVendor && matchesStatus;
     });
   }
