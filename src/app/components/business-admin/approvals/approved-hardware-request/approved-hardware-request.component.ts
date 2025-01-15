@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class ApprovedHardwareRequestComponent {
 
-  isLoading: boolean[] = [];
+  loading: boolean = false;
   isunavailable: boolean = false;
   currentPage = 1;
   itemsPerPage = 10;
@@ -45,14 +45,17 @@ export class ApprovedHardwareRequestComponent {
 
   ngOnInit(): void {
     const user = this.authService.getUserData();
+    this.loading= true
     if (user) {
       // Subscribe to the data from SharedService
       this.sharedService.getData(user.id).subscribe(
         (items: any[]) => {
           const filteredItems = items.filter((item) => item.availableProducts && item.availableProducts.length > 0 && item.availableProducts[0]?.status == 'Approved');
           this.data = filteredItems;
-          this.filteredData = [...this.data]; // Initialize filtered data
-             // Extract unique statuses from availableProducts
+          this.filteredData = [...this.data]; 
+          if (this.filteredData) {
+            this.loading=false
+          }
          const seenNames = new Set<string>();
           this.data.forEach((item: any) => {
             item.availableProducts.forEach((product: any) => {
