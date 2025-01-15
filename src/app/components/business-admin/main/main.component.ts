@@ -12,13 +12,12 @@ export class MainComponent {
 
   @ViewChild(MatDrawer) drawer: MatDrawer | any;
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver) { }
 
   toggleDrawer() {
     this.drawer.toggle();
   }
-  
-  
+
   ngAfterViewInit() {
     this.breakpointObserver.observe(['(max-width: 1200px)']).subscribe(result => {
       setTimeout(() => {
@@ -34,7 +33,7 @@ export class MainComponent {
       }, 0);
     });
   }
-  
+
   openMenuId: string = '';
   isMenuOpen(menuId: string): boolean {
     return this.openMenuId === menuId;
@@ -59,14 +58,12 @@ export class MainComponent {
     { id: 'rma', title: 'RMA', icon: 'repeat', link: '/business-admin/rma', submenus: [] },
     { id: 'disputes', title: 'Disputes', icon: 'gavel', link: '/business-admin/disputes', submenus: [] },
     { id: 'asset-management', title: 'Asset Management', icon: 'storage', link: '/business-admin/asset-management', submenus: [] },
-
     {
       id: 'administration',
       title: 'Administration',
       icon: 'admin_panel_settings',
       submenus: [
         { title: 'Vendors', link: '/business-admin/vendors' },
-        // { title: 'Contracts', link: '/business-admin/contracts' },
         { title: 'Roles', link: '/business-admin/roles' },
         { title: 'Employees', link: '/business-admin/employees' },
         { title: 'Reports', link: '/business-admin/reports' }
