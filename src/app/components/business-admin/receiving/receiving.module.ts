@@ -6,12 +6,14 @@ import { ReceivingOrdersComponent } from './receiving-orders/receiving-orders.co
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material';
 import { ReviewOrderComponent } from './review-order/review-order.component';
+import { ClearOrderPoppComponent } from './clear-order-popp/clear-order-popp.component';
 
 
 @NgModule({
   declarations: [
     ReceivingOrdersComponent,
     ReviewOrderComponent,
+    ClearOrderPoppComponent,
   ],
   imports: [
     CommonModule,

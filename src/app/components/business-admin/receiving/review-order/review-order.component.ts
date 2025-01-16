@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ClearOrderPoppComponent } from '../clear-order-popp/clear-order-popp.component';
 
 @Component({
   selector: 'app-review-order',
@@ -6,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./review-order.component.css']
 })
 export class ReviewOrderComponent {
+    readonly dialog = inject(MatDialog)
+  
   tableData = [
     { name: 'Desktop Monitor', orderQuantity: 1, receivedQuantity: 1, brokenQuantity: 0, wrongItemQuantity: 0, checked: false },
     // Add more rows as needed
@@ -25,4 +29,9 @@ export class ReviewOrderComponent {
     this.tableData.forEach(item => (item.checked = isChecked));
     this.isAnyCheckboxChecked = isChecked;
   }
+   openDialog(){
+      this.dialog.open(ClearOrderPoppComponent, {
+        width:'auto'
+      })
+    }
 }

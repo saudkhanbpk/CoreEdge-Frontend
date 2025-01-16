@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 mat-dialog-title>Clear Received Order</h2>
+        <mat-icon class="icon me-2" mat-dialog-close>close</mat-icon>
+    </div>
+    <mat-dialog-content class="mat-typography">
+        <div class="row">
+            <div class="text-center p-4 text-muted fw-medium lh-lg">
+                Following Items' received quantity is less than ordered quantity.
+                The difference will be highlighted in invoice for this order.
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-div p-0">
+                <div class="table-container p-0 mt-2">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" class="one">
+                                        <div class="table-data">
+                                            No
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="table-data">
+                                            Item Name
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="table-data">
+                                            Ordered Qty
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="table-data">
+                                            Received Qty
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="two">
+                                        <div class="table-data">
+                                            Price Adjustment
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of request">
+                                    <td>
+                                        <div class="table-data">
+                                            {{item?.no}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{item?.materialid}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{item?.orderedqty}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data">
+                                            {{item?.receievedqty}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data text-danger">
+                                            {{item?.price | currency}}
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="d-flex justify-content-between">
+        <button class="btn check border gap-2">
+            <span class="btn-span">OK</span>
+            <mat-icon class="btn-icon">check</mat-icon>
+        </button>
+        <button class="btn close border gap-2" mat-dialog-close>
+            <span class="btn-span">Cancel</span>
+            <mat-icon class="btn-icon">close</mat-icon>
+        </button>
+    </mat-dialog-actions>
+</div>
