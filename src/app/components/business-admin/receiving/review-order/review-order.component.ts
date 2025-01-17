@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/services/shared.service';
+import { ClearOrderPoppComponent } from '../clear-order-popp/clear-order-popp.component';
 
 @Component({
   selector: 'app-review-order',
   templateUrl: './review-order.component.html',
   styleUrls: ['./review-order.component.css']
 })
-export class ReviewOrderComponent implements OnInit {
-  selectedOrder: any;
+export class ReviewOrderComponent {
+    readonly dialog = inject(MatDialog)
+    selectedOrder: any;
   isEditing: boolean = false;
-
+  
   tableData = [
     { name: 'Desktop Monitor', orderQuantity: 1, receivedQuantity: 1, brokenQuantity: 0, wrongItemQuantity: 0, checked: false },
     // Add more rows as needed
@@ -93,5 +96,10 @@ export class ReviewOrderComponent implements OnInit {
     console.log("Updated selectedOrder:", this.selectedOrder);
   }
 
+   openDialog(){
+      this.dialog.open(ClearOrderPoppComponent, {
+        width:'auto'
+      })
+    }
 }
 

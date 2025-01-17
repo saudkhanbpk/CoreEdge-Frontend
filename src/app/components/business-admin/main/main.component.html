@@ -30,9 +30,11 @@
                 </ul>
             </nav>
         </mat-drawer>
-        <mat-drawer-content [ngStyle]="{'padding-left': drawer.opened ? '16px' : '0px' }" >
-            <div class="maindiv mt-3">
-                <router-outlet></router-outlet>
+        <mat-drawer-content>
+            <div class="container-fluid">
+                <div class="maindiv mt-3">
+                    <router-outlet></router-outlet>
+                </div>
             </div>
         </mat-drawer-content>
     </mat-drawer-container>
