@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { InvoiceService } from 'src/app/services/invoice.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-send-invoice-table',
@@ -16,8 +18,10 @@ export class SendInvoiceTableComponent implements OnInit {
   totalPages: number = 1; 
   totalInvoices: number = 0;
   itemsPerPage: number = 5; 
+  filteredData: any = [];
+  
 
-  constructor(private invoiceService: InvoiceService, private authService: AuthService) {}
+  constructor(private invoiceService: InvoiceService, private authService: AuthService , private router:Router) {}
 
   ngOnInit(): void {
     this.user = this.authService.getUserData();
@@ -28,6 +32,7 @@ export class SendInvoiceTableComponent implements OnInit {
     this.invoiceService.getInvoicesByVendorId(this.user.id).subscribe(
       (data: any) => { 
         this.invoices = data;
+        this.filteredData = this.invoices
         this.totalInvoices = data.length; 
         this.totalPages = Math.ceil(this.totalInvoices / this.itemsPerPage); 
         this.updateDisplayedInvoices(); 
@@ -38,10 +43,65 @@ export class SendInvoiceTableComponent implements OnInit {
     );
   }
 
+  onInputChange(event: any) {
+    const searchTerm = event.target.value; // Update the searchTerm variable
+    if (searchTerm) {
+      this.filteredData = this.invoices.filter((item: any) =>
+        item?.user?.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item?.user?.fullName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    } else {
+      this.filteredData = this.invoices; // Reset to all vendors if search term is empty
+    }
+    this.currentPage = 1; // Reset to the first page when filtering
+  }
+
+
   updateDisplayedInvoices(): void {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    this.displayedInvoices = this.invoices.slice(startIndex, endIndex);
+    this.displayedInvoices = this.filteredData.slice(startIndex, endIndex);
+  }  
+  deleteInvoice(item: any) {
+    // Show a confirmation dialog
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'This action cannot be undone!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Proceed to delete the innvoice
+        this.invoiceService.deleteInvoice(item.id).subscribe({
+          next: (res: any) => {
+              // Update the invoices array after deletion
+              this.invoices = this.invoices.filter((i: any) => i.id !== item.id);
+            // Show success feedback
+            Swal.fire(
+              'Deleted!',
+              'The Invoice has been successfully deleted.',
+              'success'
+            );
+          },
+          error: (err: any) => {
+            // Show error feedback
+            Swal.fire(
+              'Error!',
+              'An error occurred while deleting the Invoice. Please try again.',
+              'error'
+            );
+          }
+        });
+      }
+    });
+  }
+
+  viewInvoice(item:any){
+  this.invoiceService.sendAndGetInvoceData(item)
+  this.router.navigate(['/vendor/vendor-invoice/send-invoice-details'])
   }
 
   previousPage(): void {

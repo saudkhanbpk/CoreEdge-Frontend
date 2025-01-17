@@ -1,0 +1,167 @@
+<div class="container-fluid px-0 overflow-hidden">
+    <div class="form-div">
+        <div class="headdiv">
+            <div class="heading d-flex align-items-center">
+                <button type="button" class="btn p-1 d-flex align-items-center justify-content-center shadow-none"
+                    routerLink="/business-admin/vendor-invoice">
+                    <mat-icon>chevron_left</mat-icon>
+                </button>
+                <h1>Invoices</h1>
+            </div>
+        </div>
+        <div class="mt-3 section-div ">
+            <div>
+                <h2>Invoice Details</h2>
+            </div>
+            <div class="px-3">
+                <div class="row" >
+                    <div class="col-lg-2 col-md-4 mb-3">
+                        <div class="order-head">Invoice No</div>
+                        <div class="order-data">INV-328342</div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 mb-3">
+                        <div class="order-head">Purchase Order No</div>
+                        <div class="order-data">{{invoiceData?.purchaseOrderNo}}</div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 mb-3">
+                        <div class="order-head">Vendor Name</div>
+                        <div class="order-data">{{invoiceData?.vendor?.name}}</div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 mb-3">
+                        <div class="order-head">Requested Date</div>
+                        <div class="order-data">{{invoiceData?.invoiceDate}}</div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 mb-3">
+                        <div class="order-head">Received Date</div>
+                        <div class="order-data">{{invoiceData?.dueDate}}</div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 mb-3">
+                        <div class="order-head">Total Amount</div>
+                        <div class="order-data">{{invoiceData?.totalPrice | currency}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-3 section-div">
+            <div>
+                <h2>Items Purchased </h2>
+            </div>
+            <div class="table-container p-2">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="thead-dark ">
+                            <tr>
+                                <th scope="col" class="one">
+                                    <div class="table-data">
+                                        <div class="d-flex gap-2 align-items-center">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                *ngIf="showDisputeOptions" [(ngModel)]="masterCheckboxChecked"
+                                                (change)="toggleAllCheckboxes($event)" id="flexCheckChecked">
+                                            <div>
+                                                No
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">
+                                        Item Name
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">
+                                        Order Quantity
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="table-data">
+                                        Item Price Per unit
+                                    </div>
+                                </th>
+                                <th scope="col" class="two">
+                                    <div class="table-data">
+                                        Price
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of purchasedItems; let i = index">
+                                <td>
+                                    <div class="table-data">
+                                        <div class="d-flex gap-2 align-items-center">
+                                            <input class="form-check-input" type="checkbox" *ngIf="showDisputeOptions"
+                                                [(ngModel)]="item.checked">
+                                            <div>{{ i + 1 }}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-data">{{ item?.product?.materialId }}</div>
+                                </td>
+                                <td>
+                                    <div class="table-data">{{ item?.quantity }}</div>
+                                </td>
+                                <td>
+                                    <div class="table-data">{{ item?.product?.price | currency }}</div>
+                                </td>
+                                <td>
+                                    <div class="table-data">{{ item?.price | currency }}</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-between align-items-center gap-2 flex-wrap">
+                        <div class="d-flex justify-content-end p-3" style="font-size: 18px;">
+                            <div style="font-weight: 500;">Subtotal:</div> &nbsp; {{ subtotal | currency }}
+                        </div>
+                        <div class="d-flex justify-content-end p-3" style="font-size: 18px;">
+                            <div style="font-weight: 500;">Discount:</div> &nbsp; {{ subtotal | currency }}
+                        </div>
+                        <div class="d-flex justify-content-end p-3" style="font-size: 18px;">
+                            <div style="font-weight: 500;">Tax:</div> &nbsp; {{ subtotal | currency }}
+                        </div>
+                        <div class="d-flex justify-content-end p-3" style="font-size: 18px;">
+                            <div style="font-weight: 500;">Shipping Charges:</div> &nbsp; {{ subtotal | currency }}
+                        </div>
+                        <div class="d-flex justify-content-end p-3" style="font-size: 18px;">
+                            <div style="font-weight: 500;">Other Charges:</div> &nbsp; {{ subtotal | currency }}
+                        </div>
+                        <div class="d-flex justify-content-end p-3" style="font-size: 18px;">
+                            <div style="font-weight: 500;">Total Amount:</div> &nbsp; {{ subtotal | currency }}
+                        </div>
+                    </div>
+                </div>
+                <div class="input-div input-div-no-pad my-3" *ngIf="showDisputeOptions">
+                    <label for="">Reason for Dispute:</label>
+                    <input type="text" class="form-control" placeholder="Enter reason to file dispute">
+                </div>
+            </div>
+        </div>
+        <div class="section-div mt-3">
+            <h2>Invoice Receipt</h2>
+            <div class="upload-container">
+                <div class="upload-icon">
+                    <img *ngIf="uploadedImageUrl; else icon" [src]="uploadedImageUrl" alt="Uploaded image"
+                        class="image-preview">
+                    <ng-template #icon>
+                        <img src="../../../../../assets/newicons/Picture.png" alt="">
+                    </ng-template>
+                </div>
+                <div class="upload-details">
+                    <label for="fileInput" class="upload-label">
+                        <span class="highlight">Upload</span> Invoice Receipt <br>(if Paid)
+                    </label>
+                    <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" hidden>
+                    <p>SVG, PNG, JPG, or GIF</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex gap-2 justify-content-end my-2">
+            <button class="btn add-btn" *ngIf="!showDisputeOptions">Settle Up</button>
+            <button class="btn close" *ngIf="!showDisputeOptions" (click)="openDispute()">Open Dispute</button>
+            <button class="btn close" *ngIf="showDisputeOptions">File Dispute</button>
+            <button class="btn cancel-btn" *ngIf="showDisputeOptions" (click)="cancelDispute()">Cancel</button>
+        </div>
+    </div>
+</div>
