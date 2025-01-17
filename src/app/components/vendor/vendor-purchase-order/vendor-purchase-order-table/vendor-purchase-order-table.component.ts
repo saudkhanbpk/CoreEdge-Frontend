@@ -1,147 +1,3 @@
-// import { Component, inject } from '@angular/core';
-// import { VendorViewPurchaseOrderComponent } from '../vendor-view-purchase-order/vendor-view-purchase-order.component';
-// import { MatDialog } from '@angular/material/dialog';
-// import { PurchaseOrderService } from 'src/app/services/purchase-order.service';
-
-// @Component({
-//   selector: 'app-vendor-purchase-order-table',
-//   templateUrl: './vendor-purchase-order-table.component.html',
-//   styleUrls: ['./vendor-purchase-order-table.component.css']
-// })
-// export class VendorPurchaseOrderTableComponent {
-//   currentPage = 1;
-//   itemsPerPage = 10;
-//   expandedIndex: number | null = null;
-//   readonly dialog = inject(MatDialog)
-//   data:any;
-//   constructor(private purchaseOrderService: PurchaseOrderService) { }
-//   ngOnInit(): void {
-//   this.purchaseOrderService.findVendorOrders().subscribe((data) => {
-//       this.data = data;
-//     });
-
-//   }
-
-//   // data = [
-//   //   {
-//   //     purchaseorderno: '2982-XJ82-92',
-//   //     businessname: 'Saad Khan',
-//   //     businessemail:'businessemail@gmail.com',
-//   //     hardwarerequested:'Dell Monitor',
-//   //     requesteddate :'October 3rd, 2024',
-//   //     receivedddate :'October 5th, 2024',
-//   //     totalamount :'3500',
-//   //     address:'Las Vegas',
-//   //     status:'Ordered',
-//   //     checked:false,
-//   //     productdetails: [
-//   //       {
-//   //         name: 'Items Requested', items: [
-//   //           { itemname: 'Monitor', price: 5 },
-//   //           { itemname: 'Keyboard', price: 15 },
-//   //           { itemname: 'Mouse', price: 25 },
-//   //           { itemname: 'RAM', price: 35 },
-//   //         ]
-//   //       }
-//   //     ]
-//   //   },
-//   //   {
-//   //     purchaseorderno: '2982-XJ82-92',
-//   //     businessname: 'Ihtizaz Ahmad',
-//   //     businessemail:'businessemail@gmail.com',
-//   //     hardwarerequested:'Dell Monitor',
-//   //     requesteddate :'October 3rd, 2024',
-//   //     receivedddate :'October 5th, 2024',
-//   //     totalamount :'3500',
-//   //     address:'Las Vegas',
-//   //     status:'Pending',
-//   //     checked:false,
-//   //     productdetails: [
-//   //       {
-//   //         name: 'Items Requested', items: [
-//   //           { itemname: 'Monitor', price: 5 },
-//   //           { itemname: 'Keyboard', price: 15 },
-//   //           { itemname: 'Mouse', price: 25 },
-//   //           { itemname: 'RAM', price: 35 },
-//   //         ]
-//   //       }
-//   //     ]
-//   //   },
-//   //   {
-//   //     purchaseorderno: '2982-XJ82-92',
-//   //     businessname: 'Aamir Shehzad',
-//   //     businessemail:'businessemail@gmail.com',
-//   //     hardwarerequested:'Dell Monitor',
-//   //     requesteddate :'October 3rd, 2024',
-//   //     receivedddate :'October 5th, 2024',
-//   //     totalamount :'3500',
-//   //     address:'Las Vegas',
-//   //     status:'Rejected',
-//   //     checked:false,
-//   //     productdetails: [
-//   //       {
-//   //         name: 'Items Requested', items: [
-//   //           { itemname: 'Monitor', price: 5 },
-//   //           { itemname: 'Keyboard', price: 15 },
-//   //           { itemname: 'Mouse', price: 25 },
-//   //           { itemname: 'RAM', price: 35 },
-//   //         ]
-//   //       }
-//   //     ]
-//   //   },
-//   // ];
-//   toggleAllCheckboxes(event: Event): void {
-//     const isChecked = (event.target as HTMLInputElement).checked;
-//     this.paginatedData.forEach(item => {
-//       item.checked = isChecked;
-//     });
-//   }
-//   toggleDetails(index: number) {
-//     this.expandedIndex = this.expandedIndex === index ? null : index;
-//   }
-
-//   get totalPages() {
-//     return Math.ceil(this.data.length / this.itemsPerPage);
-//   }
-
-//   get paginatedData() {
-//     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-//     return this.data.slice(startIndex, startIndex + this.itemsPerPage);
-//   }
-
-//   goToPage(page: number) {
-//     this.currentPage = page;
-//   }
-
-//   nextPage() {
-//     if (this.currentPage < this.totalPages) {
-//       this.currentPage++;
-//     }
-//   }
-
-//   previousPage() {
-//     if (this.currentPage > 1) {
-//       this.currentPage--;
-//     }
-//   }
-
-//   isNextPageAvailable() {
-//     return this.currentPage < this.totalPages;
-//   }
-
-//   isPreviousPageAvailable() {
-//     return this.currentPage > 1;
-//   }
-
-
-//   openDialog(){
-//     this.dialog.open(VendorViewPurchaseOrderComponent, {
-//       width:'60%'
-//     })
-//   }
-// }
-
-
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PurchaseOrderService } from 'src/app/services/purchase-order.service';
@@ -160,6 +16,8 @@ export class VendorPurchaseOrderTableComponent implements OnInit {
   expandedIndex: number | null = null;
   data: any[] = []; // Ensuring it's typed as an array
   isLoading: boolean = true; // To handle loading state
+  filteredData:any=[];
+  selectedSortOption:any='';
 
   constructor(
     private purchaseOrderService: PurchaseOrderService,
@@ -176,6 +34,7 @@ export class VendorPurchaseOrderTableComponent implements OnInit {
       next: (orders) => {
         this.data = orders;
         console.log("this.data", this.data)
+        this.filteredData = this.data;
         this.loading = false;
       },
       error: (err) => {
@@ -189,6 +48,32 @@ export class VendorPurchaseOrderTableComponent implements OnInit {
         });
       }
     });
+  }
+
+  onInputChange(event: any) {
+    const searchTerm = event.target.value; // Update the searchTerm variable
+    if (searchTerm) {
+      this.filteredData = this.data.filter((item: any) =>
+        item?.users[0]?.fullName .toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item?.users[0]?.email.toLowerCase().includes(searchTerm.toLowerCase()) || 
+        item?.barcode.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    } else {
+      this.filteredData = this.data; // Reset to all vendors if search term is empty
+    }
+    this.currentPage = 1; // Reset to the first page when filtering
+  }
+  sortData() {
+    if (this.selectedSortOption === 'name') {
+      this.filteredData.sort((a: any, b: any) =>
+        a?.user[0]?.fullName.localeCompare(b.user?.fullName)
+    );
+  } else if (this.selectedSortOption === 'date') {
+      this.filteredData.sort(
+        (a: any, b: any) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+      );
+
+    }
   }
   
 
@@ -207,7 +92,7 @@ export class VendorPurchaseOrderTableComponent implements OnInit {
 
   get paginatedData(): any[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.data.slice(startIndex, startIndex + this.itemsPerPage);
+    return this.filteredData.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
   goToPage(page: number): void {

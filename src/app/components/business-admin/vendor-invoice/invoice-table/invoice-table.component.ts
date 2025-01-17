@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { InvoiceService } from 'src/app/services/invoice.service';
 
@@ -21,29 +22,7 @@ export class InvoiceTableComponent {
   loading:boolean = false;
   user: any;
   constructor(private authService: AuthService,
-    private invoiceService: InvoiceService,) { }
-
-      //     this.data = orders;
-      //     this.filteredData = this.data
-      //     const seenNames = new Set();
-      //     this.data.forEach((element:any) => {
-      //       const vendor = element.vendor
-      //       vendor.map((i:any)=>{
-      //           seenNames.add(i.name)
-      //           this.vendor.push(i)
-      //        })
-
-      //        if (!seenNames.has(element.status)) {
-      //         seenNames.add(element.status);
-      //         this.status.push(element.status);
-      //         }
-      //     });
-          
-      //   },
-      //   (error) => {
-      //     console.error('Error fetching vendor orders:', error);
-      //   }
-      // );
+    private invoiceService: InvoiceService, private router:Router) { };
     ngOnInit(): void {
       this.user = this.authService.getUserData();
       this.loadInvoices();
@@ -118,7 +97,10 @@ export class InvoiceTableComponent {
 
     }
   }
-
+  viewInvoice(item:any){
+    this.invoiceService.sendAndGetInvoceData(item)
+    this.router.navigate(['/business-admin/vendor-invoice/invoice-details'])
+    }
   toggleDetails(index: number) {
     this.expandedIndex = this.expandedIndex === index ? null : index;
   }

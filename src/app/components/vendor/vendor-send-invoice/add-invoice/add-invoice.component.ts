@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { InvoiceService } from 'src/app/services/invoice.service';
 import { PurchaseOrderService } from 'src/app/services/purchase-order.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-invoice',
@@ -89,7 +90,17 @@ export class AddInvoiceComponent {
 
     this.invoiceService.createInvoice(invoiceData).subscribe(
       (response) => {
-        this.router.navigate(['/vendor/vendor-catalog']);
+        // this.router.navigate(['/vendor/vendor-catalog']);
+        // /vendor/vendor-invoice/send-invoice-table
+        if(response){
+          Swal.fire({
+            title: 'Invoice Created',
+            text: 'Invoice created successfully',
+            timer:2000
+          })
+
+          this.router.navigate(['/vendor/vendor-invoice/send-invoice-table']);
+        }
         // console.log('Invoice Created Successfully:', response);
       },
       (error) => {

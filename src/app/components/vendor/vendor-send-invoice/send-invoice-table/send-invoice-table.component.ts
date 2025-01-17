@@ -19,7 +19,7 @@ export class SendInvoiceTableComponent implements OnInit {
   totalInvoices: number = 0;
   itemsPerPage: number = 5; 
   filteredData: any = [];
-  
+  selectedSortOption:any='';  
 
   constructor(private invoiceService: InvoiceService, private authService: AuthService , private router:Router) {}
 
@@ -58,6 +58,19 @@ export class SendInvoiceTableComponent implements OnInit {
       this.filteredData = this.invoices; // Reset to all vendors if search term is empty
     }
     this.currentPage = 1; // Reset to the first page when filtering
+  }
+  sortData() {
+    console.log("this ", this.selectedSortOption)
+    if (this.selectedSortOption === 'name') {
+      this.filteredData.sort((a: any, b: any) =>
+        a?.user?.fullName.localeCompare(b.user?.fullName)
+      );
+    } else if (this.selectedSortOption === 'date') {
+      this.filteredData.sort(
+        (a: any, b: any) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+      );
+
+    }
   }
 
 

@@ -27,23 +27,23 @@
                     </div>
                     <div class="col-lg-2 col-md-4 mb-3">
                         <div class="order-head">Purchase Order No</div>
-                        <div class="order-data">01</div>
+                        <div class="order-data">{{invoiceData?.purchaseOrderNo}}</div>
                     </div>
                     <div class="col-lg-2 col-md-4 mb-3">
                         <div class="order-head">Vendor Name</div>
-                        <div class="order-data">Brandon Lee</div>
+                        <div class="order-data">{{invoiceData?.vendor?.name}}</div>
                     </div>
                     <div class="col-lg-2 col-md-4 mb-3">
                         <div class="order-head">Requested Date</div>
-                        <div class="order-data">25th Jan, 2027</div>
+                        <div class="order-data">{{invoiceData?.invoiceDate}}</div>
                     </div>
                     <div class="col-lg-2 col-md-4 mb-3">
                         <div class="order-head">Received Date</div>
-                        <div class="order-data">25th Jan, 2027</div>
+                        <div class="order-data">{{invoiceData?.dueDate}}</div>
                     </div>
                     <div class="col-lg-2 col-md-4 mb-3">
                         <div class="order-head">Total Amount</div>
-                        <div class="order-data">$3533</div>
+                        <div class="order-data">{{invoiceData?.totalPrice | currency}}</div>
                     </div>
                 </div>
             </div>
@@ -113,7 +113,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="table-data">{{ item.name }}</div>
+                                    <div class="table-data">{{ item?.product?.materialId }}</div>
                                 </td>
                                 <td>
                                     <div class="table-data">{{ item.quantity }}</div>
@@ -125,7 +125,7 @@
                                     <div class="table-data text-danger">$150</div>
                                 </td>
                                 <td>
-                                    <div class="table-data">{{ item.unitPrice | currency }}</div>
+                                    <div class="table-data">{{ item?.product?.price | currency }}</div>
                                 </td>
                                 <td>
                                     <div class="table-data">{{ item.price | currency }}</div>

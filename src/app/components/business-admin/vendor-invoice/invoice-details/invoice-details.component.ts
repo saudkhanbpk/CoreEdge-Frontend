@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { InvoiceService } from 'src/app/services/invoice.service';
 
 @Component({
   selector: 'app-invoice-details',
@@ -13,10 +14,21 @@ export class InvoiceDetailsComponent {
   showDisputeSection: boolean = false; 
   disputeSubmitted: boolean = false; 
   uploadedImageUrl: string = '';
+  invoiceData:any;
+  purchasedItems:any[]=[]
 
-  purchasedItems = [
-    { name: 'Desktop Monitor', quantity: 1, unitPrice: 150, price: 150, checked: false },
-  ]
+  constructor(private invoiceService:InvoiceService){
+    this.invoiceService.currentinvoicedata.subscribe((res:any)=>{
+      console.log("sta", res)
+      this.invoiceData = res
+      this.purchasedItems = res?.products
+ 
+    })
+  }
+
+  // purchasedItems = [
+  //   { name: 'Desktop Monitor', quantity: 1, unitPrice: 150, price: 150, checked: false },
+  // ]
   openDispute(): void {
     this.showDisputeOptions = true;
   }
