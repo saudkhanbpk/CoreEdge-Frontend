@@ -20,6 +20,7 @@ export class PurchaseRequestTableComponent {
   Employee:any[] =[];
   selectedEmployee='';
   selectedSortOption='';
+  loading : boolean = false
   readonly dialog = inject(MatDialog);
   constructor(
     private requestService: RequestService,
@@ -29,12 +30,16 @@ export class PurchaseRequestTableComponent {
 
   ngOnInit(): void {
     const user = this.authService.getUserData();
+    this.loading = true
     if (user) {
       this.sharedService.getData(user.id).subscribe(
         (items: any[]) => {
           const filteredItems = items.filter((item) => item.unavailableProducts && item.unavailableProducts.length > 0);
           this.data = filteredItems;
           this.filteredData = this.data
+          if(this.filteredData){
+            this.loading = false
+          }
           // here check the employee lit before the same name are present
           const seenNames = new Set();
           this.Employee = this.data

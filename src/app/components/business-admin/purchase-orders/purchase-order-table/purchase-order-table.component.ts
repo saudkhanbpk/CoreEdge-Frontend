@@ -14,6 +14,7 @@ import { PurchaseOrderService } from 'src/app/services/purchase-order.service';
   styleUrls: ['./purchase-order-table.component.css']
 })
 export class PurchaseOrderTableComponent {
+  loading:boolean = false
   currentPage = 1;
   itemsPerPage = 10;
   data: any;
@@ -34,6 +35,7 @@ export class PurchaseOrderTableComponent {
   ngOnInit(): void {
     const user = this.authService.getUserData();
     if (user) {
+      this.loading = true
       this.sharedService.getData(user.id).subscribe(
         (items: any[]) => {
           const vendorsMap: { [key: number]: string } = {};
@@ -79,6 +81,9 @@ export class PurchaseOrderTableComponent {
           }));
           this.originalData = [...this.data];
           this.filteredData = [...this.data]
+          if(this.filteredData){
+            this.loading = false
+          }
           console.log('Processed Orders: ', this.data);
         },
         (error) => {

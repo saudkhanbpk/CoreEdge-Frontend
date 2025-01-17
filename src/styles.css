@@ -183,3 +183,6 @@ h4 {
     box-shadow: none !important;
     border: 1px solid lightgray;
 }
+.mat-mdc-progress-bar {
+    --mdc-linear-progress-active-indicator-color: #0F4D50;
+}

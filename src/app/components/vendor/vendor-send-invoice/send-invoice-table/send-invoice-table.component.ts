@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./send-invoice-table.component.css']
 })
 export class SendInvoiceTableComponent implements OnInit {
-
+  loading:boolean = false
   invoices: any = []; 
   displayedInvoices: any = []; 
   user: any;
@@ -29,10 +29,14 @@ export class SendInvoiceTableComponent implements OnInit {
   }
 
   loadInvoices(): void {
+    this.loading = true
     this.invoiceService.getInvoicesByVendorId(this.user.id).subscribe(
       (data: any) => { 
         this.invoices = data;
         this.filteredData = this.invoices
+        if (this.invoices) {
+          this.loading = false
+        }
         this.totalInvoices = data.length; 
         this.totalPages = Math.ceil(this.totalInvoices / this.itemsPerPage); 
         this.updateDisplayedInvoices(); 

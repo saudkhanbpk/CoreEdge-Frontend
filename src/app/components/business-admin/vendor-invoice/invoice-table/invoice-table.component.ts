@@ -11,44 +11,73 @@ export class InvoiceTableComponent {
   currentPage = 1;
   itemsPerPage = 10;
   expandedIndex: number | null = null;
-  data: any[] = [];
-  filteredData: any = [];
-  vendor: any = []
-  status: any = [];
-  selectedvendor: any
-  selectedstatus: any;
-  selectedSortOption: any = '';
-
+  data: any[]=[];
+  filteredData:any=[];
+  vendor:any=[]
+  status:any=[];
+  selectedvendor:any
+  selectedstatus:any;
+  selectedSortOption:any='';
+  loading:boolean = false;
   user: any;
   constructor(private authService: AuthService,
     private invoiceService: InvoiceService,) { }
-  ngOnInit(): void {
-    this.user = this.authService.getUserData();
-    this.loadInvoices();
-  }
 
-  loadInvoices(): void {
-    this.invoiceService.getInvoicesByUserId(this.user.id).subscribe(
-      (data: any) => {
-        if (data) {
-          this.data = data;
-          this.filteredData = data;
-          const seenStatuses = new Set();
-          const seenVendors = new Set();
-          data.forEach(({ adminStatus, vendor }: any) => {
-            if (adminStatus && !seenStatuses.has(adminStatus)) {
-              seenStatuses.add(adminStatus);
-              this.status.push(adminStatus);
-            }
-            if (vendor?.name && !seenVendors.has(vendor.name)) {
-              seenVendors.add(vendor.name);
-              this.vendor.push(vendor.name);
-            }
-          });
-        }
-      },
-      (error: any) => console.error('Error loading invoices', error)
-    );
+      //     this.data = orders;
+      //     this.filteredData = this.data
+      //     const seenNames = new Set();
+      //     this.data.forEach((element:any) => {
+      //       const vendor = element.vendor
+      //       vendor.map((i:any)=>{
+      //           seenNames.add(i.name)
+      //           this.vendor.push(i)
+      //        })
+
+      //        if (!seenNames.has(element.status)) {
+      //         seenNames.add(element.status);
+      //         this.status.push(element.status);
+      //         }
+      //     });
+          
+      //   },
+      //   (error) => {
+      //     console.error('Error fetching vendor orders:', error);
+      //   }
+      // );
+    ngOnInit(): void {
+      this.user = this.authService.getUserData();
+      this.loadInvoices();
+    }
+  
+    loadInvoices(): void {
+      this.loading = true
+      this.invoiceService.getInvoicesByUserId(this.user.id).subscribe(
+        (data: any) => {
+              if (data) {
+                  this.data = data;
+                  this.filteredData = data;
+                  if (this.filteredData) {
+                    this.loading = false
+                  }
+                  const seenStatuses = new Set();
+                  const seenVendors = new Set();
+                  data.forEach(({ adminStatus, vendor }: any) => {
+                      if (adminStatus && !seenStatuses.has(adminStatus)) {
+                          seenStatuses.add(adminStatus);
+                          this.status.push(adminStatus);
+                      }
+                      if (vendor?.name && !seenVendors.has(vendor.name)) {
+                          seenVendors.add(vendor.name);
+                          this.vendor.push(vendor.name);
+                      }
+                  });
+  
+                  console.log("Unique statuses:", this.status);
+                  console.log("Unique vendors:", this.vendor);
+              }
+          },
+          (error: any) => console.error('Error loading invoices', error)
+      );
   }
 
 

@@ -106,6 +106,13 @@
         </tr>
       </thead>
       <tbody>
+        <ng-container class="w-100" *ngIf="loading">
+          <tr class="w-100">
+              <td colspan="7" class="my-0 border-bottom-0 p-0">
+                  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+              </td>
+          </tr>
+      </ng-container >
         <ng-container *ngFor="let item of filteredData; let i = index">
           <tr>
             <td>

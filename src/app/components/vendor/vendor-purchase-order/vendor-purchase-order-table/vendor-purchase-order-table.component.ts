@@ -154,6 +154,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./vendor-purchase-order-table.component.css']
 })
 export class VendorPurchaseOrderTableComponent implements OnInit {
+  loading:boolean = false;
   currentPage = 1;
   itemsPerPage = 10;
   expandedIndex: number | null = null;
@@ -170,17 +171,26 @@ export class VendorPurchaseOrderTableComponent implements OnInit {
   }
 
   private fetchVendorOrders(): void {
+    this.loading = true;
     this.purchaseOrderService.findVendorOrders().subscribe({
       next: (orders) => {
         this.data = orders;
-        this.isLoading = false;
+        console.log("this.data", this.data)
+        this.loading = false;
       },
       error: (err) => {
         console.error('Error fetching vendor orders:', err);
-        this.isLoading = false;
+        this.loading = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to fetch vendor orders. Please try again later.',
+          footer: err.message || 'An unknown error occurred.',
+        });
       }
     });
   }
+  
 
   toggleAllCheckboxes(event: Event): void {
     const isChecked = (event.target as HTMLInputElement).checked;

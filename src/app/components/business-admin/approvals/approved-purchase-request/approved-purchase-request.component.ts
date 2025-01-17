@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./approved-purchase-request.component.css']
 })
 export class ApprovedPurchaseRequestComponent implements OnInit {
+  loading:boolean =false
   currentPage = 1;
   itemsPerPage = 10; 
   data: any[] = [];
@@ -31,11 +32,15 @@ export class ApprovedPurchaseRequestComponent implements OnInit {
   ngOnInit(): void {
     const user = this.authService.getUserData();
     if (user) {
+      this.loading = true
       this.sharedService.getData(user.id).subscribe(
         (items: any[]) => {
           const filteredItems = items.filter((item) => item.unavailableProducts && item.unavailableProducts.length > 0 && item.unavailableProducts[0]?.status == 'Approved');
           this.data = filteredItems;
           this.filteredData = this.data
+          if (this.filteredData) {
+            this.loading = false
+          }
           // here check the employee lit before the same name are present
           const seenNames = new Set();
           this.Employee = this.data

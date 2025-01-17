@@ -19,7 +19,7 @@ export class HardwareRequestsTableComponent {
   filteredData: any[] = [];
   selectedReviewStatus = '';
   selectedSortOption = '';
-
+  loading: boolean = false;
   readonly dialog = inject(MatDialog);
 
   constructor(
@@ -30,6 +30,7 @@ export class HardwareRequestsTableComponent {
 
   ngOnInit(): void {
     const user = this.authService.getUserData();
+    this.loading = true
     if (user) {
       this.sharedService.getData(user.id).subscribe(
         (items: any[]) => {
@@ -37,6 +38,9 @@ export class HardwareRequestsTableComponent {
           const filteredItems = items.filter((item) => item.availableProducts && item.availableProducts.length > 0);
           this.data = filteredItems;
           this.filteredData = [...this.data];
+          if(this.filteredData){
+            this.loading = false
+          }
         },
         (error) => {
           console.error('Error fetching data:', error);
