@@ -111,11 +111,12 @@ export class PurchaseOrderTableComponent {
     const searchTerm = event.target.value.trim(); // Update the searchTerm variable
     if (searchTerm) {
       this.filteredData = this.data.filter((item: any) =>
-        item?.employees[0]?.name .toLowerCase().includes(searchTerm.toLowerCase()) ||
-         item?.employees[0]?.email .toLowerCase().includes(searchTerm.toLowerCase())
+        item?.employees[0]?.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+         item?.employees[0]?.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+         item?.unavailableProducts[0]?.product.vendor.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
     } else {
-      this.data = [...this.data] // Reset to all vendors if search term is empty
+      this.filteredData = [...this.data] // Reset to all vendors if search term is empty
     }
     this.currentPage = 1; // Reset to the first page when filtering
   }
@@ -237,18 +238,18 @@ export class PurchaseOrderTableComponent {
 
     if (selectedVendorId === 0) {
       // Show all data if "All" is selected
-      this.data = [...this.originalData]; // Reset to the original unfiltered data
+      this.filteredData = [...this.originalData]; // Reset to the original unfiltered data
       console.log('All Data:', this.data);
     } else if (selectedVendorId) {
       // Filter the data from the originalData
-      this.data = this.originalData.filter((order: any) =>
+      this.filteredData = this.originalData.filter((order: any) =>
         order.unavailableProducts.some(
           (product: any) => product.product.vendor.id === selectedVendorId
         )
       );
 
       // Filter out other vendors from each order's unavailableProducts
-      this.data.forEach((order: any) => {
+      this.filteredData.forEach((order: any) => {
         order.unavailableProducts = order.unavailableProducts.filter(
           (product: any) => product.product.vendor.id === selectedVendorId
         );
