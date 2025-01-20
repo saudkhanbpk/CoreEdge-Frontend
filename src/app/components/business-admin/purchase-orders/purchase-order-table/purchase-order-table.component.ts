@@ -14,6 +14,7 @@ import { PurchaseOrderService } from 'src/app/services/purchase-order.service';
   styleUrls: ['./purchase-order-table.component.css']
 })
 export class PurchaseOrderTableComponent {
+  loading:boolean = false
   currentPage = 1;
   itemsPerPage = 10;
   data: any;
@@ -21,6 +22,8 @@ export class PurchaseOrderTableComponent {
   showMergeOptions: boolean = false;
   masterCheckboxChecked: boolean = false;
   expandedIndex: number | null = null;
+  filteredData:any[]=[];
+  selectedSortOption:any='';
   uniqueVendors: { id: number; name: string }[] = [];
   readonly dialog = inject(MatDialog)
   constructor(private requestService: RequestService,
@@ -32,6 +35,7 @@ export class PurchaseOrderTableComponent {
   ngOnInit(): void {
     const user = this.authService.getUserData();
     if (user) {
+      this.loading = true
       this.sharedService.getData(user.id).subscribe(
         (items: any[]) => {
           const vendorsMap: { [key: number]: string } = {};
@@ -76,8 +80,10 @@ export class PurchaseOrderTableComponent {
             name,
           }));
           this.originalData = [...this.data];
-
-          console.log('Unique Vendors: ', this.uniqueVendors);
+          this.filteredData = [...this.data]
+          if(this.filteredData){
+            this.loading = false
+          }
           console.log('Processed Orders: ', this.data);
         },
         (error) => {
@@ -86,6 +92,34 @@ export class PurchaseOrderTableComponent {
       );
     }
   }
+
+  
+  sortData() {
+    if (this.selectedSortOption === 'name') {
+      this.filteredData.sort((a, b) =>
+        a.unavailableProducts[0]?.product?.vendor?.name.localeCompare(b.unavailableProducts[0]?.product?.vendor?.name)
+      );
+
+    } else if (this.selectedSortOption === 'date') {
+      this.filteredData.sort(
+        (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+      );
+    }
+  }
+
+  onInputChange(event: any) {
+    const searchTerm = event.target.value.trim(); // Update the searchTerm variable
+    if (searchTerm) {
+      this.filteredData = this.data.filter((item: any) =>
+        item?.employees[0]?.name .toLowerCase().includes(searchTerm.toLowerCase()) ||
+         item?.employees[0]?.email .toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    } else {
+      this.data = [...this.data] // Reset to all vendors if search term is empty
+    }
+    this.currentPage = 1; // Reset to the first page when filtering
+  }
+
   toggleAllCheckboxes(event: Event): void {
     const isChecked = (event.target as HTMLInputElement).checked;
     this.paginatedData.forEach((item: any) => {
@@ -234,7 +268,7 @@ export class PurchaseOrderTableComponent {
 
   get paginatedData() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.data.slice(startIndex, startIndex + this.itemsPerPage);
+    return this.filteredData.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
   goToPage(page: number) {

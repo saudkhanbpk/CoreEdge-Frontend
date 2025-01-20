@@ -1,18 +1,21 @@
 <div class="menu-div">
   <div class="order-types-tables">
     <div class="d-flex justify-content-end gap-2">
-      <select class="form-select filter-select w-auto shadow-none">
+      <select class="form-select filter-select w-auto shadow-none"
+      [(ngModel)]="selectedstatus" 
+      (change)="filterBystatus()"
+      >
         <option value="" disabled selected>Review Status</option>
-        <option value="name">Pending</option>
-        <option value="date">Completed</option>
-        <option value="amount">Rejected</option>
-        <option value="amount">Cancelled</option>
+        <option value="all" >All</option>
+        <option  *ngFor="let s of status" [value]="status">{{status}}</option>
+
       </select>
-      <select class="form-select filter-select w-auto shadow-none">
+      <select class="form-select filter-select w-auto shadow-none"
+      [(ngModel)]="selectedSortOption" 
+       (change)="sortData()">
         <option value="" disabled selected>sort</option>
         <option value="name">By Name</option>
         <option value="date">By Date</option>
-        <option value="amount">By Amount</option>
       </select>
     </div>
     <div class="table-div">
@@ -43,6 +46,13 @@
               </tr>
             </thead>
             <tbody>
+              <ng-container class="w-100" *ngIf="loading">
+                <tr class="w-100">
+                    <td colspan="7" class="my-0 border-bottom-0 p-0">
+                        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                    </td>
+                </tr>
+            </ng-container >
               <ng-container>
                 <tr *ngFor="let item of paginatedData; let i = index">
                   <td>

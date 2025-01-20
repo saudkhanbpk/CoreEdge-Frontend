@@ -13,17 +13,21 @@ import Swal from 'sweetalert2';
 })
 export class ApprovedHardwareRequestComponent {
 
-  isLoading: boolean[] = [];
+  loading: boolean = false;
   isunavailable: boolean = false;
   currentPage = 1;
   itemsPerPage = 10;
-  data: any[] = [];
   expandedIndex: number | null = null;
+  status: any[] = []; // Declare status as a string array
+  filteredData: any[] = [];
+  selectedstatus: string = '';
+  selectedSortOption='';
+  data: any[] = [];
   readonly dialog = inject(MatDialog);
 
-  constructor( private requestService: RequestService,
-      private authService: AuthService,
-          private sharedService: SharedService) {}
+  constructor(private requestService: RequestService,
+    private authService: AuthService,
+    private sharedService: SharedService) { }
   // ngOnInit(): void {
   //   const user = this.authService.getUserData();
   //   if (user) {
@@ -41,12 +45,26 @@ export class ApprovedHardwareRequestComponent {
 
   ngOnInit(): void {
     const user = this.authService.getUserData();
+    this.loading= true
     if (user) {
       // Subscribe to the data from SharedService
       this.sharedService.getData(user.id).subscribe(
         (items: any[]) => {
           const filteredItems = items.filter((item) => item.availableProducts && item.availableProducts.length > 0 && item.availableProducts[0]?.status == 'Approved');
           this.data = filteredItems;
+          this.filteredData = [...this.data]; 
+          if (this.filteredData) {
+            this.loading=false
+          }
+         const seenNames = new Set<string>();
+          this.data.forEach((item: any) => {
+            item.availableProducts.forEach((product: any) => {
+              if (!seenNames.has(product.status)) {
+                seenNames.add(product.status);
+                this.status.push(product.status);
+              }
+            });
+          });
           console.log('Filtered Data:', this.data);
         },
         (error) => {
@@ -55,7 +73,28 @@ export class ApprovedHardwareRequestComponent {
       );
     }
   }
-
+  filterBystatus(): void {
+    if (this.selectedstatus === 'all') {
+      this.filteredData = [...this.data]; // Show all data
+    } else if (this.selectedstatus) {
+      this.filteredData = this.data.filter((item) =>
+        item.availableProducts.some(
+          (product: any) => product.status == this.selectedstatus
+        )
+      );
+    }
+  }
+  sortData() {
+    if (this.selectedSortOption === 'name') {
+      this.filteredData.sort((a, b) =>
+        a.employees[0]?.name.localeCompare(b.employees[0]?.name)
+      );
+    } else if (this.selectedSortOption === 'date') {
+      this.filteredData.sort(
+        (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+      );
+    }
+  }
   // data = [
   //   {
   //     no: '001',
@@ -84,20 +123,20 @@ export class ApprovedHardwareRequestComponent {
   //     console.log(`Dialog result: ${result}`);
   //   });
   // }
-  
-   openDialog(item:any) {
-      console.log(item);
-      
-      const dialogRef = this.dialog.open(ViewApprovedHardwareRequestComponent, {
-        data: item, // Pass the item to the dialog component
-        width: 'auto', // Optional: Customize the dialog width
-      });
-  
-      dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
-        this.ngOnInit()
-      });
-    }
+
+  openDialog(item: any) {
+    console.log(item);
+
+    const dialogRef = this.dialog.open(ViewApprovedHardwareRequestComponent, {
+      data: item, // Pass the item to the dialog component
+      width: 'auto', // Optional: Customize the dialog width
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.ngOnInit()
+    });
+  }
 
   get totalPages() {
     return Math.ceil(this.data.length / this.itemsPerPage);
@@ -140,7 +179,7 @@ export class ApprovedHardwareRequestComponent {
 
   get paginatedData() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.data.slice(startIndex, startIndex + this.itemsPerPage);
+    return this.filteredData.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
   goToPage(page: number) {

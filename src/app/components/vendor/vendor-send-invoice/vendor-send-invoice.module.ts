@@ -6,12 +6,14 @@ import { SendInvoiceTableComponent } from './send-invoice-table/send-invoice-tab
 import { AddInvoiceComponent } from './add-invoice/add-invoice.component';
 import { MaterialModule } from 'src/app/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SendInvoiceDetailsComponent } from './send-invoice-details/send-invoice-details.component';
 
 
 @NgModule({
   declarations: [
     SendInvoiceTableComponent,
-    AddInvoiceComponent
+    AddInvoiceComponent,
+    SendInvoiceDetailsComponent
   ],
   imports: [
     CommonModule,

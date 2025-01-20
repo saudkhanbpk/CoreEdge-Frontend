@@ -5,7 +5,7 @@
     <div class="secondary-row">
       <div class="input-group">
         <input type="text" class="form-control input-group-form-control" placeholder="Search Purchase Order"
-          aria-label="Quick Search">
+          aria-label="Quick Search" (input)="onInputChange($event)">
         <button class="btn search-order-btn" type="button" id="button-addon2">
           <mat-icon>search</mat-icon>
         </button>
@@ -14,7 +14,9 @@
   </div>
   <div class="table-container p-2 mt-2">
     <div class="d-flex justify-content-end flex-wrap mb-2 gap-2 bg-none">
-      <select class="form-select bg-none border-0 w-auto shadow-0">
+      <select class="form-select bg-none border-0 w-auto shadow-0"
+      [(ngModel)]="selectedSortOption" 
+      (change)="sortData()">
         <option value="" disabled selected>sort</option>
         <option value="name">By Name</option>
         <option value="date">By Date</option>
@@ -66,6 +68,13 @@
           </tr>
         </thead>
         <tbody>
+          <ng-container class="w-100" *ngIf="loading">
+            <tr class="w-100">
+                <td colspan="8" class="my-0 border-bottom-0 p-0">
+                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                </td>
+            </tr>
+        </ng-container >
           <ng-container *ngFor="let item of paginatedData; let i = index">
             <tr>
               <td>

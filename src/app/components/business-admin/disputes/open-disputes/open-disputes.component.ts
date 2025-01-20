@@ -14,12 +14,56 @@ export class OpenDisputesComponent {
   itemsPerPage = 10;
   expandedIndex: number | null = null;
   readonly dialog = inject(MatDialog);
+  selectedstatus:any =[];
+  filteredData:any=[];
+  status:any=[];
+  selectedSortOption:any =[]
 
   constructor() {}
   ngOnInit(): void {
     console.log('this is data', this.data);
+    this.filteredData = this.data
+    const seenNames = new Set();
+    this.data.forEach((element:any) => {
+       if (!seenNames.has(element.vendorname)) {
+        seenNames.add(element.vendorname);
+        this.status.push(element.vendorname);
+        }
+    });
+  }
+  
+
+  filteredbystatus() {
+    if(this.selectedstatus == 'all'){
+      this.filteredData = [...this.data];
+    }else{
+      this.filteredData = this.selectedstatus
+      ? this.data.filter(
+          (item:any) =>
+            item?.vendorname == this.selectedstatus
+        )
+      : [...this.data];
+    }   
   }
 
+  sortData() {
+    if (this.selectedSortOption === 'name') {
+      this.filteredData.sort((a:any, b:any) =>
+        a?.vendorname.localeCompare(b.vendorname)
+      );
+    } else if (this.selectedSortOption === 'date') {
+      this.filteredData.sort(
+        (a:any, b:any) => new Date(a.startdate).getTime() - new Date(b.startdate).getTime()
+      );
+
+    }else if (this.selectedSortOption === 'amount') {
+      this.filteredData.sort((a:any, b:any) =>
+        a?.totalamount.localeCompare(b.totalamount)
+      );
+    }
+  }
+
+  
   data = [
     {
       no: '001',
@@ -47,7 +91,7 @@ export class OpenDisputesComponent {
 
   get paginatedData() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.data.slice(startIndex, startIndex + this.itemsPerPage);
+    return this.filteredData.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
   goToPage(page: number) {

@@ -58,7 +58,7 @@ export class ContractsTableComponent {
     }
   }
   get totalPages() {
-    return Math.ceil(this.data.length / this.itemsPerPage);
+    return Math.ceil(this.data?.length / this.itemsPerPage);
   }
 
   get paginatedData() {

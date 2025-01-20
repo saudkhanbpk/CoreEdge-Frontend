@@ -16,7 +16,11 @@ export class PurchaseRequestTableComponent {
   currentPage = 1;
   itemsPerPage = 10; 
   data: any[] = [];
+  filteredData: any[] = [];
   Employee:any[] =[];
+  selectedEmployee='';
+  selectedSortOption='';
+  loading : boolean = false
   readonly dialog = inject(MatDialog);
   constructor(
     private requestService: RequestService,
@@ -26,16 +30,27 @@ export class PurchaseRequestTableComponent {
 
   ngOnInit(): void {
     const user = this.authService.getUserData();
+    this.loading = true
     if (user) {
       this.sharedService.getData(user.id).subscribe(
         (items: any[]) => {
           const filteredItems = items.filter((item) => item.unavailableProducts && item.unavailableProducts.length > 0);
           this.data = filteredItems;
-          console.log('Filtered Data:', this.data);
-         this.Employee = this.data.map((i:any) =>{
-          const employee = i.employee;
-          return employee;
-         })
+          this.filteredData = this.data
+          if(this.filteredData){
+            this.loading = false
+          }
+          // here check the employee lit before the same name are present
+          const seenNames = new Set();
+          this.Employee = this.data
+            .map((i: any) => i.employees[0])
+            .filter((employee: any) => {
+              if (!seenNames.has(employee.name)) {
+                seenNames.add(employee.name);
+                return true;
+              }
+              return false;
+            });
         },
         (error) => {
           console.error('Error fetching data:', error);
@@ -43,8 +58,43 @@ export class PurchaseRequestTableComponent {
       );
     }
   }
-  
+  filterByEmployeeNAme() {
+    if(this.selectedEmployee == 'all'){
+      this.filteredData = [...this.data];
+    }else{
+      this.filteredData = this.selectedEmployee
+      ? this.data.filter(
+          (item) =>
+            item.employees[0]?.name == this.selectedEmployee
+        )
+      : [...this.data];
+    }   
+  }
 
+  sortData() {
+    if (this.selectedSortOption === 'name') {
+      this.filteredData.sort((a, b) =>
+        a.employees[0]?.name.localeCompare(b.employees[0]?.name)
+      );
+    } else if (this.selectedSortOption === 'date') {
+      this.filteredData.sort(
+        (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+      );
+    } 
+  }
+
+  onInputChange(event: any) {
+    const searchTerm = event.target.value; // Update the searchTerm variable
+    if (searchTerm) {
+      this.filteredData = this.data.filter((item: any) =>
+        item.employees[0].name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.employees[0].email.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    } else {
+      this.filteredData = this.data; // Reset to all vendors if search term is empty
+    }
+    this.currentPage = 1; // Reset to the first page when filtering
+  }
   // data = [
   //   {
   //     no: '001',
@@ -85,7 +135,7 @@ export class PurchaseRequestTableComponent {
 
   get paginatedData() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.data.slice(startIndex, startIndex + this.itemsPerPage);
+    return this.filteredData.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
   goToPage(page: number) {

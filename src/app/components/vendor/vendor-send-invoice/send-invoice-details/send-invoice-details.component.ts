@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { InvoiceService } from 'src/app/services/invoice.service';
 
 @Component({
-  selector: 'app-invoice-details',
-  templateUrl: './invoice-details.component.html',
-  styleUrls: ['./invoice-details.component.css']
+  selector: 'app-send-invoice-details',
+  templateUrl: './send-invoice-details.component.html',
+  styleUrls: ['./send-invoice-details.component.css']
 })
-export class InvoiceDetailsComponent {
+export class SendInvoiceDetailsComponent {
   showDisputeOptions: boolean = false;
   masterCheckboxChecked: boolean = false;
   isLoading: boolean = false; 
@@ -14,21 +14,18 @@ export class InvoiceDetailsComponent {
   showDisputeSection: boolean = false; 
   disputeSubmitted: boolean = false; 
   uploadedImageUrl: string = '';
-  invoiceData:any;
-  purchasedItems:any[]=[]
+  invoiceData:any
 
-  constructor(private invoiceService:InvoiceService){
-    this.invoiceService.currentinvoicedata.subscribe((res:any)=>{
-      console.log("sta", res)
-      this.invoiceData = res
-      this.purchasedItems = res?.products
- 
-    })
+  constructor(public invoiceService:InvoiceService){
+  this.invoiceService.currentinvoicedata.subscribe((res:any)=>{
+     console.log("sta", res)
+     this.invoiceData = res
+     this.purchasedItems = res?.products
+
+   })
   }
 
-  // purchasedItems = [
-  //   { name: 'Desktop Monitor', quantity: 1, unitPrice: 150, price: 150, checked: false },
-  // ]
+  purchasedItems:any[] =[]
   openDispute(): void {
     this.showDisputeOptions = true;
   }

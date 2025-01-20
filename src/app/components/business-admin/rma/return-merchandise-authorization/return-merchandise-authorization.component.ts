@@ -28,6 +28,9 @@ import { ViewRmaComponent } from '../view-rma/view-rma.component';
   styleUrls: ['./return-merchandise-authorization.component.css']
 })
 export class ReturnMerchandiseAuthorizationComponent {
+  filteredData:any =[]
+  status:any =[];
+  selectedSortOption:any=[]
   // rmaOrders: RMAOrder[] = [
   //   {
   //     rmaNo: 'RMA-001',
@@ -68,9 +71,69 @@ export class ReturnMerchandiseAuthorizationComponent {
   currentPage = 1;
   itemsPerPage = 10;
   expandedIndex: number | null = null;
+  selectedstatus:any=''
   readonly dialog = inject(MatDialog);
   constructor() {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.filteredData = this.data;
+    const seenNames = new Set();
+    this.filteredData.forEach((element:any) => {
+       if (!seenNames.has(element.status)) {
+        seenNames.add(element.status);
+        this.status.push(element.status);
+        }
+    });
+  }
+
+  filteredbystatus() {
+    if(this.selectedstatus == 'all'){
+      this.filteredData = [...this.data];
+    }else{
+      this.filteredData = this.selectedstatus
+      ? this.data.filter(
+          (item:any) =>
+            item.status == this.selectedstatus
+        )
+      : [...this.data];
+    }   
+  }
+  
+  sortData() {
+    if (this.selectedSortOption === 'name') {
+      this.filteredData.sort((a:any, b:any) =>
+        a?.employeename.localeCompare(b.employeename)
+      );
+    } else if (this.selectedSortOption === 'date') {
+      this.filteredData.sort(
+        (a:any, b:any) => new Date(a.startdate).getTime() - new Date(b.startdate).getTime()
+      );
+
+    }else if (this.selectedSortOption === 'amount') {
+      this.filteredData.sort((a:any, b:any) =>
+        a?.totalamount.localeCompare(b.totalamount)
+      );
+    }
+  }
+
+
+  onInputChange(event: any) {
+    
+    const searchTerm = event.target.value; // Update the searchTerm variable
+    if (searchTerm) {
+      this.filteredData = this.data.filter((item: any) =>
+        item?.employeename.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item?.employeeemail.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item?.venderName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item?.rmano.toLowerCase().includes(searchTerm.toLowerCase()) 
+        
+      );
+    } else {
+      this.filteredData = this.data; // Reset to all vendors if search term is empty
+    }
+    this.currentPage = 1; // Reset to the first page when filtering
+  }
+
+
 
   data = [
     {
@@ -239,7 +302,7 @@ export class ReturnMerchandiseAuthorizationComponent {
 
   get paginatedData() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.data.slice(startIndex, startIndex + this.itemsPerPage);
+    return this.filteredData.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
   goToPage(page: number) {

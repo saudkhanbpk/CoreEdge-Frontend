@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -10,6 +10,12 @@ export class InvoiceService {
   private apiUrl = `${environment.apiUrl}/invoices`; // Assuming environment.ts has the API URL defined
 
   constructor(private http: HttpClient) {}
+  private selectedinvoicessubject = new BehaviorSubject<any[]>([]);
+  currentinvoicedata = this.selectedinvoicessubject.asObservable();
+  // send the data from send invoice c and get in send-invoice-details c
+  sendAndGetInvoceData(term: any) {
+    this.selectedinvoicessubject.next(term);
+  }
 
   // Create an invoice
   createInvoice(invoiceData: any): Observable<any> {

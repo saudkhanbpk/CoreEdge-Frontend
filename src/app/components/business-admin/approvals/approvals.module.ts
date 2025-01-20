@@ -10,6 +10,7 @@ import { ViewApprovedRmaRequestComponent } from './view-approved-rma-request/vie
 import { ApprovedHardwareRequestComponent } from './approved-hardware-request/approved-hardware-request.component';
 import { ViewApprovedHardwareRequestComponent } from './view-approved-hardware-request/view-approved-hardware-request.component';
 import { MaterialModule } from 'src/app/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +26,9 @@ import { MaterialModule } from 'src/app/material';
   imports: [
     CommonModule,
     ApprovalsRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class ApprovalsModule { }

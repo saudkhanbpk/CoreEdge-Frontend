@@ -6,6 +6,7 @@
     <div class="secondary-row">
       <div class="input-group">
         <input type="text" class="form-control input-group-form-control" placeholder="Search Purchase Request"
+        (input)="onInputChange($event)"
           aria-label="Quick Search">
         <button class="btn search-order-btn" type="button" id="button-addon2">
           <mat-icon>search</mat-icon>
@@ -15,12 +16,18 @@
   </div>
   <div class="table-container p-2 mt-2">
     <div class="d-flex justify-content-end flex-wrap mb-2 gap-2 bg-none">
-      <select class="form-select bg-none filter-select w-auto shadow-none">
+      <select class="form-select bg-none filter-select w-auto shadow-none"
+      [(ngModel)]="selectedEmployee" 
+      (change)="filterByEmployeeNAme()"
+      >
         <option value="" disabled selected>Employee</option>
-        <option *ngFor="let e of Employee" [value]="e">{{e?.name}}</option>
+        <option value="all" >All</option>
+        <option *ngFor="let e of Employee" [value]="e.name">{{e?.name}}</option>
       </select>
 
-      <select class="form-select bg-none filter-select w-auto shadow-none">
+      <select class="form-select bg-none filter-select w-auto shadow-none"
+      [(ngModel)]="selectedSortOption" 
+      (change)="sortData()">
         <option value="" disabled selected>sort</option>
         <option value="name">By Name</option>
         <option value="date">By Date</option>
@@ -52,6 +59,13 @@
           </tr>
         </thead>
         <tbody>
+          <ng-container class="w-100" *ngIf="loading">
+            <tr class="w-100">
+                <td colspan="7" class="my-0 border-bottom-0 p-0">
+                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                </td>
+            </tr>
+        </ng-container >
           <ng-container>
             <tr *ngFor="let item of paginatedData; let i = index">
               <td>

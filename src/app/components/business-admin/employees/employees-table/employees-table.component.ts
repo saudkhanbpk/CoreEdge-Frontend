@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./employees-table.component.css']
 })
 export class EmployeesTableComponent {
+  // loading : boolean = false
   currentPage = 1;
   itemsPerPage = 10; 
   expandedIndex: number | null = null;
@@ -26,8 +27,12 @@ export class EmployeesTableComponent {
   }
 
   loadRoles(userId: number) {
+    // this.loading = true
     this.employesService.findById(userId).subscribe((response: any) => {
       this.data = response; 
+      // if (this.data) {
+      //   this.loading = false
+      // }
     });
   }
 

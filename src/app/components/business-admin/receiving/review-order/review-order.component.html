@@ -25,7 +25,7 @@
                     </button>
                 </div>
                 <div>
-                    <button class="btn clear-btn" [disabled]="isAnyCheckboxChecked">
+                    <button class="btn clear-btn" [disabled]="isAnyCheckboxChecked" (click)=" openDialog()">
                         Clear Received Order
                         <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="1.5" y="1" width="20" height="20" rx="5" stroke="white" stroke-width="1.5" />
@@ -100,6 +100,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <ng-container class="w-100" *ngIf="loading">
+                                <tr class="w-100">
+                                    <td colspan="7" class="my-0 border-bottom-0 p-0">
+                                        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                                    </td>
+                                </tr>
+                            </ng-container >
                             <tr *ngFor="let item of selectedOrder?.products; let i = index">
                                 <td>
                                     <div class="table-data gap-2 d-flex">
