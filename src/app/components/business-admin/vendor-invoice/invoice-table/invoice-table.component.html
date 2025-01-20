@@ -74,28 +74,28 @@
               </td>
               <td>
                 <div class="table-data">
-                  {{ invoice.id }}
+                  {{ invoice?.id }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ invoice.purchaseOrderNo }}
+                  {{ invoice?.purchaseOrderNo }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ invoice.vendor.name }}
+                  {{ invoice?.vendor?.name }}
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ invoice.vendor.email }}
+                  {{ invoice?.vendor?.email }}
 
                 </div>
               </td>
               <td>
                 <div class="table-data">
-                  {{ invoice.totalPrice | currency }}
+                  {{ invoice?.totalPrice | currency }}
                 </div>
               </td>
               <td>
@@ -103,13 +103,13 @@
                   <div
                     class="status p-2"
                     [ngClass]="{
-                      completed: invoice.adminStatus === 'Paid',
-                      rejected: invoice.adminStatus === 'Dispute',
-                      inprogress: invoice.adminStatus === 'Pending',
-                      resolved: invoice.adminStatus === 'Resolved'
+                      completed: invoice?.adminStatus === 'Paid',
+                      rejected: invoice?.adminStatus === 'Dispute',
+                      inprogress: invoice?.adminStatus === 'Pending',
+                      resolved: invoice?.adminStatus === 'Resolved'
                     }"
                   >
-                    {{ invoice.adminStatus }}
+                    {{ invoice?.adminStatus }}
                   </div>
                 </div>
               </td>
@@ -146,7 +146,7 @@
           </li>
     
           <ng-container
-            *ngFor="let page of [].constructor(totalPages); let index = index"
+            *ngFor="let page of [432]?.constructor(totalPages); let index = index"
           >
             <li
               class="page-item"

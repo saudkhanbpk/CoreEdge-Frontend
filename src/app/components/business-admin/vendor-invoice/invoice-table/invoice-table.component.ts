@@ -36,12 +36,12 @@ export class InvoiceTableComponent {
   }
 
   get totalPages() {
-    return Math.ceil(this.data.length / this.itemsPerPage);
+    return Math.ceil(this.data?.length / this.itemsPerPage);
   }
 
   get paginatedData() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.data.slice(startIndex, startIndex + this.itemsPerPage);
+    return this.data?.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
   goToPage(page: number) {

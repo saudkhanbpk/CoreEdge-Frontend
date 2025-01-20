@@ -89,7 +89,7 @@ export class AddInvoiceComponent {
 
     this.invoiceService.createInvoice(invoiceData).subscribe(
       (response) => {
-        this.router.navigate(['/vendor/vendor-catalog']);
+        this.router.navigate(['vendor/vendor-invoice/send-invoice-table']);
         // console.log('Invoice Created Successfully:', response);
       },
       (error) => {
