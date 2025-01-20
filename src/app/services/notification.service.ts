@@ -10,14 +10,14 @@ export class NotificationService {
 
   constructor() {
     // Connect to the WebSocket server
-    this.socket = io('http://localhost:3000'); // The same server and port as your backend
+    this.socket = io('http://localhost:3000'); 
   }
 
   // Listen to invoice notifications
   listenToInvoiceNotifications(): Observable<string> {
     return new Observable((observer) => {
       this.socket.on('new_invoice_notification', (message: string) => {
-        observer.next(message);  // Send message when a new notification is received
+        observer.next(message); 
       });
     });
   }

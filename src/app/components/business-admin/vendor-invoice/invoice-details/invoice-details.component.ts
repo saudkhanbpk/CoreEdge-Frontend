@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { InvoiceService } from 'src/app/services/invoice.service';
 
 @Component({
@@ -9,21 +10,25 @@ import { InvoiceService } from 'src/app/services/invoice.service';
 export class InvoiceDetailsComponent {
   showDisputeOptions: boolean = false;
   masterCheckboxChecked: boolean = false;
-  isLoading: boolean = false; 
-  isPaid: boolean = false;    
-  showDisputeSection: boolean = false; 
-  disputeSubmitted: boolean = false; 
+  isLoading: boolean = false;
+  isPaid: boolean = false;
+  showDisputeSection: boolean = false;
+  disputeSubmitted: boolean = false;
   uploadedImageUrl: string = '';
-  invoiceData:any;
-  purchasedItems:any[]=[]
+  invoiceData: any;
+  purchasedItems: any[] = []
 
-  constructor(private invoiceService:InvoiceService){
-    this.invoiceService.currentinvoicedata.subscribe((res:any)=>{
-      console.log("sta", res)
-      this.invoiceData = res
-      this.purchasedItems = res?.products
- 
-    })
+  constructor(private invoiceService: InvoiceService, private router: Router
+
+  ) {
+    this.invoiceService.currentInvoiceData.subscribe((res: any) => {
+      if (res && Object.keys(res).length > 0) {
+        this.invoiceData = res;
+        this.purchasedItems = res?.products || [];
+      } else {
+        this.router.navigate(['/business-admin/vendor-invoice/invoice-table']);
+      }
+    });
   }
 
   // purchasedItems = [

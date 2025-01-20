@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { InvoiceService } from 'src/app/services/invoice.service';
 
 @Component({
@@ -9,23 +10,28 @@ import { InvoiceService } from 'src/app/services/invoice.service';
 export class SendInvoiceDetailsComponent {
   showDisputeOptions: boolean = false;
   masterCheckboxChecked: boolean = false;
-  isLoading: boolean = false; 
-  isPaid: boolean = false;    
-  showDisputeSection: boolean = false; 
-  disputeSubmitted: boolean = false; 
+  isLoading: boolean = false;
+  isPaid: boolean = false;
+  showDisputeSection: boolean = false;
+  disputeSubmitted: boolean = false;
   uploadedImageUrl: string = '';
-  invoiceData:any
+  invoiceData: any
 
-  constructor(public invoiceService:InvoiceService){
-  this.invoiceService.currentinvoicedata.subscribe((res:any)=>{
-     console.log("sta", res)
-     this.invoiceData = res
-     this.purchasedItems = res?.products
+  constructor(public invoiceService: InvoiceService, private router : Router) {
+    this.invoiceService.currentInvoiceData.subscribe((res: any) => {
+      if (res && Object.keys(res).length > 0) {
+        console.log();
+        
+        this.invoiceData = res;
+        this.purchasedItems = res?.products || []; 
+      } else {
+        this.router.navigate(['/vendor/vendor-invoice/send-invoice-table']); 
+      }
+    });
 
-   })
   }
 
-  purchasedItems:any[] =[]
+  purchasedItems: any[] = []
   openDispute(): void {
     this.showDisputeOptions = true;
   }

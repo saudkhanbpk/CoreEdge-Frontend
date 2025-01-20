@@ -73,7 +73,6 @@ export class SendInvoiceTableComponent implements OnInit {
     }
   }
 
-
   updateDisplayedInvoices(): void {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
@@ -116,10 +115,11 @@ export class SendInvoiceTableComponent implements OnInit {
     });
   }
 
-  viewInvoice(item:any){
-  this.invoiceService.sendAndGetInvoceData(item)
-  this.router.navigate(['/vendor/vendor-invoice/send-invoice-details'])
+  viewInvoice(item: any): void {    
+    this.invoiceService.sendAndGetInvoiceData(item); 
+    this.router.navigate(['/vendor/vendor-invoice/send-invoice-details']);
   }
+  
 
   previousPage(): void {
     if (this.currentPage > 1) {

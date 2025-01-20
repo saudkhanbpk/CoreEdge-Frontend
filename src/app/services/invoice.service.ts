@@ -1,20 +1,24 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class InvoiceService {
-  private apiUrl = `${environment.apiUrl}/invoices`; // Assuming environment.ts has the API URL defined
+  private apiUrl = `${environment.apiUrl}/invoices`;
+  private invoicesCache$ = new BehaviorSubject<any[] | null>(null);
 
   constructor(private http: HttpClient) {}
-  private selectedinvoicessubject = new BehaviorSubject<any[]>([]);
-  currentinvoicedata = this.selectedinvoicessubject.asObservable();
-  // send the data from send invoice c and get in send-invoice-details c
-  sendAndGetInvoceData(term: any) {
-    this.selectedinvoicessubject.next(term);
+
+  // Share data between components
+  private selectedInvoiceSubject = new BehaviorSubject<any[]>([]);
+  currentInvoiceData = this.selectedInvoiceSubject.asObservable();
+
+  sendAndGetInvoiceData(term: any): void {
+    this.selectedInvoiceSubject.next(term);
   }
 
   // Create an invoice
@@ -28,9 +32,7 @@ export class InvoiceService {
 
   // Get all invoices
   getAllInvoices(): Observable<any[]> {
-    return this.http
-      .get<any[]>(this.apiUrl)
-      .pipe(catchError(this.handleError));
+    return this.http.get<any[]>(this.apiUrl).pipe(catchError(this.handleError));
   }
 
   // Get invoice by ID
@@ -47,11 +49,17 @@ export class InvoiceService {
       .pipe(catchError(this.handleError));
   }
 
-  // Get invoices by User ID
+  // Get invoices by User ID with caching
   getInvoicesByUserId(userId: number): Observable<any[]> {
-    return this.http
-      .get<any[]>(`${this.apiUrl}/user/${userId}`)
-      .pipe(catchError(this.handleError));
+    const cachedData = this.invoicesCache$.getValue();
+    if (cachedData) {
+      return of(cachedData);
+    }
+
+    return this.http.get<any[]>(`${this.apiUrl}/user/${userId}`).pipe(
+      tap((data) => this.invoicesCache$.next(data)),
+      catchError(this.handleError)
+    );
   }
 
   // Get invoices by Purchase Order ID
@@ -79,8 +87,7 @@ export class InvoiceService {
 
   // Error handling
   private handleError(error: any): Observable<never> {
-    // Handle error based on status or response
-    console.error('An error occurred', error);
-    throw error; // You can add more specific error handling logic here
+    console.error('Error in InvoiceService:', error);
+    return throwError(() => new Error(error.message || 'Server Error'));
   }
 }
