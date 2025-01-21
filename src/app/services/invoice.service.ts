@@ -11,7 +11,7 @@ export class InvoiceService {
   private apiUrl = `${environment.apiUrl}/invoices`;
   private invoicesCache$ = new BehaviorSubject<any[] | null>(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // Share data between components
   private selectedInvoiceSubject = new BehaviorSubject<any[]>([]);
@@ -69,20 +69,35 @@ export class InvoiceService {
       .pipe(catchError(this.handleError));
   }
 
-  // Update invoice by ID
-  updateInvoice(id: number, invoiceData: any): Observable<any> {
-    return this.http
-      .put<any>(`${this.apiUrl}/${id}`, invoiceData, {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      })
-      .pipe(catchError(this.handleError));
+  updateInvoice(id: number, invoiceData: FormData): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, invoiceData).pipe(
+      tap((updatedInvoice) => {
+        const currentCache = this.invoicesCache$.getValue();
+        if (currentCache) {
+          const updatedCache = currentCache.map((invoice) =>
+            invoice.id === id ? { ...invoice, ...updatedInvoice } : invoice
+          );
+          this.invoicesCache$.next(updatedCache);
+        }
+      }),
+      catchError(this.handleError)
+    );
   }
 
-  // Delete invoice by ID
+  // Delete invoice by ID and refresh cache
   deleteInvoice(id: number): Observable<any> {
-    return this.http
-      .delete<any>(`${this.apiUrl}/${id}`)
-      .pipe(catchError(this.handleError));
+    return this.http.delete<any>(`${this.apiUrl}/${id}`).pipe(
+      tap(() => {
+        const currentCache = this.invoicesCache$.getValue();
+        if (currentCache) {
+          const updatedCache = currentCache.filter(
+            (invoice) => invoice.id !== id
+          );
+          this.invoicesCache$.next(updatedCache);
+        }
+      }),
+      catchError(this.handleError)
+    );
   }
 
   // Error handling

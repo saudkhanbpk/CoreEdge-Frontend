@@ -160,7 +160,7 @@
                 </div>
             </div>
         </div>
-        <div class="section-div mt-3">
+        <div class="section-div mt-3" *ngIf="!showDisputeOptions">
             <h2>Invoice Receipt</h2>
             <div class="upload-container">
                 <div class="upload-icon">
@@ -180,7 +180,7 @@
             </div>
         </div>
         <div class="d-flex gap-2 justify-content-end my-2">
-            <button class="btn add-btn" *ngIf="!showDisputeOptions">Settle Up</button>
+            <button class="btn add-btn" *ngIf="!showDisputeOptions" (click)="clearInvoice()" [disabled]="uploadedImageUrl == '' ">Settle Up</button>
             <button class="btn close" *ngIf="!showDisputeOptions" (click)="openDispute()">Open Dispute</button>
             <button class="btn close" *ngIf="showDisputeOptions">File Dispute</button>
             <button class="btn cancel-btn" *ngIf="showDisputeOptions" (click)="cancelDispute()">Cancel</button>

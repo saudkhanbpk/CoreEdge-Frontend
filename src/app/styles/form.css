@@ -88,6 +88,7 @@
   }
   
   .upload-details {
+    cursor: pointer important!;
     display: flex;
     flex-direction: column;
   }
