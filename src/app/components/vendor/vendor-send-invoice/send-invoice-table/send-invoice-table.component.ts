@@ -94,7 +94,7 @@ export class SendInvoiceTableComponent implements OnInit {
         this.invoiceService.deleteInvoice(item.id).subscribe({
           next: (res: any) => {
               // Update the invoices array after deletion
-              this.invoices = this.invoices.filter((i: any) => i.id !== item.id);
+              this.filteredData = this.invoices.filter((i: any) => i.id !== item.id);
             // Show success feedback
             Swal.fire(
               'Deleted!',
