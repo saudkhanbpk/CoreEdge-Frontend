@@ -156,7 +156,8 @@
                 </div>
                 <div class="input-div input-div-no-pad my-3" *ngIf="showDisputeOptions">
                     <label for="">Reason for Dispute:</label>
-                    <input type="text" class="form-control" placeholder="Enter reason to file dispute">
+                    <!-- <input type="text" class="form-control" placeholder="Enter reason to file dispute"> -->
+                    <input type="text" class="form-control" placeholder="Enter reason to file dispute" [(ngModel)]="reasonForDispute">
                 </div>
             </div>
         </div>
@@ -182,7 +183,7 @@
         <div class="d-flex gap-2 justify-content-end my-2">
             <button class="btn add-btn" *ngIf="!showDisputeOptions" (click)="clearInvoice()" [disabled]="uploadedImageUrl == '' ">Settle Up</button>
             <button class="btn close" *ngIf="!showDisputeOptions" (click)="openDispute()">Open Dispute</button>
-            <button class="btn close" *ngIf="showDisputeOptions">File Dispute</button>
+            <button class="btn close" *ngIf="showDisputeOptions" (click)="fileDispute()">File Dispute</button>
             <button class="btn cancel-btn" *ngIf="showDisputeOptions" (click)="cancelDispute()">Cancel</button>
         </div>
     </div>

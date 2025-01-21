@@ -20,7 +20,7 @@ export class InvoiceDetailsComponent {
   invoiceData: any;
   purchasedItems: any[] = []
   file: File | null = null;
-
+  reasonForDispute: string = '';
 
   constructor(private invoiceService: InvoiceService, private router: Router
 
@@ -69,7 +69,17 @@ export class InvoiceDetailsComponent {
       this.file = null;
     }
   }
+  
+  fileDispute(): void {
+    // Log the reason for dispute
+    console.log('Reason for Dispute:', this.reasonForDispute);
+  
+    // Log the checked items
+    const checkedItems = this.purchasedItems.filter(item => item.checked);
+    console.log('Checked Items:', checkedItems);
+  }
 
+  
   clearInvoice(): void {
     if (!this.invoiceData) {
       Swal.fire({
