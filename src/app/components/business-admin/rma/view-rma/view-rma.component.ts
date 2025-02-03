@@ -6,8 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./view-rma.component.css']
 })
 export class ViewRmaComponent {
-  isLoading: boolean = false; 
-  isunavailable: boolean = false;
+
   // vendors: any[] = [
   //   { id: 1, name: 'Vendor A' },
   //   { id: 2, name: 'Vendor B' },
