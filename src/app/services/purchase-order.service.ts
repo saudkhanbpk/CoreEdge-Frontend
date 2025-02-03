@@ -134,12 +134,12 @@ export class PurchaseOrderService {
   //   return this.http.get<any[]>(`${this.apiUrl}/rma/${userId}`).pipe(catchError(this.handleError));
   // }
 
-  getOrdersWithRMA(userId: number): Observable<any> {
+  getOrdersWithRMA(userId: number, type:string): Observable<any> {
     if (this.rmaOrdersCache.value) {
       return this.rmaOrdersCache.asObservable(); // Return cached data if available
     }
   
-    return this.http.get<any[]>(`${this.apiUrl}/rma/${userId}`).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}/rma/${type}/${userId}`).pipe(
       tap((orders) => this.rmaOrdersCache.next(orders)), // Store response in cache
       catchError(this.handleError)
     );

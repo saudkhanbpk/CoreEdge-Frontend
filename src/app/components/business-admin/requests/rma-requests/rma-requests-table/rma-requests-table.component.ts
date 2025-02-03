@@ -24,22 +24,8 @@ export class RmaRequestsTableComponent {
     this.fetchRMAOrders(user.id);
   }
 
-
-  // fetchRMAOrders(userid: any): void {
-  //   this.purchaseOrderService.getOrdersWithRMA(userid).subscribe({
-  //     next: (orders) => {
-  //       this.data = orders;
-  //       this.filteredData = this.data
-
-  //       console.log("RMA Orders:", this.data);
-  //     },
-  //     error: (error) => {
-  //       console.error("Error fetching RMA orders:", error);
-  //     }
-  //   });
-  // }
   fetchRMAOrders(userId: any): void {
-    this.purchaseOrderService.getOrdersWithRMA(userId).subscribe({
+    this.purchaseOrderService.getOrdersWithRMA(userId,'user').subscribe({
       next: (orders) => {
         this.data = [...orders]; // Ensuring immutability
         this.filteredData = [...this.data]; // Creating a fresh reference

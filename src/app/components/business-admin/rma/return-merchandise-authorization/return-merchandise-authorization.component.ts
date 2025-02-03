@@ -23,28 +23,8 @@ export class ReturnMerchandiseAuthorizationComponent {
       // this.loadRoles(user.id);
       this.fetchRMAOrders(user.id);
     }
-  
-    // fetchRMAOrders(userid:any): void {
-    //   this.purchaseOrderService.getOrdersWithRMA(userid).subscribe({
-    //     next: (orders) => {
-    //       this.data = orders;
-    //       this.filteredData = this.data;
-    //         const seenNames = new Set();
-    //         this.filteredData.forEach((element:any) => {
-    //            if (!seenNames.has(element.status)) {
-    //             seenNames.add(element.status);
-    //             this.status.push(element.status);
-    //             }
-    //         });
-    //       console.log("RMA Orders:", this.data);
-    //     },
-    //     error: (error) => {
-    //       console.error("Error fetching RMA orders:", error);
-    //     }
-    //   });
-    // }
     fetchRMAOrders(userId: any): void {
-      this.purchaseOrderService.getOrdersWithRMA(userId).subscribe({
+      this.purchaseOrderService.getOrdersWithRMA(userId, 'user').subscribe({
         next: (orders) => {
           if (!this.data) { // Fetch data only if not already set
             this.data = [...orders];

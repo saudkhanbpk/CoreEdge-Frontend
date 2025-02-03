@@ -30,7 +30,7 @@ export class ApprovedRmaRequestComponent implements OnInit {
   }
 
   private fetchApprovedRMAOrders(userId: any): void {
-    this.purchaseOrderService.getOrdersWithRMA(userId).subscribe({
+    this.purchaseOrderService.getOrdersWithRMA(userId, 'user').subscribe({
       next: (orders) => {
         this.data = orders.filter(
           (item: any) => item.rmaProducts[0]?.adminStatus === 'Approved'
