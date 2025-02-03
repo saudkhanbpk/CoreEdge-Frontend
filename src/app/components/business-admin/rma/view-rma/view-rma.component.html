@@ -6,7 +6,7 @@
     <mat-dialog-content class="mat-typography">
       <div class="row row1">
         <h3>These products are faulty 🥺</h3>
-        <div class="col-md-6 p-0">
+        <!-- <div class="col-md-6 p-0">
           <div class="mb-3">
             <h4>Employee Name:</h4>
             <span>James Anderson</span>
@@ -19,23 +19,23 @@
             <h4>Employee Contact:</h4>
             <span>001 393 393 3923</span>
           </div>
-        </div>
+        </div> -->
         <div class="col-md-6 p-0">
           <div class="mb-3">
             <h4>Vendor Name:</h4>
-            <span>Brendon McCullum</span>
+            <span>{{data.vendor[0].name }}</span>
           </div>
           <div class="mb-3">
             <h4>Vendor Email:</h4>
-            <span>Brendon&#64;gmail.com</span>
+            <span>{{data.vendor[0].email }}</span>
           </div>
           <div class="mb-3">
             <h4>Vendor Contact:</h4>
-            <span>001 393 393 3923</span>
+            <span>{{data.vendor[0].phone }}</span>
           </div>
         </div>
       </div>
-      <div class="row row1 mt-2">
+      <!-- <div class="row row1 mt-2">
         <div class="col-md-12 p-0">
           <h4>Description:</h4>
           <span
@@ -43,7 +43,7 @@
             accusamus cumque voluptates impedit!</span
           >
         </div>
-      </div>
+      </div> -->
       <div class="row">
         <div class="table-div p-0">
           <div class="table-container p-0 mt-2">
@@ -76,43 +76,53 @@
                         Broken Qty
                       </div>
                     </th>
-                    <th scope="col" class="two">
+                    <th scope="col" >
                       <div class="table-data">
                         Wrong Item
+                      </div>
+                    </th>
+                    <th scope="col" class="two">
+                      <div class="table-data">
+                        Reason
                       </div>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of request">
+                  <tr *ngFor="let item of data.rmaProducts; let i = index">
                     <td>
                       <div class="table-data">
-                        {{ item?.no }}
+                        {{ i + 1 }}
                       </div>
                     </td>
                     <td>
                       <div class="table-data">
-                        {{ item?.itemName }}
+                        {{ item?.product.materialId }}
                       </div>
                     </td>
                     <td>
                       <div class="table-data">
-                        {{ item?.orderQty }}
+                        {{ item?.quantity }}
                       </div>
                     </td>
                     <td>
                       <div class="table-data">
-                        {{ item?.receivedQty }}
+                        {{ item?.receivedQuantity }}
                       </div>
                     </td>
                     <td>
                       <div class="table-data">
-                        {{ item?.broken }}
+                        {{ item?.brokenQuantity }}
                       </div>
                     </td>
                     <td>
                       <div class="table-data">
-                        {{ item?.wrongItem }}
+                        {{ item?.wrongItemQuantity }}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="table-data">
+                        {{ item?.note }}
                       </div>
                     </td>
                   </tr>
@@ -125,18 +135,24 @@
     </mat-dialog-content>
   
     <mat-dialog-actions class="d-flex justify-content-between">
-      <button class="btn check border gap-2">
+      <!-- Send for Approval Button -->
+      <button class="btn check border gap-2" *ngIf="data.status !== 'Approved'" (click)="updateStatus('Returned')">
         <span class="btn-span">Send for Approval</span>
         <mat-icon class="icon-near">near_me</mat-icon>
       </button>
-      <button class="btn check border gap-2 d-none">
-        <span class="btn-span">Return to Vender</span>
+    
+      <!-- Return to Vendor Button -->
+      <button class="btn check border gap-2" *ngIf="data.status === 'Approved'" (click)="updateStatus('Send To Vendor')">
+        <span class="btn-span">Return to Vendor</span>
         <mat-icon class="icon-near">near_me</mat-icon>
       </button>
+    
+      <!-- Cancel Button -->
       <button class="btn close border gap-2" mat-dialog-close>
         <span class="btn-span">Cancel</span>
         <mat-icon class="btn-icon">close</mat-icon>
       </button>
     </mat-dialog-actions>
+    
   </div>
   

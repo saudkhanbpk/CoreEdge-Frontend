@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-clear-order-popp',
@@ -6,7 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./clear-order-popp.component.css']
 })
 export class ClearOrderPoppComponent {
- 
+ constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ClearOrderPoppComponent>) {
+  console.log(this.data)
+  }
   request = [
     {
       no: '001',

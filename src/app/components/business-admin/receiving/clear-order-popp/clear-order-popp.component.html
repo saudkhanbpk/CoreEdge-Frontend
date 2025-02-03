@@ -45,25 +45,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of request">
+                                <tr *ngFor="let item of data.products; let i = index">
                                     <td>
                                         <div class="table-data">
-                                            {{item?.no}}
+                                            {{i + 1}}
                                         </div>
                                     </td>
                                     <td>
                                         <div class="table-data">
-                                            {{item?.materialid}}
+                                            {{item?.product?.materialId}}
                                         </div>
                                     </td>
                                     <td>
                                         <div class="table-data">
-                                            {{item?.orderedqty}}
+                                            {{item?.quantity}}
                                         </div>
                                     </td>
                                     <td>
                                         <div class="table-data">
-                                            {{item?.receievedqty}}
+                                            {{item?.quantity}}
                                         </div>
                                     </td>
                                     <td>

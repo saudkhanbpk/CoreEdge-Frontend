@@ -1,238 +1,102 @@
-import { Component, inject } from '@angular/core';
-import { ViewApprovedRmaRequestComponent } from '../view-approved-rma-request/view-approved-rma-request.component';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from 'src/app/services/auth.service';
+import { PurchaseOrderService } from 'src/app/services/purchase-order.service';
+import { ViewApprovedRmaRequestComponent } from '../view-approved-rma-request/view-approved-rma-request.component';
 
 @Component({
   selector: 'app-approved-rma-request',
   templateUrl: './approved-rma-request.component.html',
   styleUrls: ['./approved-rma-request.component.css']
 })
-export class ApprovedRmaRequestComponent {
+export class ApprovedRmaRequestComponent implements OnInit {
+  readonly dialog = inject(MatDialog);
+  private data: any[] = [];
+
+  filteredData: any[] = []; 
   currentPage = 1;
   itemsPerPage = 5;
+  selectedSortOption: 'name' | 'date' | 'amount' | '' = '';
   expandedIndex: number | null = null;
-  filteredData:any[]=[];
-  selectedSortOption:any='';
-  readonly dialog = inject(MatDialog);
-  constructor() {}
+
+  constructor(
+    private purchaseOrderService: PurchaseOrderService,
+    private authService: AuthService
+  ) {}
+
   ngOnInit(): void {
-this.filteredData = this.data
+    const user = this.authService.getUserData();
+    this.fetchApprovedRMAOrders(user.id);
   }
 
-
-  sortData() {
-    if (this.selectedSortOption === 'name') {
-      this.filteredData.sort((a, b) =>
-        a.employeename.localeCompare(b.employeename)
-      );
-    } else if (this.selectedSortOption === 'date') {
-      this.filteredData.sort(
-        (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-      );
-    } else if (this.selectedSortOption === 'amount') {
-      this.filteredData.sort(
-        (a, b) => a.totalamount - b.totalamount
-      );
-    }
-  }
-
-
-  data = [
-    {
-      rmano: '001',
-      employeename: 'Saad Khan',
-      employeeemail: 'employeeemail@gmail.com',
-      vendorName: 'Dell Monitor',
-      requesteddate: 'October 3rd, 2024',
-      returndate: 'October 5th, 2024',
-      totalamount: '3500',
-      address: 'Las Vegas',
-      status: 'Approved',
-      productdetails: [
-        {
-          name: 'Items Requested',
-          items: [
-            {
-              itemname: 'Monitor',
-              qty: 2,
-              price: 500,
-              reason:
-                'Broken Screen jksd kajhdajkl klajdkljhafklj lakjsdlfkjslk',
-            },
-            {
-              itemname: 'Keyboard',
-              qty: 1,
-              price: 15,
-              reason: 'return this order',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      rmano: '002',
-      employeename: 'Ali Ahmed',
-      employeeemail: 'ali.ahmed@gmail.com',
-      vendorName: 'HP Laptop',
-      requesteddate: 'October 10th, 2024',
-      returndate: 'October 15th, 2024',
-      totalamount: '5000',
-      address: 'New York',
-      status: 'Approved',
-      productdetails: [
-        {
-          name: 'Items Requested',
-          items: [
-            {
-              itemname: 'Laptop',
-              qty: 1,
-              price: 4500,
-              reason: 'Battery issue and poor performance',
-            },
-            {
-              itemname: 'Charger',
-              qty: 1,
-              price: 500,
-              reason: 'Defective product',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      rmano: '003',
-      employeename: 'Fatima Ali',
-      employeeemail: 'fatima.ali@gmail.com',
-      vendorName: 'Apple Store',
-      requesteddate: 'October 20th, 2024',
-      returndate: 'October 25th, 2024',
-      totalamount: '8500',
-      address: 'San Francisco',
-      status: 'Approved',
-      productdetails: [
-        {
-          name: 'Items Requested',
-          items: [
-            {
-              itemname: 'iPhone',
-              qty: 1,
-              price: 8000,
-              reason: 'Not functioning as expected',
-            },
-            {
-              itemname: 'AirPods',
-              qty: 1,
-              price: 500,
-              reason: 'Product damaged during delivery',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      rmano: '004',
-      employeename: 'John Doe',
-      employeeemail: 'john.doe@gmail.com',
-      vendorName: 'Samsung Store',
-      requesteddate: 'November 1st, 2024',
-      returndate: 'November 5th, 2024',
-      totalamount: '6000',
-      address: 'Los Angeles',
-      status: 'Approved',
-      productdetails: [
-        {
-          name: 'Items Requested',
-          items: [
-            {
-              itemname: 'Tablet',
-              qty: 1,
-              price: 5500,
-              reason: 'Screen flickering issue',
-            },
-            {
-              itemname: 'Cover',
-              qty: 1,
-              price: 500,
-              reason: 'Does not fit the tablet model',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      rmano: '005',
-      employeename: 'Zara Khan',
-      employeeemail: 'zara.khan@gmail.com',
-      vendorName: 'Sony Electronics',
-      requesteddate: 'November 8th, 2024',
-      returndate: 'November 12th, 2024',
-      totalamount: '4500',
-      address: 'Houston',
-      status: 'Approved',
-      productdetails: [
-        {
-          name: 'Items Requested',
-          items: [
-            {
-              itemname: 'Camera',
-              qty: 1,
-              price: 4000,
-              reason: 'Lens is not functioning properly',
-            },
-            {
-              itemname: 'Memory Card',
-              qty: 1,
-              price: 500,
-              reason: 'Not compatible with the camera',
-            },
-          ],
-        },
-      ],
-    },
-  ];
-
-  openDialog() {
-    const dialogRef = this.dialog.open(ViewApprovedRmaRequestComponent);
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+  private fetchApprovedRMAOrders(userId: any): void {
+    this.purchaseOrderService.getOrdersWithRMA(userId).subscribe({
+      next: (orders) => {
+        this.data = orders.filter(
+          (item: any) => item.rmaProducts[0]?.adminStatus === 'Approved'
+        );
+        this.applyFilters();
+      },
+      error: (error) => console.error('Error fetching RMA orders:', error),
     });
   }
 
-  toggleDetails(index: number) {
+  private applyFilters(): void {
+    this.filteredData = [...this.data];
+    this.sortData(); 
+  }
+
+  sortData(): void {
+    switch (this.selectedSortOption) {
+      case 'name':
+        this.filteredData.sort((a, b) => a.employeename.localeCompare(b.employeename));
+        break;
+      case 'date':
+        this.filteredData.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+        break;
+      case 'amount':
+        this.filteredData.sort((a, b) => a.totalamount - b.totalamount);
+        break;
+      default:
+        break; 
+    }
+  }
+
+  openDialog(item: any): void {
+    const dialogRef = this.dialog.open(ViewApprovedRmaRequestComponent, { data: item });
+    dialogRef.afterClosed().subscribe((result) => console.log(`Dialog result: ${result}`));
+  }
+
+  toggleDetails(index: number): void {
     this.expandedIndex = this.expandedIndex === index ? null : index;
   }
 
-  get totalPages() {
-    return Math.ceil(this.data.length / this.itemsPerPage);
+  get totalPages(): number {
+    return Math.ceil(this.filteredData.length / this.itemsPerPage);
   }
 
-  get paginatedData() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.filteredData.slice(startIndex, startIndex + this.itemsPerPage);
+  get paginatedData(): any[] {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    return this.filteredData.slice(start, start + this.itemsPerPage);
   }
 
-  goToPage(page: number) {
-    this.currentPage = page;
+  goToPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) this.currentPage = page;
   }
 
-  nextPage() {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-    }
+  nextPage(): void {
+    if (this.isNextPageAvailable()) this.currentPage++;
   }
 
-  previousPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-    }
+  previousPage(): void {
+    if (this.isPreviousPageAvailable()) this.currentPage--;
   }
 
-  isNextPageAvailable() {
+  isNextPageAvailable(): boolean {
     return this.currentPage < this.totalPages;
   }
 
-  isPreviousPageAvailable() {
+  isPreviousPageAvailable(): boolean {
     return this.currentPage > 1;
   }
 }

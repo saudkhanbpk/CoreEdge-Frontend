@@ -106,11 +106,11 @@
               <td>
                 <div class="table-data">
                   <div class="status p-2" [ngClass]="{
-                    completed: order.status === 'Cleared',
-                    rejected: order.status === 'In RMA',
-                    inactive: order.status === 'Pending'
+                    completed: order.adminStatus === 'Cleared',
+                    rejected: order.adminStatus === 'In RMA',
+                    inactive: order.adminStatus === 'Pending'
                   }">
-                    {{ order.status }}
+                    {{ order.adminStatus }}
                   </div>
                 </div>
               </td>

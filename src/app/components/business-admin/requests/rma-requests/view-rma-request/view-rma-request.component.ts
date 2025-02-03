@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AuthService } from 'src/app/services/auth.service';
+import { PurchaseOrderService } from 'src/app/services/purchase-order.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -7,39 +10,59 @@ import Swal from 'sweetalert2';
   styleUrls: ['./view-rma-request.component.css']
 })
 export class ViewRmaRequestComponent {
-  request = [
-    {
-      no: "01",
-      itemName: "Desktop Monitor",
-      orderQty: 3,
-      receivedQty: 2,
-      broken: 0,
-      wrongItem: 0,
-    },
-    {
-      no: "02",
-      itemName: "Logitech Keyboard",
-      orderQty: 15,
-      receivedQty: 12,
-      broken: 4,
-      wrongItem: 2,
-    },
-    {
-      no: "03",
-      itemName: "Logitech Keyboard",
-      orderQty: 1,
-      receivedQty: 1,
-      broken: 0,
-      wrongItem: 0,
-    },
-    {
-      no: "04",
-      itemName: "Logitech Keyboard",
-      orderQty: 1,
-      receivedQty: 1,
-      broken: 0,
-      wrongItem: 0,
-    },
-  ];
+  rmaOrders: any[] = [];
+   userId: any;
+ 
+   isLoading: boolean = false;
+   isunavailable: boolean = false;
+   constructor(private purchaseOrderService: PurchaseOrderService, private authService: AuthService, public dialogRef: MatDialogRef<ViewRmaRequestComponent>,
+     @Inject(MAT_DIALOG_DATA) public data: any) {
+ 
+   }
+ 
+   ngOnInit(): void {
+ 
+   }
+   updateStatus(newStatus: string) {
+    Swal.fire({
+      title: `Are you sure you want to mark this as ${newStatus}?`,
+      text: "This action cannot be undone!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: `Yes, mark as ${newStatus}`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (Array.isArray(this.data.rmaProducts)) {
+          this.data.rmaProducts.forEach((product: any) => {
+            product.adminStatus = newStatus;
+          });
+        } else {
+          this.data.rmaProducts = [];
+        }
   
-}
+        this.data.status = newStatus;
+  
+        this.purchaseOrderService.updatePurchaseOrder(this.data.id, this.data).subscribe(
+          (response) => {
+            Swal.fire("Updated!", `Status has been changed to ${newStatus}.`, "success");
+            console.log("Purchase Order Updated Successfully:", response);
+            this.dialogRef.close(newStatus);
+          },
+          (error) => {
+            Swal.fire("Error!", "Something went wrong while updating the status.", "error");
+            console.error("Error updating purchase order:", error);
+          }
+        );
+      }
+    });
+  }
+  
+  
+  
+ 
+   closeDialog() {
+     this.dialogRef.close();
+   }
+ }

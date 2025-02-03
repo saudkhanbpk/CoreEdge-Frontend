@@ -28,20 +28,6 @@ export class ApprovedHardwareRequestComponent {
   constructor(private requestService: RequestService,
     private authService: AuthService,
     private sharedService: SharedService) { }
-  // ngOnInit(): void {
-  //   const user = this.authService.getUserData();
-  //   if (user) {
-  //     this.requestService.findByUserId(user.id).subscribe(
-  //       (items) => {
-  //         this.data = items;
-  //       },
-  //       (error) => {
-  //         console.error('Error fetching data:', error);
-  //         // this.data = []; // Ensure `data` is always defined
-  //       }
-  //     );
-  //   }
-  // }
 
   ngOnInit(): void {
     const user = this.authService.getUserData();
@@ -95,27 +81,6 @@ export class ApprovedHardwareRequestComponent {
       );
     }
   }
-  // data = [
-  //   {
-  //     no: '001',
-  //     employeename: 'Saad Khan',
-  //     employeeemail: 'employeeemail@gmail.com',
-  //     hardwarerequested: 'Dell Monitor',
-  //     description: 'I just need it, my old monitor is broke.',
-  //     status: 'Approved',
-  //     date:'oct 20 , 2024'
-  //   },
-  //   {
-  //     no: '002',
-  //     employeename: 'Ihtizaz Ahmad',
-  //     employeeemail: 'employeeemail@gmail.com',
-  //     hardwarerequested: 'Dell Monitor',
-  //     description: 'I just need it, my old monitor is broke.',
-  //     status: 'Approved',
-  //     date:'oct 20 , 2024'
-
-  //   },
-  // ];
   // openDialog() {
   //   const dialogRef = this.dialog.open(ViewApprovedHardwareRequestComponent);
 

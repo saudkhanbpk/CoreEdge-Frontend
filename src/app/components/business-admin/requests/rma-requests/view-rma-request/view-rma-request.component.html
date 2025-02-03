@@ -3,7 +3,7 @@
     <h2 mat-dialog-title>RMA Request</h2>
     <mat-icon class="icon" mat-dialog-close>close</mat-icon>
   </div>
-  <mat-dialog-content class="mat-typography">
+  <!-- <mat-dialog-content class="mat-typography">
     <div class="row row1">
       <h3>These products are faulty 🥺</h3>
       <div class="col-md-6 p-0">
@@ -123,15 +123,152 @@
       </div>
     </div>
   </mat-dialog-content>
+   -->
 
+   <mat-dialog-content class="mat-typography">
+    <div class="row row1">
+      <h3>These products are faulty 🥺</h3>
+      <!-- <div class="col-md-6 p-0">
+        <div class="mb-3">
+          <h4>Employee Name:</h4>
+          <span>James Anderson</span>
+        </div>
+        <div class="mb-3">
+          <h4>Employee Email:</h4>
+          <span>JamesAnderson&#64;gmail.com</span>
+        </div>
+        <div class="mb-3">
+          <h4>Employee Contact:</h4>
+          <span>001 393 393 3923</span>
+        </div>
+      </div> -->
+      <div class="col-md-6 p-0">
+        <div class="mb-3">
+          <h4>Vendor Name:</h4>
+          <span>{{data.vendor[0].name }}</span>
+        </div>
+        <div class="mb-3">
+          <h4>Vendor Email:</h4>
+          <span>{{data.vendor[0].email }}</span>
+        </div>
+        <div class="mb-3">
+          <h4>Vendor Contact:</h4>
+          <span>{{data.vendor[0].phone }}</span>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row row1 mt-2">
+      <div class="col-md-12 p-0">
+        <h4>Description:</h4>
+        <span
+          >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
+          accusamus cumque voluptates impedit!</span
+        >
+      </div>
+    </div> -->
+    <div class="row">
+      <div class="table-div p-0">
+        <div class="table-container p-0 mt-2">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" class="one">
+                    <div class="table-data">
+                      No
+                    </div>
+                  </th>
+                  <th scope="col">
+                    <div class="table-data">
+                      Item Name
+                    </div>
+                  </th>
+                  <th scope="col">
+                    <div class="table-data">
+                      Order Qty
+                    </div>
+                  </th>
+                  <th scope="col">
+                    <div class="table-data">
+                      Received Qty
+                    </div>
+                  </th>
+                  <th scope="col">
+                    <div class="table-data">
+                      Broken Qty
+                    </div>
+                  </th>
+                  <th scope="col" >
+                    <div class="table-data">
+                      Wrong Item
+                    </div>
+                  </th>
+                  <th scope="col" class="two">
+                    <div class="table-data">
+                      Reason
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of data.rmaProducts; let i = index">
+                  <td>
+                    <div class="table-data">
+                      {{ i + 1 }}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-data">
+                      {{ item?.product.materialId }}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-data">
+                      {{ item?.quantity }}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-data">
+                      {{ item?.receivedQuantity }}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-data">
+                      {{ item?.brokenQuantity }}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-data">
+                      {{ item?.wrongItemQuantity }}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-data">
+                      {{ item?.note }}
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
   <mat-dialog-actions class="d-flex justify-content-between">
-    <button class="btn check border gap-2">
+    <button 
+      class="btn check border gap-2" 
+      (click)="updateStatus('Approved')">
       <span class="btn-span">Approve Request</span>
       <mat-icon class="btn-icon">check</mat-icon>
     </button>
-    <button class="btn close border gap-2" mat-dialog-close>
+    
+    <button 
+      class="btn close border gap-2" 
+      (click)="updateStatus('Rejected')">
       <span class="btn-span">Reject Request</span>
       <mat-icon class="btn-icon">close</mat-icon>
     </button>
   </mat-dialog-actions>
+  
 </div>

@@ -42,12 +42,12 @@
                 <th scope="col" class="one">
                   <div class="table-data">RMA No</div>
                 </th>
-                <th scope="col">
+                <!-- <th scope="col">
                   <div class="table-data">Employee Name</div>
                 </th>
                 <th scope="col">
                   <div class="table-data">Employee Email</div>
-                </th>
+                </th> -->
                 <th scope="col">
                   <div class="table-data">Vender Name</div>
                 </th>
@@ -71,10 +71,10 @@
                 <tr>
                   <td>
                     <div class="table-data">
-                      {{ item.rmano }}
+                      {{ i + 1 }}
                     </div>
                   </td>
-                  <td>
+                  <!-- <td>
                     <div class="table-data">
                       {{ item.employeename }}
                     </div>
@@ -83,15 +83,15 @@
                     <div class="table-data">
                       {{ item.employeeemail }}
                     </div>
-                  </td>
+                  </td> -->
                   <td>
                     <div class="table-data">
-                      {{ item.venderName }}
+                      {{ item.vendor[0].name }}
                     </div>
                   </td>
                   <td>
                     <div class="table-data">
-                      {{ item.requesteddate }}
+                      {{ item.createdAt }}
                     </div>
                   </td>
                   <td>
@@ -101,7 +101,7 @@
                   </td>
                   <td>
                     <div class="table-data">
-                      {{ item.totalamount | currency }}
+                      {{ item.totalPrice | currency }}
                     </div>
                   </td>
                   <td>
@@ -119,7 +119,7 @@
                     <div class="table-data d-flex gap-1 justify-content-end">
                       <button class="btn "
                       matTooltip="View Details"
-                        (click)="openDialog()">
+                        (click)="openDialog(item)">
                         <img src="../../../../../assets/newicons/message square.png" alt="">
                       </button>
                       <button class="btn" matTooltip="Delete RMA">

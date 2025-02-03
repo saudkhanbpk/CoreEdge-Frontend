@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AuthService } from 'src/app/services/auth.service';
+import { PurchaseOrderService } from 'src/app/services/purchase-order.service';
+import { ViewRmaComponent } from '../../rma/view-rma/view-rma.component';
 
 @Component({
   selector: 'app-view-approved-rma-request',
@@ -6,6 +10,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./view-approved-rma-request.component.css']
 })
 export class ViewApprovedRmaRequestComponent {
+   constructor(private purchaseOrderService: PurchaseOrderService, private authService: AuthService, public dialogRef: MatDialogRef<ViewRmaComponent>,
+      @Inject(MAT_DIALOG_DATA) public data: any) {
+  console.log(data);
+  
+    }
   request = [
     {
       no: "01",
