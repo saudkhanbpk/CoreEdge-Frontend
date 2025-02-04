@@ -3,9 +3,9 @@ import { OrderDetailsDialogComponent } from '../order-details-dialog/order-detai
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-Returned-order-table',
-  templateUrl: './Returned-order-table.component.html',
-  styleUrls: ['./Returned-order-table.component.css']
+  selector: 'app-returned-order-table',
+  templateUrl: './returned-order-table.component.html',
+  styleUrls: ['./returned-order-table.component.css']
 })
 export class ReturnedOrderTableComponent {
  currentPage = 1;
