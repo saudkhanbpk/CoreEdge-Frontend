@@ -57,12 +57,12 @@
                   <tr>
                     <td>
                       <div class="table-data">
-                        {{ item.rmano }}
+                        {{ i + 1 }}
                       </div>
                     </td>
                     <td>
                       <div class="table-data">
-                        {{ item.purchaseorderno }}
+                        {{ item.barcode | slice: 8:35 }}
                       </div>
                     </td>
                     <td>
@@ -72,7 +72,7 @@
                     </td>
                     <td>
                       <div class="table-data">
-                        {{ item.totalamount | currency }}
+                        {{ calculat(item.rmaProducts) | currency }}
                       </div>
                     </td>
                     <td>
@@ -89,7 +89,7 @@
                       <div class="table-data d-flex gap-1 justify-content-end">
                         <button class="btn "
                         matTooltip="View Details"
-                          (click)="openDialog()">
+                          (click)="openDialog(item)">
                           <img src="../../../../../assets/newicons/message square.png" alt="">
                         </button>
                         <button class="btn" matTooltip="Delete RMA">

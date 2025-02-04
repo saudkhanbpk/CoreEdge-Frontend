@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ViewRmaComponent } from 'src/app/components/business-admin/rma/view-rma/view-rma.component';
+import { AuthService } from 'src/app/services/auth.service';
+import { PurchaseOrderService } from 'src/app/services/purchase-order.service';
 
 @Component({
   selector: 'app-order-details-dialog',
@@ -6,6 +10,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./order-details-dialog.component.css']
 })
 export class OrderDetailsDialogComponent {
+    constructor(private purchaseOrderService: PurchaseOrderService, private authService: AuthService, public dialogRef: MatDialogRef<ViewRmaComponent>,
+      @Inject(MAT_DIALOG_DATA) public data: any) {
+  console.log("data is : ",this,data);
+  
+    }
+  
+  
   request = [
     {
       no: "01",
