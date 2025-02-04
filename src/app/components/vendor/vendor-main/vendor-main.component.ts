@@ -55,7 +55,7 @@ export class VendorMainComponent {
     // { id: 'receiving', title: 'Receiving', icon: 'move_to_inbox', link: '/business-admin/receiving', submenus: [] },
     // { id: 'fulfillmenttasks', title: 'Fulfillment Tasks', icon: 'assignment_turned_in', link: '/business-admin/fulfillment', submenus: [] },
     { id: 'rma', title: 'RMA', icon: 'repeat', link: '/vendor/vendor-returned-orders', submenus: [] },
-    // { id: 'disputes', title: 'Disputes', icon: 'gavel', link: '/business-admin/disputes', submenus: [] },
+    { id: 'disputes', title: 'Disputes', icon: 'gavel', link: '/vendor/vendor-disputes', submenus: [] },
     // {
     //   id: 'administration',
     //   title: 'Administration',

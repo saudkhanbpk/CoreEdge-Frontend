@@ -11,10 +11,7 @@ const routes: Routes = [
       { path: 'vendor-purchase-order', loadChildren: () => import('./vendor-purchase-order/vendor-purchase-order.module').then(m => m.VendorPurchaseOrderModule) },
       { path: 'vendor-invoice', loadChildren: () => import('./vendor-send-invoice/vendor-send-invoice.module').then(m => m.VendorSendInvoiceModule) },
       { path: 'vendor-returned-orders', loadChildren: () => import('./vendor-returned-orders/vendor-returned-orders.module').then(m => m.VendorReturnedOrdersModule) },
-
-
-
-
+      { path: 'vendor-disputes', loadChildren: () => import('./vendor-dispute/vendor-dispute.module').then(m => m.VendorDisputeModule) },
     ]
   }
 ];
