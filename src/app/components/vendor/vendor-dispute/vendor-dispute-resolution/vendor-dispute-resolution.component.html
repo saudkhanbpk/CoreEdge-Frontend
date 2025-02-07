@@ -1,0 +1,13 @@
+<div class="headdiv">
+    <h1>Disputes</h1>
+</div>
+<div class="main-menu-div mt-3">
+  <div class="parent-buttons-group pb-0 gap-2">
+      <button class="btn parent-btn" routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: false }" routerLink="/vendor/vendor-disputes/vendor-dispute-resolution/vendor-open-disputes">Open Disputes</button>
+      <button class="btn parent-btn" routerLinkActive="active" routerLink="/vendor/vendor-disputes/vendor-dispute-resolution/vendor-resolved-disputes">Resolved Disputes</button>
+  </div>
+  <div class="menu-secondary-group bg-white">
+      <router-outlet></router-outlet>
+  </div>
+</div>

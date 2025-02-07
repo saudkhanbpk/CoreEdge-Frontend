@@ -14,8 +14,8 @@ export class VendorPurchaseOrderTableComponent implements OnInit {
   currentPage = 1;
   itemsPerPage = 10;
   expandedIndex: number | null = null;
-  data: any[] = []; // Ensuring it's typed as an array
-  isLoading: boolean = true; // To handle loading state
+  data: any[] = [];
+  isLoading: boolean = true;
   filteredData:any=[];
   selectedSortOption:any='';
 

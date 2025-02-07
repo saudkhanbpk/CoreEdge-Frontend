@@ -78,10 +78,10 @@
                     <td>
                       <div class="table-data">
                         <div class="status p-2" [ngClass]="{
-                          resolved: item.status === 'Resolved',
-                          inactive: item.status === 'Pending'
+                          resolved: item.vendorStatus === 'Resolved',
+                          inactive: item.vendorStatus === 'Pending'
                         }">
-                          {{ item.status }}
+                          {{ item.vendorStatus }}
                         </div>
                       </div>
                     </td>
@@ -92,9 +92,9 @@
                           (click)="openDialog(item)">
                           <img src="../../../../../assets/newicons/message square.png" alt="">
                         </button>
-                        <button class="btn" matTooltip="Delete RMA">
+                        <!-- <button class="btn" matTooltip="Delete RMA">
                           <img src="../../../../../assets/icons/Trash can.png" alt="" />
-                        </button>
+                        </button> -->
                       </div>
                     </td>
                   </tr>

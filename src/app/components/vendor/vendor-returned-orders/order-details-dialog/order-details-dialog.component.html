@@ -3,7 +3,7 @@
       <h2 mat-dialog-title>Returned Order</h2>
       <mat-icon class="icon" mat-dialog-close>close</mat-icon>
     </div>
-    <mat-dialog-content class="mat-typography">
+    <!-- <mat-dialog-content class="mat-typography">
       <div class="row row1">
         <h3>These products are faulty 🥺</h3>
     
@@ -43,27 +43,122 @@
                 <td>{{ item?.quantity || 'N/A' }}</td>
                 <td>{{ item?.receivedQuantity || 'N/A' }}</td>
                 <td>{{ item?.brokenQuantity || 0 }}</td>
-                <td>{{ item?.wrongItemQuantity ? 'Yes' : 'No' }}</td>
+                <td>{{ item?.wrongItemQuantity }}</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
     
-      <ng-template #noData>
+    </mat-dialog-content> -->
+    <mat-dialog-content class="mat-typography">
+      <div class="row row1">
+        <h3>These products are faulty 🥺</h3>
+    
+        <!-- Vendor Information -->
+        <div class="col-md-6 p-0" *ngIf="data?.vendor?.length; else noVendorData">
+          <div class="mb-3">
+            <h4>Vendor Name:</h4>
+            <span>{{ data.vendor[0]?.name || 'N/A' }}</span>
+          </div>
+          <div class="mb-3">
+            <h4>Vendor Email:</h4>
+            <span>{{ data.vendor[0]?.email || 'N/A' }}</span>
+          </div>
+          <div class="mb-3">
+            <h4>Vendor Contact:</h4>
+            <span>{{ data.vendor[0]?.phone || 'N/A' }}</span>
+          </div>
+        </div>
+    
+        <!-- Fallback if no vendor data -->
+        <ng-template #noVendorData>
+          <p class="text-muted">No vendor information available.</p>
+        </ng-template>
+      </div>
+    
+      <!-- Faulty Products Table -->
+      <div class="row" *ngIf="data?.rmaProducts?.length; else noProducts">
+        <div class="table-div p-0">
+          <div class="table-container p-0 mt-2">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col" class="one"><div class="table-data">No</div></th>
+                    <th scope="col"><div class="table-data">Item Name</div></th>
+                    <th scope="col"><div class="table-data">Order Qty</div></th>
+                    <th scope="col"><div class="table-data">Received Qty</div></th>
+                    <th scope="col"><div class="table-data">Broken Qty</div></th>
+                    <th scope="col"><div class="table-data">Wrong Item</div></th>
+                    <th scope="col" class="two"><div class="table-data">Reason</div></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of data.rmaProducts; let i = index">
+                    <td><div class="table-data">{{ i + 1 }}</div></td>
+                    <td><div class="table-data">{{ item?.product?.materialId || 'N/A' }}</div></td>
+                    <td><div class="table-data">{{ item?.quantity || 0 }}</div></td>
+                    <td><div class="table-data">{{ item?.receivedQuantity || 0 }}</div></td>
+                    <td><div class="table-data">{{ item?.brokenQuantity || 0 }}</div></td>
+                    <td><div class="table-data">{{ item?.wrongItemQuantity || 0 }}</div></td>
+                    <!-- <td><div class="table-data">{{ item?.note || 'No reason provided' }}</div></td> -->
+                    <td>
+                      <div class="table-data">
+                        {{ getShortNote(item?.note) }}
+                      </div>
+                    </td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Fallback if no products found -->
+      <ng-template #noProducts>
         <p class="text-center text-muted">No faulty products found. 🎉</p>
       </ng-template>
     </mat-dialog-content>
-  
+    
+    
+    <!-- <ng-template #noData>
+      <p class="text-center text-muted">No faulty products found. 🎉</p>
+    </ng-template>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="d-flex justify-content-between">
+    <button class="btn check border gap-2">
+      <span class="btn-span">Resolved & Ship</span>
+      <mat-icon class="icon-near">near_me</mat-icon>
+    </button>
+    <button class="btn close border gap-2" mat-dialog-close>
+      <span class="btn-span">Cancel</span>
+      <mat-icon class="btn-icon">close</mat-icon>
+    </button> -->
+    <ng-template #noData>
+      <p class="text-center text-muted">No faulty products found. 🎉</p>
+    </ng-template>
+    
+    <mat-dialog-content>
+      <!-- Add dialog content here if needed -->
+    </mat-dialog-content>
+    
     <mat-dialog-actions class="d-flex justify-content-between">
-      <button class="btn check border gap-2">
+      <!-- Resolved & Ship Button -->
+      <button class="btn check border gap-2" (click)="markAsResolved('Resolved')">
         <span class="btn-span">Resolved & Ship</span>
         <mat-icon class="icon-near">near_me</mat-icon>
       </button>
+    
+      <!-- Cancel Button -->
       <button class="btn close border gap-2" mat-dialog-close>
         <span class="btn-span">Cancel</span>
         <mat-icon class="btn-icon">close</mat-icon>
       </button>
     </mat-dialog-actions>
+
   </div>
   
