@@ -89,10 +89,9 @@
                 </div>
 
                 <div class="d-flex gap-2">
-                    <button type="button" class="btn d-flex justify-content-center align-items-center skip"
-                        routerLink="/business-admin">Skip</button>
-                    <button type="submit" class="btn d-flex justify-content-center align-items-center save">Save
-                        Details</button>
+                    <button type="submit" class="btn d-flex justify-content-center align-items-center save" [disabled]="isSubmitting">
+                        {{ isSubmitting ? 'Saving...' : 'Save Details' }}
+                    </button>
                 </div>
             </form>
         </div>

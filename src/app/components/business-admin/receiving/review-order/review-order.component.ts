@@ -84,7 +84,7 @@ export class ReviewOrderComponent {
     console.log("Currently editing item:", this.currentEditingItem);
     console.log("Updated selectedOrder:", this.selectedOrder);
   }
-  // ihtizaz 
+
   updateReport() {
     // Ensure necessary arrays exist
     this.selectedOrder.rmaproducts = this.selectedOrder.rmaproducts || [];
@@ -147,19 +147,6 @@ export class ReviewOrderComponent {
     console.log("Original Products:", this.selectedOrder.products);
     console.log("Cleared Products:", this.selectedOrder.clearedproducts);
   }
-
-  // sendToRMA() {
-  //   console.log("Before Sending to RMA:", this.selectedOrder);
-
-  //   // Assign products to cleared products
-  //   this.selectedOrder.products = [...this.selectedOrder.allProducts];
-  //   // this.selectedOrder.products = [...this.selectedOrder.allProducts];
-
-  //   // Remove `allProducts` as it's no longer needed
-  //   delete this.selectedOrder.allProducts;
-
-  //   console.log("After Sending to RMA:", this.selectedOrder);
-  // }
 
 
   sendToRMA() {

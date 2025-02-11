@@ -18,7 +18,7 @@ export class ApprovedHardwareRequestComponent {
   currentPage = 1;
   itemsPerPage = 10;
   expandedIndex: number | null = null;
-  status: any[] = []; // Declare status as a string array
+  status: any[] = [];
   filteredData: any[] = [];
   selectedstatus: string = '';
   selectedSortOption='';
@@ -61,7 +61,7 @@ export class ApprovedHardwareRequestComponent {
   }
   filterBystatus(): void {
     if (this.selectedstatus === 'all') {
-      this.filteredData = [...this.data]; // Show all data
+      this.filteredData = [...this.data]; 
     } else if (this.selectedstatus) {
       this.filteredData = this.data.filter((item) =>
         item.availableProducts.some(
@@ -81,20 +81,14 @@ export class ApprovedHardwareRequestComponent {
       );
     }
   }
-  // openDialog() {
-  //   const dialogRef = this.dialog.open(ViewApprovedHardwareRequestComponent);
 
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     console.log(`Dialog result: ${result}`);
-  //   });
-  // }
 
   openDialog(item: any) {
     console.log(item);
 
     const dialogRef = this.dialog.open(ViewApprovedHardwareRequestComponent, {
-      data: item, // Pass the item to the dialog component
-      width: 'auto', // Optional: Customize the dialog width
+      data: item, 
+      width: 'auto',
     });
 
     dialogRef.afterClosed().subscribe(result => {

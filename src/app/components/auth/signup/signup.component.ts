@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from 'src/app/services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -7,38 +7,28 @@ import { UserService } from 'src/app/services/users.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  constructor(private userService: UserService){
+  fullName: string = '';
+  email: string = '';
+  password: string = '';
+  confirmPassword: string = '';
+  hide: boolean = true;
+  hideconfirmpassword: boolean = true;
 
-  }
- fullName: string = '';
- email: string = '';
- password: string = '';
- address: string = '';
- businessName: string = '';
- isCustomer: boolean = true; 
- wantsBusiness: boolean = false; 
- hide: boolean = true;
- hideconfirmpassword: boolean = true;
- signUp() {
-  let signUpData = {
-    fullName: this.fullName,
-    email: this.email,
-    password: this.password,
-    address: this.address,
-    businessName: this.businessName,  
-    isCustomer: this.isCustomer,
-    wantsBusiness: this.wantsBusiness,
-    role:'Admin'
-  }
-  console.log('Sign Up Data:', signUpData);  // Ensure fullName has a value here
-  this.userService.signup(signUpData).subscribe(
-    (response: any) => {
-      console.log('User signed up successfully:', response);
-    },
-    (error: any) => {
-      console.error('Signup error:', error);
+  constructor(private router: Router) { }
+
+  signUp() {
+    if (this.password !== this.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
     }
-  );
+
+    const signUpData = {
+      fullName: this.fullName,
+      email: this.email,
+      password: this.password,
+      role: 'Admin'
+    };
+    this.router.navigate(['/auth/business-details'], { state: { userData: signUpData } });
+  }
 }
 
-}
