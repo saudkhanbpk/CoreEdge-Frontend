@@ -1,35 +1,26 @@
 <div class="container-fluid">
     <div class="container d-flex justify-content-center flex-column align-items-center vh-100">
-        <div class="onboard-head d-flex justify-content-start margin">
-            <h1 class="mb-4 d-flex">
-                <div>Cores</div>
-                <div class="color">Edge</div>
-            </h1>
+      <div class="card bg-white border-0 rounded-4 p-4">
+        <h2 class="text-start my-3">Confirm OTP</h2>
+        <p class="text-start text-muted mb-2">
+          Confirm OTP sent to <strong>{{ email }}</strong>
+        </p>
+  
+        <!-- Timer -->
+        <p *ngIf="otpSent" class="text-danger text-start">Resend in {{ minutes }}:{{ seconds < 10 ? '0' + seconds : seconds }}</p>
+  
+        <div class="otp-container d-flex justify-content-center gap-2">
+          <input type="text" #otpInput maxlength="1" class="otp-box" (input)="onInputChange($event, 0)" [(ngModel)]="otp[0]">
+          <input type="text" #otpInput maxlength="1" class="otp-box" (input)="onInputChange($event, 1)" [(ngModel)]="otp[1]">
+          <input type="text" #otpInput maxlength="1" class="otp-box" (input)="onInputChange($event, 2)" [(ngModel)]="otp[2]">
+          <input type="text" #otpInput maxlength="1" class="otp-box" (input)="onInputChange($event, 3)" [(ngModel)]="otp[3]">
         </div>
-        <div class="card bg-white border-0 rounded-4">
-            <h2 class="text-start my-3">Confirm OTP</h2>
-            <div class="d-flex justify-content-start">
-                <p class="text-start text-muted mb-2">Confirm OTP sent to <span>Martinlutherkingjr&#64;gmail.com</span>
-                </p>
-            </div>
-            <div class="d-flex justify-content-start">
-                <p>Resend in <span class="time">{{ minutes | number:'2.0' }}:{{ seconds | number: '2.0' }}</span> </p>
-            </div>
-            <form>
-                <div class="mb-3">
-                    <div class="otp-container">
-                        <input type="text" maxlength="1" (input)="onInputChange($event, 0)" #otp0 />
-                        <input type="text" maxlength="1" (input)="onInputChange($event, 1)" #otp1 />
-                        <input type="text" maxlength="1" (input)="onInputChange($event, 2)" #otp2 />
-                        <input type="text" maxlength="1" (input)="onInputChange($event, 3)" #otp3 />
-                    </div>
-                </div>
-                <div class="d-flex gap-2">
-                    <button class="btn d-flex justify-content-center align-items-center skip">Request New OTP</button>
-                    <button type="submit" class="btn d-flex justify-content-center align-items-center save"
-                        routerLink="/auth/recover-password">Confirm OTP</button>
-                </div>
-            </form>
+  
+        <div class="d-flex gap-2 mt-3">
+          <button class="btn btn-secondary" (click)="requestNewOtp()" [disabled]="otpSent">Request New OTP</button>
+          <button class="btn btn-primary" (click)="confirmOtp()">Confirm OTP</button>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+  

@@ -39,9 +39,13 @@ import { User } from '../models/users.model';
     return this.http.post<void>(`${this.apiUrl}/forgot-password`, { email });
   }
 
+  verifyOtp(email: string, otp: string): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/verify-otp`, { email, otp });
+  }
+
   // Method for resetting password (POST /user/reset-password)
-  resetPassword(resetData: { token: string; newPassword: string; confirmPassword: string }): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/reset-password`, resetData);
+  resetPassword(email: string, newPassword: string): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/reset-password`, { email, newPassword });
   }
 
   // Method to update an existing user (PUT /user/:id)
