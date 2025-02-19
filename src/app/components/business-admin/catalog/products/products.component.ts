@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -15,7 +14,6 @@ import Swal from 'sweetalert2';
 import { VendorsService } from 'src/app/services/vendors.service';
 import { SharedService } from 'src/app/services/shared.service';
 
-
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -23,6 +21,7 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   public data: any[] = [];
+  public filteredData: any[] = [];
   public quantities: number[] = [];
   searchTerm: string = '';
   pageSize: number = 24;
@@ -31,21 +30,22 @@ export class ProductsComponent implements OnInit, OnDestroy {
   selectedView: 'cardview' | 'listview' = 'listview';
   addedProducts: any = [];
   user: any;
-  venders: any = []
-  venderid: any
+  venders: any = [];
+  venderid: any = null;
 
   // Subscriptions
   private inStockSubscription!: Subscription;
   private manufacturersSubscription!: Subscription;
   private categoriesSubscription!: Subscription;
   private searchSubscription!: Subscription;
+  private sharedSearchSubscription!: Subscription;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private dataService: DataService,
     private catalogService: CatalogService,
-    private sharedservice:SharedService,
+    private sharedservice: SharedService,
     private filterService: FilterService,
     private searchService: SearchService,
     private cartService: CartService,
@@ -59,26 +59,31 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadCatalogData();
     this.initializeSubscriptions();
-    this.loadRoles()
-    this.sharedservice.currentSearchTerm.subscribe(term => {
-      this.searchTerm = term //this search term get from catalog menu components using catalog service
-    })
+    this.loadRoles();
+
+    // Subscribe to search term changes from SharedService
+    this.sharedSearchSubscription = this.sharedservice.currentSearchTerm.subscribe(term => {
+      this.searchTerm = term;
+      this.filterData();
+    });
   }
 
   ngOnDestroy(): void {
     this.unsubscribeAll();
   }
 
-  // Load data
+  // Load catalog data and initialize quantities
   private loadCatalogData(): void {
     this.catalogService.findByUserId(this.user.id).subscribe((response: any) => {
       this.data = response;
       this.totalProducts = response.length;
-      this.quantities = this.data.map(() => 1); // Initialize quantities
+      this.quantities = this.data.map(() => 1);
+      this.filterData(); // Update filteredData when data is loaded
     });
   }
-  // load vendor data
-  loadRoles() {
+
+  // Load vendor data
+  loadRoles(): void {
     this.VendorServices.findAll().subscribe({
       next: (data) => {
         this.venders = data;
@@ -89,15 +94,20 @@ export class ProductsComponent implements OnInit, OnDestroy {
     });
   }
 
-
-
-  // Subscriptions
+  // Subscriptions to various filters (if needed for future improvements)
   private initializeSubscriptions(): void {
-    this.inStockSubscription = this.filterService.inStock$.subscribe(inStock => { });
-    this.manufacturersSubscription = this.filterService.selectedManufacturers$.subscribe(manufacturers => { });
-    this.categoriesSubscription = this.filterService.selectedcategories$.subscribe(categories => { });
+    this.inStockSubscription = this.filterService.inStock$.subscribe(() => {
+      this.filterData();
+    });
+    this.manufacturersSubscription = this.filterService.selectedManufacturers$.subscribe(() => {
+      this.filterData();
+    });
+    this.categoriesSubscription = this.filterService.selectedcategories$.subscribe(() => {
+      this.filterData();
+    });
     this.searchSubscription = this.searchService.search$.subscribe(term => {
       this.searchTerm = term;
+      this.filterData();
     });
   }
 
@@ -106,51 +116,56 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.manufacturersSubscription?.unsubscribe();
     this.categoriesSubscription?.unsubscribe();
     this.searchSubscription?.unsubscribe();
+    this.sharedSearchSubscription?.unsubscribe();
   }
 
-  // View toggles
-  setView(view: 'cardview' | 'listview') {
+  // Update the view (cardview or listview)
+  setView(view: 'cardview' | 'listview'): void {
     this.selectedView = view;
   }
 
-  // Quantity controls
+  // Increase item quantity
   incrementQuantity(index: number): void {
     this.quantities[index]++;
   }
 
+  // Decrease item quantity
   decrementQuantity(index: number): void {
     if (this.quantities[index] > 1) this.quantities[index]--;
   }
 
-  //filteredData by vendor
-  filterdByVendor(venderid: any) {
-    this.venderid = venderid
-    const vender = this.data.filter((item: any) => item?.vendor?.id == venderid)
-    console.log("filtered data", vender)
+  // Filter data by vendor and update the filtered list
+  filterdByVendor(venderid: any): void {
+    this.venderid = venderid;
+    this.filterData();
   }
 
-  // Filtered data
-  get filteredData() {
+  // Perform filtering based on searchTerm and venderid
+  private filterData(): void {
     if (!this.data || this.data.length === 0) {
-      return []; // Return empty array if no data
-    }  
-    return this.data.filter(item => {
-      console.log("material id" , item)
+      this.filteredData = [];
+      return;
+    }
+
+    const lowerSearchTerm = this.searchTerm.toLowerCase();
+
+    this.filteredData = this.data.filter(item => {
       const matchesSearchTerm =
-        item.materialId?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        item.shortDescription?.toLowerCase().includes(this.searchTerm.toLowerCase());
-      const matchesVendor = !this.venderid || item?.vendor?.id === this.venderid;
+        (item.materialId && item.materialId.toLowerCase().includes(lowerSearchTerm)) ||
+        (item.shortDescription && item.shortDescription.toLowerCase().includes(lowerSearchTerm));
+
+      const matchesVendor = !this.venderid || (item.vendor && item.vendor.id === this.venderid);
       return matchesSearchTerm && matchesVendor;
     });
   }
 
-
-  // Pagination
+  // Handle pagination changes (if pagination logic is implemented further)
   onPaginateChange(event: PageEvent): void {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
   }
 
+  // Add product to cart and show success alert
   addRequest(item: any, quantity: number): void {
     this.cartService.addToCart({
       product: item,
@@ -171,26 +186,25 @@ export class ProductsComponent implements OnInit, OnDestroy {
     });
   }
 
-
-
-  openDialog(item: any) {
+  // Open product details dialog
+  openDialog(item: any): void {
     const dialogRef = this.dialog.open(ProductDetailsComponent, {
       data: item
     });
     dialogRef.afterClosed().subscribe((result) => {
-      this.addedProducts.push(result)
+      if (result) {
+        this.addedProducts.push(result);
+      }
     });
   }
 
+  // Open dialog to show added products
   openProductModal(): void {
     const dialogRef = this.dialog.open(AddedProductsComponent, {
-      // position: { bottom: '80px', right: '10px' },
-      // panelClass: 'custom-dialog-container',
       maxWidth: '800px',
-      data: this.addedProducts,// Pass the addedProducts array to the dialog
+      data: this.addedProducts, // Pass the addedProducts array to the dialog
     });
 
-    console.log("log : ", this.addedProducts)
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });

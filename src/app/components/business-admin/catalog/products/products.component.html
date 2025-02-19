@@ -1,96 +1,104 @@
 <div class="pt-3 maindiv px-2">
-    <!-- Vendor Selection -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <div class="parent-buttons-group pb-0 gap-2">
-        <!-- <button class="btn parent-btn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Vendor {{vendor.id}}</button> -->
-        <button  *ngFor="let vendor of venders" class="btn parent-btn" routerLinkActive="active" (click)="filterdByVendor(vendor.id)" >Vendor {{vendor.id}}</button>
+  <!-- Vendor Selection -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="parent-buttons-group pb-0 gap-2">
+      <button *ngFor="let vendor of venders" class="btn parent-btn" routerLinkActive="active"
+        (click)="filterdByVendor(vendor.id)">
+        Vendor {{ vendor.id }}
+      </button>
+    </div>
+    <!-- View Toggle -->
+    <div class="view d-flex gap-2 align-items-center">
+      <div class="view-div">
+        <button class="btn view-btn" (click)="setView('listview')" aria-label="Switch to list view"
+          [ngClass]="{'active': selectedView === 'listview'}">
+          <mat-icon>view_list</mat-icon>
+        </button>
+        <button class="btn view-btn" (click)="setView('cardview')" aria-label="Switch to grid view"
+          [ngClass]="{'active': selectedView === 'cardview'}">
+          <mat-icon>grid_view</mat-icon>
+        </button>
       </div>
-      <!-- View Toggle -->
-      <div class="view d-flex gap-2 align-items-center">
-        <div class="view-div">
-          <button class="btn view-btn" (click)="setView('listview')" aria-label="Switch to list view" [ngClass]="{'active': selectedView === 'listview'}">
-            <mat-icon>view_list</mat-icon>
-          </button>
-          <button class="btn view-btn" (click)="setView('cardview')" aria-label="Switch to grid view" [ngClass]="{'active': selectedView === 'cardview'}">
-            <mat-icon>grid_view</mat-icon>
-          </button>
+    </div>
+  </div>
+
+  <!-- Card View -->
+  <div id="card-view" *ngIf="selectedView === 'cardview'">
+    <div class="sites d-flex flex-wrap justify-content-between gap-3">
+      <div class="card" *ngFor="let item of filteredData" (click)="openDialog(item)">
+        <div class="position-relative">
+          <img [src]="item.imageUrl" alt="" class="card-img-top" />
+        </div>
+        <div class="card-body">
+          <h2>{{ item.materialId }}</h2>
+          <h2>{{ item.price | currency }}</h2>
+          <p>{{ item.shortDescription }}</p>
         </div>
       </div>
     </div>
-  
-    <!-- Card View -->
-    <div id="card-view" *ngIf="selectedView === 'cardview'">
-      <div class="sites d-flex flex-wrap justify-content-between gap-3">
-        <div class="card" *ngFor="let item of filteredData" (click)="openDialog(item)">
-          <div class="position-relative">
-            <img [src]="item.imageUrl" alt="" class="card-img-top">
-          </div>
-          <div class="card-body">
-            <h2>{{ item.materialId }}</h2>
-            <h2>{{ item.price | currency }}</h2>
-            <p>{{ item.shortDescription }}</p>
-          </div>
+  </div>
+
+  <!-- List View -->
+  <div id="list-view" *ngIf="selectedView === 'listview'">
+    <div class="row mb-4" *ngFor="let item of filteredData; let i = index">
+      <div class="col-md-3">
+        <div class="d-flex justify-content-between align-items-center h-100 rounded-3">
+          <img [src]="item.imageUrl" [alt]="item.materialId" width="100%" class="rounded-3" />
         </div>
       </div>
-    </div>
-  
-    <!-- List View -->
-    <div id="list-view" *ngIf="selectedView === 'listview'">
-      <div class="row mb-4" *ngFor="let item of filteredData; let i = index">
-        <div class="col-md-3">
-          <div class="d-flex justify-content-between align-items-center h-100 rounded-3">
-            <img [src]="item.imageUrl" [alt]="item.materialId" width="100%" class="rounded-3">
-          </div>
+      <div class="col-md-6">
+        <h4>{{ item.shortDescription }}</h4>
+        <div class="d-flex gap-3 mb-3">
+          <span class="mgf-unspc">MFG# {{ item.manufacturerPartNumber }}</span>
+          <span class="mgf-unspc">UNSPC# {{ item.unspc }}</span>
         </div>
-        <div class="col-md-6">
-          <h4>{{ item.shortDescription }}</h4>
-          <div class="d-flex gap-3 mb-3">
-            <span class="mgf-unspc">MFG# {{ item.manufacturerPartNumber }}</span>
-            <span class="mgf-unspc">UNSPC# {{ item.unspc }}</span>
-          </div>
-          <div class="d-flex gap-2 mb-1"><strong>Material ID:</strong>
-            <div>{{ item.materialId }}</div>
-          </div>
-          <div class="d-flex gap-2 mb-1"><strong>Category:</strong>
-            <div>{{ item.category }}</div>
-          </div>
-          <div class="d-flex gap-2 mb-1"><strong>Insight Part Number:</strong>
-            <div>{{ item.partNumber }}</div>
-          </div>
-          <div class="d-flex gap-2 mb-1"><strong>Manufacturer Name:</strong>
-            <div>{{ item.manufacturerName }}</div>
-          </div>
-          <div>{{ item.longDescription }}</div>
+        <div class="d-flex gap-2 mb-1">
+          <strong>Material ID:</strong>
+          <div>{{ item.materialId }}</div>
         </div>
-        <div class="col-md-3">
-          <div class="d-flex flex-column justify-content-end h-100">
-            <h3><strong>{{ item.price | currency }}</strong></h3>
-            <div class="number-input-container d-flex justify-content-between align-items-end my-3">
-              <input type="number" [(ngModel)]="quantities[i]" class="number-input">
-              <div class="d-flex flex-column">
-                <button class="increment-btn" (click)="incrementQuantity(i)">▲</button>
-                <button class="decrement-btn" (click)="decrementQuantity(i)" [disabled]="quantities[i] <= 1">▼</button>
-              </div>
+        <div class="d-flex gap-2 mb-1">
+          <strong>Category:</strong>
+          <div>{{ item.category }}</div>
+        </div>
+        <div class="d-flex gap-2 mb-1">
+          <strong>Insight Part Number:</strong>
+          <div>{{ item.partNumber }}</div>
+        </div>
+        <div class="d-flex gap-2 mb-1">
+          <strong>Manufacturer Name:</strong>
+          <div>{{ item.manufacturerName }}</div>
+        </div>
+        <div>{{ item.longDescription }}</div>
+      </div>
+      <div class="col-md-3">
+        <div class="d-flex flex-column justify-content-end h-100">
+          <h3><strong>{{ item.price | currency }}</strong></h3>
+          <div class="number-input-container d-flex justify-content-between align-items-end my-3">
+            <input type="number" [(ngModel)]="quantities[i]" class="number-input" />
+            <div class="d-flex flex-column">
+              <button class="increment-btn" (click)="incrementQuantity(i)">▲</button>
+              <button class="decrement-btn" (click)="decrementQuantity(i)" [disabled]="quantities[i] <= 1">▼</button>
             </div>
-            <button class="btn add-cart" (click)="addRequest(item, quantities[i])">
-              Add Request <mat-icon>post_add</mat-icon>
-            </button>
           </div>
+          <button class="btn add-cart" (click)="addRequest(item, quantities[i])">
+            Add Request <mat-icon>post_add</mat-icon>
+          </button>
         </div>
       </div>
     </div>
-  
-    <!-- Pagination -->
-    <div class="d-flex justify-content-end align-items-center mt-4">
-      <mat-paginator [pageSize]="pageSize" [length]="totalProducts" [pageSizeOptions]="[20]" (page)="onPaginateChange($event)">
-      </mat-paginator>
-    </div>
   </div>
-  
-  <!-- Floating Button -->
-  <div class="d-flex justify-content-end">
-    <button mat-fab [matBadge]="addedProducts?.length || 0" class="floating-button" (click)="openProductModal()">
-      <mat-icon>list_alt</mat-icon>
-    </button>
+
+  <!-- Pagination -->
+  <div class="d-flex justify-content-end align-items-center mt-4">
+    <mat-paginator [pageSize]="pageSize" [length]="totalProducts" [pageSizeOptions]="[20]"
+      (page)="onPaginateChange($event)">
+    </mat-paginator>
   </div>
-  
+</div>
+
+<!-- Floating Button -->
+<div class="d-flex justify-content-end">
+  <button mat-fab [matBadge]="addedProducts?.length || 0" class="floating-button" (click)="openProductModal()">
+    <mat-icon>list_alt</mat-icon>
+  </button>
+</div>

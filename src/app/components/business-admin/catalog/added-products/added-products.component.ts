@@ -5,6 +5,7 @@ import jsPDF from 'jspdf';
 import { AuthService } from 'src/app/services/auth.service';
 import { EmployesService } from 'src/app/services/employes.service';
 import { RequestService } from 'src/app/services/request.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-added-products',
@@ -14,16 +15,16 @@ import { RequestService } from 'src/app/services/request.service';
 export class AddedProductsComponent implements OnInit {
   loading = false;
   generatedRequest: any = null;
-  employeeName: string = '';  // Empty initially, will be set dynamically
-  employeeEmail: string = ''; // Empty initially, will be set dynamically
+  employeeName: string = '';  
+  employeeEmail: string = ''; 
   vendorName = 'TechVendor Inc.';
   vendorEmail = 'vendor@techvendor.com';
   description = '';
-  optionsList: any = []; // Dynamically populated options
-  selectedOptions: any; // To store selected options
+  optionsList: any = [];
+  selectedOptions: any; 
 
   constructor(@Inject(MAT_DIALOG_DATA) public addedProducts: any[], private authService: AuthService, private employesService: EmployesService,
-    private requestService: RequestService, private dialogref: MatDialogRef<AddedProductsComponent>) {
+    private requestService: RequestService, private dialogref: MatDialogRef<AddedProductsComponent>, private sharedService: SharedService) {
     this.addedProducts = addedProducts || [];
   }
 
@@ -40,7 +41,6 @@ export class AddedProductsComponent implements OnInit {
         this.optionsList = [];
 
         if (response.length > 0) {
-          // Assuming each item in the array contains `id` and `name` for roles
           this.optionsList = response.map((role: any) => ({
             id: role.id,
             name: role.name,
@@ -48,7 +48,6 @@ export class AddedProductsComponent implements OnInit {
 
           console.log("this.optionsList:", this.optionsList);
 
-          // Assuming the first object in the array contains employee data
           const firstItem = response[0];
           this.employeeName = firstItem.employeeName || '';
           this.employeeEmail = firstItem.employeeEmail || '';
@@ -58,7 +57,7 @@ export class AddedProductsComponent implements OnInit {
       },
       (error) => {
         console.error("Error loading roles:", error);
-        this.optionsList = []; // Ensure optionsList is cleared in case of error
+        this.optionsList = []; 
       }
     );
   }
@@ -66,29 +65,26 @@ export class AddedProductsComponent implements OnInit {
 
   async submitRequest(): Promise<void> {
     try {
-      this.loading = true; // Show loader
+      this.loading = true; 
   
-      // Generate a unique code for the request
       const uniqueCode = `PurchaseRequest-${Date.now()}`;
   
-      // Prepare the order data
       const orderData = {
         price:200,
-        users: [this.authService.getUserData().id], // Retrieve user ID from auth service
+        users: [this.authService.getUserData().id], 
         uniqueCode: uniqueCode,
         description: this.description,
         status: 'Pending',
         products: this.addedProducts,
         employees: [this.selectedOptions],
-        statusUpdatedAt: new Date().toISOString(), // Use ISO format for consistency
+        statusUpdatedAt: new Date().toISOString(), 
       };
   
       // Send order data to the backend API for saving
-      const response: any = await this.requestService.create(orderData).toPromise(); // Convert observable to promise for async/await
+      const response: any = await this.requestService.create(orderData).toPromise();
       console.log('Request successfully created on server: ', response);
   
-      // Encode order data into a string and generate barcode
-      const barcodeData = JSON.stringify(orderData); // JSON string of the order
+      const barcodeData = JSON.stringify(orderData); 
       const barcodeCanvas = document.createElement('canvas');
       JsBarcode(barcodeCanvas, barcodeData, { format: 'CODE128' });
       const barcodeDataURL = barcodeCanvas.toDataURL('image/png');
@@ -113,13 +109,18 @@ export class AddedProductsComponent implements OnInit {
   
       // Add barcode to the PDF
       doc.addImage(barcodeDataURL, 'PNG', 10, y, 80, 20);
-      doc.save('Purchase_Request.pdf'); // Download the PDF file
+      doc.save('./Purchase_Request.pdf'); // Download the PDF file
   
       // Update the UI to display the generated request
       this.generatedRequest = {
         ...orderData, // Include the entire order data
         barcode: barcodeDataURL,
       };
+      console.log("this.authService.getUserData().id:", this.authService.getUserData());
+      
+      // this.sharedService.reloadData(this.authService.getUserData().id).subscribe((data: any) => {
+      //   console.log("data is : ", data);  // Log the data
+      // });
       this.dialogref.close(this.generatedRequest);
       console.log('Generated request:', this.generatedRequest);
     } catch (error) {
