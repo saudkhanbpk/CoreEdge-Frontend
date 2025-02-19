@@ -31,5 +31,6 @@ jobs:
       timeout-minutes: 10  
 
     - name: Restart Angular App
-      run: pm2 restart core-edge
+      run: pm2 start npm --name core-edge -- start
+
 
