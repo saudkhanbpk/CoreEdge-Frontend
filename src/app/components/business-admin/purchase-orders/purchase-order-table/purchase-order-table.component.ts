@@ -35,9 +35,12 @@ export class PurchaseOrderTableComponent {
   ngOnInit(): void {
     const user = this.authService.getUserData();
     if (user) {
+      console.log("ihtizaz console is here : ", user);
+      
       this.loading = true
       this.sharedService.getData(user.id).subscribe(
         (items: any[]) => {
+
           const vendorsMap: { [key: number]: string } = {};
 
           const processedOrders = items.map((item) => {
