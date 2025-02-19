@@ -28,7 +28,7 @@ jobs:
 
     - name: Install dependencies
       run: npm ci --no-progress --legacy-peer-deps
-      timeout-minutes: 10  # Increase timeout
+      timeout-minutes: 10  
 
     - name: Restart Angular App
       run: pm2 restart core-edge
