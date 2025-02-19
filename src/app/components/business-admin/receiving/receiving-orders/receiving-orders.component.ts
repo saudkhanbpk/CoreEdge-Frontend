@@ -51,15 +51,15 @@ export class ReceivingOrdersComponent {
       this.loading = true
       this.sharedService.getPurchaseOrders(user.id).subscribe(
         (orders: any[]) => {
-          // const filteredOrders = orders.filter(
-          //   (order) =>
-          //     order.availableProducts &&
-          //     order.availableProducts.length > 0 &&
-          //     order.availableProducts[0]?.status === 'Approved'
-          // );
-          console.log("orders : ", orders);
 
-          this.allOrders = orders;
+          const filteredOrders = orders.filter(
+            (order) =>
+           
+              order.vendorStatus === 'Sent'
+          );
+          console.log("orders : ", filteredOrders);
+
+          this.allOrders = filteredOrders;
           this.filteredData = this.allOrders
           if (this.filteredData) {
             this.loading = false
