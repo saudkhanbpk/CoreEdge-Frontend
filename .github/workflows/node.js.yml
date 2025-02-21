@@ -31,5 +31,5 @@ jobs:
       timeout-minutes: 10  # Increase timeout
 
     - name: Restart Angular App
-      run: npm start
+      run: pm2 restart core-edge
 
